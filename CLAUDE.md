@@ -64,6 +64,10 @@ confidential information. This repo is public, so:
 
 - **Never commit raw source material.** Put it in `sources/` and sanitized
   drafts in `drafts/` — both are gitignored. Never `git add -f` either one.
+- The sanitizer reads **`.claude/redaction-denylist.md`** — a gitignored file
+  holding the specific names and business facts that must never be published.
+  It is deliberately not in the repo, so a fresh clone will not have it; if it
+  is missing, ask the owner for it before running the sanitizer.
 - Run the **`sanitize-tech-review`** subagent on the source before doing anything
   else. It strips employer-identifying and confidential content and repairs the
   prose, then writes `drafts/<name>.md` plus a redaction report.
