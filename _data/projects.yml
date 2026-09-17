@@ -2,22 +2,12 @@
 
 - name: PhySeek
   period: "2026 —"
-  tagline: "TODO — one line: what PhySeek does and who it is for."
-  description: >-
-    TODO — a short paragraph. What problem it solves, how it works, and what you
-    built. A longer write-up can live in Notes as a tech review.
-  tags: [Physical AI, Agent, Python]
-  selected: true
-  links: []
-
-- name: Physical AI Scout
-  period: "2026"
   tagline: "An AI-agent pipeline that finds researcher-founded robotics startups before they surface publicly."
   description: >-
     Automates discovery → analysis → outreach for stealth-stage robot-learning teams,
     feeding a technology-partnership pipeline across robot hardware, learning, data,
-    and delivery.
-  tags: [Agent, Research Automation, Python]
+    and delivery. Built for the Silicon Valley Connect & Develop Center at LG CNS.
+  tags: [Physical AI, Agent, Research Automation, Python]
   selected: true
   links: []
 

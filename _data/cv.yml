@@ -10,7 +10,7 @@ experience:
     title: "Physical AI — Technology Partnerships & Applied R&D on Robot Foundation Models"
     org: "LG CNS · Silicon Valley Connect & Develop Center, Santa Clara, CA · Senior Manager (Applied AI R&D)"
     bullets:
-      - "**Sourcing** — built a startup network across robot hardware, learning, data, and delivery into a partnership pipeline; prototyped an AI-agent scouting pipeline (discovery → analysis → outreach) that finds researcher-founded stealth-stage teams ahead of public visibility."
+      - "**Sourcing** — built a startup network across robot hardware, learning, data, and delivery into a partnership pipeline; prototyped **PhySeek**, an AI-agent scouting pipeline (discovery → analysis → outreach) that finds researcher-founded stealth-stage teams ahead of public visibility."
       - "**Technology deep-dives** — dissected core RFM / world-model technologies and their foundational research to map Silicon Valley robot-learning trends and identify key players, distilled into two authored insight reports."
       - "**Field validation** — orchestrated a three-party proof-of-value putting Config's VLA model onto Dexmate's humanoid hardware, achieving its first real-world operation in ~6 weeks; led to a partnership MOU and a follow-on equity investment with LG Tech Ventures."
       - "**Co-development** — framed research problems from field-deployment gaps, and now build domain-specialized RFMs with partner research teams — pre/mid-training adaptation to industrial (manufacturing / logistics) domains to cut downstream post-training cost."
