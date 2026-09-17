@@ -1,0 +1,21 @@
+# Projects, bots, and reproductions. `selected: true` surfaces it on the home page.
+- name: PhySeek
+  period: "2026 —"
+  tagline: "TODO — one line: what PhySeek does and who it is for."
+  description: >-
+    TODO — a short paragraph. What problem it solves, how it works,
+    and what you built. A linked write-up can live in Notes.
+  tags: [Physical AI, Agent, Python]
+  selected: true
+  links:
+    - label: Write-up
+      url: "TODO — link to a Notes post once written"
+
+- name: Physical AI Scout
+  period: "2026"
+  tagline: "Automated scouting of Silicon Valley robot-foundation-model startups (LG CNS)."
+  description: >-
+    TODO — what it collects, how it ranks or summarizes, and what it was used for.
+  tags: [Agent, Research Automation, Python]
+  selected: true
+  links: []

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  {% seo %}
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+
+  <!-- MathJax: render both inline $...$ and display $$...$$ math -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <script defer src="{{ '/assets/js/filter.js' | relative_url }}"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <nav class="site-nav">
+        {% assign u = page.url %}
+        <a href="{{ '/notes/' | relative_url }}" {% if u contains '/notes' %}class="current"{% endif %}>Notes</a>
+        <a href="{{ '/publications/' | relative_url }}" {% if u contains '/publications' %}class="current"{% endif %}>Publications</a>
+        <a href="{{ '/projects/' | relative_url }}" {% if u contains '/projects' %}class="current"{% endif %}>Projects</a>
+        <a href="{{ '/cv/' | relative_url }}" {% if u contains '/cv' %}class="current"{% endif %}>CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap site-main">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© {{ site.time | date: '%Y' }} {{ site.author }} ·
+         <a href="{{ '/feed.xml' | relative_url }}">RSS</a> ·
+         <a href="https://github.com/jiyoon0630">GitHub</a></p>
+    </div>
+  </footer>
+</body>
+</html>

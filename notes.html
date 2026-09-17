@@ -1,0 +1,53 @@
+---
+layout: page
+title: Notes
+subtitle: Paper reviews and tech reviews — studied, written up, archived.
+permalink: /notes/
+---
+{% assign en_posts = site.posts | where: "lang", "en" %}
+{% assign ko_posts = site.posts | where: "lang", "ko" %}
+{% assign paper_posts = site.posts | where: "kind", "paper-review" %}
+{% assign tech_posts = site.posts | where: "kind", "tech-review" %}
+
+<div class="notes-controls">
+  <section class="kind-tabs" id="kind-tabs" aria-label="Filter by kind">
+    <button class="kind-btn active" data-kind="all">All</button>
+    <button class="kind-btn" data-kind="paper-review">Paper reviews ({{ paper_posts | size }})</button>
+    <button class="kind-btn" data-kind="tech-review">Tech reviews ({{ tech_posts | size }})</button>
+  </section>
+
+  <section class="lang-switch" id="lang-switch" aria-label="Choose language">
+    <button class="lang-btn active" data-lang="en">English ({{ en_posts | size }})</button>
+    <button class="lang-btn" data-lang="ko">한국어 ({{ ko_posts | size }})</button>
+  </section>
+</div>
+
+<section class="filters" id="tag-filters" aria-label="Filter notes by tag">
+  <button class="filter-btn active" data-tag="all">All tags</button>
+  {% assign sorted_tags = site.tags | sort %}
+  {% for tag in sorted_tags %}
+  <button class="filter-btn" data-tag="{{ tag[0] | slugify }}">{{ tag[0] }}</button>
+  {% endfor %}
+</section>
+
+<p class="empty" id="empty-lang" hidden>No notes match these filters yet.</p>
+
+<ul class="paper-list">
+  {% for post in site.posts %}
+  <li class="paper-item"
+      data-lang="{{ post.lang | default: 'en' }}"
+      data-kind="{{ post.kind | default: 'paper-review' }}"
+      data-tags="{% for t in post.tags %}{{ t | slugify }} {% endfor %}">
+    <div class="paper-item-head">
+      <time class="paper-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+      <a href="{{ post.url | relative_url }}" class="paper-title-link">{{ post.title }}</a>
+    </div>
+    {% if post.tags and post.tags.size > 0 %}
+    <div class="tags">
+      {% for tag in post.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+    </div>
+    {% endif %}
+    {% if post.summary %}<p class="paper-summary">{{ post.summary }}</p>{% endif %}
+  </li>
+  {% endfor %}
+</ul>

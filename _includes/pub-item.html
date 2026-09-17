@@ -1,0 +1,11 @@
+<div class="pub-item">
+  <h3 class="pub-title">{{ include.pub.title }}</h3>
+  <p class="pub-authors">{{ include.pub.authors | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+  <p class="pub-venue">{{ include.pub.venue }}</p>
+  {% if include.pub.abstract %}<p class="pub-abstract">{{ include.pub.abstract }}</p>{% endif %}
+  {% if include.pub.links %}
+  <p class="pub-links">
+    {% for l in include.pub.links %}<a href="{{ l.url }}" target="_blank" rel="noopener">{{ l.label }}</a>{% endfor %}
+  </p>
+  {% endif %}
+</div>

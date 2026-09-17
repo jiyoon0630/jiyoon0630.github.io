@@ -1,0 +1,30 @@
+# The CV page renders straight from this file. Add or remove sections freely.
+pdf: "TODO — /assets/cv.pdf once you upload one"
+
+education:
+  - period: "TODO — 2024 – present"
+    title: "TODO — MS in ..."
+    org: "TODO — University"
+    detail: "TODO — advisor, lab, thesis topic"
+
+experience:
+  - period: "TODO — 2026"
+    title: "TODO — Role"
+    org: "TODO — Organization"
+    detail: "TODO — what you owned and what shipped. Numbers help."
+
+projects_highlight:
+  - "TODO — one-line highlights you want on the CV but not as full projects"
+
+skills:
+  - group: "Research"
+    items: ["TODO — e.g. VLA, RL, diffusion models"]
+  - group: "Engineering"
+    items: ["Python", "PyTorch", "TODO"]
+  - group: "Languages"
+    items: ["Korean (native)", "English (TODO)"]
+
+awards:
+  - period: "TODO — 2025"
+    title: "TODO — Award / Scholarship"
+    org: "TODO"

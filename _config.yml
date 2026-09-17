@@ -1,0 +1,51 @@
+# --- Site identity ---
+title: Jiyoon Kim
+tagline: "Physical AI · Robot Foundation Models"
+description: >-
+  Research notes, paper and tech reviews, publications, and projects
+  on physical AI and robot foundation models.
+author: Jiyoon Kim
+email: jiyoon0630@gmail.com
+lang: en
+
+# User site: served at the domain root.
+url: "https://jiyoon0630.github.io"
+baseurl: ""
+
+# --- Build settings ---
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  math_engine: null          # let MathJax handle all math (both $...$ and $$...$$)
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    default_lang: text
+
+permalink: /notes/:title/
+
+# Every note (a post in _posts/) uses the paper layout by default.
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: paper
+      kind: paper-review
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+sass:
+  style: compressed
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CLAUDE.md
+  - vendor
+  - .github
+  - templates

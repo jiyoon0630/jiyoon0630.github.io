@@ -1,0 +1,33 @@
+# Shown on the home page. Edit freely — the site re-renders from this file.
+name: Jiyoon Kim
+role: "TODO — e.g. MS Student / Research Engineer"
+affiliation: "TODO — e.g. Seoul National University"
+photo: /assets/img/profile.svg     # replace with a square photo, e.g. /assets/img/profile.jpg
+
+# One or two short paragraphs. Markdown is allowed.
+bio: >-
+  TODO — two or three sentences: what you work on, what you care about,
+  and what you are looking for next. Keep it concrete.
+
+interests:
+  - Physical AI / robot foundation models
+  - Vision-Language-Action models
+  - Reinforcement learning for robotics
+  - TODO — add or edit
+
+links:
+  - label: Email
+    url: "mailto:jiyoon0630@gmail.com"
+    icon: "✉️"
+  - label: GitHub
+    url: "https://github.com/jiyoon0630"
+    icon: "💻"
+  - label: Google Scholar
+    url: "TODO"
+    icon: "🎓"
+  - label: LinkedIn
+    url: "TODO"
+    icon: "in"
+  - label: CV
+    url: "/cv/"
+    icon: "📄"

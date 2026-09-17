@@ -1,0 +1,15 @@
+---
+layout: page
+title: Projects
+subtitle: Things I have built — bots, tools, and reproductions.
+permalink: /projects/
+---
+{% if site.data.projects.size == 0 %}
+<p class="empty">No projects listed yet.</p>
+{% else %}
+<div class="project-grid">
+{% for pr in site.data.projects %}
+  {% include project-card.html pr=pr %}
+{% endfor %}
+</div>
+{% endif %}

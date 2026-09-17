@@ -1,0 +1,14 @@
+---
+layout: page
+title: Publications
+subtitle: Papers I have authored.
+permalink: /publications/
+---
+{% assign pubs = site.data.publications | sort: "year" | reverse %}
+{% if pubs.size == 0 %}
+<p class="empty">No publications listed yet.</p>
+{% else %}
+{% for pub in pubs %}
+  {% include pub-item.html pub=pub %}
+{% endfor %}
+{% endif %}

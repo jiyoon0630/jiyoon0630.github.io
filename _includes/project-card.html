@@ -1,0 +1,16 @@
+<div class="project-card">
+  <div class="project-head">
+    <h3 class="project-name">{{ include.pr.name }}</h3>
+    {% if include.pr.period %}<span class="project-period">{{ include.pr.period }}</span>{% endif %}
+  </div>
+  {% if include.pr.tagline %}<p class="project-tagline">{{ include.pr.tagline }}</p>{% endif %}
+  {% if include.pr.description %}<p class="project-desc">{{ include.pr.description }}</p>{% endif %}
+  {% if include.pr.tags %}
+  <div class="tags">{% for t in include.pr.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
+  {% endif %}
+  {% if include.pr.links and include.pr.links.size > 0 %}
+  <p class="project-links">
+    {% for l in include.pr.links %}<a href="{{ l.url }}"{% if l.url contains 'http' %} target="_blank" rel="noopener"{% endif %}>{{ l.label }}</a>{% endfor %}
+  </p>
+  {% endif %}
+</div>

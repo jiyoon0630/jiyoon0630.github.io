@@ -1,0 +1,100 @@
+---
+layout: page
+title: CV
+permalink: /cv/
+---
+{% assign cv = site.data.cv %}
+{% if cv.pdf and cv.pdf != "" %}
+<p class="cv-pdf"><a href="{{ cv.pdf }}" target="_blank" rel="noopener">📄 Download PDF</a></p>
+{% endif %}
+
+{% if cv.education %}
+<section class="cv-section">
+  <h2>Education</h2>
+  {% for e in cv.education %}
+  <div class="cv-entry">
+    <div class="cv-period">{{ e.period }}</div>
+    <div class="cv-body">
+      <h3>{{ e.title }}</h3>
+      {% if e.org %}<p class="cv-org">{{ e.org }}</p>{% endif %}
+      {% if e.detail %}<p class="cv-detail">{{ e.detail }}</p>{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if cv.experience %}
+<section class="cv-section">
+  <h2>Experience</h2>
+  {% for e in cv.experience %}
+  <div class="cv-entry">
+    <div class="cv-period">{{ e.period }}</div>
+    <div class="cv-body">
+      <h3>{{ e.title }}</h3>
+      {% if e.org %}<p class="cv-org">{{ e.org }}</p>{% endif %}
+      {% if e.detail %}<p class="cv-detail">{{ e.detail }}</p>{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+
+{% assign pubs = site.data.publications | sort: "year" | reverse %}
+{% if pubs.size > 0 %}
+<section class="cv-section">
+  <h2>Publications</h2>
+  {% for pub in pubs %}
+  <div class="cv-entry">
+    <div class="cv-period">{{ pub.year }}</div>
+    <div class="cv-body">
+      <h3>{{ pub.title }}</h3>
+      <p class="cv-org">{{ pub.authors | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+      <p class="cv-detail">{{ pub.venue }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if site.data.projects.size > 0 %}
+<section class="cv-section">
+  <h2>Projects</h2>
+  {% for pr in site.data.projects %}
+  <div class="cv-entry">
+    <div class="cv-period">{{ pr.period }}</div>
+    <div class="cv-body">
+      <h3>{{ pr.name }}</h3>
+      {% if pr.tagline %}<p class="cv-detail">{{ pr.tagline }}</p>{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if cv.skills %}
+<section class="cv-section">
+  <h2>Skills</h2>
+  {% for s in cv.skills %}
+  <div class="cv-entry">
+    <div class="cv-period">{{ s.group }}</div>
+    <div class="cv-body"><div class="tags">{% for i in s.items %}<span class="tag">{{ i }}</span>{% endfor %}</div></div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if cv.awards %}
+<section class="cv-section">
+  <h2>Awards</h2>
+  {% for a in cv.awards %}
+  <div class="cv-entry">
+    <div class="cv-period">{{ a.period }}</div>
+    <div class="cv-body">
+      <h3>{{ a.title }}</h3>
+      {% if a.org %}<p class="cv-org">{{ a.org }}</p>{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
