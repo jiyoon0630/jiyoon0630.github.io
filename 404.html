@@ -1,0 +1,31 @@
+---
+layout: page
+title: Page not found
+permalink: /404.html
+---
+<script>
+  // Links to the old project-site archive still circulate:
+  //   /paper-reivew/                 -> /
+  //   /paper-reivew/papers/<slug>/   -> /notes/<slug>/   (slugs unchanged)
+  // Once the old repository is deleted those paths fall through to this user
+  // site, so the redirect has to live here.
+  (function () {
+    var p = location.pathname;
+    if (p.indexOf('/paper-reivew') !== 0) return;
+    var rest = p.replace(/^\/paper-reivew/, '');
+    var m = rest.match(/^\/papers\/([^\/]+)\/?$/);
+    location.replace(m ? '/notes/' + m[1] + '/' : '/');
+  })();
+</script>
+
+<p>That page doesn’t exist — it may have moved when this site was reorganized.</p>
+
+<p>Try one of these:</p>
+
+<ul>
+  <li><a href="{{ '/' | relative_url }}">Home</a></li>
+  <li><a href="{{ '/notes/' | relative_url }}">Notes</a> — paper and tech reviews</li>
+  <li><a href="{{ '/publications/' | relative_url }}">Publications</a></li>
+  <li><a href="{{ '/projects/' | relative_url }}">Projects</a></li>
+  <li><a href="{{ '/cv/' | relative_url }}">CV</a></li>
+</ul>
