@@ -4,8 +4,8 @@
   year: 2025
   selected: true
   links:
-    - label: Code
-      url: "https://github.com/jiyoon0630/apt"
+    - label: arXiv
+      url: "https://arxiv.org/abs/2507.02687"
   abstract: >-
     Personalizing a diffusion model on limited data trades subject fidelity against
     text alignment. APT preserves the base model's prior through regularization while
