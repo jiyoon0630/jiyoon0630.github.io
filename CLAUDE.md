@@ -57,6 +57,25 @@ code_url: "https://github.com/..."      # optional → 💻 Code link
 - **Callout box** = a blockquote whose first line is `### <emoji> Title`.
   The opening quote of a note renders as a lead card.
 
+## Tech reviews start from internal material — sanitize first
+
+Tech-review sources are the owner's **internal work documents** and may contain
+confidential information. This repo is public, so:
+
+- **Never commit raw source material.** Put it in `sources/` and sanitized
+  drafts in `drafts/` — both are gitignored. Never `git add -f` either one.
+- Run the **`sanitize-tech-review`** subagent on the source before doing anything
+  else. It strips employer-identifying and confidential content and repairs the
+  prose, then writes `drafts/<name>.md` plus a redaction report.
+- The subagent is a first-pass filter, **not a clearance decision**. Surface its
+  report to the owner and get their confirmation before posting. Do not tell
+  them a draft is "safe".
+- Only after they confirm: add front matter (`kind: tech-review`), produce the
+  KO + EN pair as usual, and publish.
+
+If the owner hands you internal material directly in chat rather than as a file,
+write it to `sources/` first, then follow the same path.
+
 ## Profile / publications / projects / CV are data-driven
 
 Do **not** hand-edit the page HTML for content. Edit these instead:

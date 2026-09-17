@@ -7,3 +7,8 @@ vendor/
 .bundle/
 *.gem
 .DS_Store
+
+# Internal source material and unreviewed drafts — NEVER commit these.
+# The repo is public; raw internal docs must not land in its history.
+sources/
+drafts/
