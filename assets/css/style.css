@@ -480,3 +480,11 @@ mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
 }
 .lang-switch { margin-bottom: 0; }
 .paper-list.compact .paper-item { padding: 12px 0; }
+
+/* ---------- CV extras ---------- */
+.cv-meta { color: var(--muted); margin: 0 0 26px; font-size: 0.95rem; }
+.cv-bullets { margin: 7px 0 0; padding-left: 18px; }
+.cv-bullets li { margin: 4px 0; font-size: 0.9rem; color: var(--muted); }
+.cv-bullets li strong { color: var(--text); }
+.cv-entry { align-items: flex-start; }
+.cv-period { width: 160px; }

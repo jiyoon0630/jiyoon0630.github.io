@@ -1,30 +1,122 @@
-# The CV page renders straight from this file. Add or remove sections freely.
-pdf: "TODO — /assets/cv.pdf once you upload one"
-
-education:
-  - period: "TODO — 2024 – present"
-    title: "TODO — MS in ..."
-    org: "TODO — University"
-    detail: "TODO — advisor, lab, thesis topic"
+# The CV page renders straight from this file.
+# NOTE: the phone number from the CV document is deliberately NOT published here
+#       (a public page invites spam). Add it back only if you want it public.
+pdf: ""            # e.g. /assets/cv.pdf once you upload one
+location: "Mountain View, CA"
+headline: "Applied Scientist — Generative Models · Research-to-Production"
 
 experience:
-  - period: "TODO — 2026"
-    title: "TODO — Role"
-    org: "TODO — Organization"
-    detail: "TODO — what you owned and what shipped. Numbers help."
+  - period: "Oct 2025 — present"
+    title: "Physical AI — Technology Partnerships & Applied R&D on Robot Foundation Models"
+    org: "LG CNS · Silicon Valley Connect & Develop Center, Santa Clara, CA · Senior Manager (Applied AI R&D)"
+    bullets:
+      - "**Sourcing** — built a startup network across robot hardware, learning, data, and delivery into a partnership pipeline; prototyped an AI-agent scouting pipeline (discovery → analysis → outreach) that finds researcher-founded stealth-stage teams ahead of public visibility."
+      - "**Technology deep-dives** — dissected core RFM / world-model technologies and their foundational research to map Silicon Valley robot-learning trends and identify key players, distilled into two authored insight reports."
+      - "**Field validation** — orchestrated a three-party proof-of-value putting Config's VLA model onto Dexmate's humanoid hardware, achieving its first real-world operation in ~6 weeks; led to a partnership MOU and a follow-on equity investment with LG Tech Ventures."
+      - "**Co-development** — framed research problems from field-deployment gaps, and now build domain-specialized RFMs with partner research teams — pre/mid-training adaptation to industrial (manufacturing / logistics) domains to cut downstream post-training cost."
 
-projects_highlight:
-  - "TODO — one-line highlights you want on the CV but not as full projects"
+  - period: "Mar 2025 — Sep 2025"
+    title: "Agentic AI — Tool-Use Reliability for an LG Corporate-Management Agent, with Cohere"
+    org: "LG CNS · AI Research Institute, Agentic AI Lab, Seoul · Applied Scientist"
+    bullets:
+      - "**Tool-use fine-tuning** — fine-tuned an LLM to select the right tools and chain their outputs across turns: SFT on tool-call trajectories plus a chosen/rejected pair pipeline for DPO, with GRPO experimentation — delivering a PoC that contributed to a business win."
+      - "**Evaluation & failure analysis** — contributed to an agentic evaluation set (~60 business/finance queries requiring retrieval and SQL) assessing Korean instruction-following and tool use; acknowledged in *Think in English, Answer in Korean* (arXiv:2606.31648)."
 
-skills:
-  - group: "Research"
-    items: ["TODO — e.g. VLA, RL, diffusion models"]
-  - group: "Engineering"
-    items: ["Python", "PyTorch", "TODO"]
-  - group: "Languages"
-    items: ["Korean (native)", "English (TODO)"]
+  - period: "Jan 2023 — Feb 2025"
+    title: "Generative Image AI — Core Research to Product (DRAG image-generation engine)"
+    org: "LG CNS · AI Research Institute, Multimodal AI Lab, Seoul · Applied Scientist · Project Manager from Aug 2024"
+    bullets:
+      - "**Personalization research** — identified a subject-fidelity vs. text-alignment trade-off in production PoCs and attacked it at both training and inference: **APT** (CVPR 2025, co-first author) and **Parallel Rescaling** (CVPR 2025 Workshop)."
+      - "**Preference-alignment pipeline** — built a human-preference training pipeline for Hyundai Motor Group's concept-car design PoC, automating preference labeling with a VLM and training a DPO-based diffusion model to distill a larger model into a compact deployable one."
+      - "**Background generation** — resolved semantic inconsistency around products in inpainting-based background replacement with BrushNet, then recovered the accompanying quality drop with perturbed-attention guidance."
+      - "**Multi-reference style transfer** — extracted content-decoupled style embeddings per reference via subtraction in CLIP feature space, routed into the attention-block subsets governing style and layout."
+      - "**Productization** — commercialized DRAG as SaaS (feature packaging, service site, patent filing) while migrating the engine across SD 1.5 → SDXL → FLUX.1; product imagery published on LGE.COM."
+
+  - period: "Apr 2020 — Dec 2022"
+    title: "Computer Vision — Product Recognition & Visual Inspection"
+    org: "LG CNS · AI Research Institute, Vision AI Lab, Seoul · Machine Learning Engineer"
+    bullets:
+      - "**Object detection & classification** — built metric-learning product recognition so new SKUs could be added without retraining: ~10× SKU expansion (to ~10K) at 98.0% accuracy with 40% faster inference at GS Retail, and 95.9% inspection accuracy at LX Pantos."
+      - "**Transfer learning** — developed a shared pretrained backbone for manufacturing visual inspection, cutting downstream training time 28% across tasks."
+      - "**MLOps** — standardized the center's model-development process (data/code versioning, experiment and model tracking, HPO automation); prototype selected as internal Best Practice."
+
+  - period: "Oct 2017 — Dec 2019"
+    title: "Research Assistant — AI-based multimodal forensic science (Seoul Metropolitan Police)"
+    org: "Hanyang University · Smart Ubiquitous Healthcare Lab, Seoul"
+    bullets:
+      - "Developed a CNN-based face-detection algorithm for thermal imagery, overcoming the absence of visible-light features, and enabled deception detection via automated time-series temperature analysis during interrogations."
+
+education:
+  - period: "Feb 2020"
+    title: "M.S., Biomedical Engineering"
+    org: "Hanyang University, Seoul"
+    detail: "GPA 4.35 / 4.5 · Smart Ubiquitous Healthcare Lab (advisor: Prof. In Young Kim)"
+    bullets:
+      - "Thesis: *Analysis of Skin Temperature Variation Induced by Deception Using CNN-Based Thermal Infrared Face Detection*"
+  - period: "Feb 2018"
+    title: "B.S., Biomedical Engineering"
+    org: "Hanyang University, Seoul"
+    detail: "GPA 3.75 / 4.5"
+
+patents:
+  - period: "2024 —"
+    title: "Method and Device for Obtaining Images Using an Image Generation Model"
+    org: "LG CNS"
+    detail: "Published — PCT (WO/2026/106395) · EP (EP4771592 A1) · KR (10-2024-0163278). Filed — US (19/587,169)."
+  - period: "granted"
+    title: "Deception Detection Method Using Thermal Video"
+    org: "Hanyang University · KR 10-2409611"
+  - period: "granted"
+    title: "Data Process Method for Prediction of Involuntary Emotion"
+    org: "Hanyang University · KR 10-2338684"
+  - period: "granted"
+    title: "Deception Detection Method Using Biometric Information"
+    org: "Hanyang University · KR 10-2350068"
+
+presentations:
+  - period: "Jun 2025"
+    title: "APT: Adaptive Personalized Training for Diffusion Models with Limited Data"
+    org: "Poster presentation, CVPR 2025, Nashville, TN"
+  - period: "2024"
+    title: "DRAG (Drawing with Generative AI) for Enterprise Digital Marketing"
+    org: "Poster presentation and demo booth, LG Tech Conference (internal), Seoul"
 
 awards:
-  - period: "TODO — 2025"
-    title: "TODO — Award / Scholarship"
-    org: "TODO"
+  - period: "2023 — present"
+    title: "Core Talent designation"
+    org: "LG CNS — company-wide selection with ongoing allowance"
+  - period: "2022"
+    title: "Best Practice Award"
+    org: "LG CNS internal process-improvement contest — MLOps pipeline prototype"
+
+press:
+  - period: "2026"
+    title: "\"Getting to Know: LG CNS Silicon Valley AI & Robotics R&D Center\""
+    org: "Interview feature on Physical AI sourcing and partnerships, LG CNS"
+    url: "https://www.linkedin.com/pulse/%EC%A2%80-%EC%95%84%EB%8A%94-%EC%82%AC%EB%9E%8C-%EC%8B%A4%EB%A6%AC%EC%BD%98%EB%B0%B8%EB%A6%AC-ai%EB%A1%9C%EB%B3%B4%ED%8B%B1%EC%8A%A4-rd%EC%84%BC%ED%84%B0%ED%8E%B8-lgcns-w2w6c"
+  - period: "2026"
+    title: "\"LG CNS Expands into Silicon Valley, Focusing on Physical AI\""
+    org: "Coverage of the three-party field validation (Config × Dexmate), Maeil Business Newspaper"
+    url: "https://www.mk.co.kr/en/it/12005323"
+  - period: "2025"
+    title: "DRAG commercial launch"
+    org: "Coverage of DRAG productization, News2day"
+    url: "https://www.news2day.co.kr/article/20250507500109"
+
+skills:
+  - group: "Generative models"
+    items: ["Diffusion (personalization, inpainting, guidance-based sampling, style transfer)", "Preference optimization (DPO, RLHF)"]
+  - group: "LLM & agentic AI"
+    items: ["Supervised fine-tuning", "Preference optimization", "GRPO", "Tool calling", "Agent evaluation"]
+  - group: "Computer vision"
+    items: ["Object detection", "Classification", "Metric learning", "Transfer learning"]
+  - group: "Engineering"
+    items: ["Python", "MLOps (versioning, experiment tracking, HPO automation)"]
+  - group: "In progress"
+    items: ["Robot foundation models / VLA", "World models"]
+
+languages:
+  - group: "Korean"
+    items: ["Native"]
+  - group: "English"
+    items: ["TOEIC 910 (Aug 2019)", "OPIc Intermediate High (Aug 2019)"]

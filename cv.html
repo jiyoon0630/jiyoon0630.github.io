@@ -4,41 +4,14 @@ title: CV
 permalink: /cv/
 ---
 {% assign cv = site.data.cv %}
-{% if cv.pdf and cv.pdf != "" %}
-<p class="cv-pdf"><a href="{{ cv.pdf }}" target="_blank" rel="noopener">📄 Download PDF</a></p>
-{% endif %}
 
-{% if cv.education %}
-<section class="cv-section">
-  <h2>Education</h2>
-  {% for e in cv.education %}
-  <div class="cv-entry">
-    <div class="cv-period">{{ e.period }}</div>
-    <div class="cv-body">
-      <h3>{{ e.title }}</h3>
-      {% if e.org %}<p class="cv-org">{{ e.org }}</p>{% endif %}
-      {% if e.detail %}<p class="cv-detail">{{ e.detail }}</p>{% endif %}
-    </div>
-  </div>
-  {% endfor %}
-</section>
-{% endif %}
+<p class="cv-meta">
+  {{ cv.headline }}{% if cv.location %} · {{ cv.location }}{% endif %}
+  {% if cv.pdf and cv.pdf != "" %}<br><a href="{{ cv.pdf }}" target="_blank" rel="noopener">📄 Download PDF</a>{% endif %}
+</p>
 
-{% if cv.experience %}
-<section class="cv-section">
-  <h2>Experience</h2>
-  {% for e in cv.experience %}
-  <div class="cv-entry">
-    <div class="cv-period">{{ e.period }}</div>
-    <div class="cv-body">
-      <h3>{{ e.title }}</h3>
-      {% if e.org %}<p class="cv-org">{{ e.org }}</p>{% endif %}
-      {% if e.detail %}<p class="cv-detail">{{ e.detail }}</p>{% endif %}
-    </div>
-  </div>
-  {% endfor %}
-</section>
-{% endif %}
+{% if cv.experience %}{% include cv-entries.html heading="Experience" entries=cv.experience %}{% endif %}
+{% if cv.education %}{% include cv-entries.html heading="Education" entries=cv.education %}{% endif %}
 
 {% assign pubs = site.data.publications | sort: "year" | reverse %}
 {% if pubs.size > 0 %}
@@ -57,20 +30,10 @@ permalink: /cv/
 </section>
 {% endif %}
 
-{% if site.data.projects.size > 0 %}
-<section class="cv-section">
-  <h2>Projects</h2>
-  {% for pr in site.data.projects %}
-  <div class="cv-entry">
-    <div class="cv-period">{{ pr.period }}</div>
-    <div class="cv-body">
-      <h3>{{ pr.name }}</h3>
-      {% if pr.tagline %}<p class="cv-detail">{{ pr.tagline }}</p>{% endif %}
-    </div>
-  </div>
-  {% endfor %}
-</section>
-{% endif %}
+{% if cv.patents %}{% include cv-entries.html heading="Patents" entries=cv.patents %}{% endif %}
+{% if cv.presentations %}{% include cv-entries.html heading="Presentations" entries=cv.presentations %}{% endif %}
+{% if cv.awards %}{% include cv-entries.html heading="Awards & Honors" entries=cv.awards %}{% endif %}
+{% if cv.press %}{% include cv-entries.html heading="Press & Media" entries=cv.press %}{% endif %}
 
 {% if cv.skills %}
 <section class="cv-section">
@@ -84,16 +47,13 @@ permalink: /cv/
 </section>
 {% endif %}
 
-{% if cv.awards %}
+{% if cv.languages %}
 <section class="cv-section">
-  <h2>Awards</h2>
-  {% for a in cv.awards %}
+  <h2>Languages</h2>
+  {% for s in cv.languages %}
   <div class="cv-entry">
-    <div class="cv-period">{{ a.period }}</div>
-    <div class="cv-body">
-      <h3>{{ a.title }}</h3>
-      {% if a.org %}<p class="cv-org">{{ a.org }}</p>{% endif %}
-    </div>
+    <div class="cv-period">{{ s.group }}</div>
+    <div class="cv-body"><div class="tags">{% for i in s.items %}<span class="tag">{{ i }}</span>{% endfor %}</div></div>
   </div>
   {% endfor %}
 </section>

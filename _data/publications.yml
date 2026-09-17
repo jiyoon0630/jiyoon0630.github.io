@@ -1,15 +1,32 @@
-# Your own papers. `selected: true` also surfaces it on the home page.
 - title: "APT: Adaptive Personalized Training for Diffusion Models with Limited Data"
-  authors: "TODO — full author list, with **Jiyoon Kim** in bold"
-  venue: "TODO — venue and year"
+  authors: "JungWoo Chae\\*, **Jiyoon Kim**\\*, Jaewoong Choi, Kyungyul Kim, Sangheum Hwang†"
+  venue: "CVPR 2025 (main conference) · *equal contribution"
   year: 2025
   selected: true
   links:
     - label: Code
       url: "https://github.com/jiyoon0630/apt"
-    - label: Paper
-      url: "TODO — arXiv link"
-    - label: Project page
-      url: "TODO"
   abstract: >-
-    TODO — two or three sentences on the problem and the contribution.
+    Personalizing a diffusion model on limited data trades subject fidelity against
+    text alignment. APT preserves the base model's prior through regularization while
+    sharpening subject identity via augmentation and adaptive loss scheduling.
+
+- title: "Parallel Rescaling: Rebalancing Consistency Guidance for Personalized Diffusion Models"
+  authors: "JungWoo Chae\\*, **Jiyoon Kim**\\*, Sangheum Hwang†"
+  venue: "CVPR 2025 Workshop · *equal contribution"
+  year: 2025
+  selected: true
+  links:
+    - label: arXiv
+      url: "https://arxiv.org/abs/2506.00607"
+  abstract: >-
+    An adaptive statistical normalization of consistency guidance, decomposed against
+    classifier-free guidance — replacing heuristic per-step LoRA weight scheduling at
+    inference time.
+
+- title: "FacialCueNet: Unmasking Deception — An Interpretable Model for Criminal Interrogation Using Facial Expressions"
+  authors: "Borum Nam\\*, Joo Young Kim\\*, Beomjun Bark, Yeongmyeong Kim, **Jiyoon Kim**, Soon Won So, Hyung Youn Choi, In Young Kim†"
+  venue: "Applied Intelligence, 2023 (SCI-E)"
+  year: 2023
+  selected: false
+  links: []

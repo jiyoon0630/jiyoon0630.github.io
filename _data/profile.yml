@@ -1,33 +1,32 @@
-# Shown on the home page. Edit freely — the site re-renders from this file.
 name: Jiyoon Kim
-role: "TODO — e.g. MS Student / Research Engineer"
-affiliation: "TODO — e.g. Seoul National University"
+role: "Applied Scientist — Generative Models · Research-to-Production"
+affiliation: "LG CNS, Silicon Valley Connect & Develop Center"
+location: "Mountain View, CA"
 photo: /assets/img/profile.svg     # replace with a square photo, e.g. /assets/img/profile.jpg
 
-# One or two short paragraphs. Markdown is allowed.
 bio: >-
-  TODO — two or three sentences: what you work on, what you care about,
-  and what you are looking for next. Keep it concrete.
+  Applied scientist with 6 years across computer vision and generative models,
+  turning emerging technologies into deployed systems — with deep diffusion work
+  behind a co-first-authored CVPR 2025 paper and a shipped generative-AI SaaS
+  engine. Now extending that expertise toward Physical AI (robot foundation
+  models, world models) through the sourcing, validation, and applied R&D of
+  partner technology.
 
 interests:
-  - Physical AI / robot foundation models
-  - Vision-Language-Action models
-  - Reinforcement learning for robotics
-  - TODO — add or edit
+  - Robot foundation models / VLA
+  - World models
+  - Diffusion models & personalization
+  - Agentic AI and tool use
+  - Research-to-production
 
 links:
   - label: Email
     url: "mailto:jiyoon0630@gmail.com"
-    icon: "✉️"
+  - label: Google Scholar
+    url: "https://scholar.google.com/citations?user=yA4JobYAAAAJ"
+  - label: LinkedIn
+    url: "https://linkedin.com/in/jiyoon-kim-aa8354196"
   - label: GitHub
     url: "https://github.com/jiyoon0630"
-    icon: "💻"
-  - label: Google Scholar
-    url: "TODO"
-    icon: "🎓"
-  - label: LinkedIn
-    url: "TODO"
-    icon: "in"
   - label: CV
     url: "/cv/"
-    icon: "📄"

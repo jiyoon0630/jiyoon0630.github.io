@@ -1,0 +1,18 @@
+<section class="cv-section">
+  <h2>{{ include.heading }}</h2>
+  {% for e in include.entries %}
+  <div class="cv-entry">
+    <div class="cv-period">{{ e.period }}</div>
+    <div class="cv-body">
+      <h3>{% if e.url %}<a href="{{ e.url }}" target="_blank" rel="noopener">{{ e.title }}</a>{% else %}{{ e.title }}{% endif %}</h3>
+      {% if e.org %}<p class="cv-org">{{ e.org }}</p>{% endif %}
+      {% if e.detail %}<p class="cv-detail">{{ e.detail | markdownify | remove: '<p>' | remove: '</p>' }}</p>{% endif %}
+      {% if e.bullets %}
+      <ul class="cv-bullets">
+        {% for b in e.bullets %}<li>{{ b | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</section>

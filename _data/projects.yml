@@ -1,21 +1,52 @@
-# Projects, bots, and reproductions. `selected: true` surfaces it on the home page.
+# `selected: true` also surfaces the project on the home page.
+
 - name: PhySeek
   period: "2026 —"
   tagline: "TODO — one line: what PhySeek does and who it is for."
   description: >-
-    TODO — a short paragraph. What problem it solves, how it works,
-    and what you built. A linked write-up can live in Notes.
+    TODO — a short paragraph. What problem it solves, how it works, and what you
+    built. A longer write-up can live in Notes as a tech review.
   tags: [Physical AI, Agent, Python]
   selected: true
-  links:
-    - label: Write-up
-      url: "TODO — link to a Notes post once written"
+  links: []
 
 - name: Physical AI Scout
   period: "2026"
-  tagline: "Automated scouting of Silicon Valley robot-foundation-model startups (LG CNS)."
+  tagline: "An AI-agent pipeline that finds researcher-founded robotics startups before they surface publicly."
   description: >-
-    TODO — what it collects, how it ranks or summarizes, and what it was used for.
+    Automates discovery → analysis → outreach for stealth-stage robot-learning teams,
+    feeding a technology-partnership pipeline across robot hardware, learning, data,
+    and delivery.
   tags: [Agent, Research Automation, Python]
   selected: true
   links: []
+
+- name: VLA on humanoid hardware — field validation
+  period: "2026"
+  tagline: "First real-world operation of a partner VLA model on humanoid hardware, in ~6 weeks."
+  description: >-
+    Orchestrated a three-party proof-of-value putting Config's vision-language-action
+    model — post-trained for unseen tasks and environments — onto Dexmate's humanoid
+    hardware. Led to a partnership MOU and a follow-on equity investment with
+    LG Tech Ventures.
+  tags: [VLA, Robotics, Partnerships]
+  selected: true
+  links:
+    - label: Press
+      url: "https://www.mk.co.kr/en/it/12005323"
+
+- name: "DRAG — generative image AI engine"
+  period: "2023 – 2025"
+  tagline: "Research-to-product: a personalized image-generation engine shipped as SaaS."
+  description: >-
+    Took diffusion personalization from research to a commercial SaaS — feature
+    packaging, service site, and patent filing — while migrating the engine across
+    three model generations (SD 1.5 → SDXL → FLUX.1) and delivering customer PoCs
+    across digital marketing and UI/UX.
+  tags: [Diffusion, Productization, SaaS]
+  selected: false
+  links:
+    - label: Press
+      url: "https://www.news2day.co.kr/article/20250507500109"
+    - label: Video
+      url: "https://youtu.be/_hbxNYJ3m6I"
