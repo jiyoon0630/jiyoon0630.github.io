@@ -165,10 +165,12 @@ a:hover { text-decoration: underline; }
   border-bottom: 1px solid var(--border);
 }
 .paper-item-head {
-  display: flex;
+  /* Grid, not flex: a long title has to wrap inside its own column instead of
+     pushing itself onto the line below the date. */
+  display: grid;
+  grid-template-columns: max-content 1fr;
   align-items: baseline;
   gap: 14px;
-  flex-wrap: wrap;
 }
 .paper-date {
   color: var(--muted);
@@ -282,6 +284,8 @@ mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
 @media (max-width: 520px) {
   body { font-size: 16px; }
   .paper-title { font-size: 1.55rem; }
+  /* Narrow screens: stack the date above the title rather than squeezing it. */
+  .paper-item-head { grid-template-columns: 1fr; gap: 3px; }
 }
 
 /* ---------- Rouge syntax highlighting ---------- */

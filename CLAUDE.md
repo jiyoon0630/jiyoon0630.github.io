@@ -171,6 +171,69 @@ language toggle plus the Notes filters are wired.
 Note: `assets/js/filter.js` only runs where the filter controls exist (it bails
 out unless `#tag-filters` is on the page), so note lists elsewhere stay visible.
 
+## Start here: `.claude/STATE.md`
+
+Current state and what is next — what is published, what is waiting on the
+owner, what this environment cannot do. Read it at the start of a session and
+update it when any of that changes. It is deliberately short; process belongs in
+this file.
+
+## Visual verification — actually look at the page
+
+Structure checks miss layout bugs. The container cannot reach the live site, but
+it can serve the build locally and screenshot it. Do this after any change to
+CSS, layouts, or the home page.
+
+```bash
+# 1. build and serve
+JEKYLL_ENV=production bundle exec jekyll build
+(cd _site && python3 -m http.server 4000 &)
+
+# 2. install the browser CLI (global — it dies with the container, so redo it)
+npm install -g agent-browser
+
+# 3. point it at the pre-installed Chromium, or it will not find a browser
+export AGENT_BROWSER_EXECUTABLE_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome
+
+agent-browser open http://localhost:4000/
+agent-browser screenshot --full home.png     # then read the PNG
+agent-browser snapshot -i                    # accessibility tree, for structure
+agent-browser close
+```
+
+Known limitations in this environment:
+
+- The proxy serves an **older agent-browser (0.27.0)** than npm's latest, so its
+  flags differ from the published docs: `--full`, not `--full-page`.
+- `--executable-path` is ignored once the daemon is running; the env var above
+  always works. `agent-browser close` restarts it.
+- **No viewport control** in this version (`viewport` is not a command and
+  `--args --window-size` is ignored — `innerWidth` stays 1280), so mobile widths
+  cannot be checked this way. Reason about the media queries instead.
+- **Google Fonts and jsdelivr are egress-blocked**, so local screenshots use
+  fallback fonts and MathJax does not render. Judge layout, not typography, and
+  never conclude from a local screenshot that math is broken.
+
+## Design work — the `design-taste-frontend` skill
+
+`.claude/skills/design-taste-frontend/` is a third-party design skill, committed
+so it survives the container. Use it for visual work on the site's pages.
+
+It assumes React + Tailwind + GSAP/Motion. **This site is none of those**, so
+take its design judgment and ignore its code. Constraints for every use:
+
+- **Stack:** Jekyll, hand-written CSS in `assets/css/style.css`, one small
+  vanilla JS file. Do not add React, Tailwind, GSAP, Motion, or any build step.
+- **Dials:** MOTION low — this is an academic site, not an agency landing page.
+  DENSITY medium. VARIANCE low.
+- **No placeholder media.** The skill suggests `picsum.photos` and
+  `cdn.simpleicons.org`; both are wrong here. Real assets or nothing.
+- **Settled decisions — do not "improve" these:** dark mode via
+  `prefers-color-scheme`, the callout card treatment, the KO ⇄ EN toggle, the
+  notes filter controls, the data-driven page structure.
+- Its "hard em-dash ban" applies to UI copy it writes. It does **not** override
+  the voice profile or touch existing post text.
+
 ## Push policy (the owner delegated this)
 
 - Push straight to `main`; every push triggers the deploy workflow.

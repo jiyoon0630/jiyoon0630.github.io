@@ -50,3 +50,4 @@ exclude:
   - .github
   - templates
   - scripts
+  - skills-lock.json
