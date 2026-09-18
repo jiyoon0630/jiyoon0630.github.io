@@ -82,43 +82,42 @@ write it to `sources/` first, then follow the same path.
 
 ## The voice profile — build it now, apply it only on her signal
 
-`.claude/voice-profile.md` records what the owner's own writing looks like, so
-that Claude-written posts can eventually be brought toward it instead of reading
-like an assistant.
+`.claude/voice-profile.md` holds the target her posts should sound like, plus the
+procedure for converting Claude-written text into it.
+
+- **Tier A** = text in her voice. She supplies these documents; they are read for
+  patterns and measured to set the target. Never edited.
+- **Tier B** = text in Claude's voice — every note currently on the site, both
+  languages, and anything Claude drafts next.
+
+The job is **converting Tier B into Tier A**, so the profile is a style target,
+not a classification exercise.
 
 **It is dormant.** Write notes and translations normally until she explicitly
-says to start applying it. Do not imitate a half-built profile.
+says to start converting. Do not half-apply an unfinished profile.
 
-How it gets built:
-
-- Tech-review **sources** are the raw material. They are Claude-assisted drafts
-  that she then reviewed line by line, so they prove her *judgments* (terminology,
-  structure, hedging, claim strength) but not her *statistics* (punctuation
-  density, sentence rhythm) — review does not catch those. The profile calls
-  these Tier A and Tier B; keep them separate. Everything already on the site was
-  written or translated by Claude and is worthless as evidence.
-- `--baseline` measures a sample against the Claude-written site posts. A metric
-  near `1.00x` is the assistant's habit, not hers.
-- The `sanitize-tech-review` subagent reports voice observations from the
-  *pre-sanitization* text as part of its normal run. Merge those into the
-  profile; the subagent does not edit the file itself.
+- Tech-review **sources** are Tier A too. The `sanitize-tech-review` subagent
+  reports voice observations from the *pre-sanitization* text on every run; merge
+  those into the profile. The subagent never edits the profile itself.
 - **Never quote source material into the profile.** It is a public file. Record
   patterns and illustrate them with invented sentences on neutral topics.
-- **Log every sample's provenance** in the samples table. If it is unclear
-  whether a document was written with an assistant's help, ask before counting
-  it.
-- Roughly 2,000–5,000 words per language before the profile is worth applying.
+- Log each reference document in the profile's table. Roughly 2,000–5,000 words
+  per language makes the target numbers stable.
+- A conversion **preserves meaning exactly** — no claim strengthens or weakens,
+  no hedge disappears, no terminology distinction collapses, math and callouts
+  untouched. Measure before and after so "it sounds like her now" is evidence.
 
-`scripts/voice-stats.py` measures punctuation fingerprints, phrasal tells, and
-sentence-length distribution, so the profile stays evidence-based:
+`scripts/voice-stats.py` measures punctuation fingerprints, phrasal tells and
+sentence-length distribution:
 
 ```bash
-python3 scripts/voice-stats.py --lang en _posts/*-en.md
-python3 scripts/voice-stats.py --lang ko sources/*.md
+python3 scripts/voice-stats.py --lang ko --save-target .claude/target-ko.json sources/*.md
+python3 scripts/voice-stats.py --lang ko --target .claude/target-ko.json _posts/<post>.md
+python3 scripts/voice-stats.py --lang en --baseline _posts/<post>-en.md
 ```
 
-When she gives the signal, the profile becomes the style target for new posts
-and for a pass back over the existing paper reviews.
+`--target` aims at her; `--baseline` compares against the current Claude-written
+posts. Target files are gitignored — they derive from internal documents.
 
 ## Profile / publications / projects / CV are data-driven
 

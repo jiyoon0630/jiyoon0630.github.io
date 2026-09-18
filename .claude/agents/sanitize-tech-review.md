@@ -156,34 +156,31 @@ Two constraints, both absolute:
 - **Do not edit `.claude/voice-profile.md` yourself.** Report your observations;
   the main assistant merges them after checking provenance with the owner.
 
-**These sources are Claude-assisted drafts she then reviewed line by line.** So
-sort what you see into two buckets and label them, because they are not equally
-trustworthy:
+The original document is **Tier A** material for `.claude/voice-profile.md` —
+text in her voice, which is the target Claude-written posts get converted toward.
+Read it for voice before you change anything; your repairs are Claude's prose.
 
-**Tier A — judgment-level.** Review controls these, so they are hers:
+What is worth reporting:
 
-- terminology, and the distinctions she refuses to collapse
-- section order, what leads a paragraph, what is conspicuously absent
-- hedging: what stays marked as estimated or unverified
-- claim strength, and where it is deliberately weak
-- Korean phrasings she clearly rejects (she caught `자사` unprompted)
-- word choices a default draft would not have produced
+- Sentence endings and their mix; where the register shifts
+- Sentence length and rhythm — where she breaks rather than joins
+- Which connectives she uses, and which she conspicuously avoids
+- Whether the claim leads (두괄식) or the paragraph builds to it
+- How she brackets English technical terms inside Korean prose
+- Punctuation habits: em dash, parentheses, bold, quotation
+- How she hedges, and how often
+- Repeated constructions that are recognisably hers
+- **Most valuable:** any construction a Claude draft would never produce
 
-**Tier B — generation-level, report but flag as unproven.** Line-by-line review
-catches errors, not statistics: nobody notices em-dash density. So punctuation
-habits, sentence-length rhythm, paragraph openers and rhetorical frames may well
-be the assistant's and merely survived review. Report them, and run
+Attach numbers by running, on the untouched source:
 
 ```bash
 python3 scripts/voice-stats.py --lang <ko|en> --baseline <source path>
 ```
 
-Paste the numbers. Anything near `1.00x` matches the assistant-written baseline
-and is not evidence of her voice; a sharp divergence is, and say so.
-
-Also note **the most valuable thing you can find**: any passage that reads as
-clearly un-Claude-like — a construction a default draft would not produce. Those
-are the real signal.
+`--baseline` compares against the site's Claude-written posts, so a rate far
+from `1.00x` marks a feature that distinguishes her writing from the assistant's.
+Paste the table.
 
 Report roughly 400 words, and give the source's prose word count so the
 profile's sample counters stay honest. If the document is short or
@@ -231,9 +228,9 @@ Output: drafts/<name>.md
 identifying even after rewriting.>
 
 ### Voice observations (source word count: N — Korean / English)
-**Tier A (judgment-level, trustworthy):** <patterns, invented neutral examples only>
-**Tier B (generation-level, unproven):** <patterns + the --baseline multiples>
-<Say if the sample is too thin or the wrong genre to generalize from.>
+<Patterns from the *untouched* source, with invented neutral examples only,
+plus the --baseline table. Say if the sample is too thin or the wrong genre to
+generalize from.>
 ```
 
 End every report with a single line reminding the owner to read the draft before

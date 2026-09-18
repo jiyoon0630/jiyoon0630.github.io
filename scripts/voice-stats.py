@@ -8,7 +8,7 @@ Usage:
 Strips front matter, fenced code, tables and display math before counting, so
 the numbers describe prose rather than markup.
 """
-import argparse, re, sys, unicodedata
+import argparse, json, re, sys, unicodedata
 from pathlib import Path
 
 CHAR_TELLS = {
@@ -72,11 +72,11 @@ BASELINE = {
     },
 }
 
-def delta(name, rate, lang, on):
-    """Render the gap to the Claude baseline, or nothing if not requested."""
-    if not on:
+def delta(name, rate, ref):
+    """Render the gap to a reference profile, or nothing if there is none."""
+    if ref is None:
         return ""
-    base = BASELINE.get(lang, {}).get(name)
+    base = ref.get(name)
     if base is None:
         return "        —"
     if base == 0:
@@ -98,13 +98,16 @@ def sentences(text: str, lang: str):
     pat = r"(?<=[.!?])\s+" if lang == "en" else r"(?<=[.!?다])\s+"
     return [s for s in re.split(pat, text) if 8 < len(s) < 600]
 
-def report(paths, lang, base=False):
+def report(paths, lang, ref=None, ref_label="", save=None):
     text = strip_markup("\n".join(Path(p).read_text(encoding="utf-8") for p in paths))
     words = len(text.split())
     if not words:
         print("no prose found"); return
     print(f"\n{'='*58}\nfiles: {len(paths)}   prose words: {words:,}   lang: {lang}\n{'='*58}")
 
+    rates = {}
+    if ref_label:
+        print(f"(x = multiple of {ref_label})")
     print("\n-- character fingerprints --")
     any_char = False
     for name, ch in CHAR_TELLS.items():
@@ -112,7 +115,8 @@ def report(paths, lang, base=False):
         if n:
             any_char = True
             r = n / words * 1000
-            print(f"   {name:<16} {n:>5}   {r:>7.2f}/1k{delta(name, r, lang, base)}")
+            print(f"   {name:<16} {n:>5}   {r:>7.2f}/1k{delta(name, r, ref)}")
+            rates[name] = round(r, 2)
     if not any_char:
         print("   (none)")
 
@@ -121,7 +125,8 @@ def report(paths, lang, base=False):
     for name, pat in tells.items():
         n = len(re.findall(pat, text, flags=re.I))
         r = n / words * 1000
-        print(f"   {name:<26} {n:>5}   {r:>7.2f}/1k{delta(name, r, lang, base)}")
+        print(f"   {name:<26} {n:>5}   {r:>7.2f}/1k{delta(name, r, ref)}")
+        rates[name] = round(r, 2)
 
     sents = sentences(text, lang)
     if sents:
@@ -131,24 +136,38 @@ def report(paths, lang, base=False):
         mean = sum(lens) / len(lens)
         print(f"   count {len(lens)}   mean {mean:.1f}   median {mid}"
               f"   p10 {lens[len(lens)//10]}   p90 {lens[len(lens)*9//10]}")
-        if base:
-            b = BASELINE.get(lang, {})
-            print(f"   baseline   mean {b.get('__mean__')}   median {b.get('__median__')}"
-                  f"   (Claude-written site posts)")
+        rates["__mean__"], rates["__median__"] = round(mean, 1), mid
+        if ref:
+            print(f"   reference  mean {ref.get('__mean__')}   median {ref.get('__median__')}"
+                  f"   ({ref_label})")
+    if save:
+        Path(save).write_text(json.dumps(rates, ensure_ascii=False, indent=2),
+                              encoding="utf-8")
+        print(f"\ntarget written to {save}")
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("paths", nargs="+")
     ap.add_argument("--lang", choices=["en", "ko", "auto"], default="auto")
     ap.add_argument("--baseline", action="store_true",
-                    help="show each rate as a multiple of the Claude-written site baseline")
+                    help="compare against the Claude-written site posts (Tier B)")
+    ap.add_argument("--target", metavar="FILE",
+                    help="compare against a saved target profile (Tier A)")
+    ap.add_argument("--save-target", metavar="FILE", dest="save_target",
+                    help="write these measurements out as a target profile")
     a = ap.parse_args()
     lang = a.lang
     if lang == "auto":
         sample = "".join(Path(p).read_text(encoding="utf-8")[:4000] for p in a.paths)
         hangul = sum(1 for c in sample if "가" <= c <= "힣")
         lang = "ko" if hangul > len(sample) * 0.08 else "en"
-    report(a.paths, lang, a.baseline)
+    ref, label = None, ""
+    if a.target:
+        ref = json.loads(Path(a.target).read_text(encoding="utf-8"))
+        label = f"target {a.target}"
+    elif a.baseline:
+        ref, label = BASELINE.get(lang, {}), "Claude-written site posts"
+    report(a.paths, lang, ref, label, a.save_target)
 
 if __name__ == "__main__":
     main()

@@ -16,3 +16,6 @@ drafts/
 # Named-entity denylist for the sanitizer. Holds non-public names and
 # business facts, so it must never be committed to this public repo.
 .claude/redaction-denylist.md
+
+# Voice targets derived from internal documents.
+.claude/target-*.json
