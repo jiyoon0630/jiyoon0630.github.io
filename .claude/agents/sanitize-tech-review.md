@@ -156,9 +156,13 @@ Two constraints, both absolute:
 - **Do not edit `.claude/voice-profile.md` yourself.** Report your observations;
   the main assistant merges them after checking provenance with the owner.
 
-The original document is **Tier A** material for `.claude/voice-profile.md` —
-text in her voice, which is the target Claude-written posts get converted toward.
-Read it for voice before you change anything; your repairs are Claude's prose.
+The original document is **Tier A** material for `.claude/voice-profile.md`, the
+running record of traits observed in her own writing. Read it for voice before
+you change anything; your repairs are Claude's prose, not hers.
+
+Report each trait the way the profile records them — pattern, evidence, an
+invented neutral example, and **the Claude default it displaces**. That last part
+is what makes an observation usable later.
 
 What is worth reporting:
 

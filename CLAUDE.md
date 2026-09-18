@@ -80,44 +80,63 @@ confidential information. This repo is public, so:
 If the owner hands you internal material directly in chat rather than as a file,
 write it to `sources/` first, then follow the same path.
 
-## The voice profile — build it now, apply it only on her signal
+## The voice profile — record her style now, convert posts on her signal
 
-`.claude/voice-profile.md` holds the target her posts should sound like, plus the
-procedure for converting Claude-written text into it.
+`.claude/voice-profile.md` is a **record of observed traits** of her writing. It
+exists so that what one session notices about her style is still there in the
+next one. Keep it a findings file: one entry per trait, each with its evidence,
+an invented neutral example, and the Claude default it displaces.
 
-- **Tier A** = text in her voice. She supplies these documents; they are read for
-  patterns and measured to set the target. Never edited.
-- **Tier B** = text in Claude's voice — every note currently on the site, both
+- **Tier A** = text she wrote. She supplies these documents. Read them for voice
+  and add entries. Never edit them, never quote them into the profile — it is a
+  public file.
+- **Tier B** = text Claude wrote — all seven notes currently on the site, both
   languages, and anything Claude drafts next.
+- Tech-review sources are Tier A. The `sanitize-tech-review` subagent reports
+  voice observations from the *pre-sanitization* text on every run; merge those
+  into the profile. The subagent never edits the profile itself.
+- Log each document in the profile's table. Prose traits are recordable from the
+  first document; statistical ones need 2,000–5,000 words per language.
 
-The job is **converting Tier B into Tier A**, so the profile is a style target,
-not a classification exercise.
+**Applying it is a separate job, and it is dormant.** Write notes and
+translations normally until she explicitly says to start converting.
 
-**It is dormant.** Write notes and translations normally until she explicitly
-says to start converting. Do not half-apply an unfinished profile.
+### The conversion pass, when she gives the signal
 
-- Tech-review **sources** are Tier A too. The `sanitize-tech-review` subagent
-  reports voice observations from the *pre-sanitization* text on every run; merge
-  those into the profile. The subagent never edits the profile itself.
-- **Never quote source material into the profile.** It is a public file. Record
-  patterns and illustrate them with invented sentences on neutral topics.
-- Log each reference document in the profile's table. Roughly 2,000–5,000 words
-  per language makes the target numbers stable.
-- A conversion **preserves meaning exactly** — no claim strengthens or weakens,
-  no hedge disappears, no terminology distinction collapses, math and callouts
-  untouched. Measure before and after so "it sounds like her now" is evidence.
+1. **Meaning is invariant.** No claim strengthens or weakens, no number moves,
+   no hedge disappears, no terminology distinction collapses. A sentence that
+   cannot be converted without changing meaning stays as it is.
+2. **Structure is invariant.** Math verbatim, callout boxes, tables, code fences
+   and ASCII diagrams untouched. Front matter untouched except `summary`, which
+   is prose and gets converted too.
+3. Strip the profile's anti-patterns — safe today, independent of any entry.
+4. Apply the recorded entries. Do not chase a number at the cost of sense: a
+   metric matching while the paragraph reads worse is a failed conversion.
+5. Measure before and after, and say what moved.
+6. Convert Korean and English **independently**. The English post is not a
+   translation of the converted Korean.
 
-`scripts/voice-stats.py` measures punctuation fingerprints, phrasal tells and
-sentence-length distribution:
+### Measurement
 
 ```bash
+python3 scripts/voice-stats.py --lang ko --baseline <her document>   # find differences
 python3 scripts/voice-stats.py --lang ko --save-target .claude/target-ko.json sources/*.md
 python3 scripts/voice-stats.py --lang ko --target .claude/target-ko.json _posts/<post>.md
-python3 scripts/voice-stats.py --lang en --baseline _posts/<post>-en.md
 ```
 
-`--target` aims at her; `--baseline` compares against the current Claude-written
-posts. Target files are gitignored — they derive from internal documents.
+`--baseline` compares against the Tier B numbers below; `--target` compares
+against a profile saved from her own documents. Target files are gitignored —
+they derive from internal material.
+
+**Tier B fingerprint — what the site sounds like now.** English, 3 notes,
+18,647 prose words: em dash 14.00/1k · "not X but Y" 1.13/1k · "It is/This is"
++ emphasis 1.66/1k · semicolon 1.34/1k · para-initial But/And 0.70/1k ·
+sentences mean 23.4, median 19, p10 7, p90 45. Korean, 4 notes, 13,659 prose
+words: em dash 15.23/1k · ~에 대한 1.54/1k · ~을/를 통해 0.22/1k · ~다 종결
+55.71/1k · ~습니다 0.00/1k · sentences mean 13.5, median 11, p10 5, p90 24.
+
+Note the median-vs-mean gap: length variation is already present, so uniform
+sentence length is not the tell on this site. The rhetorical frames are.
 
 ## Profile / publications / projects / CV are data-driven
 
