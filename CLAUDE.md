@@ -91,9 +91,14 @@ says to start applying it. Do not imitate a half-built profile.
 
 How it gets built:
 
-- Tech-review **sources** are the raw material, because she writes them herself
-  at work. Everything already on the site was written or translated by Claude and
-  is worthless as evidence — that mistake has been made once already.
+- Tech-review **sources** are the raw material. They are Claude-assisted drafts
+  that she then reviewed line by line, so they prove her *judgments* (terminology,
+  structure, hedging, claim strength) but not her *statistics* (punctuation
+  density, sentence rhythm) — review does not catch those. The profile calls
+  these Tier A and Tier B; keep them separate. Everything already on the site was
+  written or translated by Claude and is worthless as evidence.
+- `--baseline` measures a sample against the Claude-written site posts. A metric
+  near `1.00x` is the assistant's habit, not hers.
 - The `sanitize-tech-review` subagent reports voice observations from the
   *pre-sanitization* text as part of its normal run. Merge those into the
   profile; the subagent does not edit the file itself.

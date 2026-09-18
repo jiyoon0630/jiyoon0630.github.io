@@ -44,6 +44,46 @@ KO_TELLS = {
     "~습니다 종결": r"습니다\.",
 }
 
+# Rates per 1,000 prose words measured over the site's own posts, all of which
+# Claude wrote or translated. This is the assistant's fingerprint, not the
+# owner's — `--baseline` reports how far a sample sits from it. A reviewed
+# Claude draft that lands on these numbers tells you review did not touch the
+# generation-level features; a sharp divergence is real editing signal.
+BASELINE = {
+    "en": {  # 18,647 prose words, 3 English notes
+        "em dash —": 14.00, "en dash –": 0.64,
+        "not X but Y": 1.13, "It is/This is + emphasis": 1.66,
+        "the point/key is": 0.05, "worth -ing": 0.11, "in other words": 0.16,
+        "hedge adverbs": 0.16, "slop vocabulary": 0.05, "reader address": 0.27,
+        "para-initial But/And": 0.70, "semicolon": 1.34,
+        "__mean__": 23.4, "__median__": 19,
+    },
+    "ko": {  # 13,659 prose words, 4 Korean notes
+        "em dash —": 15.23, "en dash –": 0.37,
+        "\ubc88\uc5ed\ud22c ~\uc758 \uacbd\uc6b0": 0.07,
+        "\ubc88\uc5ed\ud22c ~\uc5d0 \ub300\ud55c": 1.54,
+        "\ubc88\uc5ed\ud22c ~\uc744/\ub97c \ud1b5\ud574": 0.22,
+        "\ud53c\ub3d9 ~\ub418\uc5b4\uc9c0": 0.00,
+        "~\uc5d0 \ub2e4\ub984 \uc544\ub2c8": 0.00,
+        "\ubb38\ub450 \ub530\ub77c\uc11c/\uadf8\ub7ec\ubbc0\ub85c": 0.00,
+        "\uba85\uc0ac\ud615 \uc885\uacb0 ~\uc74c/~\ud568": 0.00,
+        "~\ub2e4 \uc885\uacb0": 55.71, "~\uc2b5\ub2c8\ub2e4 \uc885\uacb0": 0.00,
+        "__mean__": 13.5, "__median__": 11,
+    },
+}
+
+def delta(name, rate, lang, on):
+    """Render the gap to the Claude baseline, or nothing if not requested."""
+    if not on:
+        return ""
+    base = BASELINE.get(lang, {}).get(name)
+    if base is None:
+        return "        —"
+    if base == 0:
+        return "   new" if rate else "   ="
+    return f"   {rate / base:>5.2f}x"
+
+
 def strip_markup(text: str) -> str:
     if text.startswith("---"):
         parts = text.split("---", 2)
@@ -58,7 +98,7 @@ def sentences(text: str, lang: str):
     pat = r"(?<=[.!?])\s+" if lang == "en" else r"(?<=[.!?다])\s+"
     return [s for s in re.split(pat, text) if 8 < len(s) < 600]
 
-def report(paths, lang):
+def report(paths, lang, base=False):
     text = strip_markup("\n".join(Path(p).read_text(encoding="utf-8") for p in paths))
     words = len(text.split())
     if not words:
@@ -71,7 +111,8 @@ def report(paths, lang):
         n = text.count(ch)
         if n:
             any_char = True
-            print(f"   {name:<16} {n:>5}   {n/words*1000:>7.2f}/1k")
+            r = n / words * 1000
+            print(f"   {name:<16} {n:>5}   {r:>7.2f}/1k{delta(name, r, lang, base)}")
     if not any_char:
         print("   (none)")
 
@@ -79,27 +120,35 @@ def report(paths, lang):
     print(f"\n-- phrasal tells ({lang}) --")
     for name, pat in tells.items():
         n = len(re.findall(pat, text, flags=re.I))
-        print(f"   {name:<26} {n:>5}   {n/words*1000:>7.2f}/1k")
+        r = n / words * 1000
+        print(f"   {name:<26} {n:>5}   {r:>7.2f}/1k{delta(name, r, lang, base)}")
 
     sents = sentences(text, lang)
     if sents:
         lens = sorted(len(s.split()) for s in sents)
         mid = lens[len(lens)//2]
         print(f"\n-- sentence length --")
-        print(f"   count {len(lens)}   mean {sum(lens)/len(lens):.1f}   median {mid}"
+        mean = sum(lens) / len(lens)
+        print(f"   count {len(lens)}   mean {mean:.1f}   median {mid}"
               f"   p10 {lens[len(lens)//10]}   p90 {lens[len(lens)*9//10]}")
+        if base:
+            b = BASELINE.get(lang, {})
+            print(f"   baseline   mean {b.get('__mean__')}   median {b.get('__median__')}"
+                  f"   (Claude-written site posts)")
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("paths", nargs="+")
     ap.add_argument("--lang", choices=["en", "ko", "auto"], default="auto")
+    ap.add_argument("--baseline", action="store_true",
+                    help="show each rate as a multiple of the Claude-written site baseline")
     a = ap.parse_args()
     lang = a.lang
     if lang == "auto":
         sample = "".join(Path(p).read_text(encoding="utf-8")[:4000] for p in a.paths)
         hangul = sum(1 for c in sample if "가" <= c <= "힣")
         lang = "ko" if hangul > len(sample) * 0.08 else "en"
-    report(a.paths, lang)
+    report(a.paths, lang, a.baseline)
 
 if __name__ == "__main__":
     main()

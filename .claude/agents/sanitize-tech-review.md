@@ -156,20 +156,37 @@ Two constraints, both absolute:
 - **Do not edit `.claude/voice-profile.md` yourself.** Report your observations;
   the main assistant merges them after checking provenance with the owner.
 
-What is worth reporting (Korean and English separately, if both appear):
+**These sources are Claude-assisted drafts she then reviewed line by line.** So
+sort what you see into two buckets and label them, because they are not equally
+trustworthy:
 
-- Sentence endings and their mix; where the register shifts
-- Sentence length and rhythm — where she breaks rather than joins
-- Which connectives she uses, and which she conspicuously avoids
-- Whether the claim leads (두괄식) or the paragraph builds to it
-- How she brackets English technical terms inside Korean prose
-- Punctuation habits: em dash, parentheses, bold, quotation
-- How she hedges, and how often
-- Repeated constructions that are recognisably hers
-- Anything she *never* does that a Claude draft would do by default
+**Tier A — judgment-level.** Review controls these, so they are hers:
 
-Report roughly 400 words of prose and bullets, and give a word count for the
-source so the profile's sample counters stay honest. If the document is short or
+- terminology, and the distinctions she refuses to collapse
+- section order, what leads a paragraph, what is conspicuously absent
+- hedging: what stays marked as estimated or unverified
+- claim strength, and where it is deliberately weak
+- Korean phrasings she clearly rejects (she caught `자사` unprompted)
+- word choices a default draft would not have produced
+
+**Tier B — generation-level, report but flag as unproven.** Line-by-line review
+catches errors, not statistics: nobody notices em-dash density. So punctuation
+habits, sentence-length rhythm, paragraph openers and rhetorical frames may well
+be the assistant's and merely survived review. Report them, and run
+
+```bash
+python3 scripts/voice-stats.py --lang <ko|en> --baseline <source path>
+```
+
+Paste the numbers. Anything near `1.00x` matches the assistant-written baseline
+and is not evidence of her voice; a sharp divergence is, and say so.
+
+Also note **the most valuable thing you can find**: any passage that reads as
+clearly un-Claude-like — a construction a default draft would not produce. Those
+are the real signal.
+
+Report roughly 400 words, and give the source's prose word count so the
+profile's sample counters stay honest. If the document is short or
 unrepresentative (slides, a bullet dump, a table), say so — a thin sample
 recorded as if it were solid is worse than none.
 
@@ -214,8 +231,9 @@ Output: drafts/<name>.md
 identifying even after rewriting.>
 
 ### Voice observations (source word count: N — Korean / English)
-<Patterns you saw in the *original* text, with invented neutral examples only.
-Say if the sample is too thin or the wrong genre to generalize from.>
+**Tier A (judgment-level, trustworthy):** <patterns, invented neutral examples only>
+**Tier B (generation-level, unproven):** <patterns + the --baseline multiples>
+<Say if the sample is too thin or the wrong genre to generalize from.>
 ```
 
 End every report with a single line reminding the owner to read the draft before
