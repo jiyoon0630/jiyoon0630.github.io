@@ -22,6 +22,10 @@ kramdown:
   syntax_highlighter_opts:
     default_lang: text
 
+# Her timezone: without this, a post written in the evening renders as the
+# next day, because the build machine runs in UTC.
+timezone: America/Los_Angeles
+
 permalink: /notes/:title/
 
 # Every note (a post in _posts/) uses the paper layout by default.

@@ -17,8 +17,12 @@ _Last updated: 2026-09-18_
 - 6 notes: PLD (ko/en), Hi Robot (ko/en), Dyna-2 (ko/en). All paper reviews; no
   tech review published yet. The sample "Welcome" post was deleted once real
   notes existed — `templates/paper-template.md` is the format reference now.
-- Note dates are **posting dates**, not paper dates; the paper's own date lives
+- Note dates are **posting dates** (from the session transcript's upload
+  timestamps, in America/Los_Angeles — `_config.yml` sets that timezone, or a
+  UTC build shifts an evening post to the next day). The paper's own date lives
   in `paper_date` and shows only on the note page.
+- The archive started **2026-07-10**; the new repo dates from the September
+  migration, so commit dates are not posting dates.
 - Pages: home, notes, publications, projects, CV — all data-driven from `_data/`.
 - The old `jiyoon0630/paper-reivew` repo is **deleted**; `404.html` carries the
   redirect for old `/paper-reivew/papers/<slug>/` links.

@@ -15,7 +15,10 @@ Korean, one English** — unless they say otherwise.
 1. Pick a shared key `<ref>` (kebab-case). The date is **the day you post it**,
    not the paper's date — the lists are an archive of when she studied things.
    Put the paper's own date in `paper_date` when it is known; it shows on the
-   note page and nowhere else. The filename prefix is the posting date too
+   note page and nowhere else. Write the date with her offset
+   (`2026-09-17 17:00:00 -0700`); `_config.yml` sets `timezone:
+   America/Los_Angeles`, without which a UTC build moves an evening post to the
+   next day. The filename prefix is the posting date too
    (`:title` permalinks ignore it, so the URL is unaffected).
 2. Create two files in `_posts/`:
    - Korean: `YYYY-MM-DD-<ref>.md` with `lang: ko`

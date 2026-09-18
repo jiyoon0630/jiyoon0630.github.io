@@ -3,7 +3,7 @@ layout: paper
 lang: ko
 ref: hirobot-hierarchical-vla
 title: "Hi Robot: Open-Ended Instruction Following with Hierarchical Vision-Language-Action Models"
-date: 2026-09-17 22:32:00 +0000
+date: 2026-08-07 15:43:00 -0700
 paper_date: 2025-02-26
 venue: "ICML 2025 · arXiv:2502.19417"
 tags: [VLA, Hierarchical-Policy, Robot-Foundation-Model, Synthetic-Data, Instruction-Following, Paper-Review]
