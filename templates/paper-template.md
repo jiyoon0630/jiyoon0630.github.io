@@ -4,7 +4,8 @@ lang: en                 # ko | en — set on both versions
 kind: paper-review       # paper-review | tech-review
 ref: paper-ref-key       # same key on the KO and EN files to link the toggle
 title: "PAPER TITLE HERE"
-date: YYYY-MM-DD
+date: YYYY-MM-DD         # the day this is POSTED, not the paper's date
+paper_date: ""           # optional: when the paper itself came out
 tags: [Tag1, Tag2]
 summary: "One-line description shown in the list on the home page."
 authors: "First author et al."

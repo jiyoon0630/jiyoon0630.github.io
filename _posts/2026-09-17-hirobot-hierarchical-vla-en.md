@@ -3,7 +3,8 @@ layout: paper
 lang: en
 ref: hirobot-hierarchical-vla
 title: "Hi Robot: Open-Ended Instruction Following with Hierarchical Vision-Language-Action Models"
-date: 2025-02-26
+date: 2026-09-17 22:32:00 +0000
+paper_date: 2025-02-26
 venue: "ICML 2025 · arXiv:2502.19417"
 tags: [VLA, Hierarchical-Policy, Robot-Foundation-Model, Synthetic-Data, Instruction-Following, Paper-Review]
 authors: "Lucy Xiaoyang Shi, Brian Ichter, Michael Equi, Liyiming Ke, Karl Pertsch, Quan Vuong, James Tanner, Anna Walling, Haohuan Wang, Niccolo Fusai, Adrian Li-Bell, Danny Driess, Lachy Groom, Sergey Levine, Chelsea Finn"

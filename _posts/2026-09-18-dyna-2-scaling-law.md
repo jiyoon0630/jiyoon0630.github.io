@@ -4,7 +4,8 @@ lang: ko
 ref: dyna-2-scaling-law
 kind: paper-review
 title: "Dyna-2: A 1-Million-Hour Scaling Law for World-Action Models"
-date: 2026-08-01
+date: 2026-09-18 00:11:00 +0000
+paper_date: 2026-08-01
 venue: "Dyna Robotics 기술 리포트 (2026-08)"
 tags: [WAM, World-Model, Scaling-Law, Robot-Foundation-Model, Cross-Embodiment, Paper-Review]
 authors: "Dyna Robotics (기관 저자, 개인 저자 미표기)"

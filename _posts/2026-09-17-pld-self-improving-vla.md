@@ -3,7 +3,8 @@ layout: paper
 lang: ko
 ref: pld-self-improving-vla
 title: "Self-Improving Vision-Language-Action Models with Data Generation via Residual RL (PLD)"
-date: 2025-10-30
+date: 2026-09-17 22:30:00 +0000
+paper_date: 2025-10-30
 venue: "ICLR 2026 · arXiv:2511.00091"
 tags: [VLA, Reinforcement-Learning, Robot-Foundation-Model, Residual-RL, Paper-Review]
 authors: "Wenli Xiao, Haotian Lin, Andy Peng, Haoru Xue, Tairan He, Yuqi Xie, Fengyuan Hu, Jimmy Wu, Zhengyi Luo, Linxi \"Jim\" Fan, Guanya Shi, Yuke Zhu"

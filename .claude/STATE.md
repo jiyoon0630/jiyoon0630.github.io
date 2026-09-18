@@ -14,8 +14,11 @@ _Last updated: 2026-09-18_
 
 - Site: https://jiyoon0630.github.io/ — Jekyll, deployed from `main` by
   `.github/workflows/pages.yml` on every push.
-- 7 notes: welcome, PLD (ko/en), Hi Robot (ko/en), Dyna-2 (ko/en). All paper
-  reviews; no tech review published yet.
+- 6 notes: PLD (ko/en), Hi Robot (ko/en), Dyna-2 (ko/en). All paper reviews; no
+  tech review published yet. The sample "Welcome" post was deleted once real
+  notes existed — `templates/paper-template.md` is the format reference now.
+- Note dates are **posting dates**, not paper dates; the paper's own date lives
+  in `paper_date` and shows only on the note page.
 - Pages: home, notes, publications, projects, CV — all data-driven from `_data/`.
 - The old `jiyoon0630/paper-reivew` repo is **deleted**; `404.html` carries the
   redirect for old `/paper-reivew/papers/<slug>/` links.
@@ -29,8 +32,8 @@ _Last updated: 2026-09-18_
 - **Profile photo** — `assets/img/profile.svg` is a "JK" placeholder.
 - **CV PDF** — `_data/cv.yml` has `pdf: ""`; filling it enables the Download
   button.
-- **Dyna-2 date** — the source gave only `2026-08`; `2026-08-01` was assigned to
-  satisfy Jekyll's filename format. Confirm or correct.
+- **Dyna-2 `paper_date`** — the source gave only `2026-08`, so the day in
+  `2026-08-01` is a guess. Confirm or correct.
 
 ## Known limits of this environment
 
@@ -47,4 +50,5 @@ _Last updated: 2026-09-18_
 - Voice profile scaffolding — `.claude/voice-profile.md`, `scripts/voice-stats.py`,
   measured Tier B fingerprints for both languages.
 - Fixed the home/notes list: a long title no longer drops below its date.
+- Switched note dates to posting dates and deleted the sample Welcome post.
 - Added `design-taste-frontend` and the local screenshot workflow.

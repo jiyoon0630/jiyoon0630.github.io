@@ -12,8 +12,11 @@ The site UI and all non-note pages are **English only**. Notes are
 When the owner uploads a Markdown note, publish it as **two paired posts — one
 Korean, one English** — unless they say otherwise.
 
-1. Pick a shared key `<ref>` (kebab-case) and a date `YYYY-MM-DD` (use the
-   note's front-matter `date` if present).
+1. Pick a shared key `<ref>` (kebab-case). The date is **the day you post it**,
+   not the paper's date — the lists are an archive of when she studied things.
+   Put the paper's own date in `paper_date` when it is known; it shows on the
+   note page and nowhere else. The filename prefix is the posting date too
+   (`:title` permalinks ignore it, so the URL is unaffected).
 2. Create two files in `_posts/`:
    - Korean: `YYYY-MM-DD-<ref>.md` with `lang: ko`
    - English: `YYYY-MM-DD-<ref>-en.md` with `lang: en`
@@ -39,7 +42,9 @@ lang: en                      # ko | en
 ref: pld-self-improving-vla   # shared key linking the KO and EN versions
 kind: paper-review            # paper-review | tech-review
 title: "Paper Title"
-date: 2025-10-30              # newest-first ordering
+date: 2026-09-17              # the day it was POSTED — drives ordering and the
+                              # date shown in every list. Not the paper's date.
+paper_date: 2025-10-30        # optional: when the paper itself came out
 venue: "ICLR 2026 · arXiv:2511.00091"   # optional
 tags: [VLA, Reinforcement-Learning]     # click-to-filter labels
 summary: "One-line description, in this file's language."
