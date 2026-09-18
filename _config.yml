@@ -49,3 +49,4 @@ exclude:
   - vendor
   - .github
   - templates
+  - scripts
