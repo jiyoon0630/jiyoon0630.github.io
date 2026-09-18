@@ -80,6 +80,41 @@ confidential information. This repo is public, so:
 If the owner hands you internal material directly in chat rather than as a file,
 write it to `sources/` first, then follow the same path.
 
+## The voice profile — build it now, apply it only on her signal
+
+`.claude/voice-profile.md` records what the owner's own writing looks like, so
+that Claude-written posts can eventually be brought toward it instead of reading
+like an assistant.
+
+**It is dormant.** Write notes and translations normally until she explicitly
+says to start applying it. Do not imitate a half-built profile.
+
+How it gets built:
+
+- Tech-review **sources** are the raw material, because she writes them herself
+  at work. Everything already on the site was written or translated by Claude and
+  is worthless as evidence — that mistake has been made once already.
+- The `sanitize-tech-review` subagent reports voice observations from the
+  *pre-sanitization* text as part of its normal run. Merge those into the
+  profile; the subagent does not edit the file itself.
+- **Never quote source material into the profile.** It is a public file. Record
+  patterns and illustrate them with invented sentences on neutral topics.
+- **Log every sample's provenance** in the samples table. If it is unclear
+  whether a document was written with an assistant's help, ask before counting
+  it.
+- Roughly 2,000–5,000 words per language before the profile is worth applying.
+
+`scripts/voice-stats.py` measures punctuation fingerprints, phrasal tells, and
+sentence-length distribution, so the profile stays evidence-based:
+
+```bash
+python3 scripts/voice-stats.py --lang en _posts/*-en.md
+python3 scripts/voice-stats.py --lang ko sources/*.md
+```
+
+When she gives the signal, the profile becomes the style target for new posts
+and for a pass back over the existing paper reviews.
+
 ## Profile / publications / projects / CV are data-driven
 
 Do **not** hand-edit the page HTML for content. Edit these instead:

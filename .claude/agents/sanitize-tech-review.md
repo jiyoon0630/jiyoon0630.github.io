@@ -138,6 +138,41 @@ This site has a specific note format. Do not flatten it:
   diagram contains a sensitive label, relabel it and keep the alignment intact.
 - The opening blockquote of a note renders as a lead card — keep that shape.
 
+## Also: observe her voice while you are in there
+
+The source document is the owner writing **without an assistant**. That makes it
+the only trustworthy evidence of her actual style, and the site keeps a running
+`.claude/voice-profile.md` built from it.
+
+Observe the **source as it arrived**, before your rewrite — your own repairs are
+your voice, not hers, and must not be fed back into the profile.
+
+Two constraints, both absolute:
+
+- **Never quote the source in your observations.** The profile lives in a public
+  repository. Describe the pattern, then illustrate it with an **invented
+  sentence on a neutral topic**. If a pattern cannot be shown without
+  confidential content, describe it in words only.
+- **Do not edit `.claude/voice-profile.md` yourself.** Report your observations;
+  the main assistant merges them after checking provenance with the owner.
+
+What is worth reporting (Korean and English separately, if both appear):
+
+- Sentence endings and their mix; where the register shifts
+- Sentence length and rhythm — where she breaks rather than joins
+- Which connectives she uses, and which she conspicuously avoids
+- Whether the claim leads (두괄식) or the paragraph builds to it
+- How she brackets English technical terms inside Korean prose
+- Punctuation habits: em dash, parentheses, bold, quotation
+- How she hedges, and how often
+- Repeated constructions that are recognisably hers
+- Anything she *never* does that a Claude draft would do by default
+
+Report roughly 400 words of prose and bullets, and give a word count for the
+source so the profile's sample counters stay honest. If the document is short or
+unrepresentative (slides, a bullet dump, a table), say so — a thin sample
+recorded as if it were solid is worse than none.
+
 ## Procedure
 
 1. Read the source file(s). If given a directory, process every file in it.
@@ -148,7 +183,10 @@ This site has a specific note format. Do not flatten it:
    gitignored — never write sanitized or raw material anywhere else, and never
    `git add` the source).
 5. Do not add Jekyll front matter — the main assistant adds it when posting.
-6. Return a report.
+6. **Note what the owner's voice looks like.** You are one of the few readers of
+   her unassisted writing, so record observations while you still have the
+   source open — see below.
+7. Return a report.
 
 ## Report format
 
@@ -174,6 +212,10 @@ Output: drafts/<name>.md
 ### Residual risk
 <Anything you were unsure about. Say plainly if a passage may still be
 identifying even after rewriting.>
+
+### Voice observations (source word count: N — Korean / English)
+<Patterns you saw in the *original* text, with invented neutral examples only.
+Say if the sample is too thin or the wrong genre to generalize from.>
 ```
 
 End every report with a single line reminding the owner to read the draft before
