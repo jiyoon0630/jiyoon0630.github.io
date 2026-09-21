@@ -8,15 +8,16 @@ summarized, so anything that lives only in a conversation is lost. Update this
 file whenever something below changes — it costs one edit and saves a
 reconstruction.
 
-_Last updated: 2026-09-18_
+_Last updated: 2026-09-21_
 
 ## Live
 
 - Site: https://jiyoon0630.github.io/ — Jekyll, deployed from `main` by
   `.github/workflows/pages.yml` on every push.
-- 6 notes: PLD (ko/en), Hi Robot (ko/en), Dyna-2 (ko/en). All paper reviews; no
-  tech review published yet. The sample "Welcome" post was deleted once real
-  notes existed — `templates/paper-template.md` is the format reference now.
+- 8 notes: PLD (ko/en), Hi Robot (ko/en), Dyna-2 (ko/en), Actuate 2026 (ko/en).
+  The last is the first **tech review**; the rest are paper reviews. The sample
+  "Welcome" post was deleted once real notes existed —
+  `templates/paper-template.md` is the format reference now.
 - Note dates are **posting dates** (from the session transcript's upload
   timestamps, in America/Los_Angeles — `_config.yml` sets that timezone, or a
   UTC build shifts an evening post to the next day). The paper's own date lives
@@ -29,8 +30,9 @@ _Last updated: 2026-09-18_
 
 ## Waiting on the owner
 
-- **Tech-review sources** — to be sanitized (subagent + denylist), confirmed by
-  her, then posted as a KO/EN pair.
+- **More tech-review sources** — same path as Actuate 2026: sanitize with the
+  subagent + denylist, walk her through the report, post the KO/EN pair only
+  after she confirms.
 - **Tier A documents** for the voice profile — her own writing, to fill
   `.claude/voice-profile.md`. Applying the profile waits for her explicit signal.
 - **Profile photo** — `assets/img/profile.svg` is a "JK" placeholder.
@@ -56,3 +58,7 @@ _Last updated: 2026-09-18_
 - Fixed the home/notes list: a long title no longer drops below its date.
 - Switched note dates to posting dates and deleted the sample Welcome post.
 - Added `design-taste-frontend` and the local screenshot workflow.
+- Published the Actuate 2026 tech review. Her redaction calls on it: funding
+  data, the affiliated investor and founder deal sizes stay; one partner company
+  and one named demo venue stay out. Images are hers to decide, per image.
+- Wide tables now use the page margins, and figure captions are styled.

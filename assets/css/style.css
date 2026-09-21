@@ -290,6 +290,25 @@ a:hover { text-decoration: underline; }
 }
 .paper-body th { background: var(--surface); }
 
+/* Figure captions: an italic line written directly under an image, so the two
+   land in one paragraph. */
+.paper-body p > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin: 0 auto;
+}
+.paper-body p > img + em {
+  display: block;
+  margin-top: 8px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
 /* ---------- Code ---------- */
 code {
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
