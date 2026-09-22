@@ -8,14 +8,14 @@ summarized, so anything that lives only in a conversation is lost. Update this
 file whenever something below changes — it costs one edit and saves a
 reconstruction.
 
-_Last updated: 2026-09-21_
+_Last updated: 2026-09-22_
 
 ## Live
 
 - Site: https://jiyoon0630.github.io/ — Jekyll, deployed from `main` by
   `.github/workflows/pages.yml` on every push.
-- 8 notes: PLD (ko/en), Hi Robot (ko/en), Dyna-2 (ko/en), Actuate 2026 (ko/en).
-  The last is the first **tech review**; the rest are paper reviews. The sample
+- 10 notes: PLD (ko/en), Hi Robot (ko/en), Dyna-2 (ko/en) as paper reviews, plus
+  Actuate 2026 (ko/en) and World Model (ko/en) as **tech reviews**. The sample
   "Welcome" post was deleted once real notes existed —
   `templates/paper-template.md` is the format reference now.
 - Note dates are **posting dates** (from the session transcript's upload
@@ -58,6 +58,10 @@ _Last updated: 2026-09-21_
 - Fixed the home/notes list: a long title no longer drops below its date.
 - Switched note dates to posting dates and deleted the sample Welcome post.
 - Added `design-taste-frontend` and the local screenshot workflow.
+- Published the World Model tech review. Its six hand-drawn diagrams carry
+  Korean labels, which the English post shows untranslated — open question.
+- Rewrote the denylist's company section: judge the context, not the name. The
+  name list had produced two over-redactions and no catches.
 - Published the Actuate 2026 tech review. Her redaction calls on it: funding
   data, the affiliated investor and founder deal sizes stay; one partner company
   and one named demo venue stay out. Images are hers to decide, per image.
