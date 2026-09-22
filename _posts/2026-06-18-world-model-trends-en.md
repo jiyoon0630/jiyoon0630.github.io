@@ -149,7 +149,7 @@ Looking over the development of world models, it converges on one large movement
 
 Developing an RFM that generates robot actions (= a robot policy model) divides broadly into three stages: **(1) obtaining data, (2) training, (3) evaluation.**
 
-![Robot policy development pipeline](/assets/img/notes/world-model/policy-pipeline.jpg)
+![Robot policy development pipeline](/assets/img/notes/world-model/en/policy-pipeline.svg)
 *The three stages of the robot policy development pipeline, and the directions in which the world model is spreading into each*
 
 1. **[Trend 1. Data] Making training data with a world model (Section 3)**
@@ -368,7 +368,7 @@ What matters here is that the world model does not produce the actions. **The ac
 
 ### 3-2. Generate video, then recover actions with an IDM: NVIDIA DreamGen (CoRL 2025)
 
-![DreamGen data generation flow](/assets/img/notes/world-model/dreamgen-flow.jpg)
+![DreamGen data generation flow](/assets/img/notes/world-model/en/dreamgen-flow.svg)
 *DreamGen — generating video first, then recovering actions with an IDM to produce training data*
 
 The next approach goes a step further: **the world model generates the video itself, and actions are recovered from that video to produce training data.**
@@ -414,7 +414,7 @@ The representative work here is Ctrl-World and its successor VLAW, from **Profes
 
 #### 3-3-1. Ctrl-World (ICLR 2026)
 
-![Ctrl-World](/assets/img/notes/world-model/ctrl-world.jpg)
+![Ctrl-World](/assets/img/notes/world-model/en/ctrl-world.svg)
 *Ctrl-World — construct the world model, freeze it, then improve the policy inside imagination*
 
 Ctrl-World takes a video diffusion model pre-trained on general video (Stable Video Diffusion) as its backbone and **first builds a controllable world model by training it on real robot data so that it can interact with a VLA.**
@@ -446,7 +446,7 @@ On top of that world model, the flow runs:
 > So the essence of this work is not an evaluation tool but data generation — training and improving a VLA with high-fidelity synthetic rollouts.
 
 #### 3-3-2. VLAW (arXiv 2602.12063)
-![VLAW](/assets/img/notes/world-model/vlaw-flow.jpg)
+![VLAW](/assets/img/notes/world-model/en/vlaw-flow.svg)
 *VLAW — an iterative co-improvement loop that alternately improves the VLA and the world model*
 
 VLAW is Ctrl-World's successor (Chelsea Finn), proposing iterative co-improvement that raises the VLA and the world model alternately together. The motivation comes straight out of Ctrl-World's limitation.
@@ -505,7 +505,7 @@ Let me take two branches by coupling method.
 
 ### 4-1. Decoupled — world model and VLA kept apart, joined by conditioning: π0.7 (Physical Intelligence, 2026)
 
-![π0.7 decoupled structure](/assets/img/notes/world-model/pi07-decoupled.jpg)
+![π0.7 decoupled structure](/assets/img/notes/world-model/en/pi07-decoupled.svg)
 *π0.7 — a decoupled structure that keeps the world model as a separate module and conditions the VLA on its output*
 
 The loosest form of coupling **keeps the world model as a module separate from the VLA but injects its output as conditioning for the VLA at inference time.** **Physical Intelligence's π0.7 (arXiv 2604.15483)** is the representative case.
@@ -541,7 +541,7 @@ Where the decoupled approach kept the world model as an external module, the cou
 
 #### 4-2-1. NVIDIA DreamZero (World Action Model / GR00T N2, 2026): joint denoising
 
-![DreamZero joint denoising](/assets/img/notes/world-model/dreamzero-joint-denoising.jpg)
+![DreamZero joint denoising](/assets/img/notes/world-model/en/dreamzero-joint-denoising.svg)
 *DreamZero — a coupled structure denoising video and actions together in one model*
 
 The first model is **NVIDIA DreamZero (arXiv 2026)**. **It is the representative model putting the world action model (WAM) naming front and center, led by NVIDIA GEAR Lab (Seonghyeon Ye, Joel and others).**

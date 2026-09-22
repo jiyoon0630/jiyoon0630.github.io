@@ -346,6 +346,19 @@ a:hover { text-decoration: underline; }
   line-height: 1.5;
 }
 
+/* Figures carry a lot of small type in these notes, so on a wide screen give
+   them the same margins a wide table gets. Must come after the caption rules
+   above, which set the default width. */
+@media (min-width: 1100px) {
+  .paper-body p > img {
+    --breakout: min(110px, calc((100vw - 100%) / 2 - 28px));
+    width: calc(100% + var(--breakout) * 2);
+    max-width: calc(100% + var(--breakout) * 2);
+    margin-left: calc(-1 * var(--breakout));
+    margin-right: calc(-1 * var(--breakout));
+  }
+}
+
 /* ---------- Code ---------- */
 code {
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;

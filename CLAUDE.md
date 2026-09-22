@@ -151,6 +151,20 @@ words: em dash 15.23/1k · ~에 대한 1.54/1k · ~을/를 통해 0.22/1k · ~�
 Note the median-vs-mean gap: length variation is already present, so uniform
 sentence length is not the tell on this site. The rhetorical frames are.
 
+## Figures in notes
+
+- Diagrams she draws herself arrive as **transparent PNGs**. Composite them onto
+  **white** before converting; PIL's `convert("RGB")` fills transparency with
+  black, which hides the dark grey titles and footnotes those diagrams use.
+- Resize to 1400px wide and save JPEG q84–88. Ten figures went from 3.9MB to
+  925KB that way.
+- A caption is an *italic line directly under the image*, with no blank line
+  between, so kramdown keeps both in one paragraph and `p > img + em` styles it.
+  Put the source attribution there — in the alt text it is invisible.
+- **Korean labels inside a diagram do not translate.** For the English post,
+  redraw the diagram as SVG under `assets/img/notes/<ref>/en/` and point the
+  English post at it. SVG keeps the text sharp at any width and costs a few KB.
+
 ## Profile / publications / projects / CV are data-driven
 
 Do **not** hand-edit the page HTML for content. Edit these instead:

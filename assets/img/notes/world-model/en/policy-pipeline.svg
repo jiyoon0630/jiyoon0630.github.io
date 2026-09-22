@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 450" width="1400" height="450" role="img" aria-label="Robot policy development pipeline: data, training and evaluation, each shifting to a world model" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<title>Robot policy development pipeline: data, training and evaluation, each shifting to a world model</title>
+<defs>
+<marker id="a9aa0a6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#9aa0a6"/></marker>
+<marker id="a3b82f6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6"/></marker>
+</defs>
+<rect width="1400" height="450" fill="#ffffff"/>
+<text x="70" y="62" font-size="30" font-weight="700" fill="#1f2328">Robot policy development pipeline</text>
+<rect x="110" y="130" width="360" height="210" rx="14" fill="#dce9fb" stroke="#b6d0f2" stroke-width="1.5"/>
+<text x="290.0" y="176" font-size="24" font-weight="700" fill="#123a6b" text-anchor="middle">① Data</text>
+<text x="290.0" y="214" font-size="17" fill="#6b7280" text-anchor="middle">Teleoperation collection</text>
+<text x="290.0" y="246" font-size="20" fill="#6b7280" text-anchor="middle">↓</text>
+<text x="290.0" y="282" font-size="19" font-weight="700" fill="#123a6b" text-anchor="middle">World-model-based</text>
+<text x="290.0" y="308" font-size="18" fill="#123a6b" text-anchor="middle">data generation</text>
+<rect x="520" y="130" width="360" height="210" rx="14" fill="#e9e6f9" stroke="#c9c2ee" stroke-width="1.5"/>
+<text x="700.0" y="176" font-size="24" font-weight="700" fill="#3b2f7a" text-anchor="middle">② Training</text>
+<text x="700.0" y="214" font-size="17" fill="#6b7280" text-anchor="middle">VLA trained alone</text>
+<text x="700.0" y="246" font-size="20" fill="#6b7280" text-anchor="middle">↓</text>
+<text x="700.0" y="282" font-size="19" font-weight="700" fill="#3b2f7a" text-anchor="middle">VLA + world model,</text>
+<text x="700.0" y="308" font-size="18" fill="#3b2f7a" text-anchor="middle">trained jointly</text>
+<rect x="930" y="130" width="360" height="210" rx="14" fill="#d9efe7" stroke="#a9d9c8" stroke-width="1.5"/>
+<text x="1110.0" y="176" font-size="24" font-weight="700" fill="#155f4a" text-anchor="middle">③ Evaluation</text>
+<text x="1110.0" y="214" font-size="17" fill="#6b7280" text-anchor="middle">Human scoring</text>
+<text x="1110.0" y="246" font-size="20" fill="#6b7280" text-anchor="middle">↓</text>
+<text x="1110.0" y="282" font-size="19" font-weight="700" fill="#155f4a" text-anchor="middle">World-model-based</text>
+<text x="1110.0" y="308" font-size="18" fill="#155f4a" text-anchor="middle">automatic evaluation</text>
+<line x1="486" y1="235.0" x2="554" y2="235.0" stroke="#9aa0a6" stroke-width="2.2" marker-end="url(#a9aa0a6)"/>
+<line x1="896" y1="235.0" x2="964" y2="235.0" stroke="#9aa0a6" stroke-width="2.2" marker-end="url(#a9aa0a6)"/>
+<text x="700" y="400" font-size="17" fill="#6b7280" text-anchor="middle">The world model spreads into every stage — data, training, evaluation</text>
+</svg>

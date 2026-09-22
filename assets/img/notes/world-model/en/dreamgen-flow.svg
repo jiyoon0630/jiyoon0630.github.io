@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 560" width="1400" height="560" role="img" aria-label="DreamGen: generate neural trajectories, recover actions with an IDM, train the VLA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<title>DreamGen: generate neural trajectories, recover actions with an IDM, train the VLA</title>
+<defs>
+<marker id="a9aa0a6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#9aa0a6"/></marker>
+<marker id="a3b82f6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6"/></marker>
+</defs>
+<rect width="1400" height="560" fill="#ffffff"/>
+<text x="80" y="68" font-size="30" font-weight="700" fill="#1f2328">DreamGen: large-scale data generation</text>
+<rect x="300" y="200" width="400" height="200" rx="16" fill="none" stroke="#8b7fe0" stroke-width="1.6" stroke-dasharray="7 6"/>
+<text x="320" y="188" font-size="17" fill="#6b7280">video world model (external module)</text>
+<rect x="728" y="200" width="348" height="200" rx="16" fill="none" stroke="#4bab8f" stroke-width="1.6" stroke-dasharray="7 6"/>
+<text x="748" y="188" font-size="17" fill="#6b7280">IDM (separate external module)</text>
+<rect x="40" y="240" width="210" height="120" rx="14" fill="#efece4" stroke="#d8d2c4" stroke-width="1.5"/>
+<text x="145.0" y="280.4" font-size="23" font-weight="700" fill="#3f3a2f" text-anchor="middle">Input</text>
+<text x="145.0" y="307.4" font-size="17" fill="#3f3a2f" text-anchor="middle">initial frame</text>
+<text x="145.0" y="334.4" font-size="17" fill="#3f3a2f" text-anchor="middle">+ language instruction</text>
+<rect x="322" y="240" width="356" height="120" rx="14" fill="#e9e6f9" stroke="#c9c2ee" stroke-width="1.5"/>
+<text x="500.0" y="280.4" font-size="23" font-weight="700" fill="#3b2f7a" text-anchor="middle">① Generate neural trajectory</text>
+<text x="500.0" y="307.4" font-size="17" fill="#3b2f7a" text-anchor="middle">mass synthetic video</text>
+<text x="500.0" y="334.4" font-size="17" fill="#3b2f7a" text-anchor="middle">via Cosmos Predict</text>
+<rect x="750" y="240" width="304" height="120" rx="14" fill="#d9efe7" stroke="#a9d9c8" stroke-width="1.5"/>
+<text x="902.0" y="280.4" font-size="23" font-weight="700" fill="#155f4a" text-anchor="middle">② Recover actions</text>
+<text x="902.0" y="307.4" font-size="17" fill="#155f4a" text-anchor="middle">IDM recovers</text>
+<text x="902.0" y="334.4" font-size="17" fill="#155f4a" text-anchor="middle">pseudo-actions</text>
+<rect x="1126" y="240" width="234" height="120" rx="14" fill="#e7f1d8" stroke="#c9dfae" stroke-width="1.5"/>
+<text x="1243.0" y="280.4" font-size="23" font-weight="700" fill="#3f5c1c" text-anchor="middle">③ Train VLA</text>
+<text x="1243.0" y="307.4" font-size="17" fill="#3f5c1c" text-anchor="middle">(video, pseudo-action)</text>
+<text x="1243.0" y="334.4" font-size="17" fill="#3f5c1c" text-anchor="middle">dataset</text>
+<line x1="258" y1="300" x2="312" y2="300" stroke="#9aa0a6" stroke-width="2.2" marker-end="url(#a9aa0a6)"/>
+<line x1="686" y1="300" x2="742" y2="300" stroke="#9aa0a6" stroke-width="2.2" marker-end="url(#a9aa0a6)"/>
+<line x1="1062" y1="300" x2="1118" y2="300" stroke="#9aa0a6" stroke-width="2.2" marker-end="url(#a9aa0a6)"/>
+<text x="700" y="462" font-size="17" fill="#6b7280" text-anchor="middle">The world model's output is, throughout, ‘data’ for training a separate VLA</text>
+<text x="700" y="488" font-size="17" fill="#6b7280" text-anchor="middle">After training, only the VLA runs at deployment → the world model drops out</text>
+<text x="700" y="514" font-size="17" fill="#6b7280" text-anchor="middle">Adapted from one real pick-and-place dataset → generalizes to motions never demonstrated</text>
+</svg>
