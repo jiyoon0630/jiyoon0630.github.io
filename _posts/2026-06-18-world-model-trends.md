@@ -104,16 +104,16 @@ World Model은 실제 데이터로 학습되기 때문에 현실의 dynamics와 
 세 층위의 관계를 정리하면 다음과 같습니다.
 
 ```
-**NVIDIA 시뮬레이션 스택 (상위 → 하위)**
+NVIDIA 시뮬레이션 스택 (상위 → 하위)
 
-▸ **[기반 플랫폼] Omniverse**
+▸ [기반 플랫폼] Omniverse
     digital twin 구축 · USD 씬 · RTX 렌더링
 
-  ▸ **[시뮬레이션] Isaac Sim**
+  ▸ [시뮬레이션] Isaac Sim
       Omniverse 위 로보틱스 시뮬레이션 앱
       합성데이터 생성 · 학습 · 테스트
 
-    ▸ **[물리 엔진] PhysX / MuJoCo / Newton ...**
+    ▸ [물리 엔진] PhysX / MuJoCo / Newton ...
         강체 · 연성체 dynamics 계산 (교체 가능)
 
 ※ MuJoCo는 Isaac Sim의 백엔드로 들어갈 수도 있고, 단독으로도 쓰이는 독립 물리 엔진 (가볍고 접촉 물리 정확)

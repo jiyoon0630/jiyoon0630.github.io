@@ -104,16 +104,16 @@ These terms get mixed up often in practice, so their relationship is worth layin
 The relationship between the three layers:
 
 ```
-**NVIDIA simulation stack (top → bottom)**
+NVIDIA simulation stack (top → bottom)
 
-▸ **[Base platform] Omniverse**
+▸ [Base platform] Omniverse
     digital twin construction · USD scenes · RTX rendering
 
-  ▸ **[Simulation] Isaac Sim**
+  ▸ [Simulation] Isaac Sim
       robotics simulation app on top of Omniverse
       synthetic data generation · training · testing
 
-    ▸ **[Physics engine] PhysX / MuJoCo / Newton ...**
+    ▸ [Physics engine] PhysX / MuJoCo / Newton ...
         rigid- and soft-body dynamics (swappable)
 
 ※ MuJoCo can serve as Isaac Sim's backend and also stands alone as an

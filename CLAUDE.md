@@ -66,7 +66,10 @@ code_url: "https://github.com/..."      # optional → 💻 Code link
   math does not wrap, stretches its table cell until the table runs off the page.
   This cannot be caught locally, because MathJax does not load here.
 - **Code fences** are highlighted (rouge); unlabeled fences (ASCII diagrams)
-  render as plain monospace.
+  render as plain monospace. **Markdown does not apply inside a fence**, so
+  `**bold**` in an ASCII diagram prints its asterisks. Notion renders them, so
+  strip them when converting a diagram out of a source document; indentation and
+  the ▸/│ characters already carry the hierarchy.
 - **Callout box** = a blockquote whose first line is `### <emoji> Title`.
   The opening quote of a note renders as a lead card.
 
