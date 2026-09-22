@@ -270,17 +270,19 @@ a:hover { text-decoration: underline; }
    let it spill into the margins instead of stacking every cell vertically. */
 @media (min-width: 1100px) {
   .paper-body table {
-    width: calc(100% + 220px);
-    max-width: calc(100vw - 48px);
-    margin-left: -110px;
-    margin-right: -110px;
+    --breakout: min(110px, calc((100vw - 100%) / 2 - 28px));
+    width: calc(100% + var(--breakout) * 2);
+    margin-left: calc(-1 * var(--breakout));
+    margin-right: calc(-1 * var(--breakout));
   }
   /* A callout holding a table widens as a whole, so the card's tint and border
      still frame it. Widening the table alone leaves the background cut off
-     mid-column. */
+     mid-column. The breakout is clamped to the space actually beside the text
+     column, or the page itself starts scrolling sideways just past 1100px. */
   .paper-body blockquote:has(table) {
-    width: calc(100% + 190px);
-    margin-right: -190px;
+    --breakout: min(190px, calc((100vw - 100%) / 2 - 28px));
+    width: calc(100% + var(--breakout));
+    margin-right: calc(-1 * var(--breakout));
   }
   .paper-body blockquote table {
     width: 100%;
@@ -289,6 +291,40 @@ a:hover { text-decoration: underline; }
   }
 }
 .paper-body th { background: var(--surface); }
+
+/* A wide table on a phone has to scroll sideways. Shrink it as far as is
+   readable, then show the scrollbar so the cut-off edge reads as "there is more
+   here" rather than as a broken layout. */
+@media (max-width: 720px) {
+  .paper-body table { font-size: 0.8rem; scrollbar-width: thin; }
+  .paper-body th, .paper-body td { padding: 6px 8px; }
+  /* Without a floor on column width, a five-column table squeezed into a phone
+     breaks each cell into one word per line. Give the columns room and let the
+     table scroll sideways instead. */
+  .paper-body th, .paper-body td { min-width: 150px; }
+  .paper-body th:first-child, .paper-body td:first-child {
+    min-width: 96px;
+    /* Pin the label column so it stays readable while the rest scrolls. */
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--bg);
+  }
+  .paper-body blockquote th:first-child,
+  .paper-body blockquote td:first-child { background: var(--callout-bg); }
+  .paper-body th:first-child { background: var(--surface); }
+  /* A hard edge on the pinned column, so scrolled content reads as passing
+     behind it rather than bleeding through. */
+  .paper-body th:first-child, .paper-body td:first-child {
+    box-shadow: 1px 0 0 var(--border);
+  }
+  .paper-body table::-webkit-scrollbar { height: 7px; }
+  .paper-body table::-webkit-scrollbar-thumb {
+    background: var(--muted);
+    border-radius: 4px;
+  }
+  .paper-body table::-webkit-scrollbar-track { background: var(--border); border-radius: 4px; }
+}
 
 /* Figure captions: an italic line written directly under an image, so the two
    land in one paragraph. */
