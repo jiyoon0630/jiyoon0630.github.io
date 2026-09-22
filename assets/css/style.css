@@ -280,8 +280,9 @@ a:hover { text-decoration: underline; }
      mid-column. The breakout is clamped to the space actually beside the text
      column, or the page itself starts scrolling sideways just past 1100px. */
   .paper-body blockquote:has(table) {
-    --breakout: min(190px, calc((100vw - 100%) / 2 - 28px));
-    width: calc(100% + var(--breakout));
+    --breakout: min(110px, calc((100vw - 100%) / 2 - 28px));
+    width: calc(100% + var(--breakout) * 2);
+    margin-left: calc(-1 * var(--breakout));
     margin-right: calc(-1 * var(--breakout));
   }
   .paper-body blockquote table {
