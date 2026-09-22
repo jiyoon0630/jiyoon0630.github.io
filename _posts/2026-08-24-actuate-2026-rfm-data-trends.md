@@ -5,6 +5,7 @@ ref: actuate-2026-rfm-data-trends
 kind: tech-review
 title: "Actuate 2026 참관기: RFM과 데이터 트렌드"
 date: 2026-08-24 12:00:00 -0700
+math: false          # dollar amounts, no equations
 venue: "Actuate 2026 · San Francisco"
 tags: [Robot-Foundation-Model, Data, Scaling-Law, World-Model, Conference, Tech-Review]
 summary: "Actuate 2026 참관 기록 — 데이터 수집·저장 포맷의 표준화, 대규모 Pre-training + 소량 Post-training이라는 공통 레시피, 그리고 VLA 바깥으로의 아키텍처 확장."

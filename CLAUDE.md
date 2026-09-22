@@ -60,6 +60,11 @@ code_url: "https://github.com/..."      # optional → 💻 Code link
 
 - **Math:** `$...$` inline, `$$...$$` display (MathJax on the live site; it will
   not render in a sandbox that cannot reach the CDN — verify structure instead).
+- **`math: false`** turns MathJax off for a post. Set it on any note that writes
+  **currency** and has no equations: `$70M ... $600M` otherwise pairs up as
+  inline math, which renders the text between them in italic math type and, since
+  math does not wrap, stretches its table cell until the table runs off the page.
+  This cannot be caught locally, because MathJax does not load here.
 - **Code fences** are highlighted (rouge); unlabeled fences (ASCII diagrams)
   render as plain monospace.
 - **Callout box** = a blockquote whose first line is `### <emoji> Title`.
@@ -216,11 +221,25 @@ Known limitations in this environment:
 - `--executable-path` is ignored once the daemon is running; the env var above
   always works. `agent-browser close` restarts it.
 - **No viewport control** in this version (`viewport` is not a command and
-  `--args --window-size` is ignored — `innerWidth` stays 1280), so mobile widths
-  cannot be checked this way. Reason about the media queries instead.
+  `--args --window-size` is ignored — `innerWidth` stays 1280). For anything
+  width-dependent use Playwright instead, which drives the same pre-installed
+  browser and does set the viewport:
+
+```bash
+npm install playwright-core            # the browser is already on disk
+# chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' })
+# newPage({ viewport: { width, height } })
+```
+
+  Check a layout change at 1440 / 1280 / 1100 / 1024 / 900 / 768 / 430 / 390 and
+  assert `document.documentElement.scrollWidth <= clientWidth` at each one. A
+  fixed-pixel breakout that fits at 1280 can push the page sideways at 1100.
+
 - **Google Fonts and jsdelivr are egress-blocked**, so local screenshots use
-  fallback fonts and MathJax does not render. Judge layout, not typography, and
-  never conclude from a local screenshot that math is broken.
+  fallback fonts and **MathJax never loads at all**. Layout is trustworthy;
+  typography and anything MathJax does are not, in either direction — a local
+  page cannot show you that math is broken *or* that stray `$` signs are being
+  eaten. Reason about the markup for those.
 
 ## Design work — the `design-taste-frontend` skill
 

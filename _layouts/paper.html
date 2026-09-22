@@ -43,7 +43,7 @@ layout: default
     {% endif %}
   </header>
 
-  <div class="paper-body">
+  <div class="paper-body{% if page.math == false %} tex2jax_ignore{% endif %}">
     {{ content }}
   </div>
 </article>

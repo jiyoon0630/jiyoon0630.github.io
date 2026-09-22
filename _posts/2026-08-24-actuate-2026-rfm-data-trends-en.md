@@ -5,6 +5,7 @@ ref: actuate-2026-rfm-data-trends
 kind: tech-review
 title: "Actuate 2026: RFM and Data Trends"
 date: 2026-08-24 12:00:00 -0700
+math: false          # dollar amounts, no equations
 venue: "Actuate 2026 · San Francisco"
 tags: [Robot-Foundation-Model, Data, Scaling-Law, World-Model, Conference, Tech-Review]
 summary: "Notes from Actuate 2026 — the standardization of data collection and storage formats, the shared recipe of large-scale pre-training plus a small amount of post-training, and the first architectural moves outside the VLA."
