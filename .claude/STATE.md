@@ -62,7 +62,7 @@ World Model post, whose intro says it follows "앞서 정리했던 RFM의 발전
 
 - Site: https://jiyoon0630.github.io/ — Jekyll, deployed from `main` by
   `.github/workflows/pages.yml` on every push.
-- 10 notes: PLD (ko/en), Hi Robot (ko/en), Dyna-2 (ko/en) as paper reviews, plus
+- 12 notes: PLD, Hi Robot, Dyna-2, Cosmos 3 (all ko/en) as paper reviews, plus
   Actuate 2026 (ko/en) and World Model (ko/en) as **tech reviews**.
 - Note dates are **posting dates**, in America/Los_Angeles (`_config.yml` sets
   the timezone). A tech review is dated by its source's publication date. A
@@ -99,6 +99,8 @@ World Model post, whose intro says it follows "앞서 정리했던 RFM의 발전
 
 ## Recently done
 
+- Cosmos 3 paper review published (ko/en), dated 2026-06-02 at her request.
+  Kramdown turns `}_{ ... }_{` inside inline `$...$` into `<em>`; escaped as `\_`.
 - Voice profile filled in for Korean: 12 traits from two documents.
 - CLAUDE.md now records her standing redaction decisions and the currency-and-
   MathJax method.
