@@ -19,3 +19,7 @@ drafts/
 
 # Voice targets derived from internal documents.
 .claude/target-*.json
+
+# Obsidian workspace settings, if the repo is opened as a vault
+.obsidian/
+.trash/
