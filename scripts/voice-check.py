@@ -34,7 +34,8 @@ cmp('headings', re.findall(r'(?m)^#{1,6} .*$', ob_nf), re.findall(r'(?m)^#{1,6} 
 cmp('callout titles', re.findall(r'(?m)^>\s*#{2,6} .*$', ob_nf), re.findall(r'(?m)^>\s*#{2,6} .*$', nb_nf))
 cmp('images', sorted(re.findall(r'!\[[^\]]*\]\([^)]*\)', ob_nf)), sorted(re.findall(r'!\[[^\]]*\]\([^)]*\)', nb_nf)))
 cmp('link targets', sorted(re.findall(r'\]\(([^)]+)\)', ob_nf)), sorted(re.findall(r'\]\(([^)]+)\)', nb_nf)))
-cmp('html tags', sorted(re.findall(r'<[^>]+>', ob_nf)), sorted(re.findall(r'<[^>]+>', nb_nf)))
+nomath_ = lambda t: re.sub(r'\$\$.*?\$\$|\$[^$\n]+\$', '', t, flags=re.S)
+cmp('html tags', sorted(re.findall(r'<[A-Za-z/][^<>\n]*>', nomath_(ob_nf))), sorted(re.findall(r'<[A-Za-z/][^<>\n]*>', nomath_(nb_nf))))
 # tables: same number of rows and columns per row
 trows = lambda t: [l.count('|') for l in t.splitlines() if l.lstrip().lstrip('>').lstrip().startswith('|')]
 if trows(ob_nf) != trows(nb_nf):
