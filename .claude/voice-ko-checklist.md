@@ -19,6 +19,12 @@ For the target register, read the Korean posts made from her own documents:
 - **Connectives:** concede with 다만, contrast with 반면, narrow with 특히 / 즉. No sentence opens with 그래서; avoid runs of 따라서.
 - **English terms** stay bare in Korean prose; glosses run 한국어(english), not english(한국어) — only reorder existing glosses, don't add new ones.
 - **Remove Claude tics** (voice-profile anti-patterns): "A가 아니라 B다" as a rhetorical frame (keep it only where it states a real distinction, rephrased plainly), aphoristic one-liners, reader-address meta ("이 글은 ~한 독자를 가정하고"), decorative metaphors (keep a metaphor only when headings or later text refer back to it, e.g. a named "벽 1/벽 2"), vacuous emphasis ("핵심은 ~이다" as filler).
+- **Questions (her decision, 2026-09-24):** a problem-posing question stays a
+  question only inside a plain quote box (a blockquote that is not a `> ###`
+  callout), in plain form: `~ㄹ까?` / `~는가?` — as in her own RFM report. Every
+  other question (body, lists, callouts, bold labels) becomes a declarative
+  합쇼체 sentence that keeps the setup it did: "그렇다면 X는 얼마나 클까요?" →
+  "X가 얼마나 큰지 따져 보면 다음과 같습니다." Never `~ㄹ까요?`.
 - Sentence length: don't chop chains into short sentences; joining two short sentences into one natural 합쇼체 sentence is fine. Don't pad.
 
 ## What must not change (`scripts/voice-check.py` enforces this)

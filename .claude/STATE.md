@@ -55,9 +55,9 @@ _Last updated: 2026-09-24_
   dashes, left because headings are link anchors). Every post passed
   `scripts/voice-check.py`. Flagged to her, not changed: LAPA 5.4 ⓶ names
   언어 조건화 as the largest gap but Table 2 shows unseen 조합 larger;
-  DreamZero says "42% 이상" where Human2Robot is +41.8%. Open: rhetorical
-  questions in some posts end ~ㄹ까요? (해요체); her documents have no
-  example of a 합쇼체 question to follow.
+  DreamZero says "42% 이상" where Human2Robot is +41.8%. Questions: per her
+  choice, only problem-posing questions in plain quote boxes stay (~ㄹ까? /
+  ~는가?); all others became declaratives (see voice-ko-checklist.md).
 - **More tech-review sources** — sanitize, walk her through the report, post the
   KO/EN pair only after she confirms. CLAUDE.md lists her standing decisions.
 - **English voice** — she will decide after the Korean conversion. Korean is
