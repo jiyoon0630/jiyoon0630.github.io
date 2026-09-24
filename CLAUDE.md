@@ -287,7 +287,8 @@ Do **not** hand-edit the page HTML for content. Edit these instead:
   (bio, news, project and abstract text, page subtitles) in 합쇼체; CV bullets in
   개조식 (~구축, ~달성, ~이어짐), as in her own tables. Her name in the Korean
   view is 김지윤 (`name_ko`). She asked that the Core Talent designation and
-  its allowance not appear in the CV.
+  its allowance not appear in the CV, and that the field validation's outcome
+  (the partnership MOU and follow-on investment) not appear anywhere on the site.
 Values marked `TODO` are placeholders the owner still has to fill in — leave
 them until they supply real content, and never invent biographical facts,
 venues, authors, or dates.
