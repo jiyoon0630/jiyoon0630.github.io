@@ -68,8 +68,9 @@ World Model post, whose intro says it follows "앞서 정리했던 RFM의 발전
 - Note dates are **posting dates**, in America/Los_Angeles (`_config.yml` sets
   the timezone). A tech review is dated by its source's publication date. A
   paper's own date lives in `paper_date` and shows only on the note page.
-- The archive started **2026-07-10**. Exception: π0.7 is dated 2026-04-19 at
-  her request (actually posted 2026-09-24).
+- Some notes carry dates she chose rather than the day they were posted
+  (π0.7: 2026-04-19, DreamZero: 2026-02-21). The 2026-07-10 "Launched this
+  site" news item was removed at her request.
 - Pages: home, notes, publications, projects, CV — all data-driven from `_data/`.
 - The old `jiyoon0630/paper-reivew` repo is deleted; `404.html` carries the
   redirect for old `/paper-reivew/papers/<slug>/` links.
