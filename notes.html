@@ -6,14 +6,16 @@ permalink: /notes/
 ---
 {% assign en_posts = site.posts | where: "lang", "en" %}
 {% assign ko_posts = site.posts | where: "lang", "ko" %}
-{% assign paper_posts = site.posts | where: "kind", "paper-review" %}
-{% assign tech_posts = site.posts | where: "kind", "tech-review" %}
+{% comment %}Kind counts are per language (a KO/EN pair is one note); the
+English numbers render here and filter.js swaps in the selected language's.{% endcomment %}
+{% assign tech_posts = en_posts | where: "kind", "tech-review" %}
+{% assign paper_count = en_posts.size | minus: tech_posts.size %}
 
 <div class="notes-controls">
   <section class="kind-tabs" id="kind-tabs" aria-label="Filter by kind">
     <button class="kind-btn active" data-kind="all">All</button>
-    <button class="kind-btn" data-kind="paper-review">Paper reviews ({{ paper_posts | size }})</button>
-    <button class="kind-btn" data-kind="tech-review">Tech reviews ({{ tech_posts | size }})</button>
+    <button class="kind-btn" data-kind="paper-review">Paper reviews (<span class="kind-count">{{ paper_count }}</span>)</button>
+    <button class="kind-btn" data-kind="tech-review">Tech reviews (<span class="kind-count">{{ tech_posts | size }}</span>)</button>
   </section>
 
   <section class="lang-switch" id="lang-switch" aria-label="Choose language">
