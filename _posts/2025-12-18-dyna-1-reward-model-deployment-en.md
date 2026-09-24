@@ -364,7 +364,7 @@ The blog provides no paper-style tables. All the numbers below come from the blo
 | Success rate | 99.4% | Failures $\approx$ 5 napkins |
 | Interventions | 0 | The roughly 5 failures were all on the $q_r$ side **[Inference]** |
 
-Through the frame of §2.1, this result is consistent. There were failures, but the run did not end. It means failures moved from $q_u$ to $q_r$. This headline figure also matches the 35 napkins per hour and 75% quality that Jason Ma later disclosed.
+Through the frame of §2.1, this result is consistent. There were failures, but the run did not end. It means failures moved from $q_u$ to $q_r$.
 
 The quality standard is separate. **[Blog]** On a 5-point scale, scores of 4–5 count as commercial quality. 98% score 3 or higher, but the share above the commercial bar is 75%, and what separates a 5 from a 3 is precision of under 1/3 inch in the first fold.
 
@@ -454,15 +454,15 @@ After DYNA-1, work appeared that tackled the same goal — "a robot policy impro
 
 > ### 🔗 Comparison with PLD and π*₀.₆ / RECAP — where the judging signal comes from
 >
-> | | **DYNA-1** | **PLD** | **π*₀.₆ / RECAP** |
+> | | **DYNA-1** | **[PLD](/notes/pld-self-improving-vla-en/)** | **π*₀.₆ / RECAP** |
 > |---|---|---|---|
 > | Judging signal | Dense progress RM | Sparse binary success reward | Learned V (distributional MC) |
 > | Data structure | Segmented reset-free continuous stream | Episodic | Episodic |
 > | Improvement operator | Undisclosed (inferred as filtered/weighted SFT) | Residual off-policy RL, then SFT distillation | advantage conditioning |
 > | Human intervention | None (claimed) | None | Includes teleoperated corrections |
-> | Disclosure level | Product blog (2025-04) | Paper (ICLR 2026) | Technical report (2025-11) |
+> | Disclosure level | Product blog (2025-04) | Paper (arXiv, 2025-10) | Technical report (2025-11) |
 >
-> The three approaches form a spectrum in the density of the judging signal. PLD keeps the sparse reward as is and makes learning possible with the base policy's successful trajectories and symmetric replay. RECAP estimates advantage with a value function and uses it as a conditioning input. DYNA-1 builds a dense progress signal from the start, and uses that signal even for stream segmentation. The denser the judging signal, the closer one can get to reset-free continuous deployment, but the more the whole loop hangs on the RM's accuracy (§7).
+> The three approaches form a spectrum in the density of the judging signal. [PLD](/notes/pld-self-improving-vla-en/) keeps the sparse reward as is and makes learning possible with the base policy's successful trajectories and symmetric replay. RECAP estimates advantage with a value function and uses it as a conditioning input. DYNA-1 builds a dense progress signal from the start, and uses that signal even for stream segmentation. The denser the judging signal, the closer one can get to reset-free continuous deployment, but the more the whole loop hangs on the RM's accuracy (§7).
 
 ---
 
@@ -484,7 +484,7 @@ After DYNA-1, work appeared that tackled the same goal — "a robot policy impro
 
 **⓸ Evaluation design** — a single 24-hour run. No repeated experiments, no confidence intervals, no definition of success.
 
-**⓹ What level "production-ready" means** — according to what Jason Ma later disclosed, one robot at the customer restaurant (Din Tai Fung) has to fill 1,500 napkins per 18-hour shift, about 83 per hour. DYNA-1's 35 per hour is 42% of that. It was also reported that DYNA-1 dropped finished napkins into the bin without arranging them, so staff had to straighten them again. "Production-ready" as of 2025 is most accurately read as the level of a paid customer pilot **[Assessment]**.
+**⓹ What level "production-ready" means** — throughput is about 60% of human speed (35 napkins per hour), and the rate of reaching commercial quality is 75% (§5.1). "Production-ready" as of 2025 is most accurately read as the level of a customer-site pilot **[Assessment]**.
 
 ---
 
@@ -523,4 +523,4 @@ In that it disclosed all four of these (even if only qualitatively) rather than 
 | **Filtered BC / AWR** | Policy improvement operators that SFT by selecting samples by advantage (filter) or weighting them exponentially |
 | **RM-in-the-loop** | The iterative loop of deploy → RM scoring and segmentation → filtered/weighted training → redeploy |
 
-**Original** — [DYNA-1 technical blog](https://www.dyna.co/research/dyna-1) · **Press release** — [PR Newswire (2025-04-29)](https://www.prnewswire.com/news-releases/dyna-robotics-unveils-dyna-1-the-first-commercial-ready-robot-foundation-model-offering-fully-autonomous-round-the-clock-dexterity-302441437.html) · **Underlying research** — [GVL, arXiv:2411.04549](https://arxiv.org/abs/2411.04549) · **Later coverage** — [Salesforce Ventures](https://salesforceventures.com/perspectives/welcome-dyna-robotics/), [Runtime Wire (2026-08)](https://runtimewire.com/article/dyna-robotics-din-tai-fung-napkin-folding-rollout)
+**Original** — [DYNA-1 technical blog](https://www.dyna.co/research/dyna-1) · **Press release** — [PR Newswire (2025-04-29)](https://www.prnewswire.com/news-releases/dyna-robotics-unveils-dyna-1-the-first-commercial-ready-robot-foundation-model-offering-fully-autonomous-round-the-clock-dexterity-302441437.html) · **Underlying research** — [GVL, arXiv:2411.04549](https://arxiv.org/abs/2411.04549) · **Later coverage** — [Salesforce Ventures](https://salesforceventures.com/perspectives/welcome-dyna-robotics/)
