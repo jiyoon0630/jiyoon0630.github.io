@@ -30,7 +30,7 @@ _Last updated: 2026-09-24_
 - Site: https://jiyoon0630.github.io/ — Jekyll, deployed from `main` by
   `.github/workflows/pages.yml` on every push.
 - 36 notes, all ko/en. **Paper reviews** (arXiv papers): DreamZero, PLD,
-  Hi Robot, Cosmos 3, π0.7, RTC, SAIL, LAPA, π*0.6 (RECAP). **Tech reviews**: RFM / VLA development (dated
+  Hi Robot, Cosmos 3, π0.7, SAIL, LAPA, RTC, π*0.6 (RECAP). **Tech reviews**: RFM / VLA development (dated
   2026-04-10), Actuate 2026, World Model, plus the company-blog/report reviews
   GEN-0, GEN-1, GENE-26.5, ACT-2, Dyna-2, DYNA-1. World Model's intro links to RFM.
 - Her rule for `kind`: a review whose source is not an arXiv paper is a
