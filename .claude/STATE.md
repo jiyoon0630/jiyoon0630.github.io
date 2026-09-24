@@ -62,7 +62,7 @@ World Model post, whose intro says it follows "앞서 정리했던 RFM의 발전
 
 - Site: https://jiyoon0630.github.io/ — Jekyll, deployed from `main` by
   `.github/workflows/pages.yml` on every push.
-- 16 notes: DreamZero, PLD, Hi Robot, Dyna-2, Cosmos 3, π0.7 (all ko/en) as
+- 18 notes: DreamZero, PLD, Hi Robot, Dyna-2, Cosmos 3, π0.7, ACT-2 (all ko/en) as
   paper reviews, plus
   Actuate 2026 (ko/en) and World Model (ko/en) as **tech reviews**.
 - Note dates are **posting dates**, in America/Los_Angeles (`_config.yml` sets
@@ -102,6 +102,9 @@ World Model post, whose intro says it follows "앞서 정리했던 RFM의 발전
 
 ## Recently done
 
+- ACT-2 preview review published (ko/en), dated 2026-07-18 at her request;
+  `paper_date` 2026-07-17 taken from her source's date field — confirm with her.
+  Kramdown drops the backslash in `\{` inside inline math; use `\lbrace`.
 - Cosmos 3 paper review published (ko/en), dated 2026-06-20 at her request.
   Kramdown turns `}_{ ... }_{` inside inline `$...$` into `<em>`; escaped as `\_`.
 - DreamZero paper review posted (KO + EN), dated 2026-02-21 at her request.
