@@ -276,15 +276,15 @@ html[data-lang="ko"] .site-lang [data-set-lang="ko"] {
    let it spill into the margins instead of stacking every cell vertically.
    Only tables whose content is wider than the column get this (filter.js marks
    them .wide); a narrow table stays aligned with the text, or it sits pushed
-   left of the paragraphs around it. A wide table always takes the full
-   breakout, so all of them line up on the same edges. */
+   left of the paragraphs around it. A wide table grows only as far as its
+   content needs, so a table barely wider than the column stays tight. */
 @media (min-width: 1100px) {
-  /* The element grows equally on both sides, as far as the space beside the
-     text column allows. */
+  /* --natural is the content width filter.js measured. The element grows only
+     as far as that needs, up to the breakout, and grows equally on both sides. */
   .paper-body table.wide,
   .paper-body blockquote:has(table.wide) {
     --breakout: min(var(--breakout-max), calc((100vw - 100%) / 2 - 28px));
-    --grown: calc(100% + var(--breakout) * 2);
+    --grown: min(var(--natural, 100%), calc(100% + var(--breakout) * 2));
     width: var(--grown);
     margin-left: calc((100% - var(--grown)) / 2);
     margin-right: calc((100% - var(--grown)) / 2);
@@ -298,10 +298,6 @@ html[data-lang="ko"] .site-lang [data-set-lang="ko"] {
     margin-left: 0;
     margin-right: 0;
   }
-  /* Every wide table takes the same full breakout width and its columns
-     stretch to fill it, so wide tables share one left and right edge instead
-     of each jutting out by its own amount. */
-  .paper-body table.wide { display: table; }
 }
 .paper-body th { background: var(--surface); }
 
