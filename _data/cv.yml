@@ -67,11 +67,11 @@ experience:
     bullets_ko:
       - "**객체 탐지·분류** — 재학습 없이 새 SKU를 추가할 수 있는 metric learning 기반 상품 인식 구축. GS리테일에서 SKU를 약 10배(약 1만 개)로 늘리면서 정확도 98.0%와 40% 빠른 추론 달성, LX판토스에서 검수 정확도 95.9% 기록"
       - "**전이 학습** — 제조 비전 검사용 공통 사전학습 backbone을 개발해 task 전반의 downstream 학습 시간 28% 단축"
-      - "**MLOps** — 센터의 모델 개발 프로세스(데이터·코드 버전 관리, 실험·모델 추적, HPO 자동화) 표준화. 프로토타입이 사내 Best Practice로 선정됨"
+      - "**MLOps** — 센터의 모델 개발 프로세스(데이터·코드 버전 관리, 실험·모델 추적, HPO 자동화) 표준화"
     bullets:
       - "**Object detection & classification** — built metric-learning product recognition so new SKUs could be added without retraining: ~10× SKU expansion (to ~10K) at 98.0% accuracy with 40% faster inference at GS Retail, and 95.9% inspection accuracy at LX Pantos."
       - "**Transfer learning** — developed a shared pretrained backbone for manufacturing visual inspection, cutting downstream training time 28% across tasks."
-      - "**MLOps** — standardized the center's model-development process (data/code versioning, experiment and model tracking, HPO automation); prototype selected as internal Best Practice."
+      - "**MLOps** — standardized the center's model-development process (data/code versioning, experiment and model tracking, HPO automation)."
 
   - period: "Oct 2017 — Dec 2019"
     period_ko: "2017.10 — 2019.12"
