@@ -62,8 +62,8 @@ World Model post, whose intro says it follows "앞서 정리했던 RFM의 발전
 
 - Site: https://jiyoon0630.github.io/ — Jekyll, deployed from `main` by
   `.github/workflows/pages.yml` on every push.
-- 16 notes: DreamZero, PLD, Hi Robot, Dyna-2, Cosmos 3, π0.7 (all ko/en) as
-  paper reviews, plus
+- 18 notes: DreamZero, PLD, Hi Robot, Dyna-2, Cosmos 3, π0.7, GEN-1 (all
+  ko/en) as paper reviews, plus
   Actuate 2026 (ko/en) and World Model (ko/en) as **tech reviews**.
 - Note dates are **posting dates**, in America/Los_Angeles (`_config.yml` sets
   the timezone). A tech review is dated by its source's publication date. A
@@ -102,6 +102,8 @@ World Model post, whose intro says it follows "앞서 정리했던 RFM의 발전
 
 ## Recently done
 
+- GEN-1 review published (ko/en), dated 2026-04-08 at her request; the source
+  is a company blog post, so `paper_url` points at the blog.
 - Cosmos 3 paper review published (ko/en), dated 2026-06-20 at her request.
   Kramdown turns `}_{ ... }_{` inside inline `$...$` into `<em>`; escaped as `\_`.
 - DreamZero paper review posted (KO + EN), dated 2026-02-21 at her request.
