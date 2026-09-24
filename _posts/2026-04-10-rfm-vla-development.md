@@ -30,7 +30,7 @@ summary: "VLA가 Regression에서 출발해 Diffusion과 웹 규모 VLM이라는
 
 #### 1-1-1. End-to-End Visuomotor (JMLR 2016)
 
-2016년, 당시 UC Berkeley에서 Pieter Abbeel 교수, Trevor Darrel 교수의 연구실(BAIR)에서 Postdoc으로 일하던 Sergey Levine은 박사 과정생 Chelsea Finn과 함께 perception부터 control까지 end-to-end로 학습하는 알고리즘을 제안했습니다.
+2016년, 당시 UC Berkeley에서 Pieter Abbeel 교수, Trevor Darrell 교수의 연구실(BAIR)에서 Postdoc으로 일하던 Sergey Levine은 박사 과정생 Chelsea Finn과 함께 perception부터 control까지 end-to-end로 학습하는 알고리즘을 제안했습니다.
 
 **카메라로 본 장면과 로봇 팔의 현재 자세 정보를 합쳐서, 다음에 각 관절을 얼마나 움직여야 하는지를 예측하는 최초의 이미지 기반 Policy 모델(CNN 기반)**을 만들었습니다.
 
@@ -317,7 +317,7 @@ Google DeepMind는 사전 학습된 VLM(PaLI-X, PaLM-E)을 로봇 제어에 직�
 
 RT-2의 패러다임은 강력했지만, 모델과 데이터가 비공개였기 때문에 연구 커뮤니티가 재현하거나 확장하기 어려웠습니다.
 
-Stanford Univ Chelsea Finn 교수, Percy Liang 교수의 지도를 받는 박사 과정생 Moo Jin Kim과 Physical Intelligence 핵심 Engineer인 Karl Pertsch는 이를 오픈소스로 재현하여 연구 커뮤니티의 베이스라인이자 Physical Intelligence $\pi_o$의 기술적 시초 역할을 했습니다.
+Stanford Univ Chelsea Finn 교수, Percy Liang 교수의 지도를 받는 박사 과정생 Moo Jin Kim과 Physical Intelligence 핵심 Engineer인 Karl Pertsch는 이를 오픈소스로 재현하여 연구 커뮤니티의 베이스라인이자 Physical Intelligence $\pi_0$의 기술적 시초 역할을 했습니다.
 
 OpenVLA는 Vision encoder(DINOv2, SigLIP)를 활용하여 공간적 특징과 의미적 이해를 동시에 강화하고, Llama-2 7B를 언어 backbone으로 사용하여 이산화된 Action 토큰을 next-token prediction 방식으로 생성합니다.
 
@@ -390,7 +390,7 @@ CogACT는 VLM을 학습하지 않고, 출력 feature만 별도의 DiT에 전달�
 >
 > 즉, 하나의 모델이 "언어를 이해하는 능력"과 "연속적인 로봇 동작을 생성하는 능력"을 동시에 갖게 됩니다.
 
-구체적으로, $\pi_0$는 Google이 개발한 VLM인 PaLIGemma를 backbone으로 사용합니다. 다만, 로봇 제어를 위해 로봇 상태(관절 각도)와 Action에 해당하는 토큰을 입력 시퀀스에 추가했습니다.
+구체적으로, $\pi_0$는 Google이 개발한 VLM인 PaliGemma를 backbone으로 사용합니다. 다만, 로봇 제어를 위해 로봇 상태(관절 각도)와 Action에 해당하는 토큰을 입력 시퀀스에 추가했습니다.
 
 이 토큰들은 VLM이 사전 학습 때 본 적 없는 새로운 모달리티이므로, 기존 이미지/언어 토큰과는 별도로 처리되도록 하나의 Transformer 안에 Self-attention 연산을 공유하는 두 세트의 weights를 두었습니다.
 
@@ -614,7 +614,7 @@ Q2분면은 인간이 작업하는 영상(요리, 청소, 조립 등)에서 AI �
 >
 > **LAPA(Latent Action Pretraining, ICLR 2025)**는 이 아이디어를 파운데이션 모델 스케일로 확장한 연구입니다.
 >
-> "action이 뭔지 명시적으로 정의하지 않더라도, 프레임 간 변화 자체를 추상적인 표현(latent action)으로 인코딩하겠다"는 발상으로, 인터넷 비디오 수조 개를 pre-training 데이터로 활용할 수 있는 길을 열었습니다.
+> "action이 뭔지 명시적으로 정의하지 않더라도, 프레임 간 변화 자체를 추상적인 표현(latent action)으로 인코딩하겠다"는 발상으로, 인터넷의 방대한 비디오를 pre-training 데이터로 활용할 수 있는 길을 열었습니다.
 
 Q2의 가치는 데이터 규모에 있습니다. Q1(Teleoperation)은 수집 비용 때문에 규모 확장에 한계가 있지만, 인간 작업 영상은 인터넷에 사실상 무한히 존재합니다. IDM를 통해 이 영상들에서 action 정보를 추출할 수 있다면, pre-training 데이터의 규모를 비약적으로 늘릴 수 있습니다.
 
@@ -663,7 +663,7 @@ Pre-training 단계의 목적은 두 가지입니다.
 
 > ### 💡 VLA 사전학습 파이프라인
 >
-> **Step 1: 사전학습된 VLA 준비**
+> **Step 1: 사전학습된 VLM 준비**
 >
 > 첫 번째 단계는 VLM pretrain인데, 이 단계는 VLA 연구자가 직접 수행하는 것이 아니라 이미 학습이 완료된 VLM을 가져오는 것입니다.
 >
@@ -749,7 +749,6 @@ BC가 이렇게 오랫동안, 그리고 지금까지도 기본 학습 방법으�
     - 현재 VLA는 웹 규모로 사전학습된 VLM(PaliGemma, Llama-2 등)을 backbone으로 가져온 뒤, 그 위에 action head를 붙여서 로봇 데이터로 학습하는 구조입니다.
     - 그런데 BC로 로봇 데이터만 학습시키면, VLM이 원래 가지고 있던 vision-language 지식이 훼손될 수 있습니다. 이를 catastrophic forgetting 현상이라고 부릅니다.
     - 예를 들어 "유리컵은 깨지기 쉬우니까 조심해서 집어야 한다"는 상식을 VLM이 알고 있었는데, 로봇 데이터만으로 fine-tuning하면 이런 지식이 사라질 수 있습니다.
-    - 또한 Q1 데이터(Teleoperation)는 수집 비용이 높아 규모 확장에 근본적인 한계가 있습니다. 인터넷에는 인간 작업 영상이 사실상 무한히 존재하지만, action label이 없어 BC에 직접 사용할 수 없습니다.
     - 이 문제는 뒤에서 설명할 **pre-training 단계의 Co-fine-tuning 기법으로 보완**하는 것이 현재의 표준 접근입니다.
 3. **데이터 규모의 한계**
     - Q1 데이터(Teleoperation)는 수집 비용이 높아 규모 확장에 근본적인 한계가 있습니다. 인터넷에는 인간 작업 영상이 사실상 무한히 존재하지만, action label이 없어 BC에 직접 사용할 수 없습니다.
@@ -940,7 +939,7 @@ BC의 문제를 다시 짚으면, 학습 데이터는 전문가가 방문한 sta
 
 "항상 가르치는 선생님"에서 "지켜보다가 필요할 때만 개입하는 선생님"으로 전환한 셈입니다. 개입이 발생한 구간의 (state, expert_action) 쌍만 수집하므로 라벨링 비용이 크게 줄어듭니다.
 
-#### 2-3-3. Advantage 기반 RL (**RECAP): Physical Intelligence** $\pi_{0.6}^*$
+#### 2-3-3. Advantage 기반 RL (RECAP): Physical Intelligence $\pi_{0.6}^*$
 
 ##### 2-3-3-1. $\pi_{0.6}^*$ (arXiv 2025, Physical Intelligence)
 
