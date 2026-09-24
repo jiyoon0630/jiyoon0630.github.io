@@ -7,7 +7,7 @@ title: "Claude Agent Skills: Markdown 파일로 만드는 AI Agent"
 date: 2025-11-18 12:00:00 -0700
 math: false
 tags: [Claude, Agent-Skills, Agentic-AI, MCP, LLM, Tech-Review]
-summary: "복잡한 MCP 서버 대신 Markdown 파일과 폴더 구조만으로 Agent를 정의하는 Claude Agent Skills — 구조와 작동 방식, 다른 개념·프레임워크와의 비교, 그리고 AI-Native OS 관점에서 본 시사점."
+summary: "Claude Agent Skills는 복잡한 MCP 서버 대신 Markdown 파일과 폴더 구조만으로 Agent를 정의합니다. 그 구조와 작동 방식, 다른 개념·프레임워크와의 비교, 그리고 AI-Native OS 관점에서 본 시사점을 정리하였습니다."
 ---
 
 > **핵심 정리** — **Claude Agent Skills는 복잡한 MCP 서버 구축 대신 Markdown 파일과 폴더 구조만으로 AI Agent의 행동을 정의하게 하여, 실무자도 직접 Agent를 만들 수 있도록 하는 도구입니다.** 점진적 공개(Progressive Disclosure)로 필요한 Skill만 선택적으로 로드하여 토큰을 효율적으로 사용하고, 정확해야 하는 연산은 Skill에 포함된 스크립트로 처리합니다. 이 글에서는 Skills의 구조와 작동 방식, 기존 Agentic AI 개념·프레임워크와의 비교, 활용 사례를 정리하고, Anthropic이 Skills를 통해 AI-Native OS를 선점하려 한다는 관점에서 시사점을 정리했습니다.

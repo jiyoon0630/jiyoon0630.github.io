@@ -6,7 +6,7 @@ kind: tech-review
 title: "World Model 기술 현황: 데이터·학습·평가로 번지는 세 가지 트렌드"
 date: 2026-06-18 12:00:00 -0700
 tags: [World-Model, Robot-Foundation-Model, VLA, Video-Generation, Evaluation, Tech-Review]
-summary: "World Model이 어디에서 왔고 어디로 가는지 — 학습 데이터 생성, VLA 학습과의 결합, 그리고 평가 병목이라는 세 갈래로 로봇 개발 파이프라인 전체에 번지고 있습니다."
+summary: "World Model이 어디에서 왔고 어디로 가는지 정리하였습니다. World Model은 학습 데이터 생성, VLA 학습과의 결합, 그리고 평가 병목이라는 세 갈래로 로봇 개발 파이프라인 전체에 번지고 있습니다."
 ---
 
 > **핵심 정리** — World Model은 물리 법칙을 사람이 명시적으로 설계하는 대신, 데이터로부터 암묵적으로 학습하는 접근입니다. 최근의 흐름은 하나로 모입니다. **World Model이 로봇 개발 파이프라인의 데이터·학습·평가 전 단계로 침투하고 있다는 것**입니다. 이 글에서는 World Model이 무엇이고 어디에서 왔는지, 그리고 그 세 가지 트렌드를 대표 연구를 통해 정리했습니다.

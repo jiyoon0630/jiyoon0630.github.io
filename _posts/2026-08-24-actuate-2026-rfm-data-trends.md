@@ -8,7 +8,7 @@ date: 2026-08-24 12:00:00 -0700
 math: false          # dollar amounts, no equations
 venue: "Actuate 2026 · San Francisco"
 tags: [Robot-Foundation-Model, Data, Scaling-Law, World-Model, Conference, Tech-Review]
-summary: "Actuate 2026 참관 기록 — 데이터 수집·저장 포맷의 표준화, 대규모 Pre-training + 소량 Post-training이라는 공통 레시피, 그리고 VLA 바깥으로의 아키텍처 확장."
+summary: "Actuate 2026 참관 기록입니다. 주요 RFM 기업들이 데이터 수집·저장 포맷의 표준화, 대규모 Pre-training + 소량 Post-training이라는 공통 레시피, 그리고 VLA 바깥으로의 아키텍처 확장이라는 세 방향으로 수렴하고 있습니다."
 ---
 
 > **핵심 정리** — 2026년 8월 샌프란시스코에서 열린 로보틱스 개발자 컨퍼런스 Actuate 2026의 참관 기록입니다. 주요 RFM 기업들이 **데이터 수집 방식·저장 포맷의 표준화**, **"대규모 Pre-training + 소량 Post-training"이라는 공통 학습 레시피**, 그리고 **VLA 바깥으로의 아키텍처 확장**이라는 세 방향으로 수렴하고 있다는 점을 확인할 수 있었습니다.

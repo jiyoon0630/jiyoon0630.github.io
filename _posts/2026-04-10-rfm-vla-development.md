@@ -6,7 +6,7 @@ kind: tech-review
 title: "Robot Foundation Model 기술: VLA의 발전과 학습 방법론"
 date: 2026-04-10 12:00:00 -0700
 tags: [Robot-Foundation-Model, VLA, Diffusion-Policy, Imitation-Learning, Reinforcement-Learning, Tech-Review]
-summary: "VLA가 Regression에서 출발해 Diffusion과 웹 규모 VLM이라는 두 갈래를 거쳐 하나로 합류하기까지 — 그리고 VLA를 학습시키는 데이터와 Pre-training·Post-training 방법론."
+summary: "VLA가 Regression에서 출발해 Diffusion과 웹 규모 VLM이라는 두 갈래를 거쳐 하나로 합류하기까지의 흐름을 정리하였습니다. 이어서 VLA를 학습시키는 데이터와 Pre-training·Post-training 방법론을 다룹니다."
 ---
 
 > **핵심 정리** — **현재 VLA의 최전선은 VLM의 시각·언어 지식을 유지하면서 연속 Action을 생성하는 구조입니다.** Regression으로 Action을 직접 예측하던 출발점(Era 1)의 두 한계에서, Diffusion으로 Multimodality를 확보하는 갈래(Era 2A)와 웹 규모 VLM의 지식을 활용하는 갈래(Era 2B)가 나뉘었고, 두 갈래는 Era 3에서 합류했습니다. 이 글에서는 그 발전 과정과 함께, VLA를 학습시키는 데이터와 Pre-training·Post-training 방법론을 대표 연구를 통해 정리했습니다.
