@@ -83,8 +83,8 @@ _Last updated: 2026-09-24_
 ## Recently done
 
 - Page widened at her request: text column 880px (`--max: 920px`); wide
-  tables take the full breakout (`--breakout-max: 140px` per side) and all
-  share one edge.
+  tables grow only as far as their content needs, up to `--breakout-max: 140px`
+  per side (she preferred tight over one shared edge).
 - Claude Agent Skills tech review published (ko/en, dated 2025-11-18, her
   report). Client-project PoC kept only as a generalized hypothetical; the
   project's real error examples cut; Anthropic blog figures credited with a
