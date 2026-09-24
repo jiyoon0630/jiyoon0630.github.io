@@ -160,24 +160,19 @@ press:
     org_ko: "DRAG 제품화 보도, 뉴스투데이"
     url: "https://www.news2day.co.kr/article/20250507500109"
 
-skills:
+skills:                # items stay in English in both language views
   - group: "Generative models"
     group_ko: "생성 모델"
-    items_ko: ["Diffusion (개인화, inpainting, guidance 기반 샘플링, 스타일 전이)", "선호 최적화 (DPO, RLHF)"]
     items: ["Diffusion (personalization, inpainting, guidance-based sampling, style transfer)", "Preference optimization (DPO, RLHF)"]
   - group: "LLM & agentic AI"
     group_ko: "LLM · Agentic AI"
-    items_ko: ["Supervised fine-tuning", "선호 최적화", "GRPO", "Tool calling", "에이전트 평가"]
     items: ["Supervised fine-tuning", "Preference optimization", "GRPO", "Tool calling", "Agent evaluation"]
   - group: "Computer vision"
     group_ko: "컴퓨터 비전"
-    items_ko: ["객체 탐지", "분류", "Metric learning", "전이 학습"]
     items: ["Object detection", "Classification", "Metric learning", "Transfer learning"]
   - group: "Engineering"
     group_ko: "엔지니어링"
-    items_ko: ["Python", "MLOps (버전 관리, 실험 추적, HPO 자동화)"]
     items: ["Python", "MLOps (versioning, experiment tracking, HPO automation)"]
   - group: "In progress"
     group_ko: "진행 중"
-    items_ko: ["로봇 파운데이션 모델 / VLA", "월드 모델"]
     items: ["Robot foundation models / VLA", "World models"]

@@ -24,19 +24,12 @@ bio_ko: >-
   발굴·검증·응용 R&D를 통해 이 전문성을 Physical AI(로봇 파운데이션 모델, 월드
   모델)로 넓히고 있습니다.
 
-interests:
+interests:             # keywords stay in English in both language views
   - Robot foundation models / VLA
   - World models
   - Diffusion models & personalization
   - Agentic AI and tool use
   - Research-to-production
-
-interests_ko:          # same order as interests
-  - 로봇 파운데이션 모델 / VLA
-  - 월드 모델
-  - Diffusion 모델과 개인화
-  - Agentic AI와 도구 사용
-  - 연구의 제품화
 
 links:
   - label: Email

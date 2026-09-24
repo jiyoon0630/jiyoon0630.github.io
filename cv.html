@@ -42,7 +42,7 @@ permalink: /cv/
   {% for s in cv.skills %}
   <div class="cv-entry">
     <div class="cv-period">{% include bi.html en=s.group ko=s.group_ko %}</div>
-    <div class="cv-body"><div class="tags">{% for i in s.items %}{% assign i_ko = s.items_ko[forloop.index0] %}<span class="tag">{% include bi.html en=i ko=i_ko %}</span>{% endfor %}</div></div>
+    <div class="cv-body"><div class="tags">{% for i in s.items %}<span class="tag">{{ i }}</span>{% endfor %}</div></div>
   </div>
   {% endfor %}
 </section>
@@ -54,7 +54,7 @@ permalink: /cv/
   {% for s in cv.languages %}
   <div class="cv-entry">
     <div class="cv-period">{% include bi.html en=s.group ko=s.group_ko %}</div>
-    <div class="cv-body"><div class="tags">{% for i in s.items %}{% assign i_ko = s.items_ko[forloop.index0] %}<span class="tag">{% include bi.html en=i ko=i_ko %}</span>{% endfor %}</div></div>
+    <div class="cv-body"><div class="tags">{% for i in s.items %}<span class="tag">{{ i }}</span>{% endfor %}</div></div>
   </div>
   {% endfor %}
 </section>

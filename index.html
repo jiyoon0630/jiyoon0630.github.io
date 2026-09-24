@@ -25,7 +25,7 @@ layout: default
 <section class="home-section">
   <h2>{% include ui.html key="interests" %}</h2>
   <div class="tags">
-    {% for i in p.interests %}{% assign i_ko = p.interests_ko[forloop.index0] %}<span class="tag">{% include bi.html en=i ko=i_ko %}</span>{% endfor %}
+    {% for i in p.interests %}<span class="tag">{{ i }}</span>{% endfor %}
   </div>
 </section>
 {% endif %}
