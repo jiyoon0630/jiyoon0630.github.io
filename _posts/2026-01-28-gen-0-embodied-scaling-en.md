@@ -2,12 +2,12 @@
 layout: paper
 lang: en
 ref: gen-0-embodied-scaling
-kind: paper-review
+kind: tech-review
 title: "GEN-0: Embodied Foundation Models That Scale with Physical Interaction (GEN-0)"
 date: 2026-01-28 12:00:00 -0800
 paper_date: 2025-11-04
 venue: "Generalist AI Blog · research blog (not on arXiv)"
-tags: [Robot-Foundation-Model, Scaling-Law, Pretraining, Embodied-AI, Paper-Review]
+tags: [Robot-Foundation-Model, Scaling-Law, Pretraining, Embodied-AI, Tech-Review]
 authors: "Generalist Team"
 affiliations: "Generalist AI"
 summary: "The claim that, for a large enough model pretrained on large-scale physical-interaction data, a power law holds between pretraining data and post-training performance — read for what was measured and what the measurements actually say."

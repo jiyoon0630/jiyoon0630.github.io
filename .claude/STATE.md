@@ -62,9 +62,11 @@ World Model post, whose intro says it follows "앞서 정리했던 RFM의 발전
 
 - Site: https://jiyoon0630.github.io/ — Jekyll, deployed from `main` by
   `.github/workflows/pages.yml` on every push.
-- 24 notes: GEN-0, GEN-1, DreamZero, PLD, Hi Robot, Dyna-2, Cosmos 3, π0.7,
-  ACT-2, GENE-26.5 (all ko/en) as paper reviews, plus
-  Actuate 2026 (ko/en) and World Model (ko/en) as **tech reviews**.
+- 24 notes, all ko/en. **Paper reviews** (arXiv papers): DreamZero, PLD,
+  Hi Robot, Cosmos 3, π0.7. **Tech reviews**: Actuate 2026, World Model, plus
+  the company-blog/report reviews GEN-0, GEN-1, GENE-26.5, ACT-2, Dyna-2.
+- Her rule for `kind`: a review whose source is not an arXiv paper is a
+  `tech-review` (tag `Tech-Review`), even when it analyzes a model.
 - Note dates are **posting dates**, in America/Los_Angeles (`_config.yml` sets
   the timezone). A tech review is dated by its source's publication date. A
   paper's own date lives in `paper_date` and shows only on the note page.

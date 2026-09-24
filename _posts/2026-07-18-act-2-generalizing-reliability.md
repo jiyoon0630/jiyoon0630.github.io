@@ -2,12 +2,12 @@
 layout: paper
 lang: ko
 ref: act-2-generalizing-reliability
-kind: paper-review
+kind: tech-review
 title: "ACT-2 Preview: Generalizing Reliability"
 date: 2026-07-18 12:00:00 -0700
 paper_date: 2026-07-17
 venue: "Sunday Robotics Blog (technical preview) · arXiv 미공개"
-tags: [Robot-Foundation-Model, Home-Robotics, Imitation-Learning, Scaling, Evaluation, Paper-Review]
+tags: [Robot-Foundation-Model, Home-Robotics, Imitation-Learning, Scaling, Evaluation, Tech-Review]
 authors: "Sunday Team"
 affiliations: "Sunday Robotics"
 summary: "착용형 센서 사람 데이터로 사전학습을 키우면 사내 소량 post-training으로 올린 신뢰성이 본 적 없는 가정으로 전이된다 — 빨래 개기 99.1%(785회, 가정당 적응 0)를 선언된 scope와 adaptation cost로 입증하는 Solve 표준."

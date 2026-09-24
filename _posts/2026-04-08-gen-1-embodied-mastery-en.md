@@ -2,12 +2,12 @@
 layout: paper
 lang: en
 ref: gen-1-embodied-mastery
-kind: paper-review
+kind: tech-review
 title: "GEN-1: Scaling Embodied Foundation Models to Mastery"
 date: 2026-04-08 12:00:00 -0700
 paper_date: 2026-04-02
 venue: "Generalist AI Blog · no arXiv"
-tags: [Robot-Foundation-Model, Embodied-AI, Scaling-Law, Human-Data, Reinforcement-Learning, Real-Time-Inference, Paper-Review]
+tags: [Robot-Foundation-Model, Embodied-AI, Scaling-Law, Human-Data, Reinforcement-Learning, Real-Time-Inference, Tech-Review]
 authors: "Generalist Team"
 affiliations: "Generalist AI"
 summary: "Pretrain on 500K+ hours of human data collected with wearable devices and no robot body, bind RL, human guidance and real-time inference into one system, and the claim is 99% success and roughly 3× speed from about 1 hour of robot data per task. The undisclosed parts are filled in from its predecessor GEN-0 and related concepts."

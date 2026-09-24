@@ -2,12 +2,12 @@
 layout: paper
 lang: ko
 ref: dyna-2-scaling-law
-kind: paper-review
+kind: tech-review
 title: "Dyna-2: A 1-Million-Hour Scaling Law for World-Action Models"
 date: 2026-08-11 12:00:00 -0700
 paper_date: 2026-08-01
 venue: "Dyna Robotics 기술 리포트 (2026-08)"
-tags: [WAM, World-Model, Scaling-Law, Robot-Foundation-Model, Cross-Embodiment, Paper-Review]
+tags: [WAM, World-Model, Scaling-Law, Robot-Foundation-Model, Cross-Embodiment, Tech-Review]
 authors: "Dyna Robotics (기관 저자, 개인 저자 미표기)"
 affiliations: "Dyna Robotics"
 summary: "사람 1인칭 영상 100만 시간까지 측정한 전이 스케일링 법칙 — 로봇 궤적을 한 개도 보지 않고 로봇 지표가 개선되며, 그 동인은 액션 손실이 아니라 비디오 손실이다."

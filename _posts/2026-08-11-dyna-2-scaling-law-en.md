@@ -2,12 +2,12 @@
 layout: paper
 lang: en
 ref: dyna-2-scaling-law
-kind: paper-review
+kind: tech-review
 title: "Dyna-2: A 1-Million-Hour Scaling Law for World-Action Models"
 date: 2026-08-11 12:00:00 -0700
 paper_date: 2026-08-01
 venue: "Dyna Robotics technical report (2026-08)"
-tags: [WAM, World-Model, Scaling-Law, Robot-Foundation-Model, Cross-Embodiment, Paper-Review]
+tags: [WAM, World-Model, Scaling-Law, Robot-Foundation-Model, Cross-Embodiment, Tech-Review]
 authors: "Dyna Robotics (institutional authorship; no individual authors listed)"
 affiliations: "Dyna Robotics"
 summary: "A transfer scaling law measured out to one million hours of human egocentric video — robot metrics improve without a single robot trajectory, and the driver is the video loss, not the action loss."

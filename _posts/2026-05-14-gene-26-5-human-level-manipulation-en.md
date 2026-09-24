@@ -2,12 +2,12 @@
 layout: paper
 lang: en
 ref: gene-26-5-human-level-manipulation
-kind: paper-review
+kind: tech-review
 title: "GENE-26.5: Advancing Robotic Manipulation to Human-Level"
 date: 2026-05-14 17:00:00 -0700
 paper_date: 2026-05-06
 venue: "Genesis AI Technical Blog · no tech report or arXiv paper"
-tags: [Robot-Foundation-Model, Dexterous-Manipulation, Flow-Matching, Human-Data, Embodiment-Gap, World-Model, Paper-Review]
+tags: [Robot-Foundation-Model, Dexterous-Manipulation, Flow-Matching, Human-Data, Embodiment-Gap, World-Model, Tech-Review]
 authors: "Genesis AI Team"
 affiliations: "Genesis AI (San Carlos · Paris · London)"
 summary: "Don't bridge the gap with the model; remove it physically — a 1:1 human-scale hand, a shared tactile glove, and a custom 500Hz control stack align human data with robot data, and one flow matching model over the joint trajectory distribution absorbs partially observed data."

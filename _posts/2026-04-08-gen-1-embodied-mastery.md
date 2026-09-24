@@ -2,12 +2,12 @@
 layout: paper
 lang: ko
 ref: gen-1-embodied-mastery
-kind: paper-review
+kind: tech-review
 title: "GEN-1: Scaling Embodied Foundation Models to Mastery"
 date: 2026-04-08 12:00:00 -0700
 paper_date: 2026-04-02
 venue: "Generalist AI Blog · arXiv 없음"
-tags: [Robot-Foundation-Model, Embodied-AI, Scaling-Law, Human-Data, Reinforcement-Learning, Real-Time-Inference, Paper-Review]
+tags: [Robot-Foundation-Model, Embodied-AI, Scaling-Law, Human-Data, Reinforcement-Learning, Real-Time-Inference, Tech-Review]
 authors: "Generalist Team"
 affiliations: "Generalist AI"
 summary: "로봇 몸체 없이 착용형 장치로 모은 50만 시간 이상의 사람 데이터로 사전학습하고, RL·사람 가이던스·실시간 추론을 한 시스템으로 묶어 태스크당 robot data 약 1시간으로 99% 성공률과 약 3배 속도를 주장한다. 공개되지 않은 부분은 선행작 GEN-0와 관련 개념으로 채워 읽는다."

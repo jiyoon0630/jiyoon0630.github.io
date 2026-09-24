@@ -2,12 +2,12 @@
 layout: paper
 lang: en
 ref: act-2-generalizing-reliability
-kind: paper-review
+kind: tech-review
 title: "ACT-2 Preview: Generalizing Reliability"
 date: 2026-07-18 12:00:00 -0700
 paper_date: 2026-07-17
 venue: "Sunday Robotics Blog (technical preview) · not on arXiv"
-tags: [Robot-Foundation-Model, Home-Robotics, Imitation-Learning, Scaling, Evaluation, Paper-Review]
+tags: [Robot-Foundation-Model, Home-Robotics, Imitation-Learning, Scaling, Evaluation, Tech-Review]
 authors: "Sunday Team"
 affiliations: "Sunday Robotics"
 summary: "Scale pretraining on human data from wearable sensors, and reliability raised in-house with a little post-training transfers to unseen homes — laundry folding at 99.1% (785 trials, zero per-home adaptation), backed by the Solve standard of declared scope and adaptation cost."

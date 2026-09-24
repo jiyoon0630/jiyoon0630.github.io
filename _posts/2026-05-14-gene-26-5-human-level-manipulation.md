@@ -2,12 +2,12 @@
 layout: paper
 lang: ko
 ref: gene-26-5-human-level-manipulation
-kind: paper-review
+kind: tech-review
 title: "GENE-26.5: Advancing Robotic Manipulation to Human-Level"
 date: 2026-05-14 17:00:00 -0700
 paper_date: 2026-05-06
 venue: "Genesis AI Technical Blog · 테크리포트/arXiv 미공개"
-tags: [Robot-Foundation-Model, Dexterous-Manipulation, Flow-Matching, Human-Data, Embodiment-Gap, World-Model, Paper-Review]
+tags: [Robot-Foundation-Model, Dexterous-Manipulation, Flow-Matching, Human-Data, Embodiment-Gap, World-Model, Tech-Review]
 authors: "Genesis AI Team"
 affiliations: "Genesis AI (San Carlos · Paris · London)"
 summary: "갭을 모델로 메우지 말고 물리적으로 없애라 — 1:1 사람 손 크기 핸드, 공유 촉각 글러브, 500Hz 자체 제어 스택으로 사람 데이터를 로봇 데이터에 정렬하고, 부분관측 데이터를 궤적 결합분포 flow matching 모델 하나로 흡수한다."
