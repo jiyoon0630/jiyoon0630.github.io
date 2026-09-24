@@ -1,3 +1,50 @@
+// Note pages: mark tables whose content is wider than the text column, so the
+// CSS widens only those into the margins (see .paper-body table.wide).
+document.addEventListener('DOMContentLoaded', function () {
+  var body = document.querySelector('.paper-body');
+  if (!body) return;
+  var tables = body.querySelectorAll('table');
+  if (!tables.length) return;
+
+  function hPad(el) {
+    var cs = getComputedStyle(el);
+    return parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight) +
+           parseFloat(cs.borderLeftWidth) + parseFloat(cs.borderRightWidth);
+  }
+
+  function mark() {
+    var column = parseFloat(getComputedStyle(body).width);
+    tables.forEach(function (t) {
+      // A callout's own padding narrows the room its table has.
+      var quote = t.closest('blockquote');
+      var room = column - (quote ? hPad(quote) : 0);
+      var old = t.style.width;
+      t.style.width = 'max-content';
+      var natural = t.scrollWidth;
+      t.style.width = old;
+      var wide = natural > room + 1;
+      t.classList.toggle('wide', wide);
+      // The CSS grows the table (or its callout) only as far as this.
+      var target = quote || t;
+      if (wide) {
+        target.style.setProperty('--natural',
+          Math.ceil(natural + (quote ? hPad(quote) : 0)) + 'px');
+      } else {
+        target.style.removeProperty('--natural');
+      }
+    });
+  }
+
+  mark();
+  // Web fonts change text widths once they arrive.
+  window.addEventListener('load', mark);
+  var timer;
+  window.addEventListener('resize', function () {
+    clearTimeout(timer);
+    timer = setTimeout(mark, 150);
+  });
+});
+
 // Notes page: combined kind + language + tag filtering.
 document.addEventListener('DOMContentLoaded', function () {
   var kindButtons = document.querySelectorAll('.kind-btn');

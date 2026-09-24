@@ -267,25 +267,26 @@ a:hover { text-decoration: underline; }
   vertical-align: top;
 }
 /* A dense table suffocates in the text column. Where the window has room,
-   let it spill into the margins instead of stacking every cell vertically. */
+   let it spill into the margins instead of stacking every cell vertically.
+   Only tables whose content is wider than the column get this (filter.js marks
+   them .wide); a narrow table stays aligned with the text, or it sits pushed
+   left of the paragraphs around it. */
 @media (min-width: 1100px) {
-  .paper-body table {
+  /* --natural is the content width filter.js measured. The element grows only
+     as far as that needs, up to the breakout, and grows equally on both sides. */
+  .paper-body table.wide,
+  .paper-body blockquote:has(table.wide) {
     --breakout: min(110px, calc((100vw - 100%) / 2 - 28px));
-    width: calc(100% + var(--breakout) * 2);
-    margin-left: calc(-1 * var(--breakout));
-    margin-right: calc(-1 * var(--breakout));
+    --grown: min(var(--natural, 100%), calc(100% + var(--breakout) * 2));
+    width: var(--grown);
+    margin-left: calc((100% - var(--grown)) / 2);
+    margin-right: calc((100% - var(--grown)) / 2);
   }
   /* A callout holding a table widens as a whole, so the card's tint and border
      still frame it. Widening the table alone leaves the background cut off
      mid-column. The breakout is clamped to the space actually beside the text
      column, or the page itself starts scrolling sideways just past 1100px. */
-  .paper-body blockquote:has(table) {
-    --breakout: min(110px, calc((100vw - 100%) / 2 - 28px));
-    width: calc(100% + var(--breakout) * 2);
-    margin-left: calc(-1 * var(--breakout));
-    margin-right: calc(-1 * var(--breakout));
-  }
-  .paper-body blockquote table {
+  .paper-body blockquote table.wide {
     width: 100%;
     margin-left: 0;
     margin-right: 0;
