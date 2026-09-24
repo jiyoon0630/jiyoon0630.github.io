@@ -67,6 +67,9 @@ code_url: "https://github.com/..."      # optional → 💻 Code link
   an HTML tag). No `\_` or `\lbrace` workarounds needed — `\_` now prints a
   literal underscore. To check every formula, extract the `kdmath` spans from
   `_site` and run them through `mathjax-full`'s `tex2mml`.
+  A `|` inside inline math (`$|C|$`) is still a table pipe to kramdown: a
+  line holding two such spans renders as a one-row table. Write `\lvert C\rvert`
+  (and `\Vert` for norms), and compare each post's table count against `_site`.
 - **Currency and MathJax.** A bare `$70M ... $600M` pairs up as inline math:
   the text between them renders in italic math type and, since math does not
   wrap, stretches its table cell until the table runs off the page.
