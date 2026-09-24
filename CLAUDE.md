@@ -60,11 +60,19 @@ code_url: "https://github.com/..."      # optional → 💻 Code link
 
 - **Math:** `$...$` inline, `$$...$$` display (MathJax on the live site; it will
   not render in a sandbox that cannot reach the CDN — verify structure instead).
-- **`math: false`** turns MathJax off for a post. Set it on any note that writes
-  **currency** and has no equations: `$70M ... $600M` otherwise pairs up as
-  inline math, which renders the text between them in italic math type and, since
-  math does not wrap, stretches its table cell until the table runs off the page.
-  This cannot be caught locally, because MathJax does not load here.
+- **Currency and MathJax.** A bare `$70M ... $600M` pairs up as inline math:
+  the text between them renders in italic math type and, since math does not
+  wrap, stretches its table cell until the table runs off the page.
+  - Post with **no equations**: set `math: false` in the front matter; MathJax
+    skips the whole body.
+  - Post with **both** equations and currency: wrap each amount as
+    `<span class="tex2jax_ignore">$400M</span>`. MathJax skips that element, and
+    a skipped element also breaks its text run, so the `$` inside can never pair
+    with one outside. **Do not use `\$` or `\\$`** — kramdown collapses the
+    backslashes in some contexts and not others, and MathJax reads `\\` as a
+    literal backslash followed by a live delimiter.
+  - Korean particles are word characters, so a regex like `\$\d+M\b` misses
+    `$165M을`. Use a negative lookahead `(?![A-Za-z0-9])` instead.
 - **Code fences** are highlighted (rouge); unlabeled fences (ASCII diagrams)
   render as plain monospace. **Markdown does not apply inside a fence**, so
   `**bold**` in an ASCII diagram prints its asterisks. Notion renders them, so
@@ -95,6 +103,37 @@ confidential information. This repo is public, so:
 
 If the owner hands you internal material directly in chat rather than as a file,
 write it to `sources/` first, then follow the same path.
+
+### Her standing redaction decisions (from three reports — apply by default)
+
+- **Keep:** startup funding amounts, valuations, round dates, "round under
+  discussion (reported, unconfirmed)", founder acquisition amounts, and her
+  employer's venture arm named as a round participant. She treats all of these
+  as public.
+- **Keep:** unreleased or newly announced model details presented at public
+  events, and speculative reads of closed models as long as the source's own
+  추정 / 비공개 marking stays.
+- **Keep:** a company's name wherever it appears as ordinary published research,
+  including paper-author affiliations — even for companies she works with.
+- **Remove:** the internal org name in titles and image paths, the author line
+  (colleague names and internal titles), the internal publication-date line,
+  internal workspace links, 본 보고서 / 자사 framing, and any recommendation of
+  what her employer should do.
+- **Remove case by case:** a partner company listed where the information could
+  only have come from working with them rather than from a public source.
+- **Date** a tech review by the source's own publication date.
+- A report may be **co-credited internally but written by her alone** — ask
+  which parts are hers before using it as a voice sample, and if a colleague
+  wrote part of it, cut that part rather than publish it.
+
+### Workflow notes from doing it
+
+- Notion exports a page with images as a zip; ask for the zip, since pasted
+  images lose their filenames and so their place in the text. Mac Safari may
+  unzip it on download — re-compress the folder.
+- **Extract every file in the zip, `.svg` included.** An extension filter that
+  forgot SVG once made two diagrams look missing when they were there all along.
+- The sanitizer cannot see images. Look at every one yourself before posting.
 
 ## The voice profile — record her style now, convert posts on her signal
 
@@ -253,10 +292,22 @@ npm install playwright-core            # the browser is already on disk
   fixed-pixel breakout that fits at 1280 can push the page sideways at 1100.
 
 - **Google Fonts and jsdelivr are egress-blocked**, so local screenshots use
-  fallback fonts and **MathJax never loads at all**. Layout is trustworthy;
-  typography and anything MathJax does are not, in either direction — a local
-  page cannot show you that math is broken *or* that stray `$` signs are being
-  eaten. Reason about the markup for those.
+  fallback fonts and MathJax never loads in the browser. **Check math with Node
+  instead** — the npm registry is reachable, so run the real engine with the
+  site's exact config over the built HTML:
+
+```bash
+npm install mathjax-full@3
+# mathjax.document(html, { InputJax: new TeX({ inlineMath: [['$','$'],['\\(','\\)']],
+#   displayMath: [['$$','$$'],['\\[','\\]']], processEscapes: true }),
+#   ignoreHtmlClass: 'tex2jax_ignore', skipHtmlTags: [...] }).render()
+# then list doc.math and flag any span containing Hangul or >120 characters —
+# that is prose MathJax swallowed between two currency dollar signs.
+```
+
+  Run it on any post that has both `$` amounts and equations. A one-line test
+  is not enough: kramdown's escaping behaved differently inside the full
+  document than in isolation, and only the full-document run caught it.
 
 ## Design work — the `design-taste-frontend` skill
 
