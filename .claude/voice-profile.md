@@ -6,7 +6,8 @@ the session that noticed it. Conversion of existing posts is a separate job; the
 procedure for that lives in `CLAUDE.md`. This file is the findings.
 
 **Status: Korean established from three documents (20,100 words). English: no
-Tier A sample yet. Still dormant — apply only when she says so.**
+Tier A sample yet. Korean is in use: every Korean post is written in her
+voice (`.claude/voice-ko-checklist.md`). English: not applied yet.**
 
 Provenance of every sample so far, in her words: an AI wrote the first draft and
 she did the style pass herself. So the **style layer** — register, emphasis,

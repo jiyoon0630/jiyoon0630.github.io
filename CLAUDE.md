@@ -164,7 +164,7 @@ write it to `sources/` first, then follow the same path.
   forgot SVG once made two diagrams look missing when they were there all along.
 - The sanitizer cannot see images. Look at every one yourself before posting.
 
-## The voice profile — record her style now, convert posts on her signal
+## The voice profile — Korean is written in her voice, always
 
 `.claude/voice-profile.md` is a **record of observed traits** of her writing. It
 exists so that what one session notices about her style is still there in the
@@ -183,10 +183,21 @@ an invented neutral example, and the Claude default it displaces.
 - Log each document in the profile's table. Prose traits are recordable from the
   first document; statistical ones need 2,000–5,000 words per language.
 
-**Applying it is a separate job, and it is dormant.** Write notes and
-translations normally until she explicitly says to start converting.
+### Standing rule (her instruction, 2026-09-24)
 
-### The conversion pass, when she gives the signal
+**Every Korean post goes up in her voice.** When she hands over AI-written
+material — a paper review, a blog-post review, any draft — polish the Korean
+version to her voice before posting, without being asked. Follow
+`.claude/voice-ko-checklist.md` and check with `scripts/voice-check.py` (when
+converting an existing post) and `scripts/voice-stats.py --target`. This covers
+paper reviews too: she wants the same 합쇼체 register there. Her own tech-review
+documents are already in her voice — sanitize them, don't re-style them.
+
+**English is not converted yet.** She will decide after the Korean pass. Until
+then write English normally, and only strip the profile's anti-patterns. Do not
+make the English post a translation of the converted Korean.
+
+### The conversion pass
 
 1. **Meaning is invariant.** No claim strengthens or weakens, no number moves,
    no hedge disappears, no terminology distinction collapses. A sentence that
