@@ -71,6 +71,7 @@ _Last updated: 2026-09-24_
 
 ## Recently done
 
+- SAIL paper review published (ko/en), dated 2026-04-20 at her request.
 - RFM tech review published as a KO/EN pair. Only the back half of her
   internal report (the part she wrote) was kept, renumbered Section 1–2. The
   English page uses SVG redraws of the four era diagrams
