@@ -12,7 +12,8 @@
   --code-bg: #f6f8fa;
   --callout-bg: #f3f6fb;
   --callout-border: #c7d6ee;
-  --max: 800px;
+  --max: 920px;
+  --breakout-max: 140px;   /* how far wide tables and figures may reach into the margins */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -282,14 +283,15 @@ a:hover { text-decoration: underline; }
    let it spill into the margins instead of stacking every cell vertically.
    Only tables whose content is wider than the column get this (filter.js marks
    them .wide); a narrow table stays aligned with the text, or it sits pushed
-   left of the paragraphs around it. */
+   left of the paragraphs around it. A wide table always takes the full
+   breakout, so all of them line up on the same edges. */
 @media (min-width: 1100px) {
-  /* --natural is the content width filter.js measured. The element grows only
-     as far as that needs, up to the breakout, and grows equally on both sides. */
+  /* The element grows equally on both sides, as far as the space beside the
+     text column allows. */
   .paper-body table.wide,
   .paper-body blockquote:has(table.wide) {
-    --breakout: min(110px, calc((100vw - 100%) / 2 - 28px));
-    --grown: min(var(--natural, 100%), calc(100% + var(--breakout) * 2));
+    --breakout: min(var(--breakout-max), calc((100vw - 100%) / 2 - 28px));
+    --grown: calc(100% + var(--breakout) * 2);
     width: var(--grown);
     margin-left: calc((100% - var(--grown)) / 2);
     margin-right: calc((100% - var(--grown)) / 2);
@@ -303,6 +305,10 @@ a:hover { text-decoration: underline; }
     margin-left: 0;
     margin-right: 0;
   }
+  /* Every wide table takes the same full breakout width and its columns
+     stretch to fill it, so wide tables share one left and right edge instead
+     of each jutting out by its own amount. */
+  .paper-body table.wide { display: table; }
 }
 .paper-body th { background: var(--surface); }
 
@@ -367,7 +373,7 @@ a:hover { text-decoration: underline; }
 @media (min-width: 1100px) {
   .paper-body p > img,
   .paper-body p > a > img {
-    --breakout: min(110px, calc((100vw - 100%) / 2 - 28px));
+    --breakout: min(var(--breakout-max), calc((100vw - 100%) / 2 - 28px));
     width: calc(100% + var(--breakout) * 2);
     max-width: calc(100% + var(--breakout) * 2);
     margin-left: calc(-1 * var(--breakout));
