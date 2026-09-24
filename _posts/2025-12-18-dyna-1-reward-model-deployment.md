@@ -364,7 +364,7 @@ $$\ell^{\text{FM}}_\theta(o,a)=\mathbb{E}_{s\sim U[0,1],\ \epsilon\sim\mathcal{N
 | 성공률 | 99.4% | 실패 $\approx$ 5장 |
 | 개입 | 0회 | 실패 약 5장이 모두 $q_r$ 쪽 **[추론]** |
 
-§2.1의 틀로 보면 이 결과는 일관적이다. 실패는 있었지만 운용은 끝나지 않았다. 실패가 $q_u$에서 $q_r$로 옮겨갔다는 뜻이다. 이 헤드라인 수치는 이후 Jason Ma가 밝힌 시간당 35장, 품질 75%와도 맞아떨어진다.
+§2.1의 틀로 보면 이 결과는 일관적이다. 실패는 있었지만 운용은 끝나지 않았다. 실패가 $q_u$에서 $q_r$로 옮겨갔다는 뜻이다.
 
 품질 기준은 따로 있다. **[블로그]** 5점 척도에서 4~5점을 상용 품질로 본다. 3점 이상은 98%지만 상용 기준을 넘은 비율은 75%이고, 5점과 3점을 가르는 것은 첫 접기에서 1/3인치 미만의 정밀도다.
 
@@ -454,15 +454,15 @@ DYNA-1 이후 "로봇 정책이 자기 경험으로 스스로 개선한다"는 �
 
 > ### 🔗 PLD, π*₀.₆ / RECAP과의 비교 — 판정 신호를 어디서 얻는가
 >
-> | | **DYNA-1** | **PLD** | **π*₀.₆ / RECAP** |
+> | | **DYNA-1** | **[PLD](/notes/pld-self-improving-vla/)** | **π*₀.₆ / RECAP** |
 > |---|---|---|---|
 > | 판정 신호 | 조밀한 progress RM | 희소 이진 성공 보상 | 학습된 V (distributional MC) |
 > | 데이터 구조 | 리셋 없는 연속 스트림을 분절 | 에피소드 단위 | 에피소드 단위 |
 > | 개선 연산자 | 비공개 (필터·가중 SFT로 추정) | 잔차 off-policy RL 후 SFT 증류 | advantage conditioning |
 > | 사람 개입 | 없음 (주장) | 없음 | 원격조종 교정 포함 |
-> | 공개 수준 | 제품 블로그 (2025-04) | 논문 (ICLR 2026) | 기술 보고서 (2025-11) |
+> | 공개 수준 | 제품 블로그 (2025-04) | 논문 (arXiv, 2025-10) | 기술 보고서 (2025-11) |
 >
-> 세 접근은 판정 신호의 밀도에서 스펙트럼을 이룬다. PLD는 희소 보상을 그대로 두고 base 정책의 성공 궤적과 대칭 replay로 학습을 가능하게 만든다. RECAP은 value function으로 advantage를 추정해 조건 입력으로 쓴다. DYNA-1은 처음부터 조밀한 progress 신호를 만들고, 그 신호를 스트림 분절에까지 쓴다. 판정 신호가 조밀할수록 리셋 없는 연속 배포에 가깝게 갈 수 있지만, 그만큼 RM의 정확도에 전체 루프가 걸린다(§7).
+> 세 접근은 판정 신호의 밀도에서 스펙트럼을 이룬다. [PLD](/notes/pld-self-improving-vla/)는 희소 보상을 그대로 두고 base 정책의 성공 궤적과 대칭 replay로 학습을 가능하게 만든다. RECAP은 value function으로 advantage를 추정해 조건 입력으로 쓴다. DYNA-1은 처음부터 조밀한 progress 신호를 만들고, 그 신호를 스트림 분절에까지 쓴다. 판정 신호가 조밀할수록 리셋 없는 연속 배포에 가깝게 갈 수 있지만, 그만큼 RM의 정확도에 전체 루프가 걸린다(§7).
 
 ---
 
@@ -484,7 +484,7 @@ DYNA-1 이후 "로봇 정책이 자기 경험으로 스스로 개선한다"는 �
 
 **⓸ 평가 설계** — 단일 24시간 실행이다. 반복 실험도, 신뢰구간도, 성공 정의도 없다.
 
-**⓹ "production-ready"의 수준** — 이후 Jason Ma가 밝힌 바에 따르면, 고객 식당(Din Tai Fung)의 로봇 한 대는 18시간 교대마다 1,500장, 즉 시간당 약 83장을 채워야 한다. DYNA-1의 시간당 35장은 그 42%다. 또 DYNA-1은 완성된 냅킨을 정리하지 않은 채 통에 떨어뜨려 직원이 다시 가지런히 해야 했다고 보도되었다. 2025년 시점의 "상용 준비"는 유료 고객 파일럿 수준으로 읽는 것이 정확하다 **[평가]**.
+**⓹ "production-ready"의 수준** — 처리량은 사람 속도의 약 60%(시간당 35장)이고, 상용 품질 도달률은 75%다(§5.1). 2025년 시점의 "상용 준비"는 고객 현장 파일럿 수준으로 읽는 것이 정확하다 **[평가]**.
 
 ---
 
@@ -523,4 +523,4 @@ DYNA-1의 기여는 특정 모델 구조가 아니다. **평가 단위를 "에�
 | **필터링 BC / AWR** | advantage로 샘플을 고르거나(필터) 지수 가중해 SFT하는 정책 개선 연산자 |
 | **RM-in-the-loop** | 배포 → RM 채점·분절 → 필터·가중 학습 → 재배포의 반복 루프 |
 
-**원문** — [DYNA-1 기술 블로그](https://www.dyna.co/research/dyna-1) · **보도자료** — [PR Newswire (2025-04-29)](https://www.prnewswire.com/news-releases/dyna-robotics-unveils-dyna-1-the-first-commercial-ready-robot-foundation-model-offering-fully-autonomous-round-the-clock-dexterity-302441437.html) · **기반 연구** — [GVL, arXiv:2411.04549](https://arxiv.org/abs/2411.04549) · **후속 보도** — [Salesforce Ventures](https://salesforceventures.com/perspectives/welcome-dyna-robotics/), [Runtime Wire (2026-08)](https://runtimewire.com/article/dyna-robotics-din-tai-fung-napkin-folding-rollout)
+**원문** — [DYNA-1 기술 블로그](https://www.dyna.co/research/dyna-1) · **보도자료** — [PR Newswire (2025-04-29)](https://www.prnewswire.com/news-releases/dyna-robotics-unveils-dyna-1-the-first-commercial-ready-robot-foundation-model-offering-fully-autonomous-round-the-clock-dexterity-302441437.html) · **기반 연구** — [GVL, arXiv:2411.04549](https://arxiv.org/abs/2411.04549) · **후속 보도** — [Salesforce Ventures](https://salesforceventures.com/perspectives/welcome-dyna-robotics/)
