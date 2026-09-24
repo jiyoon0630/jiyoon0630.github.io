@@ -329,7 +329,8 @@ a:hover { text-decoration: underline; }
 
 /* Figure captions: an italic line written directly under an image, so the two
    land in one paragraph. */
-.paper-body p > img {
+.paper-body p > img,
+.paper-body p > a > img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -337,7 +338,8 @@ a:hover { text-decoration: underline; }
   border-radius: 6px;
   margin: 0 auto;
 }
-.paper-body p > img + em {
+.paper-body p > img + em,
+.paper-body p > a:has(> img) + em {
   display: block;
   margin-top: 8px;
   text-align: center;
@@ -350,12 +352,20 @@ a:hover { text-decoration: underline; }
    them the same margins a wide table gets. Must come after the caption rules
    above, which set the default width. */
 @media (min-width: 1100px) {
-  .paper-body p > img {
+  .paper-body p > img,
+  .paper-body p > a > img {
     --breakout: min(110px, calc((100vw - 100%) / 2 - 28px));
     width: calc(100% + var(--breakout) * 2);
     max-width: calc(100% + var(--breakout) * 2);
     margin-left: calc(-1 * var(--breakout));
     margin-right: calc(-1 * var(--breakout));
+  }
+  .paper-body blockquote p > img,
+  .paper-body blockquote p > a > img {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 

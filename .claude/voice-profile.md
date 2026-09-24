@@ -5,7 +5,7 @@ observed in a Tier A document (text she wrote), written down so it survives past
 the session that noticed it. Conversion of existing posts is a separate job; the
 procedure for that lives in `CLAUDE.md`. This file is the findings.
 
-**Status: Korean established from two documents (10,847 words). English: no
+**Status: Korean established from three documents (20,100 words). English: no
 Tier A sample yet. Still dormant — apply only when she says so.**
 
 Provenance of every sample so far, in her words: an AI wrote the first draft and
@@ -44,9 +44,10 @@ with no contrast to the default cannot be applied to anything.
 
 ## Korean (한국어)
 
-Traits marked **stable** held across both documents. Two genre notes first:
+Traits marked **stable** held across the documents that were checked for them. Two genre notes first:
 **sentence length and terminator density are genre-driven, not voice** — the
-conference report ran mean 21.4 words/sentence, the tutorial 16.2 — so never set
+conference report ran mean 21.4 words/sentence, the tutorial 16.2, the
+explainer 16.4 — so never set
 a target for them. **Register, hedging and emphasis did not move**, and those are
 what to convert toward.
 
@@ -56,7 +57,7 @@ what to convert toward.
 - **Evidence:** doc #1 — 습니다 ×90, 입니다 ×37, plain 0. Doc #2 — 입니다 ×120,
   습니다 ×107, 합니다 ×91, plain 0. voice-stats: 습니다 15.9–22.0/1k vs 0.00 in
   every Claude-written post. (Its "~다 종결" line matches both styles, so read
-  the 습니다 line, not that one.)
+  the 습니다 line, not that one.) Doc #3 — 습니다 ×172, plain 0.
 - **Example (invented):** 이 설정은 캐시 적중률을 높이는 데 효과적입니다.
 - **Claude instead writes:** 이 설정은 캐시 적중률을 높이는 데 효과적이다.
 - **Confidence:** solid — the largest single gap between her and the site.
@@ -66,7 +67,8 @@ what to convert toward.
   bolded sentence, often standing alone; plain sentences after it carry the
   evidence. Sections close with 정리하면… restating the verdict.
 - **Evidence:** doc #1 — 134 bold spans in 4,100 words. Doc #2 — 472 bold markers
-  in 6,747; 핵심은… opens 9 paragraphs, 정리하면… closes 4 sections.
+  in 6,747; 핵심은… opens 9 paragraphs, 정리하면… closes 4 sections. Doc #3 —
+  116 bold spans in 9,253 words, every section opening on a bolded 한 줄 요약.
 - **Example (invented):** **결론부터 말하면, 인덱스를 다시 만드는 편이
   빠릅니다.** 기존 인덱스는 조회 패턴이 바뀐 뒤로 한 번도 갱신되지 않았습니다.
 - **Claude instead writes:** builds toward the claim, and bolds a short phrase
@@ -79,11 +81,14 @@ what to convert toward.
   생각됩니다 / 보입니다.
 - **Evidence:** doc #2 — 할 수 있겠습니다 ×5, 판단됩니다 ×3, 생각됩니다 ×1, all
   in final position. Doc #1 — same set, same position. **Zero** occurrences of any
-  of them in the Claude-written Korean posts.
+  of them in the Claude-written Korean posts. Doc #3 (an explainer) — **zero**;
+  its single inference is marked 추정됩니다 instead (see the next entry).
 - **Example (invented):** 따라서 배치 크기를 줄이는 편이 안전하다고 판단됩니다.
 - **Claude instead writes:** hedges mid-sentence with adverbs, or ends on ~할 수
   있다 / ~로 보인다 throughout.
-- **Confidence:** solid.
+- **Confidence:** solid, but **genre-bound**: the hedge appears where she is
+  judging (reports, surveys), not where she is explaining how something works.
+  An explainer with no verdict gets no hedge — do not add one.
 
 ### Three verbs for three kinds of claim
 - **Pattern:** what a company claimed → 발표하였습니다 / 밝혔습니다 /
@@ -100,27 +105,29 @@ what to convert toward.
 ### Paired contrast: "A가 ~였다면, B는 ~입니다"
 - **Pattern:** whenever two approaches are distinguished, one sentence with this
   scaffold, usually with both halves bolded.
-- **Evidence:** doc #2 ×7.
+- **Evidence:** doc #2 ×7; doc #3 ×10, mostly opening the paragraph that
+  introduces the next model ("X가 ~였다면, Y는 …").
 - **Example (invented):** **REST가 자원을 URL로 드러내는 방식이었다면, RPC는
   동작 이름을 그대로 노출하는 방식입니다.**
 - **Claude instead writes:** "A와 B의 차이는 ~이다", or a comparison table.
-- **Confidence:** solid in doc #2; not counted in doc #1.
+- **Confidence:** solid — stable across #2 and #3; not counted in doc #1.
 
 ### 다만 pivots; 그래서 never opens a sentence
 - **Pattern:** concedes with 다만, contrasts with 반면, narrows with 특히 / 즉.
   Almost never opens a sentence with a causal connective.
 - **Evidence:** doc #1 — 다만 ×6, 반면 ×4, 특히 ×4, 즉 ×2, 그러나 ×1, 따라서 ×1,
-  그래서 ×0.
+  그래서 ×0. Doc #3 — 다만 ×10, 그래서 ×0.
 - **Example (invented):** 처리량은 개선되었습니다. 다만 실패율은 함께 측정되지
   않았습니다.
 - **Claude instead writes:** 그래서 / 따라서 / 그러므로 at paragraph openings.
-- **Confidence:** solid for doc #1.
+- **Confidence:** solid — stable across #1 and #3.
 
 ### The em dash is structural, and rare
 - **Pattern:** used only after a bolded label to introduce its content (headings,
   list items) — never as a mid-sentence aside. For an aside she uses 즉 or
   parentheses instead.
 - **Evidence:** doc #1 — 1.71/1k, all 7 after a label. Doc #2 — 2.37/1k.
+  Doc #3 — 1.19/1k.
   Claude-written posts: 14–15/1k, almost all mid-sentence — about 7× her rate.
 - **Example (invented):** ### 2-3. 평가 지표 — 처리량, 지연, 실패율
 - **Claude instead writes:** 이 값은 캐시에 남지 않는다 — 매 요청마다 다시
@@ -213,9 +220,10 @@ what to convert toward.
 |---|---|---|---|---|
 | 1 | Conference report — robotics developer conference, RFM & data trends | KO | 4,100 | 2026-09-18 |
 | 2 | Technical survey — world models, three trends | KO | 6,747 | 2026-09-22 |
+| 3 | Technical explainer — VLA development and training methods | KO | 9,253 | 2026-09-24 |
 
-Both: AI first draft, her style pass. Counters: **Korean 10,847 words · English 0
-words.** Prose traits are recordable from
+All three: AI first draft, her style pass. Counters: **Korean 20,100 words ·
+English 0 words.** Prose traits are recordable from
 the first document. Statistical traits (density, sentence length) need roughly
 2,000–5,000 words per language before a number means anything.
 

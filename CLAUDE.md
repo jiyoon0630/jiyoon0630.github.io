@@ -72,12 +72,15 @@ code_url: "https://github.com/..."      # optional → 💻 Code link
   wrap, stretches its table cell until the table runs off the page.
   - Post with **no equations**: set `math: false` in the front matter; MathJax
     skips the whole body.
-  - Post with **both** equations and currency: wrap each amount as
-    `<span class="tex2jax_ignore">$400M</span>`. MathJax skips that element, and
-    a skipped element also breaks its text run, so the `$` inside can never pair
-    with one outside. **Do not use `\$` or `\\$`** — kramdown collapses the
-    backslashes in some contexts and not others, and MathJax reads `\\` as a
-    literal backslash followed by a live delimiter.
+  - Post with **both** equations and currency: write each amount as
+    `<span class="tex2jax_ignore">&#36;400M</span>`. Both halves matter. The
+    entity keeps a literal `$` out of the source, so `protect_inline_math.rb`
+    cannot pair it with the next amount's `$` and rewrite the prose between
+    them as math. The span makes MathJax skip the `$` the browser decodes, and a
+    skipped element also breaks its text run, so it never pairs with one
+    outside. **Do not use `\$` or `\\$`** — kramdown collapses the backslashes
+    in some contexts and not others, and MathJax reads `\\` as a literal
+    backslash followed by a live delimiter.
   - Korean particles are word characters, so a regex like `\$\d+M\b` misses
     `$165M을`. Use a negative lookahead `(?![A-Za-z0-9])` instead.
 - **Code fences** are highlighted (rouge); unlabeled fences (ASCII diagrams)
@@ -95,6 +98,8 @@ confidential information. This repo is public, so:
 
 - **Never commit raw source material.** Put it in `sources/` and sanitized
   drafts in `drafts/` — both are gitignored. Never `git add -f` either one.
+  They are also in `_config.yml`'s `exclude`: gitignore alone does not stop a
+  local build from copying them into `_site/` as pages. Keep both entries.
 - The sanitizer reads **`.claude/redaction-denylist.md`** — a gitignored file
   holding the specific names and business facts that must never be published.
   It is deliberately not in the repo, so a fresh clone will not have it; if it

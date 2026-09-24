@@ -55,3 +55,7 @@ exclude:
   - templates
   - scripts
   - skills-lock.json
+  # Internal source documents and unreviewed drafts. Gitignored as well, but
+  # without this a local build copies them into _site as publishable pages.
+  - sources
+  - drafts

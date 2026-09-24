@@ -15,7 +15,7 @@ summary: "World Model이 어디에서 왔고 어디로 가는지 — 학습 데�
 
 ## Introduction: World Model의 부상과 RFM에서 World Action Model로의 흐름
 
-이 글은 앞서 정리했던 **RFM(Robot Foundation Model)의 발전 흐름**에 이어, 최근 Physical AI 분야에서 빠르게 부상하고 있는 **World Model의 발전 흐름과 트렌드**를 정리한 것입니다.
+이 글은 앞서 정리했던 **[RFM(Robot Foundation Model)의 발전 흐름](/notes/rfm-vla-development/)**에 이어, 최근 Physical AI 분야에서 빠르게 부상하고 있는 **World Model의 발전 흐름과 트렌드**를 정리한 것입니다.
 
 RFM을 정리하면서는 카메라 이미지(Vision)와 자연어 명령(Language)을 입력받아 로봇의 동작(Action)을 직접 출력하는 VLA(Vision Language Action) 모델이 어떻게 발전해왔는지를 살펴보았습니다. 
 

@@ -19,52 +19,20 @@ _Last updated: 2026-09-24_
    sensitive.
 2. **`sources/` and `drafts/` are gone** in a new container (gitignored). Every
    published post is complete in the repo; only unfinished work needs its source
-   re-uploaded — see "In progress" below.
+   re-uploaded. Nothing is in progress right now.
 3. **Tooling is not preinstalled.** Reinstall per session as needed:
    `npm install -g agent-browser`, `npm install playwright-core` and
    `npm install mathjax-full@3` in a scratch dir, `pip install Pillow`.
    CLAUDE.md has the exact usage.
 
-## In progress — RFM tech review (not yet published)
-
-Source: her internal report on robot foundation models. **She wrote only its
-back half**; the intro and Sections 1–3 were written by a colleague (Section 3
-was internal strategy), so they were **cut entirely at her instruction**. What
-remains was "Advanced-Section 4/5" and is renumbered **Section 1** (VLA
-development, Era 1 → 2A → 2B → 3) and **Section 2** (training methodology:
-data taxonomy, pre-training, post-training).
-
-Done so far (in the old container):
-- Cut and renumbered; internal workspace links replaced with in-document
-  pointers (`→ 1-1-2`).
-- The report has **both equations and dollar amounts** — the seven amounts are
-  wrapped in `<span class="tex2jax_ignore">`. Verified with the real MathJax
-  engine: 52 equations render, no prose swallowed. See CLAUDE.md, "Currency and
-  MathJax".
-- Figures: `assets/img/notes/rfm/` holds the four era diagrams (2400px, white
-  ground — the originals are dense slides) and two SVGs. The data-taxonomy
-  quadrant SVG had its axis labels moved to sit over their columns, with her
-  approval. English copies of the two SVGs are in `en/`.
-- English redraws of the four era diagrams were being made as SVG into
-  `assets/img/notes/rfm/en/era*.svg`. **Check whether they exist and render
-  cleanly**; if not, redraw them (see the World Model ones for the approach).
-- A sanitized draft was being produced. If `drafts/rfm.md` is missing, the owner
-  needs to re-upload the RFM zip; then redo the cut (keep from the line
-  "# Advanced-Section 4" onward), renumbering, link replacement and currency
-  wrapping before running the sanitizer.
-
-Still to do: walk her through the sanitizer report, get her confirmation, then
-post the KO/EN pair dated **2026-04-10** (the source's publication date), with
-the Korean era images clickable to full size. Once it is up, link it from the
-World Model post, whose intro says it follows "앞서 정리했던 RFM의 발전 흐름".
-
 ## Live
 
 - Site: https://jiyoon0630.github.io/ — Jekyll, deployed from `main` by
   `.github/workflows/pages.yml` on every push.
-- 24 notes, all ko/en. **Paper reviews** (arXiv papers): DreamZero, PLD,
-  Hi Robot, Cosmos 3, π0.7. **Tech reviews**: Actuate 2026, World Model, plus
-  the company-blog/report reviews GEN-0, GEN-1, GENE-26.5, ACT-2, Dyna-2.
+- 26 notes, all ko/en. **Paper reviews** (arXiv papers): DreamZero, PLD,
+  Hi Robot, Cosmos 3, π0.7. **Tech reviews**: RFM / VLA development (dated
+  2026-04-10), Actuate 2026, World Model, plus the company-blog/report reviews
+  GEN-0, GEN-1, GENE-26.5, ACT-2, Dyna-2. World Model's intro links to RFM.
 - Her rule for `kind`: a review whose source is not an arXiv paper is a
   `tech-review` (tag `Tech-Review`), even when it analyzes a model.
 - Note dates are **posting dates**, in America/Los_Angeles (`_config.yml` sets
@@ -81,9 +49,8 @@ World Model post, whose intro says it follows "앞서 정리했던 RFM의 발전
 
 - **More tech-review sources** — sanitize, walk her through the report, post the
   KO/EN pair only after she confirms. CLAUDE.md lists her standing decisions.
-- **The voice profile is dormant.** Korean is established from two documents;
-  do not convert any post toward it until she explicitly says so. The RFM
-  sanitizer run also produces voice observations — merge them when it reports.
+- **The voice profile is dormant.** Korean is established from three documents;
+  do not convert any post toward it until she explicitly says so.
 - **Profile photo** — `assets/img/profile.svg` is a "JK" placeholder.
 - **CV PDF** — `_data/cv.yml` has `pdf: ""`; filling it enables the Download
   button.
@@ -104,6 +71,17 @@ World Model post, whose intro says it follows "앞서 정리했던 RFM의 발전
 
 ## Recently done
 
+- RFM tech review published as a KO/EN pair. Only the back half of her
+  internal report (the part she wrote) was kept, renumbered Section 1–2. The
+  English page uses SVG redraws of the four era diagrams
+  (`assets/img/notes/rfm/en/`); the Korean one uses the originals, clickable to
+  full size. Seven dollar amounts are written `&#36;` inside `tex2jax_ignore`
+  spans (see CLAUDE.md, "Currency and MathJax").
+- Voice profile: doc #3 added. Verdict hedging turned out to be genre-bound
+  (absent from an explainer); paired contrast confirmed.
+- `sources/` and `drafts/` added to `_config.yml` `exclude` after a local build
+  was found copying them into `_site/` (never pushed; Actions builds from a
+  clean checkout).
 - GEN-1 review published (ko/en), dated 2026-04-08 at her request; the source
   is a company blog post, so `paper_url` points at the blog.
 - ACT-2 preview review published (ko/en), dated 2026-07-18 at her request;

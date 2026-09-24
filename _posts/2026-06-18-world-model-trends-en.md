@@ -15,7 +15,7 @@ summary: "Where world models came from and where they are going — generating t
 
 ## Introduction: The Rise of World Models, and the Move from RFM to World Action Model
 
-This piece follows on from **the development of RFMs (robot foundation models)**, which I wrote up earlier, and turns to **how world models are developing** — a topic that has risen quickly in physical AI.
+This piece follows on from **[the development of RFMs (robot foundation models)](/notes/rfm-vla-development-en/)**, which I wrote up earlier, and turns to **how world models are developing** — a topic that has risen quickly in physical AI.
 
 Writing up RFMs, I traced how VLA (vision language action) models developed: models that take a camera image (vision) and a natural-language instruction (language) and directly output the robot's motion (action).
 
