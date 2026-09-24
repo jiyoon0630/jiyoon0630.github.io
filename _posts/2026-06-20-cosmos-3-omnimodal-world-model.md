@@ -4,7 +4,7 @@ lang: ko
 ref: cosmos-3-omnimodal-world-model
 kind: paper-review
 title: "Cosmos 3: Omnimodal World Models for Physical AI"
-date: 2026-06-02 12:00:00 -0700
+date: 2026-06-20 12:00:00 -0700
 paper_date: 2026-06-01
 venue: "NVIDIA Technical Report · arXiv:2606.02800"
 tags: [World-Model, WAM, VLA, Omnimodal, Mixture-of-Transformers, Robot-Foundation-Model, Paper-Review]

@@ -101,7 +101,7 @@ World Model post, whose intro says it follows "앞서 정리했던 RFM의 발전
 
 ## Recently done
 
-- Cosmos 3 paper review published (ko/en), dated 2026-06-02 at her request.
+- Cosmos 3 paper review published (ko/en), dated 2026-06-20 at her request.
   Kramdown turns `}_{ ... }_{` inside inline `$...$` into `<em>`; escaped as `\_`.
 - DreamZero paper review posted (KO + EN), dated 2026-02-21 at her request.
 - Voice profile filled in for Korean: 12 traits from two documents.
