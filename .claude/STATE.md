@@ -29,7 +29,7 @@ _Last updated: 2026-09-24_
 
 - Site: https://jiyoon0630.github.io/ — Jekyll, deployed from `main` by
   `.github/workflows/pages.yml` on every push.
-- 34 notes, all ko/en. **Paper reviews** (arXiv papers): DreamZero, PLD,
+- 36 notes, all ko/en. **Paper reviews** (arXiv papers): π₀.₅, DreamZero, PLD,
   Hi Robot, Cosmos 3, π0, RTC.7, SAIL, LAPA. **Tech reviews**: RFM / VLA development (dated
   2026-04-10), Actuate 2026, World Model, plus the company-blog/report reviews
   GEN-0, GEN-1, GENE-26.5, ACT-2, Dyna-2, DYNA-1. World Model's intro links to RFM.
