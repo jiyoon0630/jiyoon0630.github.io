@@ -67,7 +67,7 @@ The natural first answer is "train a per-task expert with RL and harvest data fr
 
 ## 2. Background — The Minimal RL Needed to Understand the Two Walls
 
-You have to know what the two walls really are to see why PLD is shaped the way it is. This section builds up that minimum. If you're comfortable with RL, feel free to skip to §3.
+You have to know what the two walls really are to see why PLD is shaped the way it is. This section builds up that minimum. If you're comfortable with RL, feel free to skip to Section 3.
 
 ### 2.1 Setup: a goal-conditioned MDP
 
@@ -128,7 +128,7 @@ A natural objection arises here. Doesn't LLM RL also use sparse reward in the en
 > | verification cost | checking against the answer = automatic & free | needs a success predicate / reward classifier |
 > | reset cost | a new prompt = free, massively parallel | physical reset required, real-time cost per rollout |
 >
-> This table becomes the lens for reading PLD's design later. What PLD does is not to make the reward dense, but to **shift the robot's learning setup toward the LLM's conditions** (we confirm this in §3.2).
+> This table becomes the lens for reading PLD's design later. What PLD does is not to make the reward dense, but to **shift the robot's learning setup toward the LLM's conditions** (we confirm this in Section 3.2).
 
 ### 2.3 Q-values and actor-critic
 
@@ -180,7 +180,7 @@ But another objection arises. LLM RL doesn't suffer this problem — GRPO happil
 
 > ### 💡 There are two branches of policy gradient, and LLMs and robots ride different ones
 >
-> What we derived in §2.3 is in fact only **one branch** of policy gradient.
+> What we derived in Section 2.3 is in fact only **one branch** of policy gradient.
 >
 > **Branch A — Pathwise / DPG**
 >
@@ -194,7 +194,7 @@ But another objection arises. LLM RL doesn't suffer this problem — GRPO happil
 >
 > Does not differentiate Q. It treats the advantage $\hat A$ as a **scalar weight (a constant)** and differentiates only $\log\pi_\theta$, "pushing up the log-probability of good actions." Since only $\log\pi$ is needed, there is no need to backprop through action generation. In exchange it is high-variance and usually on-policy. Representatives: REINFORCE, PPO, **GRPO**.
 >
-> This distinction, meshed with the table in §2.2, explains everything.
+> This distinction, meshed with the table in Section 2.2, explains everything.
 >
 > - **LLMs ride Branch B.** Softmax gives $\log\pi$ for free, and no action backprop is needed at all. Branch B's weaknesses — high variance and being on-policy (throwing samples away) — aren't a problem for LLMs, because resets are free and massively parallel sampling is available. **So LLMs need not care about flow heads or anything of the sort.**
 > - **Robots must ride Branch A.** Real rollouts are expensive so data can't be thrown away; reusing a replay buffer (off-policy) is a survival condition. But Branch A demands differentiable action generation. **This is exactly where the flow head gets stuck.**
@@ -277,7 +277,7 @@ The critic for the combined policy $\bar\pi$ is trained with TD-learning.
 
 $$Q^{\bar\pi}(s_t,\ \bar a_t)\ \leftarrow\ r(s,a)\ +\ \gamma\,\mathbb{E}_{s_{t+1}\sim\rho(\cdot\mid s_t,\bar a_t)}\big[\,Q^{\bar\pi}_{\text{target}}(s_{t+1},\ \bar a_{t+1})\,\big],\qquad \bar a = a_b + a_\delta$$
 
-**Let's see how this structure bypasses Wall 2.** In §2.4 the problem was the flow head's $\nabla_\theta\pi$. PLD doesn't differentiate the flow head at all — it freezes it and uses it only as the conditioning input $a_b$. The only thing RL attaches to is the Gaussian residual, and a Gaussian differentiates in one shot via reparameterization. That is, it **uses Branch A (pathwise) but confines action generation to the differentiable part**.
+**Let's see how this structure bypasses Wall 2.** In Section 2.4 the problem was the flow head's $\nabla_\theta\pi$. PLD doesn't differentiate the flow head at all — it freezes it and uses it only as the conditioning input $a_b$. The only thing RL attaches to is the Gaussian residual, and a Gaussian differentiates in one shot via reparameterization. That is, it **uses Branch A (pathwise) but confines action generation to the differentiable part**.
 
 As a result, in the paper's words, "the residual Gaussian policy can be trained with **any off-the-shelf off-policy RL algorithm**." Off-the-shelf here means "a stock product, unmodified" — you can attach SAC or TD3 with no customization, in direct contrast to direct RL on the flow head, which would require building special machinery to punch through multi-step sampling.
 
@@ -333,11 +333,11 @@ So where does stability come from? This is the elegant point of the design. PLD 
 
 The policy is free to surpass the base while the system as a whole stays stable.
 
-Now we're ready to return to the perspective foreshadowed in §2.2.
+Now we're ready to return to the perspective foreshadowed in Section 2.2.
 
 > ### 📌 PLD's core insight — don't fix the reward; move the robot into the LLM's conditions
 >
-> In §2.2 we distilled the conditions under which sparse reward works for LLMs into three. Seen through that lens, PLD's Stage 1 transplants one of those conditions each onto the robot.
+> In Section 2.2 we distilled the conditions under which sparse reward works for LLMs into three. Seen through that lens, PLD's Stage 1 transplants one of those conditions each onto the robot.
 >
 > | Condition under which sparse reward fires for LLMs | The device by which PLD reproduces it for robots |
 > |---|---|
@@ -345,7 +345,7 @@ Now we're ready to return to the perspective foreshadowed in §2.2.
 > | **ⓑ Success samples always exist in the batch** | **RLPD symmetric replay** — prefill the offline buffer with the base's success trajectories and sample fifty-fifty. LLMs get success mixed into group samples naturally; robots **guarantee it artificially via the buffer** |
 > | **ⓒ Verification is free and resets are free** | robots don't have this luxury → compensate with **Cal-QL** instead. It's scaffolding **needed only for robots** to keep off-policy Q from diverging when success is sparse and costly (unnecessary for GRPO, which has no critic) |
 >
-> **In one sentence** — PLD doesn't make the reward dense via reward shaping. Instead it **reconstructs the LLM's success conditions on the robot**: "a capable prior + a state where that prior's successes are always in the batch." Then the very sparse reward that stalled naive robot RL **fires**, just as the outcome reward fires in GRPO. On top of this, the Gaussian residual of §3.1 makes "those successes learnable by an off-the-shelf off-policy algorithm," completing the puzzle.
+> **In one sentence** — PLD doesn't make the reward dense via reward shaping. Instead it **reconstructs the LLM's success conditions on the robot**: "a capable prior + a state where that prior's successes are always in the batch." Then the very sparse reward that stalled naive robot RL **fires**, just as the outcome reward fires in GRPO. On top of this, the Gaussian residual of Section 3.1 makes "those successes learnable by an off-the-shelf off-policy algorithm," completing the puzzle.
 
 With this combination the expert reaches over 99% success per task (over 95% across the 120+ reported tasks).
 
@@ -357,7 +357,7 @@ Now that we have the expert, it's time to harvest data. But there's a counterint
 
 > **"more optimal data" ≠ "better SFT data"**
 
-A student who only watches smooth, competent demonstrations never learns **how to get out when things slip**. The coverage gap of §1 recurs verbatim.
+A student who only watches smooth, competent demonstrations never learns **how to get out when things slip**. The coverage gap of Section 1 recurs verbatim.
 
 **The fix is to put the base back on stage.** Let the base walk the front of the trajectory to enter the deployment distribution, and from the back have the expert take over and demonstrate recovery. This is the **hybrid rollout**, and the front segment is called **base policy probing**.
 
@@ -388,7 +388,7 @@ $$\tau_{\text{demo}}\ =\ \underbrace{\big\{(s_1,\ a_{b,1}),\ \dots,\ (s_{t-1},\ 
 
 > ### ⚠️ Fact-check — a notational inconsistency in the $\tau_{\text{demo}}$ formula
 >
-> In §3.1 $\bar a = a_b + a_\delta$ was defined as the **combined action**, yet the $\tau_{\text{demo}}$ formula above writes "$a_{b,t} + \bar a_t$." Read literally, the base action is double-counted. The intended meaning in context is "**record the executed combined action (base + residual)**," where $\bar a_t$ should be read as loose notation for the residual component. A minor notational inconsistency in the paper.
+> In Section 3.1 $\bar a = a_b + a_\delta$ was defined as the **combined action**, yet the $\tau_{\text{demo}}$ formula above writes "$a_{b,t} + \bar a_t$." Read literally, the base action is double-counted. The intended meaning in context is "**record the executed combined action (base + residual)**," where $\bar a_t$ should be read as loose notation for the residual component. A minor notational inconsistency in the paper.
 
 **There's a subtle but important asymmetry in the probing segment.** The probing steps are used **only for state initialization** and are **not added to the replay buffer** — because the base's probing actions are suboptimal and must not become RL's learning target. On the other hand, **the SFT data $\tau_{\text{demo}}$ includes both the base prefix and the expert suffix.** The point is to have the generalist learn to behave like the base in normal states and to recover like the expert when it has drifted.
 
@@ -423,7 +423,7 @@ Two questions naturally arise here. One is "isn't this just DAgger?" and the oth
 >
 > start from there. Only this way does the expert repeatedly practice recovery from such states and become robust.
 >
-> **Let's get one phrasing exactly right.** $p_0^{\pi_b}$ is **not** a "failure-state distribution." It is the **entire state distribution the base actually visits** — normal trajectories, mild drift, and near-severe-failure all mixed together. Near-failure is only an **important subset** of it. And this is exactly what fills the coverage gap of §1. What PLD does is not "cherry-picking failures" but **aligning the data with the deployment distribution**; failure recovery is the most valuable byproduct of that alignment.
+> **Let's get one phrasing exactly right.** $p_0^{\pi_b}$ is **not** a "failure-state distribution." It is the **entire state distribution the base actually visits** — normal trajectories, mild drift, and near-severe-failure all mixed together. Near-failure is only an **important subset** of it. And this is exactly what fills the coverage gap of Section 1. What PLD does is not "cherry-picking failures" but **aligning the data with the deployment distribution**; failure recovery is the most valuable byproduct of that alignment.
 >
 > **Data generation (Stage 2).** Here the expert is **already done training**. The recovery "demonstration" is not parameter-updating learning but the act of **producing data** for the generalist.
 >
@@ -450,7 +450,7 @@ Moderate probing gives coverage of recovery scenarios, but too much strays too f
 
 ### 3.4 Distill — folding it back with standard SFT
 
-Distill the collected $\tau_{\text{demo}}$ as-is with the **standard SFT loss** matching the base VLA's head (one of §2.6's AR NLL / diffusion MSE / flow-matching $L_2$). This folds the experts of many tasks into a single generalist; the experts were scaffolding for data production, so they are discarded and only the one generalist is deployed zero-shot.
+Distill the collected $\tau_{\text{demo}}$ as-is with the **standard SFT loss** matching the base VLA's head (one of Section 2.6's AR NLL / diffusion MSE / flow-matching $L_2$). This folds the experts of many tasks into a single generalist; the experts were scaffolding for data production, so they are discarded and only the one generalist is deployed zero-shot.
 
 A terminological clarification is needed here. **This "distill" is not knowledge distillation where a student matches a teacher's logits.** It is standard BC SFT of the generalist on the **trajectories the expert generated** (hard action labels) — i.e., **policy distillation through generated data.**
 
@@ -465,7 +465,7 @@ A terminological clarification is needed here. **This "distill" is not knowledge
 > A notable observation in the paper: the generalist distilled from them is better than the individual per-task experts. There are two reasons.
 >
 > - **Aggregation** — data from many task experts is gathered into one model.
-> - **Preserved generalization (less forgetting)** — because PLD data sits near the base distribution, the base's generalization ability is lost less (§4).
+> - **Preserved generalization (less forgetting)** — because PLD data sits near the base distribution, the base's generalization ability is lost less (Section 4).
 >
 > This synergy answers "why folding many experts into one isn't a loss." And feeding this output (the improved generalist) back in as the Stage 1 base gives a **self-improving flywheel.**
 >
@@ -563,9 +563,9 @@ The most interesting contrast is with a cousin paper released around the same ti
 > | Critic | **off-policy Q** (Cal-QL) | **on-policy V** (distributional MC) |
 > | Failure data | converted into recovery trajectories and distilled | absorbed with a low-advantage label |
 >
-> On the "human intervention vs autonomy" axis set up in the §3.3 DAgger comparison, **PLD is the autonomous version with the human removed, and RECAP is the side that keeps teleoperation correction.** Reading the two papers together brings the current landscape of self-improving VLAs into focus.
+> On the "human intervention vs autonomy" axis set up in the Section 3.3 DAgger comparison, **PLD is the autonomous version with the human removed, and RECAP is the side that keeps teleoperation correction.** Reading the two papers together brings the current landscape of self-improving VLAs into focus.
 
-It's interesting that the way advantage is handled splits three ways here. In §2.4 we saw two branches of policy gradient, but RECAP is in fact a **third path** belonging to neither.
+It's interesting that the way advantage is handled splits three ways here. In Section 2.4 we saw two branches of policy gradient, but RECAP is in fact a **third path** belonging to neither.
 
 > ### 💡 How advantage is computed vs how it's used — GRPO, RECAP, PLD compared
 >
@@ -611,7 +611,7 @@ A combined list of what the paper states itself and what's worth flagging additi
 - **Reward engineering is the real bottleneck** — though called a sparse binary reward, the success predicate and reward classifier of $\mathbf{1}[d(\phi(s),g)\le\varepsilon]$ must be built per task. This can become the real cost when scaling up the number of real-world tasks.
 - **Hyperparameter sensitivity** — the schedule of the residual scale $\xi$ and the probing ratio $\alpha$ (plateau at 0.6) may be task-specific. This somewhat weakens the plug-and-play claim.
 - **Number of real-world tasks** — 2 on Franka, 1 on YAM. The simulation (LIBERO, SimplerEnv) results are large, but the real-world generalization claim should be read cautiously.
-- **Interpreting the abstract's numbers** — see the fact-check in §5.2.
+- **Interpreting the abstract's numbers** — see the fact-check in Section 5.2.
 
 ---
 
@@ -625,7 +625,7 @@ And this paper reads especially well for someone with an LLM/diffusion backgroun
 - **"RL forgets less than SFT (KL is the indicator of forgetting)"** connects directly to the LLM alignment literature.
 - **the choice to bypass direct RL on the flow head with a Gaussian residual** is a familiar trade-off for anyone who knows the RL-optimization difficulty of diffusion policies.
 
-Above all, the insight distilled in §3.2 — **instead of fixing the reward, move the robot's learning conditions toward the LLM's** — looks like a general principle applicable to every attempt to transplant LLM experience into physical AI.
+Above all, the insight distilled in Section 3.2 — **instead of fixing the reward, move the robot's learning conditions toward the LLM's** — looks like a general principle applicable to every attempt to transplant LLM experience into physical AI.
 
 ---
 

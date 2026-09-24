@@ -184,7 +184,7 @@ From the number 300M alone it sounds like an output head tacked onto the back of
 >
 > Had the expert been the same width as the backbone, 50 Hz would have been impossible. The small expert is not a performance tweak but a **structural requirement for real-time control**.
 
-Remember one fact that runs through this entire paper. **Hi Robot's high level and low level are nearly identical architectures starting from the same backbone (PaliGemma-3B); the only difference is that the low level has a flow-matching action expert attached.** This fact is used decisively again in §6.
+Remember one fact that runs through this entire paper. **Hi Robot's high level and low level are nearly identical architectures starting from the same backbone (PaliGemma-3B); the only difference is that the low level has a flow-matching action expert attached.** This fact is used decisively again in Section 6.
 
 ### 2.3 The System 1 / System 2 frame
 
@@ -203,7 +203,7 @@ The paper uses Kahneman's dual-process theory as a frame.
 - The upper layer judges "what to do now" using semantic and visual knowledge from web-scale pretraining
 - The lower layer only needs to understand simple commands like "pick up one slice of bread," but in exchange is physically precise
 
-The analogy is clean. Just how well it matches the actual implementation is revisited in §7.
+The analogy is clean. Just how well it matches the actual implementation is revisited in Section 7.
 
 ---
 
@@ -265,7 +265,7 @@ But a structure where a big model plans and a small executor carries out isn't u
 >
 > The real benefit of free-form natural language is that **you don't have to enumerate the skill set**. Since the low level is already a language-conditioned VLA, it handles, to some degree, phrasing combinations it never saw in training.
 >
-> In exchange there's a price — **there is no contract.** The high level doesn't know exactly what the low level can do. A function signature tells the planner whether a call is possible, but a string carries no such guarantee. The paper admits this as a limitation itself, and we revisit it in §7.
+> In exchange there's a price — **there is no contract.** The high level doesn't know exactly what the low level can do. A function signature tells the planner whether a call is possible, but a string carries no such guarantee. The paper admits this as a limitation itself, and we revisit it in Section 7.
 
 ### 3.2 Handling user intervention — breaking Wall 2
 
@@ -322,7 +322,7 @@ $$p^{\text{gen}}\big(\ell_t,\ u_t \mid \mathbf{I}_t^1,\dots,\mathbf{I}_t^n,\ \ha
 
 Appendix A.1 states that scenarios are typed for generation diversity.
 
-| Scenario type | Content | Which layer of §1.2 |
+| Scenario type | Content | Which layer of Section 1.2 |
 |---|---|---|
 | **negative task** | the user instructs what not to do | COMPLEX |
 | **specific constraint** | a specific constraint like a dietary preference | COMPLEX |
@@ -356,7 +356,7 @@ But "make training data with a VLM" is usually something to be wary of, because 
 
 ### 3.4 Implementation
 
-Both the low level and the high level start from the same base VLM, **PaliGemma-3B**. The low level is the π₀ VLA; the high level is a separate model finetuned on the image-language tuples of §3.3.
+Both the low level and the high level start from the same base VLM, **PaliGemma-3B**. The low level is the π₀ VLA; the high level is a separate model finetuned on the image-language tuples of Section 3.3.
 
 ```
   Weight accounting of the Hi Robot system
@@ -381,7 +381,7 @@ A familiar phenomenon in LLMs: as a long generation proceeds, system-prompt cons
 
 **⓶ Compositional generalization from the language interface.** Since the low level is already language-conditioned, when the high level calls the skills present in the training data **in new orders and combinations**, that becomes a new task as-is.
 
-**⓷ An interpretable intermediate representation.** Because $\hat{\ell}_t$ is a human-readable sentence, you can diagnose whether a failure is due to reasoning or execution, separately. Indeed the metric design of §5 depends on this property.
+**⓷ An interpretable intermediate representation.** Because $\hat{\ell}_t$ is a human-readable sentence, you can diagnose whether a failure is due to reasoning or execution, separately. Indeed the metric design of Section 5 depends on this property.
 
 ---
 
@@ -453,7 +453,7 @@ Measured by human evaluators blind to the method, with **20 trials per method/ta
 
 $$\underbrace{\text{visual grounding}}_{\text{from }\mathcal{D}_{labeled}}\ +\ \underbrace{\text{constraint compliance}}_{\text{from }\mathcal{D}_{syn}}$$
 
-In other words, what $\mathcal{D}_{syn}$ buys is not "the ability to chat" but **the ability to obey constraints.** This is where the "complex ≠ interaction" point from §1.2 is confirmed experimentally.
+In other words, what $\mathcal{D}_{syn}$ buys is not "the ability to chat" but **the ability to obey constraints.** This is where the "complex ≠ interaction" point from Section 1.2 is confirmed experimentally.
 
 **(B) The hierarchy.** A flat policy trained on the same synthetic data reverts to clearing everything or fails to handle partial instructions ("only the yellowish things").
 
@@ -485,7 +485,7 @@ It's the intersection of three lineages.
 
 **⓵ Direct VLA training** — RT-2, OpenVLA, π₀, RDT-1B, CogACT, FAST, ECoT. Hi Robot **adopts a product of this lineage (π₀) directly as its low-level executor.** A consumption relationship, not competition.
 
-**⓶ Off-the-shelf VLM + predefined skills** — SayCan, Code as Policies, VoxPoser, MOKA, PIVOT, OK-Robot, BUMBLE. The GPT-4o baseline enters the experiments as the representative of this lineage (§5.2).
+**⓶ Off-the-shelf VLM + predefined skills** — SayCan, Code as Policies, VoxPoser, MOKA, PIVOT, OK-Robot, BUMBLE. The GPT-4o baseline enters the experiments as the representative of this lineage (Section 5.2).
 
 **⓷ Interaction learning from language feedback** — the closest cousins. The paper spells out the differences directly.
 
@@ -495,7 +495,7 @@ It's the intersection of three lineages.
 | **YAY Robot** (Shi et al. 2024) | capable of real-time situated correction | **limited to a single prompt**, and to corrections present in human-written data |
 | **RACER** (Dai et al. 2024) | capable of situated correction | uses a **physics simulator** to construct recovery behaviors. Hi Robot uses only real demonstrations with no deliberate perturbation |
 
-**The closest cousin is YAY Robot** (same first author), and the ablation "Hi Robot without synthetic data" is explicitly identified as **an advanced VLM-based version of YAY Robot.** So it's not far off to read this paper's net contribution as the delta of §5.5 ablation (A) — **the improvement due to synthetic data.**
+**The closest cousin is YAY Robot** (same first author), and the ablation "Hi Robot without synthetic data" is explicitly identified as **an advanced VLM-based version of YAY Robot.** So it's not far off to read this paper's net contribution as the delta of Section 5.5 ablation (A) — **the improvement due to synthetic data.**
 
 The paper acknowledges this exactly — individual components such as the low-level VLA policy were already addressed in prior work, and **what's new is the combination of these components and the synthetic-data-generation method.**
 
@@ -507,13 +507,13 @@ The paper acknowledges this exactly — individual components such as the low-le
 
 ### 6.1 Two months later, the same team folds this design back up
 
-The fact I asked you to remember in §2.2 — that **the two layers are nearly identical architectures and the only difference is the flow-matching head** — the paper itself raises in its Discussion. And that paragraph becomes the spec sheet for a follow-up paper.
+The fact I asked you to remember in Section 2.2 — that **the two layers are nearly identical architectures and the only difference is the flow-matching head** — the paper itself raises in its Discussion. And that paragraph becomes the spec sheet for a follow-up paper.
 
 > ### 🔗 π₀.₅ (2025-04) is the paper that solves the homework Hi Robot left behind
 >
 > Hi Robot's Discussion writes — **the role separation at the model level is not essential to this design**, and a natural next step for future work is **to combine the two systems into a single model and place the System 1 / System 2 distinction purely at inference time.**
 >
-> Two months later, the same team's π₀.₅ §IV-A is exactly that spec.
+> Two months later, the same team's π₀.₅ Section IV-A is exactly that spec.
 >
 > $$\pi_\theta(\mathbf{a}_{t:t+H},\hat{\ell}\mid\mathbf{o}_t,\ell) = \underbrace{\pi_\theta(\mathbf{a}_{t:t+H}\mid\mathbf{o}_t,\hat{\ell})}_{\text{low level}}\ \underbrace{\pi_\theta(\hat{\ell}\mid\mathbf{o}_t,\ell)}_{\text{high level}}$$
 >
@@ -545,20 +545,20 @@ The fact I asked you to remember in §2.2 — that **the two layers are nearly i
 **What the paper acknowledges**
 
 - High-level training **depends on prompt engineering** — to produce synthetic examples that elicit the desired behavior
-- **The two layers don't know each other's capabilities except through training examples.** The "no contract" price foreshadowed in §3.1 is collected here. Coupling the high level so it perceives the low level's success is future work
+- **The two layers don't know each other's capabilities except through training examples.** The "no contract" price foreshadowed in Section 3.1 is collected here. Coupling the high level so it perceives the low level's success is future work
 - High-level invocation is on a **fixed schedule.** Asynchronous, adaptive multi-layer reasoning is offered as a future direction
 
 **Additional points to flag**
 
-- **The actual reasoning is shallow relative to the name "System 2."** Contrasting the §2.3 analogy with the implementation, $p^{\text{hi}}$ is a **single forward pass** from (image, prompt) → (utterance, atomic command). No explicit multi-step reasoning, no plan backtracking, no search. It's closer to a reactive mapping that looks at the scene each second and emits the next single skill.
-- **The high level's state representation is images only.** The definition $p^{\text{hi}}(\hat{\ell}_t\mid \mathbf{I}_t,\ell_t)$ does not condition on prior skill history. History conditioning exists **only in the data generator $p^{\text{gen}}$** (§3.3). The paper criticizes GPT-4o for "failing to maintain a consistent internal state," yet Hi Robot's high level also formally has no memory, with the current scene standing in for state. The same vulnerability can appear on tasks that require unobservable progress state (what's already between the slices of bread).
+- **The actual reasoning is shallow relative to the name "System 2."** Contrasting the Section 2.3 analogy with the implementation, $p^{\text{hi}}$ is a **single forward pass** from (image, prompt) → (utterance, atomic command). No explicit multi-step reasoning, no plan backtracking, no search. It's closer to a reactive mapping that looks at the scene each second and emits the next single skill.
+- **The high level's state representation is images only.** The definition $p^{\text{hi}}(\hat{\ell}_t\mid \mathbf{I}_t,\ell_t)$ does not condition on prior skill history. History conditioning exists **only in the data generator $p^{\text{gen}}$** (Section 3.3). The paper criticizes GPT-4o for "failing to maintain a consistent internal state," yet Hi Robot's high level also formally has no memory, with the current scene standing in for state. The same vulnerability can appear on tasks that require unobservable progress state (what's already between the slices of bread).
 - **"open-ended" is a property of the input side, not the output side.** The set of synthesizable prompts is ultimately confined to the following set.
 
 $$\{\text{generatable } \ell\}\ \subseteq\ \{\ell \mid \text{answerable with skills in }\mathcal{D}_{labeled}\}$$
 
   What expands is **the diversity of ways to call**, not the list of what can be called. A new physical skill still requires a new demonstration.
-- **Absence of a failure-recovery loop.** The high level emits commands open-loop, and the low level's failure is only indirectly detected when it leaves a trace in the next image. A silent failure (grasp-then-drop) can be mistaken for completion. The slot where SayCan's $V^k$ sat, seen in §5.2, is left empty.
-- **Evaluation scale and metrics.** 3 domains, 20 trials per method/task, no confidence intervals, and IA is scored differently across methods (§5.6).
+- **Absence of a failure-recovery loop.** The high level emits commands open-loop, and the low level's failure is only indirectly detected when it leaves a trace in the next image. A silent failure (grasp-then-drop) can be mistaken for completion. The slot where SayCan's $V^k$ sat, seen in Section 5.2, is left empty.
+- **Evaluation scale and metrics.** 3 domains, 20 trials per method/task, no confidence intervals, and IA is scored differently across methods (Section 5.6).
 
 ---
 

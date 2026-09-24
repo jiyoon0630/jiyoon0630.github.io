@@ -22,7 +22,7 @@ paper_url: "https://generalistai.com/blog/gen-0"
 
 The standard recipe for robot foundation models is to put action output on top of a VLM. The semantic understanding gained from web-scale vision-language pretraining is carried over to robot control, and the target task is fine-tuned with teleoperation demonstrations. PaLM-E, RT-2 and π₀ all belong to this picture.
 
-GEN-0 points out what this recipe is missing. What put LLMs where they are today was less any particular architecture than the scaling law: "grow compute and data, and performance rises predictably." Yet no such relationship has ever been established in the robot domain itself. GEN-0 sets out to show that relationship in robots for the first time. How far that "first" holds is examined again in §6.
+GEN-0 points out what this recipe is missing. What put LLMs where they are today was less any particular architecture than the scaling law: "grow compute and data, and performance rises predictably." Yet no such relationship has ever been established in the robot domain itself. GEN-0 sets out to show that relationship in robots for the first time. How far that "first" holds is examined again in Section 6.
 
 One premise up front. GEN-0 is a research blog, not a paper, and its architecture and training procedure are not disclosed. So this piece reads it with a focus on **what was measured, and what those measurements tell us**. Reading the measurements properly takes the tools of the LLM scaling literature, so the needed concepts are explained as they come up.
 
@@ -50,7 +50,7 @@ Walls 1 and 2 are obstacles the blog names directly. Wall 3 is not given a name 
 
 > If you pretrain directly on physical-interaction data, does "grow data and compute, and downstream performance rises predictably" hold as it does for LLMs? If it does, under what conditions?
 
-§2 prepares the tools needed to read this question and looks at what exactly Wall 2 is. §3 covers GEN-0's answers to the three walls, and §4 the condition that newly surfaced after getting over Wall 1.
+Section 2 prepares the tools needed to read this question and looks at what exactly Wall 2 is. Section 3 covers GEN-0's answers to the three walls, and Section 4 the condition that newly surfaced after getting over Wall 1.
 
 ---
 
@@ -105,7 +105,7 @@ That is, the loss hits **a floor set by model size**. A small model cannot go be
 - small N: hits the floor early and flattens
 - large N: keeps falling over the same compute range
 
-This picture is used again in §4 when reading GEN-0's "ossification" claim.
+This picture is used again in Section 4 when reading GEN-0's "ossification" claim.
 
 ### 2.2 Transfer scaling and ossification: the pretrain → finetune setting
 
@@ -121,8 +121,8 @@ The same paper also named a phenomenon, **ossification**: when the model is smal
 
 Two things to keep in mind here.
 
-- **⓵** Ossification is a phenomenon of the **pretrain → finetune setting** (revisited in §4)
-- **⓶** "How much fine-tuning data does pretraining replace" is a question about $D_T$ (revisited in §5.2)
+- **⓵** Ossification is a phenomenon of the **pretrain → finetune setting** (revisited in Section 4)
+- **⓶** "How much fine-tuning data does pretraining replace" is a question about $D_T$ (revisited in Section 5.2)
 
 ### 2.3 The nature of Wall 2: action chunking and inference latency
 
@@ -167,7 +167,7 @@ Then why does GEN-0 say it needs a new approach rather than leaning on these sol
 > | **(b) System1-System2** (Figure Helix) | A large VLM (S2) slowly emits latents; a small fast policy (S1) emits the actual actions | The small S1 produces actions quickly | The part that produces actions stays small. Growing the large model does not carry its gains down to reflexes and dexterity |
 > | **(c) inference-time guidance** (RTC, Black et al., 2025) | Generates the next chunk while executing the current one. Actions to be executed during the latency window are frozen, and the rest is inpainted to follow on naturally | Stitches chunk boundaries smoothly | The longer the latency $\delta$, the longer the frozen segment, and responsiveness drops. The structure still penalizes larger models |
 >
-> Both solutions accept the premise "big models are slow" and choose to manage its consequences. What GEN-0 wants is a structure where the large model itself sits inside the control loop without being held back by latency. Harmonic Reasoning in §3.2 aims at exactly this point.
+> Both solutions accept the premise "big models are slow" and choose to manage its consequences. What GEN-0 wants is a structure where the large model itself sits inside the control loop without being held back by latency. Harmonic Reasoning in Section 3.2 aims at exactly this point.
 
 ---
 
@@ -200,13 +200,13 @@ The blog calls this data an in-house robotics dataset, and describes the means o
 
 ### 3.2 Harmonic Reasoning (Wall 2)
 
-The two solutions in §2.3 solve the latency problem through **structure** (S1/S2) or **correction at inference time** (RTC). GEN-0 says it will solve it through the training method itself. The blog's explanation, summarized:
+The two solutions in Section 2.3 solve the latency problem through **structure** (S1/S2) or **correction at inference time** (RTC). GEN-0 says it will solve it through the training method itself. The blog's explanation, summarized:
 
 - **Definition**: a new training method that creates harmonious interaction between asynchronous, continuous-time streams of sensing tokens and acting tokens. The model is trained to think and act at the same time
 - **Claim**: thanks to this method, it can scale to very large model sizes without relying on System1-System2 architectures or inference-time guidance
 - **Example**: camera kit assembly. A long-horizon task: put a cloth into a box, fold a cardboard tray, take the camera out of its plastic bag and put it in, close the box down to tucking in the small flap, then throw away the plastic bag. It is carried out within a single stream, with no explicit subtask boundaries
 
-Appended to the picture in §2.3, it looks like this:
+Appended to the picture in Section 2.3, it looks like this:
 
 ```
 (d) Harmonic Reasoning (claimed)
@@ -226,7 +226,7 @@ The blog contrasts this method with LLM test-time reasoning, that is, thinking l
 
 > ### 💡 The closest LLM-side counterpart is a full-duplex speech model
 >
-> An ordinary chatbot answers after the user finishes speaking. It is a turn-taking structure, the same shape as the synchronous chunking of §2.3 (a). A full-duplex spoken dialogue model (e.g., Moshi), by contrast, models the user's speech stream and its own speech stream in parallel. So it can backchannel or cut in while the other party is still talking.
+> An ordinary chatbot answers after the user finishes speaking. It is a turn-taking structure, the same shape as the synchronous chunking of Section 2.3 (a). A full-duplex spoken dialogue model (e.g., Moshi), by contrast, models the user's speech stream and its own speech stream in parallel. So it can backchannel or cut in while the other party is still talking.
 >
 > | Spoken dialogue | Robot control |
 > |---|---|
@@ -283,13 +283,13 @@ The blog says it later scaled to 10B+ and observed the post-training needed to a
 
 The blog links this result to Moravec's paradox. Ossification in the LLM literature was observed at the O(10M)-parameter scale, but in robots it appeared at O(1B). The interpretation is that, just as perception and dexterity that are easy for people actually demand more computation than abstract reasoning, intelligence about the physical world (physical commonsense) may have a higher activation threshold in terms of compute.
 
-But recall the ossification seen in §2.2 and a question arises. Is what GEN-0 observed the same phenomenon as that ossification in the LLM literature?
+But recall the ossification seen in Section 2.2 and a question arises. Is what GEN-0 observed the same phenomenon as that ossification in the LLM literature?
 
 > ### ⚠️ Same name, different measurement
 >
-> As the blog's own footnote 8 admits, ossification in the LLM literature is a phenomenon of the **pretrain → finetune setting** (⓵ of §2.2). What GEN-0 observed in Figure 1 is "ossification-type behavior" in which zero-shot generalization stalls **during pure pretraining**.
+> As the blog's own footnote 8 admits, ossification in the LLM literature is a phenomenon of the **pretrain → finetune setting** (⓵ of Section 2.2). What GEN-0 observed in Figure 1 is "ossification-type behavior" in which zero-shot generalization stalls **during pure pretraining**.
 >
-> Going a step further, a small model's curve stopping despite more compute during pure pretraining cannot be distinguished, from the text description alone, from the $L(N)$ floor of §2.1. When curves for each size are overlaid, the small model flattening first is a shape commonly seen in Kaplan compute plots. The key to telling the two apart is whether the 1B curve **stalls** or **rises** (whether held-out error grows as training continues). The caption and body alone cannot settle this.
+> Going a step further, a small model's curve stopping despite more compute during pure pretraining cannot be distinguished, from the text description alone, from the $L(N)$ floor of Section 2.1. When curves for each size are overlaid, the small model flattening first is a shape commonly seen in Kaplan compute plots. The key to telling the two apart is whether the 1B curve **stalls** or **rises** (whether held-out error grows as training continues). The caption and body alone cannot settle this.
 
 There is also an alternative to the Moravec interpretation. For high-frequency multimodal data carrying far more information per hour than text, the reason a larger $N$ is needed may not be a domain-specific "intelligence threshold" but simply the entropy of the data. Separating the two interpretations would need a comparison normalized by token count or information content, and there is no such experiment.
 
@@ -340,7 +340,7 @@ $$L(D)=\left(\frac{D_c}{D}\right)^{\alpha_D}$$
 
 The example the blog discloses is Clothes Handling (sorting clothes, tidying tangled clothes, buttoning, hanging on hangers), predicting performance at 1 billion pretraining trajectories.
 
-The form is identical to Kaplan's $L(D)$ in §2.1. So is it measuring the same thing?
+The form is identical to Kaplan's $L(D)$ in Section 2.1. So is it measuring the same thing?
 
 > ### 📌 Figure 4 is transfer scaling, not pretraining scaling
 >
@@ -351,7 +351,7 @@ The form is identical to Kaplan's $L(D)$ in §2.1. So is it measuring the same t
 > | Held fixed | Model size large enough | Downstream data and fine-tuning budget |
 > | Nature | pretraining scaling | **transfer scaling** |
 >
-> The blog puts forward two uses. One is "how much post-training data can be saved by adding pretraining data," which is exactly a question about the effective data transferred $D_T$ of §2.2 (⓶ of §2.2). The other is "how much pretraining data is needed to reach a target error." The blog claims that combining this with a model-size scaling law can predict the optimal allocation of pretraining compute and data per task. It is a Chinchilla-style analysis, though the blog does not mention Chinchilla directly.
+> The blog puts forward two uses. One is "how much post-training data can be saved by adding pretraining data," which is exactly a question about the effective data transferred $D_T$ of Section 2.2 (⓶ of Section 2.2). The other is "how much pretraining data is needed to reach a target error." The blog claims that combining this with a model-size scaling law can predict the optimal allocation of pretraining compute and data per task. It is a Chinchilla-style analysis, though the blog does not mention Chinchilla directly.
 
 The blog states that it uses this curve in partner task discussions and data estimates. Then is the disclosed evidence sufficient for use as an estimation tool?
 
@@ -382,7 +382,7 @@ The blog states that it uses this curve in partner task discussions and data est
 | Class 2 | Between Class 1 and Class 3 |
 | Class 3 | Do-anything-style data |
 
-There are two metrics. One is $\text{MSE}_{\text{val}}$ from §3.3, and the other is reverse KL. From an LLM background a question naturally arises: why have reverse KL separately when there is already prediction error?
+There are two metrics. One is $\text{MSE}_{\text{val}}$ from Section 3.3, and the other is reverse KL. From an LLM background a question naturally arises: why have reverse KL separately when there is already prediction error?
 
 > ### 💡 SFT reduces forward KL; reverse KL looks at the policy's own samples
 >
@@ -516,11 +516,11 @@ Limitations the blog itself acknowledges, together with points worth flagging wh
 
 **Further points to note**
 
-- **Implementation undisclosed**: the blog itself names architecture, training procedure and data engine as requirements for scaling, but only the data engine's scale is disclosed. Harmonic Reasoning has only a name and a direction (§3.2).
-- **Data composition undisclosed**: the collection devices, action representation and embodiment alignment method of the pretraining data are not disclosed (§3.1).
-- **Thin evidence on success rates**: the power law is on validation error; for success rate there is only a trend and a peak of 99% (§5.1, §5.2).
+- **Implementation undisclosed**: the blog itself names architecture, training procedure and data engine as requirements for scaling, but only the data engine's scale is disclosed. Harmonic Reasoning has only a name and a direction (Section 3.2).
+- **Data composition undisclosed**: the collection devices, action representation and embodiment alignment method of the pretraining data are not disclosed (Section 3.1).
+- **Thin evidence on success rates**: the power law is on validation error; for success rate there is only a trend and a peak of 99% (Sections 5.1, 5.2).
 - **Cross-embodiment**: only a mention of testing on 6DoF, 7DoF and 16+DoF semi-humanoid robots, with no numbers. It is a property many RFMs claim in common, so it is hard to see as a differentiator unique to GEN-0.
-- **Statistics in Table 1**: the differences are small and there are no confidence intervals (§5.3).
+- **Statistics in Table 1**: the differences are small and there are no confidence intervals (Section 5.3).
 
 ---
 

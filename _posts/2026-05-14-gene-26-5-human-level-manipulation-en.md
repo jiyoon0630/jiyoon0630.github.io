@@ -75,7 +75,7 @@ Answering "yes" means getting over three walls.
 
 **⛔ Wall 1 — The scale–fidelity trade-off** The data you can collect in bulk (video) has no actions or touch, and the data with actions attached (teleop) cannot be collected in bulk.
 
-**⛔ Wall 2 — The human-to-robot transfer gap** Recordings of human hands cannot be used directly as robot actions. It is commonly called the embodiment gap, but as §2 shows, it is not a single layer.
+**⛔ Wall 2 — The human-to-robot transfer gap** Recordings of human hands cannot be used directly as robot actions. It is commonly called the embodiment gap, but as Section 2 shows, it is not a single layer.
 
 **⛔ Wall 3 — The evaluation bottleneck** One robot, one evaluator, one trial at a time. Evaluating a single checkpoint takes several days of operator labor. With this structure, iterative improvement at foundation-model scale is impossible.
 
@@ -126,7 +126,7 @@ Answering "yes" means getting over three walls.
 >
 > The human hand follows dynamics that "reach the commanded place instantly." Put a model trained on that data onto a robot with large $\Delta$ and $\epsilon$, and the deployed trajectory drifts little by little from the training distribution, with the error accumulating. Covariate shift, the classic ailment of imitation learning, comes in **through the controller**.
 >
-> There is only one direction for the fix: $C\approx I$, that is, making the robot follow the commanded trajectory without latency or error. How Genesis implemented this is in §3.3.
+> There is only one direction for the fix: $C\approx I$, that is, making the robot follow the commanded trajectory without latency or error. How Genesis implemented this is in Section 3.3.
 
 ⓸, the label gap, is different in nature. No matter how closely the hardware matches the human hand, video does not acquire actions. This gap has to be handled by the form of the model, which is the topic of the next section.
 
@@ -241,7 +241,7 @@ There is one more point worth noting about the glove. The blog explains that **t
 
 ### 3.3 The control stack — closing the dynamics gap (⓷) with the controller
 
-This is the implementation of $C\approx I$ foreshadowed in §2.1. Genesis stripped out the controller supplied by the robot-arm vendor entirely and replaced it with its own control middleware.
+This is the implementation of $C\approx I$ foreshadowed in Section 2.1. Genesis stripped out the controller supplied by the robot-arm vendor entirely and replaced it with its own control middleware.
 
 - Both arms tied into **a single EtherCAT Y-slave network** and controlled at **500Hz**
 - Deterministic real-time execution on isolated CPU cores of a **PREEMPT_RT** kernel
@@ -253,7 +253,7 @@ This is the implementation of $C\approx I$ foreshadowed in §2.1. Genesis stripp
 | Mean error tracking a 15cm circle in 4 seconds | About 20mm | **About 2mm** |
 | Single-joint sine-wave tracking latency (impedance mode) | About 80ms | **9ms** (3ms when tuned) |
 
-In §2.1's notation, it has cut $\Delta$ to single-digit ms and $\epsilon$ to single-digit mm. But one could push back here: couldn't the model learn to compensate for errors of this size?
+In Section 2.1's notation, it has cut $\Delta$ to single-digit ms and $\epsilon$ to single-digit mm. But one could push back here: couldn't the model learn to compensate for errors of this size?
 
 > ### 📌 Why close the gap with the controller rather than the model
 >
@@ -265,7 +265,7 @@ In §2.1's notation, it has cut $\Delta$ to single-digit ms and $\epsilon$ to si
 
 ### 3.4 The foundation model — absorbing heterogeneity (Wall 1) and the label gap (⓸)
 
-The joint-distribution model of §2.2 goes here. The blog states three design goals.
+The joint-distribution model of Section 2.2 goes here. The blog states three design goals.
 
 - **⓵ Scalable learning from heterogeneous, partially observed data** — learns from first-person streams, glove data, robot data, and internet language and video without explicit alignment
 - **⓶ A single model for every task** — unifies control, generative simulation, state estimation, inverse dynamics, goal inference, rendering, and value estimation as conditional queries
@@ -285,7 +285,7 @@ The simulator's role, however, is described differently across the announcement 
 
 > ### ⚠️ The simulator is an evaluator, not a source of training data
 >
-> The press release mentions a self-evolving cycle in which AI trains AI inside simulation, talking about training and evaluation together. But the sim use by GENE-26.5 that can be confirmed in the technical blog is **evaluation only**, and the one thing trained in sim is a separate policy for the piano demo (§5.1). Reading it as "sim data co-training" is over-interpretation.
+> The press release mentions a self-evolving cycle in which AI trains AI inside simulation, talking about training and evaluation together. But the sim use by GENE-26.5 that can be confirmed in the technical blog is **evaluation only**, and the one thing trained in sim is a separate policy for the piano demo (Section 5.1). Reading it as "sim data co-training" is over-interpretation.
 
 ### 3.6 Summary — walls mapped to layers
 
@@ -302,9 +302,9 @@ The simulator's role, however, is described differently across the announcement 
 
 ## 4. Why it works
 
-The blog's own explanation sums up in the two statements seen in §3.1 and §3.3: hardware is the means that makes the right data scalable, and teleop signals are mixed with robot-specific artifacts (latency, tracking error), but fixing the control stack makes it possible to learn from broader supervision that includes human motion.
+The blog's own explanation sums up in the two statements seen in Section 3.1 and Section 3.3: hardware is the means that makes the right data scalable, and teleop signals are mixed with robot-specific artifacts (latency, tracking error), but fixing the control stack makes it possible to learn from broader supervision that includes human motion.
 
-Then what do the five layers of §3 have in common?
+Then what do the five layers of Section 3 have in common?
 
 > ### 📌 GENE-26.5's core insight — don't bridge the gap with the model; align the distributions physically
 >
@@ -433,7 +433,7 @@ The closest cousin on path (c) is UWM.
 
 > ### 🔗 UWM (Zhu et al., RSS 2025) — the same form, a problem of a different scale
 >
-> Unified World Models puts action diffusion and video diffusion into one transformer and sets **the diffusion timesteps independently per modality**. Through the timestep settings alone it expresses a policy, forward dynamics, inverse dynamics, and a video generator, and it learns from action-free video with the same mechanism. Its structure is the same as the equation reconstructed in §2.2.
+> Unified World Models puts action diffusion and video diffusion into one transformer and sets **the diffusion timesteps independently per modality**. Through the timestep settings alone it expresses a policy, forward dynamics, inverse dynamics, and a video generator, and it learns from action-free video with the same mechanism. Its structure is the same as the equation reconstructed in Section 2.2.
 >
 > | | **UWM** | **GENE-26.5** |
 > |---|---|---|
@@ -457,11 +457,11 @@ The closest cousin on path (c) is UWM.
 **Further points to note**
 
 - **Verifiability** — there is no tech report. The architecture (VLM backbone, how the priors are combined), the data mixture ratios, and the training order are all undisclosed, and there is no success-rate table or baseline comparison.
-- **Who plans** — the Rubik's demo used an external solver. Whether GENE decides the order of long-horizon tasks itself is unclear (§5.1).
-- **Hardware coupling** — all the gains of this design come from **isomorphism** with its own hardware. The blog says nothing about cross-embodiment transfer to other hands or grippers. If the demo hand differs from Hand 1.0 (§3.1), the company's own hardware generation change becomes the first transfer test.
-- **The remaining gap** — there is no solution for the visual appearance gap (§4).
+- **Who plans** — the Rubik's demo used an external solver. Whether GENE decides the order of long-horizon tasks itself is unclear (Section 5.1).
+- **Hardware coupling** — all the gains of this design come from **isomorphism** with its own hardware. The blog says nothing about cross-embodiment transfer to other hands or grippers. If the demo hand differs from Hand 1.0 (Section 3.1), the company's own hardware generation change becomes the first transfer test.
+- **The remaining gap** — there is no solution for the visual appearance gap (Section 4).
 - **Data supply** — for in-the-field glove data, it is not yet settled whether workers will be willing to wear equipment that could replace them, or whether they will be compensated for it. The founders also acknowledged that customers may refuse to share data.
-- **Validity of sim evaluation** — see §5.3.
+- **Validity of sim evaluation** — see Section 5.3.
 
 ---
 
@@ -473,7 +473,7 @@ GENE-26.5's contribution is not so much a particular model architecture as showi
 - The diagnosis that **"the bottleneck on iteration speed is evaluation"** has the same structure as the eval harness determining iteration speed in LLM development. Genesis World is a robotics eval harness, and its reliability hangs on a single thing: the sim–real correlation.
 - The idea of **changing the definition of supervision by changing the controller** resembles the LLM problem of matching training and serving formats, in that the consistency between data and deployment conditions sets the performance ceiling before model size does.
 
-Above all, the insight of §4 — **don't bridge the gap with the model; remove it physically** — shows that the competitive axis of robotics is shifting from "who trains the bigger model" to "who better matches the data distribution to the deployment distribution."
+Above all, the insight of Section 4 — **don't bridge the gap with the model; remove it physically** — shows that the competitive axis of robotics is shifting from "who trains the bigger model" to "who better matches the data distribution to the deployment distribution."
 
 ---
 

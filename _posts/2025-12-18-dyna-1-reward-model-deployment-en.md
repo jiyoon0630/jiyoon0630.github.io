@@ -46,7 +46,7 @@ Two kinds of numbers are mixed in this diagnosis. One is "80%," a per-episode nu
 
 ### 1.2 Three walls
 
-**⛔ Wall 1 — Unrecoverable states** Continuous operation has no reset. A single dead-end state ends the whole run. Why 80% is fatal in continuous operation is calculated in §2.1.
+**⛔ Wall 1 — Unrecoverable states** Continuous operation has no reset. A single dead-end state ends the whole run. Why 80% is fatal in continuous operation is calculated in Section 2.1.
 
 **⛔ Wall 2 — Deployment data with no judge** When the robot runs on its own, data piles up. But ⓐ there are **no labels** for which segments went well, and ⓑ being a continuous stream, there are **no episode boundaries** either. The blog itself directly flags, as a distinctive challenge, that continuous deployment data does not naturally come with episode boundaries.
 
@@ -76,7 +76,7 @@ The only event that ends continuous operation is $q_u$. Simplifying by assuming 
 
 $$\Pr\big[N\text{ napkins in a row without intervention}\big] = (1-q_u)^N,\qquad \mathbb{E}[\text{run length}] = \frac{1}{q_u}$$
 
-- $N$ — number of napkins to handle in a row. About 850 napkins in 24 hours is the reference (§5.1)
+- $N$ — number of napkins to handle in a row. About 850 napkins in 24 hours is the reference (Section 5.1)
 
 Filling in the table by $q_u$:
 
@@ -90,7 +90,7 @@ Filling in the table by $q_u$:
 Three things can be read from the table.
 
 - **$q_s$ determines yield; $q_u$ determines uptime.** Success rate and the ability to run continuously are different metrics.
-- If every failure of an 80% model is a dead end, it stops after 5 napkins on average. This explains the "fine at first, then quickly falls apart" pattern of §1.1.
+- If every failure of an 80% model is a dead end, it stops after 5 napkins on average. This explains the "fine at first, then quickly falls apart" pattern of Section 1.1.
 - To last 24 hours with even a one-in-two chance requires $(1-q_u)^{850}\ge 0.5$, that is, $q_u \lesssim 0.08\%$. Driving the episode failure rate itself down to that level with imitation learning alone is unrealistic.
 
 So the design goal changes. **Not eliminating failures, but moving failures from $q_u$ to $q_r$.** What Wall 1 really is, in the end, is the absence of recovery ability.
@@ -124,7 +124,7 @@ $$V(s_t) = \gamma^{\,T-t}$$
 - $V(s_t)$ — expected discounted cumulative reward starting from state $s_t$
 - $\gamma\in(0,1]$ — discount factor
 
-This value is monotonically increasing in $t/T$. That is, progress is **value with its shape changed**. GVL (§3.2), which looks like the underlying research, also states explicitly that progress estimation is equivalent to general value learning under a particular choice of reward.
+This value is monotonically increasing in $t/T$. That is, progress is **value with its shape changed**. GVL (Section 3.2), which looks like the underlying research, also states explicitly that progress estimation is equivalent to general value learning under a particular choice of reward.
 
 Using progress as a potential yields a dense reward (potential-based shaping, Ng et al., 1999).
 
@@ -140,7 +140,7 @@ This reward has two properties.
 
 **⓵ A signed signal at every step** — when the napkin tangles, $p$ drops and immediately $r_t<0$. Unlike a success reward that fires once at the end, it tells you **where things went wrong**.
 
-**⓶ A preference for speed is built into the objective** — with $\gamma<1$, for the same completion, the smaller $T$ is, the larger $\gamma^{T}$. This property returns in §3.7 together with Wall 3.
+**⓶ A preference for speed is built into the objective** — with $\gamma<1$, for the same completion, the smaller $T$ is, the larger $\gamma^{T}$. This property returns in Section 3.7 together with Wall 3.
 
 A reader with an LLM background will have a question here. An RLHF reward model assigns one score to a whole response; is this the same thing?
 
@@ -152,7 +152,7 @@ A reader with an LLM background will have a question here. An RLHF reward model 
 > | Signal density | Once at the end | Every step | Every time point, continuous value |
 > | What it tells you | Was it right | Which step went wrong | Where progress stalled or went backward |
 >
-> There is one decisive difference. A PRM's "steps" are already given in the text. A robot's continuous stream comes with neither steps nor episodes. So the progress curve, on top of scoring, takes on the role of **creating the very structure of the data** (§3.4).
+> There is one decisive difference. A PRM's "steps" are already given in the text. A robot's continuous stream comes with neither steps nor episodes. So the progress curve, on top of scoring, takes on the role of **creating the very structure of the data** (Section 3.4).
 
 ---
 
@@ -162,7 +162,7 @@ The motto the blog puts up is this:
 
 > "Don't practice until you get it right. Practice until you can't get it wrong."
 
-In the language of §2.1, it is **"practice until $q_u\to 0$."** It declares that the goal is not succeeding once ($q_s$) but making dead-end failures disappear ($q_u$).
+In the language of Section 2.1, it is **"practice until $q_u\to 0$."** It declares that the goal is not succeeding once ($q_s$) but making dead-end failures disappear ($q_u$).
 
 ### 3.1 [Blog] The disclosed components
 
@@ -178,7 +178,7 @@ The blog places the core of the recipe for building a robust, autonomous robot f
 | RM-in-the-loop training | Scaled this training and improved over 6 weeks | Update operator undisclosed |
 | On-site training | A small amount of extra training at a new site | No amount or method |
 
-§3.2–§3.7 below are **[Inference]** about how these pieces could fit together. The inference rests on two things: the goals and uses the blog itself states, and the applications proposed by GVL, which looks like the underlying research.
+Sections 3.2–3.7 below are **[Inference]** about how these pieces could fit together. The inference rests on two things: the goals and uses the blog itself states, and the applications proposed by GVL, which looks like the underlying research.
 
 ### 3.2 [Inference] What the RM is — GVL, the likely underlying research
 
@@ -217,10 +217,10 @@ The loop that most naturally connects the blog's descriptions is this:
 
 - **policy $\pi_k$** — the round-$k$ policy is deployed and produces a continuous stream
 - **reward model** — assigns progress to every frame
-- **segment + subtask + advantage** — splits the stream into episodes and subtasks and computes how good or bad each segment is (§3.4, §3.5)
+- **segment + subtask + advantage** — splits the stream into episodes and subtasks and computes how good or bad each segment is (Sections 3.4, 3.5)
 - **update** — builds the next round's policy from the selected or weighted data
 
-The blog's "6 weeks" reads as a record of running this loop several times on a weekly basis (§5.2). Now let's see, step by step, which wall each stage gets over.
+The blog's "6 weeks" reads as a record of running this loop several times on a weekly basis (Section 5.2). Now let's see, step by step, which wall each stage gets over.
 
 ### 3.4 Segmentation — Wall 2ⓑ, recovering episode boundaries from the progress curve
 
@@ -307,25 +307,25 @@ Laid out this way, its character becomes ambiguous. It improves on its own data 
 
 ### 3.6 Exploration and recovery — how it gets over Wall 1
 
-The blog's three uses of the RM can all be explained on top of the operators of §3.5.
+The blog's three uses of the RM can all be explained on top of the operators of Section 3.5.
 
-| The blog's use | Mechanism on top of §3.5 [Inference] |
+| The blog's use | Mechanism on top of Section 3.5 [Inference] |
 |---|---|
 | Autonomous exploration | Flow/diffusion policies are stochastic, so they act slightly differently even in the same situation. The RM picks the better variants and weighted SFT amplifies them. Iterating selection and amplification is itself policy improvement |
 | Intentional error recovery | Actions in the falling segment of curve (a) are suppressed with $\hat A<0$, and actions that climb out of low $p$ are reinforced with $\hat A>0$ |
 | Data curation | Filter by $\hat A$ and whether the task completed |
 
-The key is recovery. In this loop, **recovery actions on off-nominal states the policy itself created** enter the training data. It is data that exactly fills the gap between $p_{\text{demo}}$ and $d^{\pi}$ seen in §2.1, and the mechanism that moves failures from $q_u$ to $q_r$. In this process, people do not need to choose which states to demonstrate. The states the policy falls into by itself become the practice problems.
+The key is recovery. In this loop, **recovery actions on off-nominal states the policy itself created** enter the training data. It is data that exactly fills the gap between $p_{\text{demo}}$ and $d^{\pi}$ seen in Section 2.1, and the mechanism that moves failures from $q_u$ to $q_r$. In this process, people do not need to choose which states to demonstrate. The states the policy falls into by itself become the practice problems.
 
-Where this effect shows up in the actual improvement trajectory is checked in §5.2.
+Where this effect shows up in the actual improvement trajectory is checked in Section 5.2.
 
 ### 3.7 Throughput — half of Wall 3
 
-Back to property ⓶ previewed in §2.2. With $\gamma<1$ the discounted cumulative reward is $\gamma^{T}p_\phi(o_T)-p_\phi(o_0)$, so for the same completion, a trajectory that finishes sooner has a larger return. Long-stalled spans like (b) in the segmentation curve get low $\hat A$ and their weight shrinks. **Speed comes under selection pressure inside the progress reward, without a separate objective.**
+Back to property ⓶ previewed in Section 2.2. With $\gamma<1$ the discounted cumulative reward is $\gamma^{T}p_\phi(o_T)-p_\phi(o_0)$, so for the same completion, a trajectory that finishes sooner has a larger return. Long-stalled spans like (b) in the segmentation curve get low $\hat A$ and their weight shrinks. **Speed comes under selection pressure inside the progress reward, without a separate objective.**
 
 The blog also stresses that every second spent on an edge case eats into throughput, so the policy must find the fastest solution. Recovery itself has to be fast too.
 
-But the other half of Wall 3, **quality**, is a different problem. Can a progress RM distinguish a 1/3-inch difference in the first fold? This question comes back with the numbers of §5.1 and in §7.
+But the other half of Wall 3, **quality**, is a different problem. Can a progress RM distinguish a 1/3-inch difference in the first fold? This question comes back with the numbers of Section 5.1 and in Section 7.
 
 ---
 
@@ -364,7 +364,7 @@ The blog provides no paper-style tables. All the numbers below come from the blo
 | Success rate | 99.4% | Failures $\approx$ 5 napkins |
 | Interventions | 0 | The roughly 5 failures were all on the $q_r$ side **[Inference]** |
 
-Through the frame of §2.1, this result is consistent. There were failures, but the run did not end. It means failures moved from $q_u$ to $q_r$.
+Through the frame of Section 2.1, this result is consistent. There were failures, but the run did not end. It means failures moved from $q_u$ to $q_r$.
 
 The quality standard is separate. **[Blog]** On a 5-point scale, scores of 4–5 count as commercial quality. 98% score 3 or higher, but the share above the commercial bar is 75%, and what separates a 5 from a 3 is precision of under 1/3 inch in the first fold.
 
@@ -374,7 +374,7 @@ But put the success rate and the quality distribution side by side and something
 >
 > Since the success rate is higher than the share scoring 3 or above, "success" includes folds below 3. So success should be read as **completion**, independent of quality. The blog gives no definition of success. The metric card shows commercial quality next to the speed figure, but by the body's standard the rate of reaching commercial quality is 75%.
 >
-> In short, 99.4% is a metric of **uptime (Wall 1)**, and the precise figure for **commercial viability (Wall 3)** is 75%. The quality problem left open in §3.7 is exactly this 25%.
+> In short, 99.4% is a metric of **uptime (Wall 1)**, and the precise figure for **commercial viability (Wall 3)** is 75%. The quality problem left open in Section 3.7 is exactly this 25%.
 
 ### 5.2 The six-week improvement trajectory
 
@@ -406,7 +406,7 @@ The order is interesting.
 - **Weeks 1–4** — intervention-free duration grows from 5 minutes to 24 hours. Wall 1 falls first
 - **Weeks 4–6** — with duration fixed at 24 hours, throughput jumps 4×. The speed side of Wall 3 follows
 
-It is an order of lowering $q_u$ first and optimizing speed later. In particular, the step from Week 2's "compounding errors, unrecoverable" to Week 3's 8-hour run reads as where the effect of the recovery data described in §3.6 first shows. The later rise in throughput is consistent with the speed selection pressure of §3.7 **[Inference]**.
+It is an order of lowering $q_u$ first and optimizing speed later. In particular, the step from Week 2's "compounding errors, unrecoverable" to Week 3's 8-hour run reads as where the effect of the recovery data described in Section 3.6 first shows. The later rise in throughput is consistent with the speed selection pressure of Section 3.7 **[Inference]**.
 
 Then which row of this table is the headline's 850 napkins? Week 6 is about 800.
 
@@ -418,7 +418,7 @@ Then which row of this table is the headline's 850 napkins? Week 6 is about 800.
 
 **[Blog]** DYNA-1 folded napkins right away even in real customer environments it had not trained on. It admits, however, that zero-shot quality and throughput often dropped, and that it became proficient quickly after a small amount of extra training on site. The evidence is video only; there are no numbers.
 
-Read together with the behavioral-generalization explanation of §4, the accurate summary is "the job gets done, but an extra loop tuned to the site's distribution is needed."
+Read together with the behavioral-generalization explanation of Section 4, the accurate summary is "the job gets done, but an extra loop tuned to the site's distribution is needed."
 
 ### 5.4 Additional skills
 
@@ -428,7 +428,7 @@ The reference for all these comparisons is the "internal baseline." Then how wer
 
 > ### ⚠️ Fact check — the comparison baselines are not disclosed
 >
-> The internal VLA baseline's architecture is not disclosed, and the "80% plateau" of §1.1 has no source. The claim that the RM far outperforms existing approaches has no quantitative comparison. This contrasts with GVL, which was evaluated with metrics like VOC (rank correlation between predicted value and actual temporal order). The 0.7% is also a relative value, so the absolute data volume is unknown.
+> The internal VLA baseline's architecture is not disclosed, and the "80% plateau" of Section 1.1 has no source. The claim that the RM far outperforms existing approaches has no quantitative comparison. This contrasts with GVL, which was evaluated with metrics like VOC (rank correlation between predicted value and actual temporal order). The 0.7% is also a relative value, so the absolute data volume is unknown.
 
 ---
 
@@ -446,7 +446,7 @@ The DYNA RM appears to sit on Jason Ma's research line, which runs through the V
 | success detection | Error recognition and recovery, stream segmentation |
 | advantage-weighted regression | Policy improvement through autonomous exploration |
 
-**[Assessment]** DYNA-1 reads as though it **moved the list of applications GVL showed on offline video into a real-deployment continuous loop**. What is newly added is segmentation that handles streams with no episode boundaries (§3.4).
+**[Assessment]** DYNA-1 reads as though it **moved the list of applications GVL showed on offline video into a real-deployment continuous loop**. What is newly added is segmentation that handles streams with no episode boundaries (Section 3.4).
 
 ### 6.2 Comparison with self-improving VLAs that came after
 
@@ -462,7 +462,7 @@ After DYNA-1, work appeared that tackled the same goal — "a robot policy impro
 > | Human intervention | None (claimed) | None | Includes teleoperated corrections |
 > | Disclosure level | Product blog (2025-04) | Paper (arXiv, 2025-10) | Technical report (2025-11) |
 >
-> The three approaches form a spectrum in the density of the judging signal. [PLD](/notes/pld-self-improving-vla-en/) keeps the sparse reward as is and makes learning possible with the base policy's successful trajectories and symmetric replay. RECAP estimates advantage with a value function and uses it as a conditioning input. DYNA-1 builds a dense progress signal from the start, and uses that signal even for stream segmentation. The denser the judging signal, the closer one can get to reset-free continuous deployment, but the more the whole loop hangs on the RM's accuracy (§7).
+> The three approaches form a spectrum in the density of the judging signal. [PLD](/notes/pld-self-improving-vla-en/) keeps the sparse reward as is and makes learning possible with the base policy's successful trajectories and symmetric replay. RECAP estimates advantage with a value function and uses it as a conditioning input. DYNA-1 builds a dense progress signal from the start, and uses that signal even for stream segmentation. The denser the judging signal, the closer one can get to reset-free continuous deployment, but the more the whole loop hangs on the RM's accuracy (Section 7).
 
 ---
 
@@ -476,21 +476,21 @@ After DYNA-1, work appeared that tackled the same goal — "a robot policy impro
 
 **Further points to note**
 
-**⓵ Method undisclosed** — the policy and RM architectures, the update operator and the data scale are all undisclosed, and there is no ablation against a loop without the RM. The core claims cannot be verified from outside. That is why most of §3 has to be inference.
+**⓵ Method undisclosed** — the policy and RM architectures, the update operator and the data scale are all undisclosed, and there is no ablation against a loop without the RM. The core claims cannot be verified from outside. That is why most of Section 3 has to be inference.
 
-**⓶ Risk of RM exploitation (Goodhart)** — train on data selected by RM score, and the policy moves toward states the RM overrates. The question left open in §3.7 closes here. The 1/3-inch difference separating a 5 from a 3 is a region a vision-based progress model is easily insensitive to, and looks like a candidate cause for stalling at 75% **[Inference]**. Who recalibrates, and how, the self-reinforcing loop in which the RM's misjudgments accumulate in the data through filtering is also unclear.
+**⓶ Risk of RM exploitation (Goodhart)** — train on data selected by RM score, and the policy moves toward states the RM overrates. The question left open in Section 3.7 closes here. The 1/3-inch difference separating a 5 from a 3 is a region a vision-based progress model is easily insensitive to, and looks like a candidate cause for stalling at 75% **[Inference]**. Who recalibrates, and how, the self-reinforcing loop in which the RM's misjudgments accumulate in the data through filtering is also unclear.
 
 **⓷ A per-task recipe** — the press release also says the robot masters one task at a time. Each task needs a reliable RM and weeks of the loop. It is closer to **a per-task deployment-learning recipe** than the name foundation model suggests **[Assessment]**.
 
 **⓸ Evaluation design** — a single 24-hour run. No repeated experiments, no confidence intervals, no definition of success.
 
-**⓹ What level "production-ready" means** — throughput is about 60% of human speed (35 napkins per hour), and the rate of reaching commercial quality is 75% (§5.1). "Production-ready" as of 2025 is most accurately read as the level of a customer-site pilot **[Assessment]**.
+**⓹ What level "production-ready" means** — throughput is about 60% of human speed (35 napkins per hour), and the rate of reaching commercial quality is 75% (Section 5.1). "Production-ready" as of 2025 is most accurately read as the level of a customer-site pilot **[Assessment]**.
 
 ---
 
 ## 8. Closing — what this post suggests
 
-DYNA-1's contribution is not any particular model architecture. It is the problem setting itself: **switching the unit of evaluation from "episode success rate" to "continuous operation," and solving the judge that setting requires with a single reward model**. As the calculation in §2.1 shows, in continuous operation the unrecoverable failure rate becomes the metric; recovery behavior can only be learned from states the policy visits itself; and using that data needs a judge that scores and segments at the same time. This chain of logic holds even with the method undisclosed.
+DYNA-1's contribution is not any particular model architecture. It is the problem setting itself: **switching the unit of evaluation from "episode success rate" to "continuous operation," and solving the judge that setting requires with a single reward model**. As the calculation in Section 2.1 shows, in continuous operation the unrecoverable failure rate becomes the metric; recovery behavior can only be learned from states the policy visits itself; and using that data needs a judge that scores and segments at the same time. This chain of logic holds even with the method undisclosed.
 
 And this post reads unusually familiarly to someone with an LLM and agentic AI background.
 

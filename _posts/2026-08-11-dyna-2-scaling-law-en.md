@@ -56,7 +56,7 @@ The report distinguishes itself from related work on three points. These are the
 
 **⛔ Wall 3 — we do not know which objective produces the law.** Even when a scaling law is observed, it has never been separated into a function of data quantity versus a function of modeling choices.
 
-The three walls are collected in §4.2, §4.3–4.4, and §4.5 respectively.
+The three walls are collected in Sections 4.2, 4.3–4.4, and 4.5 respectively.
 
 ---
 
@@ -135,7 +135,7 @@ $$\text{acc@}\tau\ =\ \frac{\#\{\,|\hat a_i - a_i|\le\tau\,\}}{\#\{\text{all act
 | $\tau = 0.5$ | by the report's internal experience, a measure of overall **motion intent** → suited to human→robot transfer studies |
 | $\tau = 0.1$ | a measure of **motion precision** → suited to within-embodiment (human→human) trends |
 
-This split reading of $\tau$ is not decoration. It becomes the decisive lens when comparing two slopes in §4.3.
+This split reading of $\tau$ is not decoration. It becomes the decisive lens when comparing two slopes in Section 4.3.
 
 ### 2.5 Flow matching
 
@@ -190,7 +190,7 @@ The masking design is asymmetric.
 | action tokens | **bidirectional** (no causal mask), attending to video tokens in the observed context | an action chunk is predicted all at once |
 | text | video tokens cross-attend to text. **Text never influences action tokens directly** | — |
 
-That last row looks odd. If the language instruction never reaches the actions directly, how does this model follow instructions? The question is collected in §5.3.
+That last row looks odd. If the language instruction never reaches the actions directly, how does this model follow instructions? The question is collected in Section 5.3.
 
 **Depth design.** Early architecture exploration found that DiT-style video-diffusion architectures **hold most of their temporal reasoning in the early layers**, so the action transformer was made **deliberately shallow** and **joins the video stream only at early layers.** This is reported to have greatly improved real-time inference latency at no cost in performance.
 
@@ -225,7 +225,7 @@ It carries the name "world model," yet it does not imagine the world in the actu
 >
 > So the video loss is an **auxiliary objective.** It forces the shared trunk to represent "how a scene unfolds," and the action head sits on top of the representation shaped that way. At deployment only the action head runs.
 >
-> This setup is familiar from generative modeling: using a generative objective as a means of representation learning and then discarding the generation itself — exactly the idea behind using diffusion as a representation learner. It is also why the one-step video generation of §5.4 sits in its own section: the generative capability is not part of the policy but **a separate artifact for planning and evaluation.**
+> This setup is familiar from generative modeling: using a generative objective as a means of representation learning and then discarding the generation itself — exactly the idea behind using diffusion as a representation learner. It is also why the one-step video generation of Section 5.4 sits in its own section: the generative capability is not part of the policy but **a separate artifact for planning and evaluation.**
 
 ---
 
@@ -265,7 +265,7 @@ This is the held-out human evaluation. To remove checkpoint bias, **10 checkpoin
 | acc@0.1 ↑ | $0.0116\cdot D^{+0.0606}$ | 0.926 | 0.017 → 0.021 → 0.024 → 0.026 |
 | acc@0.5 ↑ | $0.357\cdot D^{+0.0203}$ | 0.865 | 0.40 → 0.44 → 0.45 → 0.47 |
 
-All four metrics improve monotonically and each is well described by a power law. The observation the report emphasizes is that **the threshold metrics improve fastest**: across the whole ladder acc@0.1 rises 51% while MSE improves 12%. Read together with §2.4, that means **precision** is the main beneficiary of scale within the same embodiment.
+All four metrics improve monotonically and each is well described by a power law. The observation the report emphasizes is that **the threshold metrics improve fastest**: across the whole ladder acc@0.1 rises 51% while MSE improves 12%. Read together with Section 2.4, that means **precision** is the main beneficiary of scale within the same embodiment.
 
 **Wall 1 is collected.** The measured axis extends more than two orders of magnitude beyond EgoScale's ~20,000 hours, and the curve does not bend all the way to the end.
 
@@ -290,7 +290,7 @@ This is the report's central claim. The same checkpoints — which **saw not one
 
 Every metric aligns monotonically with the scale of human pretraining data. The report notes an empirically observed **inflection between 10k and 100k** and reads it as suggesting that "once sufficient coverage is secured, cross-embodiment knowledge transfer can emerge **from scale alone.**" Indeed the 1k→10k stretch is nearly flat (0.180→0.174, 0.067→0.074) and it moves sharply from 10k→100k (0.174→0.124, 0.074→0.136).
 
-Set beside the table in §4.2, something odd appears: the slope is steeper on the robot side — a **different body** — than on the human side, which shares the training distribution.
+Set beside the table in Section 4.2, something odd appears: the slope is steeper on the robot side — a **different body** — than on the human side, which shares the training distribution.
 
 > ### 💡 The slope is steeper where there is more room to improve
 >
@@ -301,7 +301,7 @@ Set beside the table in §4.2, something odd appears: the slope is steeper on th
 >
 > The robot slope is about 4× steeper. Intuition says it should be the other way around. But read together with the prefactor and the value range, the picture fits: the human side is already crawling **near saturation** at low error, while the robot side still has **large room to improve from high error.** A steeper slope where there is more room is natural.
 >
-> And the $\tau$ reading from §2.4 overlays here. The metric climbing steeply on the robot side is acc@**0.5** — **overall motion intent.** On the human side the fastest riser was the precision metric acc@**0.1** (51%).
+> And the $\tau$ reading from Section 2.4 overlays here. The metric climbing steeply on the robot side is acc@**0.5** — **overall motion intent.** On the human side the fastest riser was the precision metric acc@**0.1** (51%).
 >
 > | | Fastest-improving metric | Reading |
 > |---|---|---|
@@ -412,7 +412,7 @@ But evaluating the same checkpoints on **human** data produces a result the repo
 
 ## 5. Additional Capabilities — Results Outside the Scaling Law
 
-The experiments in this section were run with the **"production" Dyna-2 model** under a different training recipe, as the report states. The ladder experiments of §4 and the results of §5 are not the same checkpoints.
+The experiments in this section were run with the **"production" Dyna-2 model** under a different training recipe, as the report states. The ladder experiments of Section 4 and the results of Section 5 are not the same checkpoints.
 
 ### 5.1 WAM vs VLA — an apples-to-apples comparison
 
@@ -434,9 +434,9 @@ VLA's wins came mostly from the **earliest pretraining checkpoints** — before 
 >
 > The report discloses two things itself. The early Dyna-2 used here predates most of the report's content, so ⓐ it **lacks the 1M-hour pretraining** and ⓑ **the whole model was supervised with an action-only loss.** The entire experimental pipeline was also tuned for VLA: the dataset was collected and curated under a VLA recipe and the hyperparameters were inherited from VLA tuning. The report therefore asks that the result be read as a **lower bound.**
 >
-> The disclosure is conscientious, but there is one more implication. The WAM in this comparison **lacks the very video loss that §4.5 identified as the cause of transfer** — it is action-only. So what the 1.55× measures is less "the superiority of world modeling" and closer to **"video-diffusion-backbone initialization vs. VLM initialization."**
+> The disclosure is conscientious, but there is one more implication. The WAM in this comparison **lacks the very video loss that Section 4.5 identified as the cause of transfer** — it is action-only. So what the 1.55× measures is less "the superiority of world modeling" and closer to **"video-diffusion-backbone initialization vs. VLM initialization."**
 >
-> Both are interesting results, but they are not the same claim. When citing, §4.5 (the video loss creates transfer) and §5.1 (WAM beats VLA) should be treated as **separate pieces of evidence.**
+> Both are interesting results, but they are not the same claim. When citing, Section 4.5 (the video loss creates transfer) and Section 5.1 (WAM beats VLA) should be treated as **separate pieces of evidence.**
 
 **Qualitative case.** On a vegetable-cutting task, Dyna-2 cut celery more thinly and uniformly than Dyna-1, closely matching an expert demonstration, and kept going under changed lighting, near-total removal of lighting, partial removal of visual input, and a person blocking the front while repeatedly putting cut pieces back. The description of that last case is interesting: the policy did not stop after a fixed number of cycles but **stopped when the cutting board was empty.** For the removed-visual-input case the report adds its own caveat, reporting it as **robustness to sensor loss** rather than an ability to predict unobserved scene state.
 
@@ -455,9 +455,9 @@ A **41-point gap** at the same post-training budget. Neither model had seen data
 
 The structure of this table is the point: indistinguishable at 100% in-house, separating only in the field. It is valuable as data showing that **in-distribution benchmarks do not predict deployment performance** — demonstrated by one company across two generations of its own product. That said, the number of sites, the number of trials, and the task composition are undisclosed, so the statistical weight is limited.
 
-### 5.3 Language following — collecting on the §3.1 setup
+### 5.3 Language following — collecting on the Section 3.1 setup
 
-Back to the question deferred in §3.1: **if text never influences action tokens directly, how does the model follow language instructions?**
+Back to the question deferred in Section 3.1: **if text never influences action tokens directly, how does the model follow language instructions?**
 
 First the problem as the report diagnoses it. End-to-end robot policies struggle to follow language instructions, because images carry far more information and because **the continuous action loss can destroy pretrained representations.** **Counterfactual** cases — a scene resembling the training data but a different instruction — are especially hard. On the VLA side, **multi-stage training and backbone freezing** have been marshalled to preserve the backbone's semantic knowledge, producing a fragile and slow pipeline.
 
@@ -498,7 +498,7 @@ Scoring has three levels: achieving the instructed outcome = 1, **attempting the
 | Piece stacking | 0.60 | 0.95 | 1.00 | 10 |
 | Napkin manipulation | 0.25 | 0.38 | **0.88** | 8 |
 
-Both axes contribute. Changing the **objective** from action-only to video co-training gives 0.35 → 0.67, and raising **data scale** to the full corpus gives 0.96. That the largest gains land on object grounding (kitting: 0.10 → 0.95) and fine motion primitives (napkin: 0.25 → 0.88) is also consistent with the picture in §4.5.
+Both axes contribute. Changing the **objective** from action-only to video co-training gives 0.35 → 0.67, and raising **data scale** to the full corpus gives 0.96. That the largest gains land on object grounding (kitting: 0.10 → 0.95) and fine motion primitives (napkin: 0.25 → 0.88) is also consistent with the picture in Section 4.5.
 
 > ### ⚠️ Fact-check — the sample sizes are very small
 >
@@ -612,9 +612,9 @@ But the report's real antagonist is not inside its lineage. It is the VLA line t
 > | use of unlabeled data | hard (needs action labels) | **absorbed by the video objective** |
 > | bottleneck on scaling | **the production rate of action-labeled data** | **hand-pose annotation quality** (the video itself is unlimited) |
 >
-> The last row is the point of the table. The real difference between the two approaches is not architecture but **what the bottleneck is.** The VLA line is bound to the production rate of action labels (= Wall 1 in §1); the WAM line partially unbinds that with the video objective.
+> The last row is the point of the table. The real difference between the two approaches is not architecture but **what the bottleneck is.** The VLA line is bound to the production rate of action labels (= Wall 1 in Section 1); the WAM line partially unbinds that with the video objective.
 >
-> WAM is not entirely free either. The action stream still requires hand-pose annotation, and the report itself states in §4.5 that extraction quality and annotation infrastructure are real constraints. Wall 1 was lowered, not removed.
+> WAM is not entirely free either. The action stream still requires hand-pose annotation, and the report itself states in Section 4.5 that extraction quality and annotation infrastructure are real constraints. Wall 1 was lowered, not removed.
 
 ---
 
@@ -631,9 +631,9 @@ But the report's real antagonist is not inside its lineage. It is the VLA line t
 
 - **The format itself is a company technical report.** There is no peer review; the data corpus, model size, $\lambda$, and training compute are all undisclosed; and 12 of the 39-task evaluation suite are internal benchmarks. It is not reproducible. Mixing in the 27 external xdof ABC tasks only partially mitigates this.
 - **"Quantity" and "diversity" are not separated.** The nested-subset design controls distribution shift across sources beautifully, but it does not control for the fact that a larger subset contains more scenes, objects, and tasks — indeed, being nested, that is inevitable. So whether this is **a law of hours or a law of coverage** remains open. Given that the report itself reads the 10k→100k inflection as "sufficient coverage," the authors appear to see coverage as the operative variable too.
-- **The extreme compression of pseudo-actions is unexplained.** There is no mechanistic account of how a representation trained on wrist pose and thumb–index aperture transfers to a **WUJI-2 20-DOF multi-finger hand.** Bottle Cap Untwisting reaching 50% on 10 minutes of data is impressive, but whether that transfer comes from the human-hand video seen by the video stream or from the action stream is not separated. Repeating the §4.5 ablation on multi-finger-hand tasks would answer it.
-- **The defense against metric artifacts is partial.** Reporting four metrics against Schaeffer's point is good, but **all four are offline action-prediction metrics.** The correlation between the real quantity of interest — on-robot success rate — and these offline metrics is confirmed only at the aggregate level of §4.4, and only over four points.
-- **The gap between aggregate and per-task results, and the absolute performance level.** See the fact-checks in §4.4 and §5.1.
+- **The extreme compression of pseudo-actions is unexplained.** There is no mechanistic account of how a representation trained on wrist pose and thumb–index aperture transfers to a **WUJI-2 20-DOF multi-finger hand.** Bottle Cap Untwisting reaching 50% on 10 minutes of data is impressive, but whether that transfer comes from the human-hand video seen by the video stream or from the action stream is not separated. Repeating the Section 4.5 ablation on multi-finger-hand tasks would answer it.
+- **The defense against metric artifacts is partial.** Reporting four metrics against Schaeffer's point is good, but **all four are offline action-prediction metrics.** The correlation between the real quantity of interest — on-robot success rate — and these offline metrics is confirmed only at the aggregate level of Section 4.4, and only over four points.
+- **The gap between aggregate and per-task results, and the absolute performance level.** See the fact-checks in Section 4.4 and Section 5.1.
 
 ---
 
@@ -643,12 +643,12 @@ Dyna-2's real contribution is not a particular architecture. It is **having meas
 
 And this report reads especially well for someone with an LLM/diffusion background.
 
-- The data economics of **"abundant unlabeled data + scarce labels"** carries over directly. If LLMs were "pretrain on unlimited text + SFT on scarce labels," Dyna-2 is **"a video objective on unlimited video + an action objective on scarce hand-pose labels."** The flow of the report — a long explanation of the hand-pose infrastructure bottleneck, then asking and testing "can unlabeled video alone do it?" (§4.5) — shows the parallel is deliberate design, not coincidence.
+- The data economics of **"abundant unlabeled data + scarce labels"** carries over directly. If LLMs were "pretrain on unlimited text + SFT on scarce labels," Dyna-2 is **"a video objective on unlimited video + an action objective on scarce hand-pose labels."** The flow of the report — a long explanation of the hand-pose infrastructure bottleneck, then asking and testing "can unlabeled video alone do it?" (Section 4.5) — shows the parallel is deliberate design, not coincidence.
 - **Use the generative objective as a representation learner and discard it at inference.** The single line that $u^{\mathrm{act}}_\theta$ never takes $z_t$ as an argument is the most compressed design declaration in the report. It belongs with the line of work using diffusion for representation learning, not with model-based RL's world models.
 - **The profit-and-loss structure of an auxiliary loss is familiar.** Figure 12's "human 104%, robot 34%" is the pattern observed many times in multi-task learning: an auxiliary objective shaves a little in-domain performance to buy OOD generalization. The report's hypothesis — that video training dilutes the action gradient — speaks the same language.
 - **A design that isolates language from the action loss.** What the VLA side tried to protect with backbone freezing and multi-stage training, Dyna-2 solves **with wiring.** Anyone who has dealt with which loss destroys which representation will read the logic of that choice immediately.
 
-Above all, the observation confirmed in §4.5 — **video prediction is not a device for raising in-domain performance but a device for buying generalization across the embodiment gap** — looks like concrete guidance on where any attempt to bring world models into robotics should set its expectations. A world model does not make it do better; it makes it **do it on a body it has never seen.**
+Above all, the observation confirmed in Section 4.5 — **video prediction is not a device for raising in-domain performance but a device for buying generalization across the embodiment gap** — looks like concrete guidance on where any attempt to bring world models into robotics should set its expectations. A world model does not make it do better; it makes it **do it on a body it has never seen.**
 
 ---
 

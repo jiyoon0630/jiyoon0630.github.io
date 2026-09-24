@@ -58,7 +58,7 @@ In short, prior work either required interaction, did not aim at speed-up, or di
 
 > Can a policy $\pi$ trained at demonstration interval $\delta^*$ be executed at a faster, time-varying interval $\delta_t = c_t\,\delta^*$ ($c_t \le 1$) while substantially raising successful throughput? With no additional demonstrations, rewards or online learning.
 
-$\delta^*$ is the time interval between consecutive target poses in the demonstrations, and $c_t$ is the speed factor. Both are defined precisely in §2.1.
+$\delta^*$ is the time interval between consecutive target poses in the demonstrations, and $c_t$ is the speed factor. Both are defined precisely in Section 2.1.
 
 Four walls stand in front of this question.
 
@@ -70,13 +70,13 @@ Four walls stand in front of this question.
 
 **⛔ Wall 4 — Actions run out (latency)** Sensing–inference latency cannot be reduced. The faster the execution, the sooner the actions to execute run out before a new chunk arrives.
 
-The four walls are not independent. In particular, the entanglement that **the means of getting over Wall 1 raises Wall 2** is the axis of this paper's design, and it surfaces at the end of §3.1.
+The four walls are not independent. In particular, the entanglement that **the means of getting over Wall 1 raises Wall 2** is the axis of this paper's design, and it surfaces at the end of Section 3.1.
 
 ---
 
 ## 2. Background — the minimum of control needed to understand Wall 1
 
-To see what Wall 1 really is, you need to know what happens "between the policy emitting an action and the robot actually moving." If you are familiar with robot control, feel free to skip to §3.
+To see what Wall 1 really is, you need to know what happens "between the policy emitting an action and the robot actually moving." If you are familiar with robot control, feel free to skip to Section 3.
 
 ### 2.1 The two-layer policy–controller structure: the policy says only "where to"
 
@@ -126,7 +126,7 @@ The decisive fact is that **there is no time information inside a chunk**. Time 
 $$\delta_t = c_t\,\delta^*,\qquad c_t \in (0,\,1]$$
 
 - $\delta_t$ — execution interval at time $t$
-- $c_t$ — speed factor. **Smaller is faster.** $c_t = 0.5$ is 2× speed, $0.2$ is 5×. Because of this inverse notation, the equation in §3.3 looks backwards at first
+- $c_t$ — speed factor. **Smaller is faster.** $c_t = 0.5$ is 2× speed, $0.2$ is 5×. Because of this inverse notation, the equation in Section 3.3 looks backwards at first
 
 ### 2.2 The low-level controller: gains and tracking lag
 
@@ -170,7 +170,7 @@ $$e_{ss} = r - x = \frac{K_v}{K_p}\,v$$
               |<--->|  lag grows with speed
 ```
 
-Compress the time interval by a factor of $c$ and velocity becomes $1/c$ times, acceleration $1/c^2$ times. At 5× speed, the lag in constant-velocity segments can grow 5×, and the inertial error in acceleration and deceleration segments up to 25× in scale. **Send the same command sequence faster, and the poses the robot actually passes through change.** And that this lag does not merely shift things along the time axis but **changes the path itself** comes up again in §4.
+Compress the time interval by a factor of $c$ and velocity becomes $1/c$ times, acceleration $1/c^2$ times. At 5× speed, the lag in constant-velocity segments can grow 5×, and the inertial error in acceleration and deceleration segments up to 25× in scale. **Send the same command sequence faster, and the poses the robot actually passes through change.** And that this lag does not merely shift things along the time axis but **changes the path itself** comes up again in Section 4.
 
 ### 2.3 The policy is unchanged, but the input distribution shifts
 
@@ -191,16 +191,16 @@ SAIL matches one component to each wall.
 
 | Wall | SAIL component | Layer | Paper section |
 |---|---|---|---|
-| ⛔1 Controller shift | Controller-invariant target (reached pose) + high-gain tracking | System | §4.2 |
-| ⛔2 Chunk inconsistency | Error-Adaptive Guidance (EAG) | Policy | §4.1 |
-| ⛔3 Precision phases | Adaptive speed modulation | Policy | §4.3 |
-| ⛔4 Latency | Latency-aware scheduling + speed bound | System | §4.4 |
+| ⛔1 Controller shift | Controller-invariant target (reached pose) + high-gain tracking | System | Section 4.2 |
+| ⛔2 Chunk inconsistency | Error-Adaptive Guidance (EAG) | Policy | Section 4.1 |
+| ⛔3 Precision phases | Adaptive speed modulation | Policy | Section 4.3 |
+| ⛔4 Latency | Latency-aware scheduling + speed bound | System | Section 4.4 |
 
-The paper introduces EAG in §4.1 first. But you have to understand the controller side first to see why EAG is needed, so this piece reorders things in causal order.
+The paper introduces EAG in Section 4.1 first. But you have to understand the controller side first to see why EAG is needed, so this piece reorders things in causal order.
 
-### 3.1 Wall 1 → learn the reached pose, and follow it stiffly (paper §4.2)
+### 3.1 Wall 1 → learn the reached pose, and follow it stiffly (paper Section 4.2)
 
-The existing pipeline trains on the teleop commanded pose $x^d$ as the action label and executes with the same $K_{\text{teleop}}$ used during collection. At 1× speed this combination has no problem. The same controller as in training receives the commands at the same interval, so even the mismatch between command and actual arrival is reproduced as is. But the moment $\delta$ shrinks, the lag profile of §2.2 changes and that reproduction breaks.
+The existing pipeline trains on the teleop commanded pose $x^d$ as the action label and executes with the same $K_{\text{teleop}}$ used during collection. At 1× speed this combination has no problem. The same controller as in training receives the commands at the same interval, so even the mismatch between command and actual arrival is reproduced as is. But the moment $\delta$ shrinks, the lag profile of Section 2.2 changes and that reproduction breaks.
 
 SAIL changes two things **as a pair**.
 
@@ -228,7 +228,7 @@ The real-robot gains change as follows (Table J.5).
 | $K_p^{\text{pos}}$ / $K_v^{\text{pos}}$ | 150 / 24.5 | 300 / 34.6 |
 | $K_p^{\text{rot}}$ / $K_v^{\text{rot}}$ | 250 / 31.6 | 400 / 40.0 |
 
-All four pairs satisfy $K_v = 2\sqrt{K_p}$. It is a setting that raises only stiffness while keeping critical damping. Also, supplying a velocity target corresponds to replacing the damping term of the §2.2 model with $K_v(\dot r - \dot x)$ to add a velocity reference, which makes the constant-velocity lag term $\frac{K_v}{K_p}v$ vanish. These last two sentences are my interpretation.
+All four pairs satisfy $K_v = 2\sqrt{K_p}$. It is a setting that raises only stiffness while keeping critical damping. Also, supplying a velocity target corresponds to replacing the damping term of the Section 2.2 model with $K_v(\dot r - \dot x)$ to add a velocity reference, which makes the constant-velocity lag term $\frac{K_v}{K_p}v$ vanish. These last two sentences are my interpretation.
 
 A question arises here. What the person intended was the commanded pose; is it right to imitate the **result** instead of the intent? Wouldn't you need to learn the intent to reproduce the intent?
 
@@ -242,9 +242,9 @@ A question arises here. What the person intended was the commanded pose; is it r
 
 The paper validates this design without any policy learning (Appendix G.1, Fig. G.4). It is an experiment that only **replays** Can task demonstrations with varying speed and gain. At the original speed ($c = 1$), replaying commanded poses is better, because they match the original controller. When speed and gain go up, commanded poses fail by overshooting, and only the combination of reached poses with sufficient gain keeps a high success rate. Because it isolates just the "target × controller" combination, it is a clean basis for the design.
 
-But this solution has a price. A stiff controller follows its target faithfully, so **if the target itself jitters, it faithfully follows the jitter too.** In Appendix G.2 (Fig. G.5), injecting noise into the reference trajectory makes the success rate of the high-gain controller collapse much faster than the low-gain one's. This is the entanglement foreshadowed in §1.3. The moment Wall 1 is cleared, a requirement appears that the reference trajectory the policy emits be smooth, and Wall 2 gets higher.
+But this solution has a price. A stiff controller follows its target faithfully, so **if the target itself jitters, it faithfully follows the jitter too.** In Appendix G.2 (Fig. G.5), injecting noise into the reference trajectory makes the success rate of the high-gain controller collapse much faster than the low-gain one's. This is the entanglement foreshadowed in Section 1.3. The moment Wall 1 is cleared, a requirement appears that the reference trajectory the policy emits be smooth, and Wall 2 gets higher.
 
-### 3.2 Wall 2 → use the condition only when it can be trusted: Error-Adaptive Guidance (paper §4.1)
+### 3.2 Wall 2 → use the condition only when it can be trusted: Error-Adaptive Guidance (paper Section 4.1)
 
 **The jitter comes from chunk boundaries.** DP generates a chunk by iterative denoising (paper's notation).
 
@@ -287,7 +287,7 @@ One point that is easy to trip over when reading the paper directly is worth fla
 
 > ### ⚠️ Fact check — the same thing gets different names and symbols in different sections
 >
-> The technique is called Error-**Adaptive** Guidance in the paper's §4.1 and Error-**Aware** Guidance in the paper's §5. The length of the condition segment is likewise written $H_f$ in the paper's §4.1 and $H^c$ in the paper's §4.4 and Appendix E. All are minor notational inconsistencies referring to the same thing. In §3.4 this piece follows Appendix E's symbol $H^c$.
+> The technique is called Error-**Adaptive** Guidance in the paper's Section 4.1 and Error-**Aware** Guidance in the paper's Section 5. The length of the condition segment is likewise written $H_f$ in the paper's Section 4.1 and $H^c$ in the paper's Section 4.4 and Appendix E. All are minor notational inconsistencies referring to the same thing. In Section 3.4 this piece follows Appendix E's symbol $H^c$.
 
 **Problem — the condition itself can be wrong.** If tracking error during acceleration was large, the robot is not where $\mathbf{a}^c$ assumes it is. The (current state $x_t$, condition $\mathbf{a}^c$) pair is then a combination never seen in training, and its conditional score cannot be trusted. Clinging hard to a wrong condition actually amplifies divergence. The paper tests this hypothesis in three steps in Appendix H.
 
@@ -330,9 +330,9 @@ Readers familiar with CFG in image generation will catch on two things here. Why
 >
 > Carried over to LLMs, it is the same as a rule in continuation that, when the prefix is judged to be out of line with reality, throws away the prefix and generates again. It is a far simpler device than the name "guidance" suggests, and because it is simple, it fits in a real-time loop.
 
-There is contemporaneous work that solved the same problem, attaching a new chunk to the segment executed during inference latency, under the opposite assumption. §6 compares them.
+There is contemporaneous work that solved the same problem, attaching a new chunk to the segment executed during inference latency, under the opposite assumption. Section 6 compares them.
 
-### 3.3 Wall 3 → slow down only in precision phases (paper §4.3)
+### 3.3 Wall 3 → slow down only in precision phases (paper Section 4.3)
 
 Even past Walls 1 and 2, a problem remains. Precision phases like grasping or alignment fail if done fast, no matter how good the controller. SAIL judges at every step whether "this is a precision phase" with a binary flag $k_t$ and switches between two speeds (Eq. 10).
 
@@ -341,7 +341,7 @@ $$c_t = k_t\,c^{\text{slow}} + (1 - k_t)\,c^{\text{fast}},\qquad k_t \in \lbrace
 - $k_t$ — precision (critical) phase flag. $k_t = 1$ means a precision phase
 - $c^{\text{slow}},\ c^{\text{fast}}$ — task-specific preset speed factors
 
-The inverse notation foreshadowed in §2.1 appears here. The speed factor is faster when smaller, so in the equation $c^{\text{slow}} > c^{\text{fast}}$. For example, sim Square has $c^{\text{slow}} = 1.0$, so precision phases are not sped up at all (Table J.4).
+The inverse notation foreshadowed in Section 2.1 appears here. The speed factor is faster when smaller, so in the equation $c^{\text{slow}} > c^{\text{fast}}$. For example, sim Square has $c^{\text{slow}} = 1.0$, so precision phases are not sped up at all (Table J.4).
 
 There are two ways to produce $k_t$.
 
@@ -363,7 +363,7 @@ The intuition behind ⓐ shows clearly in Fig. F.3. Waypoints bunch up where the
   +--------------------------------------------------> t
 ```
 
-### 3.4 Wall 4 → absorb latency into the schedule, and draw a line that cannot be crossed (paper §4.4)
+### 3.4 Wall 4 → absorb latency into the schedule, and draw a line that cannot be crossed (paper Section 4.4)
 
 The last wall is physical. Between the time an observation is requested, $t_o$, and the time a new chunk arrives, $t_a$, there is an irreducible latency $\delta^{\text{delay}} = t_a - t_o$. In slow execution chunks are left over, so there is no problem. Execute fast and there is nothing left to do before the new chunk arrives. The paper calls this action exhaustion and points to it as the main reason accelerated DP stuttered in the real world.
 
@@ -387,8 +387,8 @@ $$H^p\,\delta^{\text{lb}} > \delta^{\text{delay}} + H^c\,\delta^{\text{lb}}\quad
 
 $$\delta_t = \max\big(c_t\,\delta^*,\ \delta^{\text{lb}}\big)$$
 
-- $H^p$ — prediction horizon ($H$ in §2.1)
-- $H^c$ — EAG condition length ($H_f$ in §3.2)
+- $H^p$ — prediction horizon ($H$ in Section 2.1)
+- $H^c$ — EAG condition length ($H_f$ in Section 3.2)
 - $\delta^{\text{delay}}$ — sensing–inference latency
 - $\delta^{\text{lb}}$ — the minimum step interval that guarantees continuous execution. If the interval $c_t\delta^*$ that adaptive speed wants is shorter than this, it is clipped to this lower bound
 
@@ -424,7 +424,7 @@ The paper's own explanation goes like this. Speeding up causes a dynamics shift 
  [4] actions run out under latency --> latency-aware scheduling + delta_lb
 ```
 
-- The numbers match the wall numbers in §1.3
+- The numbers match the wall numbers in Section 1.3
 - The most important link is the arrow by which the fix for [1] worsens [2]. The components are not a bundle of independent tricks but a structure in which each guards against the others' side effects, and this is what "full-stack" really means
 
 Still, a fundamental question remains. The policy has only seen 20 Hz demonstrations and has never seen 5× motion. So how do its inputs stay in-distribution even when run fast?
@@ -438,13 +438,13 @@ Still, a fundamental question remains. The policy has only seen 20 Hz demonstrat
 > - $\mathbf{p}(s)$ — the path. Which poses are passed through, in what order
 > - $s(t)$ — the time law. How fast the path is traversed
 >
-> What the policy actually learns is $\mathbf{p}$, because there is no time in its output and $s(t)$ is set by $\delta$ (§2.1). If tracking were perfect, shrinking $\delta$ would just make the robot traverse the same path faster. Then, at each moment along the path, the robot pose and the (quasi-static) scene the policy sees are the same as in the demonstrations, and the inputs stay in-distribution.
+> What the policy actually learns is $\mathbf{p}$, because there is no time in its output and $s(t)$ is set by $\delta$ (Section 2.1). If tracking were perfect, shrinking $\delta$ would just make the robot traverse the same path faster. Then, at each moment along the path, the robot pose and the (quasi-static) scene the policy sees are the same as in the demonstrations, and the inputs stay in-distribution.
 >
-> The combination of commanded poses with low gain breaks this separation. As foreshadowed in §2.2, tracking lag is not just a shift along the time axis. Following the target late around a corner makes the robot cut the corner or overshoot, so **the path itself changes with speed.** The "collided with the neighboring cup" and "missed the handle" of the real-world failure cases (Fig. 8) are exactly this path deformation. The combination of reached poses with high gain restores the separation by making the realized path independent of speed again.
+> The combination of commanded poses with low gain breaks this separation. As foreshadowed in Section 2.2, tracking lag is not just a shift along the time axis. Following the target late around a corner makes the robot cut the corner or overshoot, so **the path itself changes with speed.** The "collided with the neighboring cup" and "missed the handle" of the real-world failure cases (Fig. 8) are exactly this path deformation. The combination of reached poses with high gain restores the separation by making the realized path independent of speed again.
 >
 > This view is the same idea as DMP's time scaling, mentioned in the paper's related work, and the path–time separation (path + time scaling) of trajectory planning. DMP guaranteed it through **the policy representation**; SAIL recovers it through **the execution stack** while leaving DP's representation as it is.
 >
-> At the same time, this view also tells where SAIL will break. The assumption that "matching the path is enough" holds only when the world is quasi-static. **Physics that depends on the time law**, such as an object's momentum (a can flying off under acceleration), contact forces (wiping a board) and motion blur, does not return to in-distribution even if the path matches. This is exactly where the limitations in §7 lie.
+> At the same time, this view also tells where SAIL will break. The assumption that "matching the path is enough" holds only when the world is quasi-static. **Physics that depends on the time law**, such as an object's momentum (a can flying off under acceleration), contact forces (wiping a board) and motion blur, does not return to in-distribution even if the path matches. This is exactly where the limitations in Section 7 lie.
 
 ---
 
@@ -483,7 +483,7 @@ $$\text{TPR} = \frac{1}{N}\sum_{i=1}^{N}\left(\frac{S_i}{t_i} - \frac{1 - S_i}{t
 - $t_i$ — time taken by trial $i$
 - $t^{\max}$ — time limit per trial (exceeding it is a failure)
 
-A success earns a larger reward the faster it is ($1/t_i$), and a failure takes a flat penalty of $1/t^{\max}$. Since $t_i < t^{\max}$, **the value of one success is always larger than the penalty of one failure.** In other words, TPR is a metric that can prefer losing a little success rate to become much faster, and this property becomes important in §5.3.
+A success earns a larger reward the faster it is ($1/t_i$), and a failure takes a flat penalty of $1/t^{\max}$. Since $t_i < t^{\max}$, **the value of one success is always larger than the penalty of one failure.** In other words, TPR is a metric that can prefer losing a little success rate to become much faster, and this property becomes important in Section 5.3.
 
 Secondary metrics are SR (success rate), ATR (average time of successful trials) and SOD (speedup-over-demo = mean demonstration length / ATR), with SPARC, LDLJ, CON and WED as trajectory-quality metrics.
 
@@ -527,7 +527,7 @@ The exception is Square. SAIL's SOD is 1.18, effectively no speed-up, and its TP
 
 **⓶ Reached poses protect success rate.** Switching to commanded poses drops Square from 0.86 → 0.31 and Can from 0.92 → 0.63. The paper's "55% drop on Square" is in percentage points, not a relative ratio; as a relative ratio it is 64%. The average TPR decrease of 0.08 matches the table. Lift is the only exception (TPR 1.80).
 
-**⓷ The consistency component contributes the least.** −C lowers SR by 0.02–0.07 and the TPR difference is small too. EAG, the most "algorithmic" contribution of this paper, has the smallest share in the sim ablation, and most of the gain comes from the control stack (my assessment). But EAG's reason for existing is the link at the end of §3.1: high gain amplifies jitter. So the paper sees EAG's effect as showing up more in smoothness metrics (Table G.1) and in the real-world bimanual tasks.
+**⓷ The consistency component contributes the least.** −C lowers SR by 0.02–0.07 and the TPR difference is small too. EAG, the most "algorithmic" contribution of this paper, has the smallest share in the sim ablation, and most of the gain comes from the control stack (my assessment). But EAG's reason for existing is the link at the end of Section 3.1: high gain amplifies jitter. So the paper sees EAG's effect as showing up more in smoothness metrics (Table G.1) and in the real-world bimanual tasks.
 
 But Can and Stack, where the difference from −C is especially small, have a separate reason.
 
@@ -546,10 +546,10 @@ But Can and Stack, where the difference from −C is especially small, have a se
 > | Square | 0.86 / 0.13 / 1.18 | 0.64 / **0.25** / 3.01 |
 > | Can | 0.92 / 0.51 / 3.20 | **0.95** / **0.60** / 3.60 |
 >
-> - **Square** — SAIL used $c^{\text{slow}} = 1.0$ (no speed-up) in precision phases, protecting SR but barely speeding up at all. Its TPR is half of −AS's, and falls short even of DP-Fast in Table 1 (0.15). This is the Square exception of §5.2
+> - **Square** — SAIL used $c^{\text{slow}} = 1.0$ (no speed-up) in precision phases, protecting SR but barely speeding up at all. Its TPR is half of −AS's, and falls short even of DP-Fast in Table 1 (0.15). This is the Square exception of Section 5.2
 > - **Can** — −AS is ahead on both SR and TPR
 >
-> As seen in §5.1, TPR is a metric in which one success weighs more than one failure, so there are cases where SR gained at the cost of slowing down is not rewarded in TPR. It is more accurate to read this not as a flaw but as **a trade-off in which $c^{\text{slow}}$ must be chosen according to the operating goal**. Meanwhile, the main text's "up to a 31% drop" is not reproduced from the table (Square −22pp, Mug −28pp).
+> As seen in Section 5.1, TPR is a metric in which one success weighs more than one failure, so there are cases where SR gained at the cost of slowing down is not rewarded in TPR. It is more accurate to read this not as a flaw but as **a trade-off in which $c^{\text{slow}}$ must be chosen according to the operating goal**. Meanwhile, the main text's "up to a 31% drop" is not reproduced from the table (Square −22pp, Mug −28pp).
 
 ### 5.4 Real world — commanded speed and realized speed differ
 
@@ -569,7 +569,7 @@ Both methods were set to 5× speed ($c = 0.2$).
 
 - **The realized speed-up is 1.8–3.3×.** The setting is 5×, but adaptive speed slows down precision phases and the scheduling lower bound also binds
 - **SAIL raised both SR and TPR on 6 of 7 tasks.** The big differences are in precise grasping and placing (Pack Chicken 0.4 → 0.9) and bimanual synchronization (Bimanual Serve, TPR 5.4×, SR about 1.8×)
-- **DP-Fast's failure types (Fig. 8) map directly onto the four walls of §1.3.** Collisions and misses from insufficient tracking fidelity are Wall 1, dropping fruit from jitter is Wall 2, imprecise grasps are Wall 3, and stalling during inference latency is Wall 4
+- **DP-Fast's failure types (Fig. 8) map directly onto the four walls of Section 1.3.** Collisions and misses from insufficient tracking fidelity are Wall 1, dropping fruit from jitter is Wall 2, imprecise grasps are Wall 3, and stalling during inference latency is Wall 4
 
 Then where in this table does the abstract's real-world "up to 3.2×" come from?
 
@@ -591,7 +591,7 @@ SAIL was attached to ACT, using ACT's own temporal ensembling in place of EAG (T
 |---|---|---|
 | Generative BC | Diffusion Policy, ACT | The base policies. They inherit the problem of temporal consistency between consecutive predictions |
 | Post-hoc consistency correction | BID, ACT's temporal ensembling | Smoothing or selection after generation. Cannot handle OOD inputs caused by controller shift (compared via BID-Fast) |
-| Time-modulated representations | DMP, RMP, Neural Dynamic Policies | Support speed modulation in principle. SAIL obtains the same property through the execution stack (§4) |
+| Time-modulated representations | DMP, RMP, Neural Dynamic Policies | Support speed modulation in principle. SAIL obtains the same property through the execution stack (Section 4) |
 | IL that surpasses the demonstrator | T-REX, D-REX, Sakaino et al. | Require interaction and reward design. SAIL is purely offline |
 | By-product speed-up | AWE, SPHINX | Speed is not the goal. SAIL absorbed AWE as a precision-phase detection tool |
 | Full-stack IL systems | UMI, Mobile ALOHA | Precedents for joint controller–learning design. Do not address decoupling demonstration and execution speed |
@@ -606,7 +606,7 @@ The closest cousins are BID, which deals with the same chunk-boundary problem, a
 > - **Speed-up is the goal, not a by-product.** Even $c_t$, which varies speed over time, is part of the design
 > - **Policy and controller are designed together.** The choice of learning target (reached pose) is paired with the choice of controller (high gain)
 
-There is the contemporaneous work foreshadowed in §3.2. The problem of attaching a new chunk to the segment executed during inference latency is not SAIL's alone. Under what assumption did the other work solve it?
+There is the contemporaneous work foreshadowed in Section 3.2. The problem of attaching a new chunk to the segment executed during inference latency is not SAIL's alone. Under what assumption did the other work solve it?
 
 > ### 🔗 Real-Time Chunking (RTC, 2025-06) — the same chunk boundary, the opposite assumption
 >
@@ -633,7 +633,7 @@ What the paper states itself, together with what is worth noting from reading it
 
 **Limitations the paper acknowledges**
 
-- **Robot–object dynamics shift is unsolved.** In sim Can, momentum under acceleration throws the can out of the workspace, and in real-world Wiping Board, sustained contact fails. This is where the "quasi-static world" assumption from §4 breaks
+- **Robot–object dynamics shift is unsolved.** In sim Can, momentum under acceleration throws the can out of the workspace, and in real-world Wiping Board, sustained contact fails. This is where the "quasi-static world" assumption from Section 4 breaks
 - **There is the finite-data limit of offline IL.** Distribution shift that algorithms alone cannot solve remains, and the paper suggests explicitly including a dynamics model or using simulation data
 - **EAG thresholds differ per task** (Appendix H.3)
 
@@ -644,7 +644,7 @@ What the paper states itself, together with what is worth noting from reading it
 - **The time spacing of the observation history is unclear** — the policy stacks 4 observation frames (Table J.2). If the displacement between frames grows under speed-up, that itself may be OOD, but how observation sampling was matched is not stated
 - **There is no force information** — since the demonstrations carry no force or contact information, speeding up contact-rich tasks is disadvantaged in principle. This is consistent with the Wiping Board result
 - **The evaluation scale is small** — the real world has 10 trials per task, one baseline, and no 1× reference. The sim has torque limits removed
-- **The cost of transfer differs with model scale** — the experiments use a small UNet DP. With a VLA whose inference is heavy, the latency bound of §3.4 becomes a real constraint, and EAG requires retraining to accept the condition input. On the other hand, reached-pose labeling and high-gain tracking look transferable regardless of the model
+- **The cost of transfer differs with model scale** — the experiments use a small UNet DP. With a VLA whose inference is heavy, the latency bound of Section 3.4 becomes a real constraint, and EAG requires retraining to accept the condition input. On the other hand, reached-pose labeling and high-gain tracking look transferable regardless of the model
 
 ---
 

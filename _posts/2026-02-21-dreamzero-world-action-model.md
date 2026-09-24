@@ -68,7 +68,7 @@ VLM prior는 *what* 을 인코딩하지만, 기하·동역학·모터 제어와 
 
 > 웹 비디오의 물리 동역학 prior를 정책에 그대로 상속시키면, **반복 시연 없이 이질적 데이터만으로** 새로운 동작과 새로운 환경에 일반화할 수 있는가?
 
-비디오 모델을 정책으로 쓰는 발상 자체는 새롭지 않다(§6). 논문은 이것을 실제로 작동하는 WAM으로 만들려면 세 개의 벽을 넘어야 한다고 말한다.
+비디오 모델을 정책으로 쓰는 발상 자체는 새롭지 않다(6절). 논문은 이것을 실제로 작동하는 WAM으로 만들려면 세 개의 벽을 넘어야 한다고 말한다.
 
 **⛔ 벽 1 — Video–action 정렬.** 미래 영상과 모터 명령이 긴밀히 맞물려야 한다. 별도의 video head와 action head를 순진하게 붙이면 둘이 어긋난다.
 
@@ -76,7 +76,7 @@ VLM prior는 *what* 을 인코딩하지만, 기하·동역학·모터 제어와 
 
 **⛔ 벽 3 — 실시간 추론.** 14B 모델이 고차원 latent에서 반복 denoising을 하면 closed-loop 제어에 너무 느리다. 순진하게 구현하면 action chunk 하나에 약 5.7초가 걸린다.
 
-§2는 세 벽을 이해하는 데 필요한 개념을 쌓고, §3는 이 벽들을 차례로 넘는 과정이다.
+2절은 세 벽을 이해하는 데 필요한 개념을 쌓고, 3절은 이 벽들을 차례로 넘는 과정이다.
 
 ---
 
@@ -110,7 +110,7 @@ DreamZero의 핵심 문장은 "action 학습을 dense state–action 모방에�
 >
 > diffusion으로 비유하면 text-to-image(조건이 약해 분포가 넓음)와 sketch-conditioned 생성(조건이 강해 분포가 좁음)의 차이다. WAM에서는 예측된 미래 영상이 sketch 역할을 한다.
 >
-> 이 적분식은 논문에 직접 나오지 않는다. "inverse dynamics로 옮긴다"는 주장의 근거를 명시적으로 풀어 쓴 것이다. 그리고 이 분해가 성립하려면 IDM이 언어 $c$를 필요로 하지 않아야 한다. 이 가정은 §3.1의 식 (1)에서 다시 만난다.
+> 이 적분식은 논문에 직접 나오지 않는다. "inverse dynamics로 옮긴다"는 주장의 근거를 명시적으로 풀어 쓴 것이다. 그리고 이 분해가 성립하려면 IDM이 언어 $c$를 필요로 하지 않아야 한다. 이 가정은 3.1절의 식 (1)에서 다시 만난다.
 
 ### 2.2 AR video diffusion과 teacher forcing — 벽 2의 배경
 
@@ -123,7 +123,7 @@ DreamZero의 핵심 문장은 "action 학습을 dense state–action 모방에�
 | 학습 | 클립 전체가 같은 noise level | chunk마다 독립 timestep, 이전 chunk는 clean (teacher forcing) |
 | 약점 | 길이가 고정이라 subsampling 문제 | 추론 시 자기 출력을 다시 먹으며 오차 누적 |
 
-AR은 LLM 학습과 같은 구조다. 학습 때는 정답 prefix(clean한 이전 chunk)를 조건으로 주고, 추론 때는 자기가 생성한 것을 조건으로 쓴다. 따라서 약점도 같다. 학습과 추론의 조건이 달라지는 **exposure bias** 다. 논문이 인용하는 Self Forcing 같은 연구가 AR video diffusion의 이 train-test gap을 따로 다루는 이유다. DreamZero가 이 약점을 어떻게 피하는지는 §3.3에서 본다.
+AR은 LLM 학습과 같은 구조다. 학습 때는 정답 prefix(clean한 이전 chunk)를 조건으로 주고, 추론 때는 자기가 생성한 것을 조건으로 쓴다. 따라서 약점도 같다. 학습과 추론의 조건이 달라지는 **exposure bias** 다. 논문이 인용하는 Self Forcing 같은 연구가 AR video diffusion의 이 train-test gap을 따로 다루는 이유다. DreamZero가 이 약점을 어떻게 피하는지는 3.3절에서 본다.
 
 ### 2.3 Flow matching 표기, 그리고 step 수가 곧 지연이다 — 벽 3의 배경
 
@@ -135,7 +135,7 @@ $$z_t = t\,z_1 + (1-t)\,z_0,\qquad z_0\sim\mathcal{N}(0,I),\qquad v = z_1 - z_0$
 - $t\in[0,1]$ — timestep. **$t=1$이 clean, $t=0$이 순수 노이즈**다 (반대 규약을 쓰는 문헌도 있으니 주의)
 - $v$ — 네트워크가 회귀하는 목표 velocity
 
-추론은 $t=0$의 노이즈에서 출발해 velocity를 적분하며 $t=1$로 간다. step마다 DiT 전체를 한 번 forward하므로, 지연은 대략 **(denoising step 수) × (DiT forward 비용)** 이다. 14B DiT에 16 step이면 벽 3이 왜 생기는지 바로 보인다. step 수를 줄이려 할 때 무엇이 깨지는지는 §3.4에서 다룬다.
+추론은 $t=0$의 노이즈에서 출발해 velocity를 적분하며 $t=1$로 간다. step마다 DiT 전체를 한 번 forward하므로, 지연은 대략 **(denoising step 수) × (DiT forward 비용)** 이다. 14B DiT에 16 step이면 벽 3이 왜 생기는지 바로 보인다. step 수를 줄이려 할 때 무엇이 깨지는지는 3.4절에서 다룬다.
 
 ---
 
@@ -180,7 +180,7 @@ $$\pi_\theta(o_{l:l+H},a_{l:l+H}\mid o_{0:l},c,q_l)=\underbrace{\pi_\theta(o_{l:
 | action 표현 | relative joint position, idle action 제거 | — |
 | timestep | chunk 안에서 video·action이 같은 $t$를 공유 | 학습 초반 수렴이 빠름 |
 
-마지막 행은 눈여겨볼 만하다. 최근 WAM들(Kim et al., 2026; Li et al., 2025a 등)은 modality별로 timestep을 분리하는데, DreamZero는 의도적으로 공유한다. 이 선택은 §3.4에서 다시 뒤집힌다.
+마지막 행은 눈여겨볼 만하다. 최근 WAM들(Kim et al., 2026; Li et al., 2025a 등)은 modality별로 timestep을 분리하는데, DreamZero는 의도적으로 공유한다. 이 선택은 3.4절에서 다시 뒤집힌다.
 
 그런데 식 (1)의 우변을 다시 보면 이상한 점이 있다. **IDM 항에서 언어 $c$가 사라졌다.** chain rule을 그대로 적용하면 남아 있어야 한다.
 
@@ -190,7 +190,7 @@ $$\pi_\theta(o_{l:l+H},a_{l:l+H}\mid o_{0:l},c,q_l)=\underbrace{\pi_\theta(o_{l:
 >
 > $$\pi_\theta(a_{l:l+H}\mid o_{0:l+H},\,c,\,q_l)$$
 >
-> 식 (1)은 여기서 $c$를 지웠다. 즉 $a\perp c\mid(o_{0:l+H},q_l)$, 다시 말해 "미래 영상과 자세가 주어지면 언어는 action에 추가 정보를 주지 않는다"는 조건부 독립 가정이 들어 있다. §2.1의 적분식도 같은 가정 위에 서 있다.
+> 식 (1)은 여기서 $c$를 지웠다. 즉 $a\perp c\mid(o_{0:l+H},q_l)$, 다시 말해 "미래 영상과 자세가 주어지면 언어는 action에 추가 정보를 주지 않는다"는 조건부 독립 가정이 들어 있다. 2.1절의 적분식도 같은 가정 위에 서 있다.
 >
 > | 경우 | 가정의 성립 |
 > |---|---|
@@ -273,7 +273,7 @@ $$\mathcal{L}(\theta)=\mathbb{E}\Big[\frac{1}{K}\sum_{k=1}^{K}w(t_k)\,\big\lVert
 - **⓶ 실행** — clean action만 꺼내 smoothing한 뒤 로봇에서 비동기로 실행한다. **예측 영상 latent는 버린다**
 - **⓷ 되먹임** — 실제 카메라 관측을 VAE로 encode하고, forward해서 그 KV를 cache에 쓴다
 
-그런데 §2.2에서 본 AR의 약점을 떠올리면 의문이 생긴다. AR 비디오 생성은 모델이 자기가 그린 프레임을 다시 조건으로 먹기 때문에 작은 오차가 눈덩이처럼 누적된다. **DreamZero도 AR인데, 왜 이 문제를 겪지 않는다고 하는가?**
+그런데 2.2절에서 본 AR의 약점을 떠올리면 의문이 생긴다. AR 비디오 생성은 모델이 자기가 그린 프레임을 다시 조건으로 먹기 때문에 작은 오차가 눈덩이처럼 누적된다. **DreamZero도 AR인데, 왜 이 문제를 겪지 않는다고 하는가?**
 
 > ### 💡 closed-loop에서는 환경이 추론 시에도 teacher다
 >
@@ -285,7 +285,7 @@ $$\mathcal{L}(\theta)=\mathbb{E}\Big[\frac{1}{K}\sum_{k=1}^{K}w(t_k)\,\big\lVert
 >
 > LLM으로 말하면, 문장을 한 덩어리 생성할 때마다 다음 스텝 전에 그것을 "정답 continuation"으로 바꿔치기해 주는 셈이다. 텍스트에서는 불가능하지만 로봇에서는 자연스럽다. 세계가 실제 다음 프레임을 공짜로 렌더링해 주기 때문이다. 그래서 예측 영상은 **상태가 아니라 쓰고 버리는 계획**이 된다.
 >
-> 엄밀히 말하면 "예측 프레임을 GT로 교체"한다기보다, 예측 프레임은 cache에 **애초에 들어가지 않고** GT만 쓰인다. 논문은 이를 "WAM 고유의 이점"이라 부르고 §3의 세 가지 핵심 설계 중 하나로 내세운다. 다만 이 장치만 떼어낸 ablation은 없다.
+> 엄밀히 말하면 "예측 프레임을 GT로 교체"한다기보다, 예측 프레임은 cache에 **애초에 들어가지 않고** GT만 쓰인다. 논문은 이를 "WAM 고유의 이점"이라 부르고 3절의 세 가지 핵심 설계 중 하나로 내세운다. 다만 이 장치만 떼어낸 ablation은 없다.
 
 이 구조 덕분에 DreamZero는 visual history를 기억으로 쓰는 **stateful policy** 가 된다. 다만 memory가 있어야만 풀리는 태스크는 평가하지 않았다(각주 2).
 
@@ -299,7 +299,7 @@ $$\mathcal{L}(\theta)=\mathbb{E}\Big[\frac{1}{K}\sum_{k=1}^{K}w(t_k)\,\big\lVert
 | 백본 크기 | 14B DiT |
 | 순차 실행 | 추론하는 동안 로봇이 멈춤 |
 
-여기서 자연스러운 질문이 하나 생긴다. 어차피 예측 영상은 버리는데, **action만 생성하면 빠르지 않을까?** 논문은 각주 3에서 이를 부정한다. 14B 규모에서는 이득이 미미하다. 지연은 §2.3에서 본 대로 step 수와 DiT block 수가 지배하기 때문이다. 게다가 두 modality를 함께 학습했으므로 action step만 순진하게 줄이면 품질이 떨어진다. 결국 줄여야 하는 것은 step 수 자체이고, 이것이 뒤에서 볼 DreamZero-Flash의 동기다.
+여기서 자연스러운 질문이 하나 생긴다. 어차피 예측 영상은 버리는데, **action만 생성하면 빠르지 않을까?** 논문은 각주 3에서 이를 부정한다. 14B 규모에서는 이득이 미미하다. 지연은 2.3절에서 본 대로 step 수와 DiT block 수가 지배하기 때문이다. 게다가 두 modality를 함께 학습했으므로 action step만 순진하게 줄이면 품질이 떨어진다. 결국 줄여야 하는 것은 step 수 자체이고, 이것이 뒤에서 볼 DreamZero-Flash의 동기다.
 
 **비동기 실행.** 첫 단계는 추론과 실행을 분리하는 것이다. 모션 컨트롤러는 가장 최근 action chunk를 계속 실행하고, 추론은 최신 관측으로 동시에 돈다. 그러면 제약이 "로봇이 움직이기 전에 추론이 끝나야 한다"에서 "현재 chunk(1.6초)가 소진되기 전에 끝나야 한다"로 완화된다. 논문은 충분한 overlap을 위해 약 200ms 이하를 목표로 잡는다.
 
@@ -317,12 +317,12 @@ $$\mathcal{L}(\theta)=\mathbb{E}\Big[\frac{1}{K}\sum_{k=1}^{K}w(t_k)\,\big\lVert
 
 결과적으로 5.7초가 150ms가 되어 약 7Hz 제어가 가능해진다. DiT caching과 양자화를 제외한 나머지는 수학적으로 baseline과 동등하다.
 
-**DreamZero-Flash — modality별 noise schedule 분리.** step 수를 줄이면 무엇이 깨지는가? few-step 추론에서는 "영상은 아직 noisy한데 action은 clean해야 하는" 상황이 된다. 그런데 학습 중에는 두 modality가 항상 같은 noise level이었다(§3.1의 timestep 공유). 이 train-test 불일치를 학습 분포로 메우는 것이 Flash다.
+**DreamZero-Flash — modality별 noise schedule 분리.** step 수를 줄이면 무엇이 깨지는가? few-step 추론에서는 "영상은 아직 noisy한데 action은 clean해야 하는" 상황이 된다. 그런데 학습 중에는 두 modality가 항상 같은 noise level이었다(3.1절의 timestep 공유). 이 train-test 불일치를 학습 분포로 메우는 것이 Flash다.
 
 $$t^{\text{video}}_k = 1-\eta,\quad \eta\sim\text{Beta}(\alpha,\beta),\ \alpha>\beta,\qquad t^{\text{action}}_k\sim\mathcal{U}(0,1)$$
 
 - $\eta$ — Beta 분포 샘플. $\alpha>\beta$면 1 근처에 몰린다
-- 실제 설정은 $\text{Beta}(7,1)$이다. $\mathbb{E}[\eta]=0.875$이므로 $\mathbb{E}[t^{\text{video}}_k]=0.125$이고, §2.3의 규약상 **대부분 고노이즈**다 (공유 설정에서는 평균 0.5)
+- 실제 설정은 $\text{Beta}(7,1)$이다. $\mathbb{E}[\eta]=0.875$이므로 $\mathbb{E}[t^{\text{video}}_k]=0.125$이고, 2.3절의 규약상 **대부분 고노이즈**다 (공유 설정에서는 평균 0.5)
 - action timestep은 그대로 균등분포다
 
 이렇게 하면 학습 중에 "noisy한 시각 context로부터 clean action을 예측하는" 상황을 자주 겪게 되어, 1-step 추론 regime과 맞아떨어진다. Flash는 본 학습이 끝난 뒤 마지막 stage로 적용한다.
@@ -333,7 +333,7 @@ $$t^{\text{video}}_k = 1-\eta,\quad \eta\sim\text{Beta}(\alpha,\beta),\ \alpha>\
 | DreamZero | 1 | 52% ± 10.2 | 150ms |
 | DreamZero-Flash | 1 | **74%** ± 10.1 | 150ms |
 
-새로운 것의 범위는 정확히 해둘 필요가 있다. §3.1에서 봤듯 modality별 timestep 분리는 이전 WAM들이 이미 쓰던 방식이고, DreamZero 본체는 수렴 속도 때문에 오히려 공유로 되돌렸다. 따라서 Flash의 기여는 분리 그 자체가 아니라 **1-step 추론 regime에 맞춰 video noise를 고노이즈 쪽으로 편향시킨 분포 설계**다.
+새로운 것의 범위는 정확히 해둘 필요가 있다. 3.1절에서 봤듯 modality별 timestep 분리는 이전 WAM들이 이미 쓰던 방식이고, DreamZero 본체는 수렴 속도 때문에 오히려 공유로 되돌렸다. 따라서 Flash의 기여는 분리 그 자체가 아니라 **1-step 추론 regime에 맞춰 video noise를 고노이즈 쪽으로 편향시킨 분포 설계**다.
 
 그런데 1-step이면 현재 chunk의 영상 token은 순수 노이즈($t=0$)에서 출발한다. **그렇다면 action은 대체 어떤 "미래"를 보고 IDM을 하는가?**
 
@@ -355,7 +355,7 @@ $$t^{\text{video}}_k = 1-\eta,\quad \eta\sim\text{Beta}(\alpha,\beta),\ \alpha>\
 
 | 설명 | 내용 | 근거 |
 |---|---|---|
-| ⓵ prior 상속 | video prediction은 이미 웹 데이터로 최적화되어 있으므로, 로봇 embodiment의 영상 예측과 action 추출만 추가로 배우면 된다 | §3.1 |
+| ⓵ prior 상속 | video prediction은 이미 웹 데이터로 최적화되어 있으므로, 로봇 embodiment의 영상 예측과 action 추출만 추가로 배우면 된다 | 3.1절 |
 | ⓶ 실패는 영상에서 온다 | 대부분의 실패는 action 추출이 아니라 video 생성 오류에서 나온다. 정책은 틀린 영상 계획도 충실히 실행한다 | Fig. 16 |
 | ⓷ 다양성이 IDM을 만든다 | video 쪽은 대부분 상속받으므로 병목은 IDM이다. 견고한 IDM에는 다양한 맥락의 state–action 대응이 필요하고, 반복 데이터는 이것이 부족하다 | Table 4 |
 | ⓸ 백본 크기 | 작은 모델은 visual hallucination이 잦고, 그것이 잘못된 action으로 전파된다 | Table 4 |
@@ -364,12 +364,12 @@ $$t^{\text{video}}_k = 1-\eta,\quad \eta\sim\text{Beta}(\alpha,\beta),\ \alpha>\
 
 두 가지를 덧붙일 수 있다.
 
-- **§2.1의 적분식이 "왜 비반복 데이터가 WAM에게만 통하는가"를 설명한다.** VLA는 $(o,c)$마다 모드를 덮을 표본이 필요하다. 반면 WAM의 IDM은 태스크 라벨과 무관하게 **모든 연속 프레임 쌍이 supervision** 이 된다. 태스크 라벨의 반복도가 덜 중요해지는 이유다.
+- **2.1절의 적분식이 "왜 비반복 데이터가 WAM에게만 통하는가"를 설명한다.** VLA는 $(o,c)$마다 모드를 덮을 표본이 필요하다. 반면 WAM의 IDM은 태스크 라벨과 무관하게 **모든 연속 프레임 쌍이 supervision** 이 된다. 태스크 라벨의 반복도가 덜 중요해지는 이유다.
 - **⓶는 약점 보고처럼 보이지만, 사실 식 (1) 분해를 가장 강하게 지지하는 증거다.** action이 영상에 종속되어 있지 않다면 영상 오류가 이렇게 충실히 action으로 옮겨가지 않을 것이다. 동시에 정책의 상한이 비디오 모델의 물리적 그럴듯함에 묶인다는 뜻이기도 하다.
 
 > ### 📌 로봇 능력 = 비디오 생성 능력 + 얇은 action 판독
 >
-> DreamZero의 가장 큰 차별점은 로봇 전용으로 배우는 부분을 "영상에 동기화된 action 판독"으로 얇게 만든 것이다. 이 설계에서는 **비디오 백본을 키우는 것이 곧 정책을 키우는 것**이 된다. 같은 데이터에서 DreamZero는 5B → 14B로 21% → 50%가 되었지만, 같은 크기로 키운 VLA는 5B든 14B든 0%에 머물렀다(§5.5). 로봇 foundation model의 스케일링 축이 "로봇 데이터의 양"에서 "비디오 모델의 품질"로 일부 옮겨갈 수 있다는 신호다.
+> DreamZero의 가장 큰 차별점은 로봇 전용으로 배우는 부분을 "영상에 동기화된 action 판독"으로 얇게 만든 것이다. 이 설계에서는 **비디오 백본을 키우는 것이 곧 정책을 키우는 것**이 된다. 같은 데이터에서 DreamZero는 5B → 14B로 21% → 50%가 되었지만, 같은 크기로 키운 VLA는 5B든 14B든 0%에 머물렀다(5.5절). 로봇 foundation model의 스케일링 축이 "로봇 데이터의 양"에서 "비디오 모델의 품질"로 일부 옮겨갈 수 있다는 신호다.
 
 ---
 
@@ -413,7 +413,7 @@ DROID-Franka의 unseen 태스크(DROID에 없는 동사 20개)에서는 task pro
 
 ### 5.3 Cross-embodiment — action 없는 영상으로 배우기
 
-다른 embodiment의 영상에는 action 라벨 없이 **video prediction objective만** 걸고, 사전학습 데이터와 1:1로 섞어 10K step co-train한다. §3.1의 분해로 보면 이 데이터는 식 (1)의 첫 항(video prediction)만 강화한다.
+다른 embodiment의 영상에는 action 라벨 없이 **video prediction objective만** 걸고, 사전학습 데이터와 1:1로 섞어 10K step co-train한다. 3.1절의 분해로 보면 이 데이터는 식 (1)의 첫 항(video prediction)만 강화한다.
 
 | Table 2 (unseen 9개 태스크) | task progress |
 |---|---|
@@ -434,7 +434,7 @@ DROID-Franka의 unseen 태스크(DROID에 없는 동사 20개)에서는 task pro
 
 AgiBot으로 사전학습한 체크포인트를 새 로봇(YAM)의 55개 trajectory, 11개 태스크, 약 30분 분량의 play data로 post-train했다. 새 물체(호박, 곰인형, 컵라면, 종이봉투 등)가 등장하는 pick-and-place 변형에서 언어 추종을 유지했다고 보고한다.
 
-논문은 이 효율의 이유로 두 가지를 든다. 두 embodiment의 시각적 유사성, 그리고 더 근본적으로 **IDM 학습이 직접적인 policy 학습보다 본질적으로 표본 효율적일 수 있다**는 점이다(§2.1). 실패 역시 action 추출이 아니라 영상 예측 오류에서 주로 나왔다.
+논문은 이 효율의 이유로 두 가지를 든다. 두 embodiment의 시각적 유사성, 그리고 더 근본적으로 **IDM 학습이 직접적인 policy 학습보다 본질적으로 표본 효율적일 수 있다**는 점이다(2.1절). 실패 역시 action 추출이 아니라 영상 예측 오류에서 주로 나왔다.
 
 다만 이 결과는 **정량 표 없이 Fig. 12의 정성 결과로만** 제시된다. "zero-shot 일반화 유지"도 새 동작이 아니라 물체 수준 일반화에 대한 관찰이다.
 
@@ -456,7 +456,7 @@ AgiBot으로 사전학습한 체크포인트를 새 로봇(YAM)의 55개 traject
 > ### ⚠️ 팩트체크 — Ablation을 읽을 때 주의할 점
 >
 > - **HTML과 PDF의 불일치.** arXiv HTML 판 Table 4는 VLA 행을 50%로 표시하지만, 본문과 PDF는 0%다. HTML 변환 오류로 보인다.
-> - **"scaling"의 근거는 두 점이다.** 5B와 14B, 그것도 PnP Easy 한 범주다. 논문도 §6에서 scaling law의 부재를 인정한다.
+> - **"scaling"의 근거는 두 점이다.** 5B와 14B, 그것도 PnP Easy 한 범주다. 논문도 6절에서 scaling law의 부재를 인정한다.
 > - **5B 백본의 정체가 불분명하다.** 논문은 "Wan2.1-I2V-5B-480P"라고 쓰지만, Wan2.1의 공식 체크포인트는 1.3B와 14B이고 5B는 Wan2.2-TI2V-5B(압축률이 다른 VAE 사용)에 있다. 후자라면 크기 비교에 모델 계열의 차이가 섞인다.
 
 ---
@@ -515,9 +515,9 @@ DreamZero는 여러 계보의 교차점에 있다.
 **추가로 짚을 지점**
 
 - **평가 설계** — in-house 실로봇 평가, 부분 점수 지표, 태스크당 8 rollout이다. AgiBot 데이터가 아직 공개되지 않아 재현은 DROID 경로로만 가능하다.
-- **핵심 설계의 미검증** — 단일 모델 vs 분리형 모델(§3.1), GT 관측 주입의 기여도(§3.3) 모두 떼어낸 ablation이 없다.
+- **핵심 설계의 미검증** — 단일 모델 vs 분리형 모델(3.1절), GT 관측 주입의 기여도(3.3절) 모두 떼어낸 ablation이 없다.
 - **Embodiment gap의 폭** — few-shot 적응의 두 로봇은 모두 bimanual parallel gripper다. 형태가 크게 다른 로봇으로의 적응은 검증되지 않았다.
-- **수치 해석** — abstract의 "2×"는 §5.2, 전이 실험의 범위는 §5.3의 팩트체크 참조.
+- **수치 해석** — abstract의 "2×"는 5.2절, 전이 실험의 범위는 5.3절의 팩트체크 참조.
 
 ---
 

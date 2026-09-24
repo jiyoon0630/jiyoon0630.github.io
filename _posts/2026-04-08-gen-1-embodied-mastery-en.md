@@ -52,7 +52,7 @@ The original sharpens what this definition means by contrast with industrial rob
 
 > Without large-scale teleoperation or simulation data, with only about 1 hour of robot data per task, can a general model cross all three walls at once?
 
-§2 dissects what the three walls are, and §3 follows how GEN-1's components target each wall. §3.6 gathers the three walls back into one table.
+Section 2 dissects what the three walls are, and Section 3 follows how GEN-1's components target each wall. Section 3.6 gathers the three walls back into one table.
 
 ---
 
@@ -93,7 +93,7 @@ The human arm and the robot arm differ, but the tip that touches the object is t
 >
 > The pretraining corpus and the robot data share **the same action vocabulary**. In LLM terms, it is like aligning the pretraining corpus and the SFT data to use the same tokenizer. Just as transfer between corpora with different tokenizers is hard, if the action spaces differ, human data does not lead directly to robot actions.
 >
-> So the gap that one hour of robot data fills is not the action vocabulary but **the difference in bodies**: the arm's kinematics and reach, dynamics, camera placement, and the shift in observation distribution as a robot arm appears in view instead of a human arm. In the original's words, adapting to a new task is a process of learning the embodiment and the task **both for the first time, at the same time**. The size of this one hour is measured in §3.2.
+> So the gap that one hour of robot data fills is not the action vocabulary but **the difference in bodies**: the arm's kinematics and reach, dynamics, camera placement, and the shift in observation distribution as a robot arm appears in view instead of a human arm. In the original's words, adapting to a new task is a process of learning the embodiment and the task **both for the first time, at the same time**. The size of this one hour is measured in Section 3.2.
 
 Was this collection network called by the same name in the GEN-0 post?
 
@@ -111,7 +111,7 @@ $$L(D)=\left(\frac{D_c}{D}\right)^{\alpha_D}$$
 - $L(D)$ — downstream validation error after fine-tuning with a fixed post-training budget
 - $D_c$, $\alpha_D$ — a constant and exponent fitted per task
 
-GEN-0 says this equation predicts "how much pretraining data is needed to reach a given error" and "how much task data can be saved by increasing pretraining data." It is a claim that the task-data amount, the meta-axis of §1.2, can be bought with pretraining scale.
+GEN-0 says this equation predicts "how much pretraining data is needed to reach a given error" and "how much task data can be saved by increasing pretraining data." It is a claim that the task-data amount, the meta-axis of Section 1.2, can be bought with pretraining scale.
 
 On the model-size side, there was a threshold.
 
@@ -129,7 +129,7 @@ GEN-0 later scaled beyond 10B. But ossification is a phenomenon known in the LLM
 >
 > Where it was observed differs too. In the LLM literature the term was used in a pretraining → fine-tuning setting, but GEN-0 distinguishes for itself that it observed ossification-type behavior in **zero-shot generalization during pure pretraining**.
 
-Seen in this frame, the improvements GEN-1 speaks of split into two kinds: **moving down the curve** (more data and compute) and **shifting the curve** (lower error at the same compute). The original claims to have done both (§3.1).
+Seen in this frame, the improvements GEN-1 speaks of split into two kinds: **moving down the curve** (more data and compute) and **shifting the curve** (lower error at the same compute). The original claims to have done both (Section 3.1).
 
 ### 2.3 What Wall 2 really is ⓵ — imitation learning cannot get faster than the demonstrations
 
@@ -143,7 +143,7 @@ $$\mathcal{L}_{\text{BC}}(\theta)=-\,\mathbb{E}_{(o,a)\sim\mathcal{D}_{\text{dem
 
 The optimum of BC is to **replicate the demonstrator's action distribution as is**. If the demonstrations are slow, the policy is slow. And teleop demonstrations are structurally slow. The original points out that teleop produces slower, less flexible data because of the lack of force feedback, communication latency and a restricted field of view.
 
-Here the data engine of §2.1 yields its first advantage. With a wearable device, a person feels the object's forces directly and moves at their own pace. The pretraining prior itself carries the dynamics of motion faster than teleop. But this, too, only replicates the ceiling of "human speed." Then what produces a policy faster than the demonstrations?
+Here the data engine of Section 2.1 yields its first advantage. With a wearable device, a person feels the object's forces directly and moves at their own pace. The pretraining prior itself carries the dynamics of motion faster than teleop. But this, too, only replicates the ceiling of "human speed." Then what produces a policy faster than the demonstrations?
 
 > ### 💡 The discount factor itself is a speed reward
 >
@@ -157,7 +157,7 @@ Here the data engine of §2.1 yields its first advantage. With a wearable device
 >
 > For the same success, the smaller $T$ is, the larger $\gamma^T$ is. Even without a separate reward for speed, **finishing fast is itself a higher return**. The BC objective has no such term. BC learns to move "like the demonstrator"; RL learns to move "better."
 
-This is why GEN-1 names learning from experience as the first factor behind speed (§3.3).
+This is why GEN-1 names learning from experience as the first factor behind speed (Section 3.3).
 
 ### 2.4 What Wall 2 really is ⓶ — speed up, and physics and reasoning become bottlenecks together
 
@@ -188,11 +188,11 @@ $$\Delta x\approx v\cdot d$$
 
 Move 3× faster at the same latency and the state change in between is 3× too. Add motion blur and the observation the model sees is itself blurred. The demand for reactivity grows in proportion to speed.
 
-Existing VLAs handle this with **action chunking**: sample $H$ steps of actions at once, execute them open-loop, and compute the next chunk in the meantime. But until the next chunk arrives, the robot must execute a stale plan or stop and wait. GEN-0 explicitly named two existing solutions to this problem and distinguished itself from them. That comparison comes in §3.5.
+Existing VLAs handle this with **action chunking**: sample $H$ steps of actions at once, execute them open-loop, and compute the next chunk in the meantime. But until the next chunk arrives, the robot must execute a stale plan or stop and wait. GEN-0 explicitly named two existing solutions to this problem and distinguished itself from them. That comparison comes in Section 3.5.
 
 ### 2.5 What Wall 3 really is — the same goal, different means
 
-Improvisation is vague from its very definition. Translating the William James definition of §1.2 into the language of policies reduces the vagueness. `[Inference]` Suppose there are several strategies that achieve one goal, and decompose the policy into strategy selection and strategy execution.
+Improvisation is vague from its very definition. Translating the William James definition of Section 1.2 into the language of policies reduces the vagueness. `[Inference]` Suppose there are several strategies that achieve one goal, and decompose the policy into strategy selection and strategy execution.
 
 $$\pi(a\mid s,g)=\sum_{\sigma\in\Sigma(g)}p(\sigma\mid s,g)\,\pi(a\mid s,g,\sigma)$$
 
@@ -208,7 +208,7 @@ This decomposition demands two things.
 - **Multimodality** — the prior must know several strategies for the same goal.
 - **Judging physical feasibility** — it must know which strategy is physically possible in which state. The original calls this **physical commonsense** and names it a necessary condition for improvisation.
 
-Multimodality connects to GEN-0's data analysis in §3.3, and behavior matching this decomposition exactly is observed in §5.3.
+Multimodality connects to GEN-0's data analysis in Section 3.3, and behavior matching this decomposition exactly is observed in Section 5.3.
 
 ---
 
@@ -228,7 +228,7 @@ And it says it is more accurate to call GEN-1 a **system** than a model. Just as
 
 ### 3.1 Pretraining — from scratch, without a VLM
 
-The original says the pretraining improvements shifted the compute-efficiency curve itself — of the two kinds of improvement distinguished in §2.2, the **curve-shifting kind**. The specific techniques are not disclosed.
+The original says the pretraining improvements shifted the compute-efficiency curve itself — of the two kinds of improvement distinguished in Section 2.2, the **curve-shifting kind**. The specific techniques are not disclosed.
 
 What is disclosed is the direction. According to a follow-up post five days after the announcement (Going Beyond World Models & VLAs), about 99% of GEN-1's parameters were trained from scratch. That post defines GEN-1 as neither a VLM with robot actions bolted on nor merely a world model, but a native foundation model for physical interaction. Most VLAs stand on a pretrained VLM; why did GEN-1 throw that away?
 
@@ -244,7 +244,7 @@ What the remaining ~1% is (a pretrained text encoder? a vision encoder?) is not 
 
 ### 3.2 Post-training — what one hour means
 
-According to the original, every result presented was produced with about 1 hour of robot data. Since pretraining has no robot data, during this hour the model learns the body difference seen in §2.1 and the task both for the first time, at the same time. In some tests it also matched performance with 10× less task data and fine-tuning steps than GEN-0.
+According to the original, every result presented was produced with about 1 hour of robot data. Since pretraining has no robot data, during this hour the model learns the body difference seen in Section 2.1 and the task both for the first time, at the same time. In some tests it also matched performance with 10× less task data and fine-tuning steps than GEN-0.
 
 Adaptation speed to a new body has been a theme since GEN-0. According to the GTC 2026 demo post, GEN-0 ran a live demo on a mobile manipulator that had not existed before (a UR7e arm + a MiR base) after only a few days of preparation, using no on-site data from the exhibition floor.
 
@@ -260,7 +260,7 @@ How the one hour of data was collected (teleop or not) and the exact amount per 
 
 ### 3.3 Learning from experience — the mechanism for going beyond the demonstrations
 
-As previewed in §2.3, the original names learning from experience as the first factor that made the speed possible. And it says GEN-1 finishes tasks **faster than the demonstrations**, reacting to novel object physics at that speed. Since BC alone cannot exceed demonstration speed, this claim itself is indirect evidence that RL contributed substantially. `[Assessment]`
+As previewed in Section 2.3, the original names learning from experience as the first factor that made the speed possible. And it says GEN-1 finishes tasks **faster than the demonstrations**, reacting to novel object physics at that speed. Since BC alone cannot exceed demonstration speed, this claim itself is indirect evidence that RL contributed substantially. `[Assessment]`
 
 Then, given a pretrained model, can you just put RL on top of any model? RL reweights the good ones among the samples the policy draws. A policy with no alternatives to draw has nothing to reweight.
 
@@ -278,7 +278,7 @@ Then, given a pretrained model, can you just put RL on top of any model? RL rewe
 >
 > GEN-0's observation is this: a model with both low prediction error and low reverse KL favors SFT, and **a model with high prediction error but low reverse KL has a multimodal distribution and can help post-training RL.** It means the samples, though far from the single ground truth, stay within valid modes.
 >
-> It is the same structure as the observation in the RLVR literature on the LLM side: the base model's sample diversity (pass@k) sets how much room RL has to push up. I read it as a signal that GEN-0 was already designing its pretraining mix with RL in mind. `[Assessment]` And this multimodality is the same as the condition for $\Sigma(g)$ to have multiple elements in §2.5.
+> It is the same structure as the observation in the RLVR literature on the LLM side: the base model's sample diversity (pass@k) sets how much room RL has to push up. I read it as a signal that GEN-0 was already designing its pretraining mix with RL in mind. `[Assessment]` And this multimodality is the same as the condition for $\Sigma(g)$ to have multiple elements in Section 2.5.
 
 The RL algorithm, reward design, on/off-policy choice and real-robot interaction time are not disclosed.
 
@@ -288,7 +288,7 @@ The original mentions this element only in the Looking Ahead section, alongside 
 
 ### 3.5 Inference — Harmonic Reasoning and a new paged attention
 
-Back to the problem left open in §2.4. The original names the "evolution" of the Harmonic Reasoning approach as the second factor behind speed.
+Back to the problem left open in Section 2.4. The original names the "evolution" of the Harmonic Reasoning approach as the second factor behind speed.
 
 As defined in the GEN-0 post, Harmonic Reasoning is a way of training the model to **think and act at the same time**. Streams of sensing tokens and action tokens interlock asynchronously in continuous time, and GEN-0 claims that thanks to this it can scale to very large models without a System1-System2 structure or inference-time guidance. GEN-0's camera-kit assembly demo (inserting a cloth, folding a tray, peeling off plastic, closing a box, throwing away the plastic) was carried out within a single harmonic reasoning stream, with no explicit notion of subtasks.
 
@@ -322,13 +322,13 @@ The original mentions one more thing here: that it invented **a new form of page
 
 ### 3.6 Gathering the three walls back
 
-As previewed in §1.3, mapping the three walls to GEN-1's mechanisms gives the following.
+As previewed in Section 1.3, mapping the three walls to GEN-1's mechanisms gives the following.
 
 | Wall | Mechanism GEN-1 applies | Sections | Disclosure level |
 |---|---|---|---|
-| ⛔ Wall 1 — the data cost of reliability | 500K+ h wearable-device pretraining + ~1 h per task + RL | §2.1, §3.1, §3.2 | data scale only |
-| ⛔ Wall 2 — speed | RL (beyond demos) + Harmonic Reasoning and paged attention + fast human-motion prior | §2.3, §3.3, §3.5 | names only |
-| ⛔ Wall 3 — improvisation | physical commonsense and multimodality of strategies emerging from large-scale interaction pretraining | §2.5, §3.3 | qualitative video only |
+| ⛔ Wall 1 — the data cost of reliability | 500K+ h wearable-device pretraining + ~1 h per task + RL | Sections 2.1, 3.1, 3.2 | data scale only |
+| ⛔ Wall 2 — speed | RL (beyond demos) + Harmonic Reasoning and paged attention + fast human-motion prior | Sections 2.3, 3.3, 3.5 | names only |
+| ⛔ Wall 3 — improvisation | physical commonsense and multimodality of strategies emerging from large-scale interaction pretraining | Sections 2.5, 3.3 | qualitative video only |
 
 What stands out is that three mechanisms overlap on Wall 2. Speed is a problem that comes out only when all three layers — data (prior), training (RL) and execution (inference) — are solved. Conversely, for Wall 3 nothing is specified beyond its having emerged from large-scale pretraining.
 
@@ -350,7 +350,7 @@ The original's own explanation is twofold: further scaling of data and compute, 
 
 The original likens GEN-0 → GEN-1 to GPT-2 → GPT-3 and emphasizes **scale**. But the actual list of components — RL, human guidance, inference system — is closer to the **post-training and systematization** of the GPT-3 → ChatGPT period. The original does not separate out how much scale and post-training each contributed to the 99% figure. `[Assessment]`
 
-One more thing. The original says improvisation also raises reliability and speed. If the model recovers on its own from an attempt that would have ended in failure, that attempt turns into a success. This link will be needed again when reading the reliability metrics in §5.1.
+One more thing. The original says improvisation also raises reliability and speed. If the model recovers on its own from an attempt that would have ended in failure, that attempt turns into a success. This link will be needed again when reading the reliability metrics in Section 5.1.
 
 ---
 
@@ -382,7 +382,7 @@ But set the two columns of this table side by side and a question arises. If box
 > |---|---|---|---|---|
 > | $0.99^N$ | 0.42 | 0.37 | 0.13 | $1.4\times10^{-8}$ |
 >
-> 200 in a row is not impossible, but not common either. The most natural reading is that the two metrics are defined differently. As seen in §4, if the model **recovers on its own** from a failed attempt, the run without intervention can continue even though the success rate counts it as a failure. Block packing, run 1,800 times in a row, is a task with no reported success rate. The definitions of the two metrics and the number of trials are not in the text.
+> 200 in a row is not impossible, but not common either. The most natural reading is that the two metrics are defined differently. As seen in Section 4, if the model **recovers on its own** from a failed attempt, the run without intervention can continue even though the success rate counts it as a failure. Block packing, run 1,800 times in a row, is a task with no reported success rate. The definitions of the two metrics and the number of trials are not in the text.
 >
 > For reference, 99 successes out of 100 gives a 95% confidence interval (Wilson) of about 94.5%–99.8%.
 
@@ -398,7 +398,7 @@ The measured span runs from the moment the box is first touched for folding to t
 | Box folding (Fig. 4) | π\*0.6 (similar but different box) | similar to about 34 s | — | not directly comparable |
 | Phone packing | GEN-0 | not stated (about 43 s back-calculated from the multiple) | 15.5 s | 2.8x |
 
-The three speed factors the original names — learning from experience, the evolution of Harmonic Reasoning, and pretraining data carrying fast human motion — correspond exactly to the Wall 2 row of §3.6. Then what exactly is the headline's "about 3× over SOTA" measured against?
+The three speed factors the original names — learning from experience, the evolution of Harmonic Reasoning, and pretraining data carrying fast human motion — correspond exactly to the Wall 2 row of Section 3.6. Then what exactly is the headline's "about 3× over SOTA" measured against?
 
 > ### ⚠️ The basis for "about 3× over SOTA" differs by task
 >
@@ -406,7 +406,7 @@ The three speed factors the original names — learning from experience, the evo
 
 ### 5.3 Improvisation
 
-The decomposition of §2.5 is observed as is in the videos. In long-running auto-parts kitting, when a washer slips and is not grasped properly, the model picks one of three strategies depending on the situation.
+The decomposition of Section 2.5 is observed as is in the videos. In long-running auto-parts kitting, when a washer slips and is not grasped properly, the model picks one of three strategies depending on the situation.
 
 | Strategy $\sigma\in\Sigma(g)$ | Action |
 |---|---|
@@ -426,7 +426,7 @@ However, the training distribution is not disclosed, so "outside the distributio
 
 **Data collection.** Collection with a wearable pincer follows the same principle as the UMI line of work in academia. The difference is scale. The original does not cite UMI. `[Assessment]`
 
-**Alignment.** The original cites Inference-Time Policy Steering (Wang et al., 2025) and shares its concern that the definition of success in robotics differs from user to user (§7).
+**Alignment.** The original cites Inference-Time Policy Steering (Wang et al., 2025) and shares its concern that the definition of success in robotics differs from user to user (Section 7).
 
 The closest point of comparison is the π family, whose speed the original compares directly. Given the same box folding, where do the two lines diverge?
 
@@ -454,7 +454,7 @@ The closest point of comparison is the π family, whose speed the original compa
 
 What the original puts the most effort into in its limitations section is **embodied alignment**. Emergent improvised behavior is a strength, so why is it classed as a limitation? Large-scale interaction pretraining produces behaviors such as shaking a bag to settle its contents, rearranging misplaced items, or reaching toward a falling object. These come with real physical consequences. In robotics the definition of success is not universal; it differs by task, workflow and user, and **what not to do** can matter as much as what to do. Recovery behavior that was never explicitly trained is a strength but at the same time a liability.
 
-`[Inference]` In terms of the decomposition of §2.5, alignment is the problem of restricting $p(\sigma\mid s,g)$ to the subset of $\Sigma(g)$ that the user permits. The more improvisation grows, the wider $\Sigma(g)$ becomes, and the more important it becomes to specify the permitted range. The original says it will improve ways of precisely steering toward the behavior users want, but does not disclose its own methodology.
+`[Inference]` In terms of the decomposition of Section 2.5, alignment is the problem of restricting $p(\sigma\mid s,g)$ to the subset of $\Sigma(g)$ that the user permits. The more improvisation grows, the wider $\Sigma(g)$ becomes, and the more important it becomes to specify the permitted range. The original says it will improve ways of precisely steering toward the behavior users want, but does not disclose its own methodology.
 
 **Further points to raise** `[Assessment]`
 
@@ -478,10 +478,10 @@ Finally, here is what to ask when reading an announcement of this kind, which cl
 
 | What to ask | Why |
 |---|---|
-| Definitions of success rate and of continuous runs without intervention, and the number of trials | the two metrics measure different things (§5.1) |
+| Definitions of success rate and of continuous runs without intervention, and the number of trials | the two metrics measure different things (Section 5.1) |
 | Mean time between interventions | corresponds directly to field operating cost |
-| Whether "N hours of robot data per task" includes RL interaction | the denominator of the data-efficiency claim changes (§7) |
-| The measured span and comparison environment of speed comparisons | the comparison target and measurement conditions may differ by task (§5.2) |
+| Whether "N hours of robot data per task" includes RL interaction | the denominator of the data-efficiency claim changes (Section 7) |
+| The measured span and comparison environment of speed comparisons | the comparison target and measurement conditions may differ by task (Section 5.2) |
 
 ---
 
