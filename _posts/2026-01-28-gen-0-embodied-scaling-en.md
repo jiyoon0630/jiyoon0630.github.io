@@ -196,27 +196,7 @@ Moving and processing data is as much a problem as collecting it. According to t
 
 6.85 years is about 60K hours. So one pass over all 270K hours takes about 4.5 days. Measured by throughput as well as data volume, it is an LLM-class pipeline.
 
-The blog calls this data an in-house robotics dataset, and describes the means of collection as "a global hardware network and thousands of data collection devices and robots." Read literally, this is data collected with robots. Is it really?
-
-> ### ⚠️ Fact check: there is no robot data in the pretraining data
->
-> The follow-up post, GEN-1 (2026-04), states explicitly that the base models of GEN-0 and GEN-1 were trained **without robot data**, on activity data from people wearing low-cost wearable devices. Robots appear for the first time at the post-training stage. The GEN-1 post itself explains that when adapting to a new task, the model is meeting that robot embodiment and the task for the first time simultaneously.
->
-> So "robotics dataset" in the GEN-0 post should be read in the broad sense of data used for robot learning. The GEN-0 post alone does not reveal this.
-
-Knowing this changes the meaning of every result that follows. Then what exactly is GEN-0's "robot scaling law" a law about?
-
-> ### 📌 GEN-0's scaling law is a scaling law of human → robot transfer
->
-> | | LLM | GEN-0 |
-> |---|---|---|
-> | Pretraining data | Web text | Physical interaction collected by people with wearable devices |
-> | Post-training data | Domain SFT data | Robot task data (※) |
-> | Gap between the two | Distribution shift | Distribution shift + **embodiment gap** |
->
-> ※ Per GEN-1. What form GEN-0's post-training data takes is not disclosed.
->
-> In short, GEN-0's scaling law is a law about the process of "pretraining on human physical-interaction data and then transferring through robot post-training." It reproduces the LLM picture of "web-text pretraining → domain SFT" with an embodiment gap in between. The blog's statement that GEN-0 was designed from the start to work on many robots (tested on 6DoF, 7DoF and 16+DoF semi-humanoids) can be understood from this angle too. Since pretraining contained no robots, every robot is an unseen embodiment. However, neither the GEN-0 nor the GEN-1 post discloses what action representation human hand motion is converted into, or how it is aligned with robots.
+The blog calls this data an in-house robotics dataset, and describes the means of collection as "a global hardware network and thousands of data collection devices and robots." What devices recorded what, and in what representation the actions were stored, is not disclosed.
 
 ### 3.2 Harmonic Reasoning (Wall 2)
 
@@ -341,20 +321,11 @@ Meanwhile, the blog's headline is "a phase transition at 7B." But can the disclo
 
 Figure 3 is the final link in getting over Wall 3, because it is evidence that the trend seen in the offline proxy carries over to physical success rates. Then what level is GEN-0's actual success rate? Can "up to 99%" be read as a representative value?
 
-> ### ⚠️ Fact check: 99% is a peak, and GEN-0's average surfaces in the follow-up post
+> ### ⚠️ Fact check: 99% is a peak
 >
-> The 99% in the body is a peak for particular cases; no average success rate is given. Numbers for reference are in the follow-up GEN-1 post: the results of fine-tuning the November 2025 version of GEN-0 on three tasks.
->
-> | Task | from scratch (no pretraining) | GEN-0 (2025-11) | GEN-1 |
-> |---|---|---|---|
-> | Robot vacuum servicing | 2% | 50% | 99% |
-> | Box folding | 13% | 81% | 99% |
-> | Phone packing | 42% | 62% | 99% |
-> | **Average** | **19%** | **64%** | **99%** |
->
-> The tasks differ, so this cannot be compared directly with Figure 3. Still, the table shows two things together: 99% is not GEN-0's typical level, and the effect of pretraining (19% → 64%) is real.
+> The 99% in the body is a peak for particular cases; no average success rate is given. What Figure 3 shows is the trend that success rate rises with more pretraining data, not GEN-0's typical success rate.
 
-The GEN-0 post does not say whether the post-training data (5.6 hours, 550+ hours) is robot teleoperation data or wearable-device data.
+The GEN-0 post does not say how the post-training data (5.6 hours, 550+ hours) was collected.
 
 ### 5.2 Power law (Figure 4)
 
@@ -513,13 +484,12 @@ The blog treats related work only at the level of footnotes. GEN-0's position be
 
 | Lineage | Representative work | Relation to GEN-0 |
 |---|---|---|
-| VLM-transfer RFMs | PaLM-E, RT-2 | Opposing stance. According to the GEN-1 post, the team that built this first generation redesigned it themselves |
+| VLM-transfer RFMs | PaLM-E, RT-2 | Opposing stance. The recipe GEN-0 says is missing something |
 | LLM scaling laws | Kaplan, Hernandez, Springer | Analysis frame carried over as is |
 | Real-time execution | Figure Helix (S1/S2), RTC | What Harmonic Reasoning aims to differentiate from |
 | Hierarchical long-horizon tasks | Hi Robot (Shi et al., 2025) | A design where a high-level VLM explicitly hands down language subtasks. GEN-0 conversely puts forward a single stream with no explicit subtasks |
-| Human wearable data collection | UMI and other handheld collection devices | Per GEN-1, GEN-0's actual data lineage, but the GEN-0 post does not state this position |
 
-The introduction said GEN-0 sets out to show a robot scaling law "for the first time." The follow-up GEN-1 post indeed writes that GEN-0 was the first to show that scaling laws exist in robots. Is it really the first?
+The introduction said GEN-0 sets out to show a robot scaling law "for the first time." Is it really the first?
 
 > ### 🔗 Lin et al. (2024): an earlier robot data scaling study
 >
@@ -547,7 +517,7 @@ Limitations the blog itself acknowledges, together with points worth flagging wh
 **Further points to note**
 
 - **Implementation undisclosed**: the blog itself names architecture, training procedure and data engine as requirements for scaling, but only the data engine's scale is disclosed. Harmonic Reasoning has only a name and a direction (§3.2).
-- **The blank in human → robot transfer**: from the GEN-0 post alone one cannot even tell that the pretraining data came from human wearable devices. The action representation and embodiment alignment method do not appear in the follow-up post either (§3.1).
+- **Data composition undisclosed**: the collection devices, action representation and embodiment alignment method of the pretraining data are not disclosed (§3.1).
 - **Thin evidence on success rates**: the power law is on validation error; for success rate there is only a trend and a peak of 99% (§5.1, §5.2).
 - **Cross-embodiment**: only a mention of testing on 6DoF, 7DoF and 16+DoF semi-humanoid robots, with no numbers. It is a property many RFMs claim in common, so it is hard to see as a differentiator unique to GEN-0.
 - **Statistics in Table 1**: the differences are small and there are no confidence intervals (§5.3).
@@ -561,7 +531,6 @@ GEN-0's real contribution does not lie in any particular architecture. It lies i
 For someone with an LLM or diffusion background, this post reads unusually familiarly.
 
 - **The analysis tools all came from LLMs**: Kaplan's power law, Hernandez's transfer scaling, forward/reverse KL. What is new is not the tools but the x-axis that made them usable.
-- **The physical version of "web text → SFT"**: in that the pretraining data is human wearable data rather than robot data, GEN-0 reproduces the LLM picture with an embodiment gap in between.
 - **Table 1 is the robot version of data-mixture research**: except that the ingredients of the mixture are operational units — "which partner collected it, and how." Data-collection operations themselves become an experimental variable.
 - **Harmonic Reasoning is the physical version of full-duplex**: a direction toward simultaneously flowing streams rather than turn-taking. If the implementation is disclosed, it is the first thing to check.
 
@@ -589,4 +558,4 @@ Finally, if you are **on the receiving end of this power law offered as a data-e
 | **data foundry** | An external data-collection partner |
 | **Class 1 / 2 / 3** | Task-specific / intermediate / do-anything-style collection methods, respectively |
 
-**Original**: [GEN-0 (Generalist AI Blog, 2025-11-04)](https://generalistai.com/blog/gen-0) · **Follow-up**: [GEN-1 (2026-04-02)](https://generalistai.com/blog/gen-1) · **Related**: [Lin et al., arXiv:2410.18647](https://arxiv.org/abs/2410.18647)
+**Original**: [GEN-0 (Generalist AI Blog, 2025-11-04)](https://generalistai.com/blog/gen-0) · **Related**: [Lin et al., arXiv:2410.18647](https://arxiv.org/abs/2410.18647)
