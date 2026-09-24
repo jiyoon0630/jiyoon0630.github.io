@@ -62,14 +62,14 @@ World Model post, whose intro says it follows "앞서 정리했던 RFM의 발전
 
 - Site: https://jiyoon0630.github.io/ — Jekyll, deployed from `main` by
   `.github/workflows/pages.yml` on every push.
-- 18 notes: DreamZero, PLD, Hi Robot, Dyna-2, Cosmos 3, π0.7, ACT-2 (all ko/en) as
+- 20 notes: GEN-0, DreamZero, PLD, Hi Robot, Dyna-2, Cosmos 3, π0.7, ACT-2 (all ko/en) as
   paper reviews, plus
   Actuate 2026 (ko/en) and World Model (ko/en) as **tech reviews**.
 - Note dates are **posting dates**, in America/Los_Angeles (`_config.yml` sets
   the timezone). A tech review is dated by its source's publication date. A
   paper's own date lives in `paper_date` and shows only on the note page.
 - Some notes carry dates she chose rather than the day they were posted
-  (π0.7: 2026-04-19, DreamZero: 2026-02-21). The 2026-07-10 "Launched this
+  (π0.7: 2026-04-19, DreamZero: 2026-02-21, GEN-0: 2026-01-28, ACT-2: 2026-07-18). The 2026-07-10 "Launched this
   site" news item was removed at her request.
 - Pages: home, notes, publications, projects, CV — all data-driven from `_data/`.
 - The old `jiyoon0630/paper-reivew` repo is deleted; `404.html` carries the
@@ -107,7 +107,8 @@ World Model post, whose intro says it follows "앞서 정리했던 RFM의 발전
   Kramdown drops the backslash in `\{` inside inline math; use `\lbrace`.
 - Cosmos 3 paper review published (ko/en), dated 2026-06-20 at her request.
   Kramdown turns `}_{ ... }_{` inside inline `$...$` into `<em>`; escaped as `\_`.
-- DreamZero paper review posted (KO + EN), dated 2026-02-21 at her request.
+- GEN-0 (dated 2026-01-28) and DreamZero (2026-02-21) paper reviews posted,
+  KO + EN, dates at her request.
 - Voice profile filled in for Korean: 12 traits from two documents.
 - CLAUDE.md now records her standing redaction decisions and the currency-and-
   MathJax method.
