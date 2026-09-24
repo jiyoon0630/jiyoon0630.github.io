@@ -48,6 +48,14 @@ _Last updated: 2026-09-24_
 
 ## Waiting on the owner
 
+- **Korean voice analysis done (2026-09-24), conversion not started.** Target
+  profile built from her 4 sources (22,349 words) into the gitignored
+  `.claude/target-ko.json`; it needs `sources/` to rebuild. The 4 tech reviews
+  made from her documents already match her (100% 합쇼체, em dash 1.8–3.3/1k).
+  The other 16 Korean posts are Tier B: ~1% 합쇼체, em dash 10–26/1k, ~을/를
+  통해 0, verdict hedges 0, sentence mean ~12 vs her 16–21, paired contrast
+  0.02/1k vs 0.85. Waiting on her: scope, whether paper reviews take 합쇼체,
+  and a pilot post.
 - **More tech-review sources** — sanitize, walk her through the report, post the
   KO/EN pair only after she confirms. CLAUDE.md lists her standing decisions.
 - **The voice profile is dormant.** Korean is established from three documents;

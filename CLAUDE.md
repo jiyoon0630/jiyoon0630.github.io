@@ -174,8 +174,9 @@ an invented neutral example, and the Claude default it displaces.
 - **Tier A** = text she wrote. She supplies these documents. Read them for voice
   and add entries. Never edit them, never quote them into the profile — it is a
   public file.
-- **Tier B** = text Claude wrote — all seven notes currently on the site, both
-  languages, and anything Claude drafts next.
+- **Tier B** = text Claude wrote — every note on the site except the tech
+  reviews made from her own documents (RFM, World Model, Actuate 2026, Claude
+  Agent Skills), all English translations, and anything Claude drafts next.
 - Tech-review sources are Tier A. The `sanitize-tech-review` subagent reports
   voice observations from the *pre-sanitization* text on every run; merge those
   into the profile. The subagent never edits the profile itself.
