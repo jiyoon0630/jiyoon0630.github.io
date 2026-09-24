@@ -142,13 +142,6 @@ presentations:
     org: "Poster presentation and demo booth, LG Tech Conference (internal), Seoul"
     org_ko: "포스터 발표 및 데모 부스, LG Tech Conference(사내), 서울"
 
-awards:
-  - period: "2022"
-    title: "Best Practice Award"
-    title_ko: "Best Practice 상"
-    org: "LG CNS internal process-improvement contest — MLOps pipeline prototype"
-    org_ko: "LG CNS 사내 프로세스 개선 공모전 — MLOps 파이프라인 프로토타입"
-
 press:
   - period: "2026"
     title: "\"Getting to Know: LG CNS Silicon Valley AI & Robotics R&D Center\""
