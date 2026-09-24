@@ -25,6 +25,21 @@
     - label: Press
       url: "https://www.mk.co.kr/en/it/12005323"
 
+- name: "Tool-use reliability for an enterprise LLM agent"
+  period: "2025"
+  tagline: "Fine-tuning an LLM to pick the right tools and chain their outputs across turns."
+  description: >-
+    Built with Cohere for an LG corporate-management agent: SFT on tool-call
+    trajectories plus a chosen/rejected pair pipeline for DPO, with GRPO
+    experimentation, delivering a PoC that contributed to a business win. Also
+    contributed to an agentic evaluation set (~60 business/finance queries requiring
+    retrieval and SQL) for Korean instruction-following and tool use.
+  tags: [Agentic AI, Tool Use, LLM Fine-tuning, DPO]
+  selected: false
+  links:
+    - label: "arXiv (acknowledged)"
+      url: "https://arxiv.org/abs/2606.31648"
+
 - name: "DRAG — generative image AI engine"
   period: "2023 – 2025"
   tagline: "Research-to-product: a personalized image-generation engine shipped as SaaS."
@@ -32,11 +47,27 @@
     Took diffusion personalization from research to a commercial SaaS — feature
     packaging, service site, and patent filing — while migrating the engine across
     three model generations (SD 1.5 → SDXL → FLUX.1) and delivering customer PoCs
-    across digital marketing and UI/UX.
-  tags: [Diffusion, Productization, SaaS]
+    across digital marketing and UI/UX. Alongside it, built a human-preference
+    training pipeline for Hyundai Motor Group's concept-car design PoC: VLM-automated
+    preference labeling and a DPO-trained diffusion model that distills a larger
+    model into a compact deployable one.
+  tags: [Diffusion, Preference Optimization, Productization, SaaS]
   selected: false
   links:
     - label: Press
       url: "https://www.news2day.co.kr/article/20250507500109"
     - label: Video
       url: "https://youtu.be/_hbxNYJ3m6I"
+
+- name: "Retail product recognition at scale"
+  period: "2020 – 2022"
+  tagline: "Metric-learning product recognition that adds new SKUs without retraining."
+  description: >-
+    Scaled GS Retail's product recognition ~10× to ~10K SKUs at 98.0% accuracy with
+    40% faster inference, and reached 95.9% inspection accuracy at LX Pantos.
+    Alongside it, standardized the center's model-development process (data/code
+    versioning, experiment and model tracking, HPO automation); the prototype was
+    selected as an internal Best Practice.
+  tags: [Computer Vision, Metric Learning, MLOps]
+  selected: false
+  links: []
