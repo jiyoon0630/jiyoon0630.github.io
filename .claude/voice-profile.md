@@ -168,7 +168,8 @@ what to convert toward.
   The 번역투 she genuinely avoids: ~의 경우, ~되어지다, heavy ~에 대한.
 - **Evidence:** doc #1 — 2.44/1k (11× the Claude posts); ~의 경우 and ~되어지 at 0.
 - **Claude instead writes:** avoids ~을/를 통해 and reaches for ~로.
-- **Confidence:** solid for doc #1; doc #2 uses it far less (0.59/1k).
+- **Confidence:** solid — doc #1 2.44/1k, doc #4 6.66/1k; doc #2 uses it far
+  less (0.59/1k).
 
 ### Terse parenthetical fragments
 - **Pattern:** a verbless scope note in parentheses fences a claim without
@@ -176,6 +177,14 @@ what to convert toward.
 - **Example (invented):** 전처리 단계는 그대로 유지됩니다. (캐시는 여전히 필요)
 - **Claude instead writes:** a full hedging sentence.
 - **Confidence:** tentative — several instances, clustered in one callout.
+
+### 개조식 endings inside table cells
+- **Pattern:** prose stays 합쇼체, but comparison-table cells switch to
+  noun-final 개조식 endings (~함 / ~있음 / ~가능), usually as `•` bullets.
+- **Evidence:** doc #4, every cell of both comparison tables.
+- **Example (invented):** | 캐시 | • 응답 지연 감소<br>• 메모리 사용량 증가함 |
+- **Claude instead writes:** full ~다 sentences in cells, or bare noun phrases.
+- **Confidence:** tentative — one document.
 
 <details>
 <summary>What to watch for while reading a Tier A document</summary>
@@ -221,9 +230,12 @@ what to convert toward.
 | 1 | Conference report — robotics developer conference, RFM & data trends | KO | 4,100 | 2026-09-18 |
 | 2 | Technical survey — world models, three trends | KO | 6,747 | 2026-09-22 |
 | 3 | Technical explainer — VLA development and training methods | KO | 9,253 | 2026-09-24 |
+| 4 | Tech brief — an LLM agent-building tool, with comparison tables | KO | 2,252 | 2026-09-24 |
 
-All three: AI first draft, her style pass. Counters: **Korean 20,100 words ·
-English 0 words.** Prose traits are recordable from
+#1–#3: AI first draft, her style pass. #4: she confirmed she wrote it (the
+source credits a co-author); drafting process not stated, and it is
+bullet- and table-heavy, so treat its prose numbers as thin. Counters:
+**Korean 22,352 words · English 0 words.** Prose traits are recordable from
 the first document. Statistical traits (density, sentence length) need roughly
 2,000–5,000 words per language before a number means anything.
 

@@ -124,7 +124,7 @@ confidential information. This repo is public, so:
 If the owner hands you internal material directly in chat rather than as a file,
 write it to `sources/` first, then follow the same path.
 
-### Her standing redaction decisions (from three reports — apply by default)
+### Her standing redaction decisions (from four reports — apply by default)
 
 - **Keep:** startup funding amounts, valuations, round dates, "round under
   discussion (reported, unconfirmed)", founder acquisition amounts, and her
@@ -141,6 +141,15 @@ write it to `sources/` first, then follow the same path.
   what her employer should do.
 - **Remove case by case:** a partner company listed where the information could
   only have come from working with them rather than from a public source.
+- **Remove:** concrete findings from a client project even when anonymized
+  (e.g. the actual errors a model made there). **Keep, generalized:** an
+  architecture she built, recast as a hypothetical example ("구성할 수
+  있습니다", not "설계하였습니다") with client, org and scope removed.
+- **Third-party figures** (e.g. from a vendor's blog): keep them, with the
+  caption crediting the source and linking the original page.
+- **Facts that changed after the source date:** leave her text as written and
+  add a `> ### ⚠️ 2026년 9월 기준 업데이트` callout (EN: `Update, <Month Year>`)
+  next to it. Say so when a prediction of hers came true.
 - **Date** a tech review by the source's own publication date.
 - A report may be **co-credited internally but written by her alone** — ask
   which parts are hers before using it as a voice sample, and if a colleague

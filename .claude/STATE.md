@@ -29,9 +29,10 @@ _Last updated: 2026-09-24_
 
 - Site: https://jiyoon0630.github.io/ — Jekyll, deployed from `main` by
   `.github/workflows/pages.yml` on every push.
-- 38 notes, all ko/en. **Paper reviews** (arXiv papers): π₀.₅, DreamZero, PLD,
+- 40 notes, all ko/en. **Paper reviews** (arXiv papers): π₀.₅, DreamZero, PLD,
   Hi Robot, Cosmos 3, π0.7, SAIL, LAPA, RTC, π*0.6 (RECAP). **Tech reviews**: RFM / VLA development (dated
-  2026-04-10), Actuate 2026, World Model, plus the company-blog/report reviews
+  2026-04-10), Claude Agent Skills (dated 2025-11-18), Actuate 2026, World
+  Model, plus the company-blog/report reviews
   GEN-0, GEN-1, GENE-26.5, ACT-2, Dyna-2, DYNA-1. World Model's intro links to RFM.
 - Her rule for `kind`: a review whose source is not an arXiv paper is a
   `tech-review` (tag `Tech-Review`), even when it analyzes a model.
@@ -71,6 +72,11 @@ _Last updated: 2026-09-24_
 
 ## Recently done
 
+- Claude Agent Skills tech review published (ko/en, dated 2025-11-18, her
+  report). Client-project PoC kept only as a generalized hypothetical; the
+  project's real error examples cut; Anthropic blog figures credited with a
+  link; four `⚠️ 2026년 9월 기준 업데이트` callouts for facts that changed
+  after the source date. Her decisions are now in CLAUDE.md.
 - RTC paper review published (ko/en), dated 2026-03-04 at her request. Soft RTC
   (arXiv:2605.25537, postdates it) was cut at her request.
 - LAPA paper review published (ko/en), dated 2026-02-03 at her request.
