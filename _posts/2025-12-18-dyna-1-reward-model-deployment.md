@@ -454,7 +454,7 @@ DYNA-1 이후 "로봇 정책이 자기 경험으로 스스로 개선한다"는 �
 
 > ### 🔗 PLD, π*₀.₆ / RECAP과의 비교 — 판정 신호를 어디서 얻는가
 >
-> | | **DYNA-1** | **[PLD](/notes/pld-self-improving-vla/)** | **π*₀.₆ / RECAP** |
+> | | **DYNA-1** | **[PLD](/notes/pld-self-improving-vla/)** | **[π*₀.₆ / RECAP](/notes/pistar06-recap/)** |
 > |---|---|---|---|
 > | 판정 신호 | 조밀한 progress RM | 희소 이진 성공 보상 | 학습된 V (distributional MC) |
 > | 데이터 구조 | 리셋 없는 연속 스트림을 분절 | 에피소드 단위 | 에피소드 단위 |
@@ -462,7 +462,7 @@ DYNA-1 이후 "로봇 정책이 자기 경험으로 스스로 개선한다"는 �
 > | 사람 개입 | 없음 (주장) | 없음 | 원격조종 교정 포함 |
 > | 공개 수준 | 제품 블로그 (2025-04) | 논문 (arXiv, 2025-10) | 기술 보고서 (2025-11) |
 >
-> 세 접근은 판정 신호의 밀도에서 스펙트럼을 이룬다. [PLD](/notes/pld-self-improving-vla/)는 희소 보상을 그대로 두고 base 정책의 성공 궤적과 대칭 replay로 학습을 가능하게 만든다. RECAP은 value function으로 advantage를 추정해 조건 입력으로 쓴다. DYNA-1은 처음부터 조밀한 progress 신호를 만들고, 그 신호를 스트림 분절에까지 쓴다. 판정 신호가 조밀할수록 리셋 없는 연속 배포에 가깝게 갈 수 있지만, 그만큼 RM의 정확도에 전체 루프가 걸린다(7절).
+> 세 접근은 판정 신호의 밀도에서 스펙트럼을 이룬다. [PLD](/notes/pld-self-improving-vla/)는 희소 보상을 그대로 두고 base 정책의 성공 궤적과 대칭 replay로 학습을 가능하게 만든다. [RECAP](/notes/pistar06-recap/)은 value function으로 advantage를 추정해 조건 입력으로 쓴다. DYNA-1은 처음부터 조밀한 progress 신호를 만들고, 그 신호를 스트림 분절에까지 쓴다. 판정 신호가 조밀할수록 리셋 없는 연속 배포에 가깝게 갈 수 있지만, 그만큼 RM의 정확도에 전체 루프가 걸린다(7절).
 
 ---
 

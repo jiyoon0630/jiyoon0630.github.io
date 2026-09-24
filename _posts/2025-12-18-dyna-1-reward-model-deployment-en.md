@@ -454,7 +454,7 @@ After DYNA-1, work appeared that tackled the same goal — "a robot policy impro
 
 > ### 🔗 Comparison with PLD and π*₀.₆ / RECAP — where the judging signal comes from
 >
-> | | **DYNA-1** | **[PLD](/notes/pld-self-improving-vla-en/)** | **π*₀.₆ / RECAP** |
+> | | **DYNA-1** | **[PLD](/notes/pld-self-improving-vla-en/)** | **[π*₀.₆ / RECAP](/notes/pistar06-recap-en/)** |
 > |---|---|---|---|
 > | Judging signal | Dense progress RM | Sparse binary success reward | Learned V (distributional MC) |
 > | Data structure | Segmented reset-free continuous stream | Episodic | Episodic |
@@ -462,7 +462,7 @@ After DYNA-1, work appeared that tackled the same goal — "a robot policy impro
 > | Human intervention | None (claimed) | None | Includes teleoperated corrections |
 > | Disclosure level | Product blog (2025-04) | Paper (arXiv, 2025-10) | Technical report (2025-11) |
 >
-> The three approaches form a spectrum in the density of the judging signal. [PLD](/notes/pld-self-improving-vla-en/) keeps the sparse reward as is and makes learning possible with the base policy's successful trajectories and symmetric replay. RECAP estimates advantage with a value function and uses it as a conditioning input. DYNA-1 builds a dense progress signal from the start, and uses that signal even for stream segmentation. The denser the judging signal, the closer one can get to reset-free continuous deployment, but the more the whole loop hangs on the RM's accuracy (Section 7).
+> The three approaches form a spectrum in the density of the judging signal. [PLD](/notes/pld-self-improving-vla-en/) keeps the sparse reward as is and makes learning possible with the base policy's successful trajectories and symmetric replay. [RECAP](/notes/pistar06-recap-en/) estimates advantage with a value function and uses it as a conditioning input. DYNA-1 builds a dense progress signal from the start, and uses that signal even for stream segmentation. The denser the judging signal, the closer one can get to reset-free continuous deployment, but the more the whole loop hangs on the RM's accuracy (Section 7).
 
 ---
 

@@ -63,13 +63,13 @@ The paper's hypothesis starts from human learning. People, too, do not learn eve
 
 Putting this hypothesis into practice means getting over three walls.
 
-**⛔ Wall 1 — Coverage of target data.** Data collected directly on the target platform, a mobile manipulator, is about 400 hours across about 100 homes. Medium-sized, perhaps, but far too small to cover what can happen in a new home. And as §1.2 showed, blindly growing it is not the answer.
+**⛔ Wall 1 — Coverage of target data.** Data collected directly on the target platform, a mobile manipulator, is about 400 hours across about 100 homes. Medium-sized, perhaps, but far too small to cover what can happen in a new home. And as Section 1.2 showed, blindly growing it is not the answer.
 
 **⛔ Wall 2 — Heterogeneity of knowledge sources.** The knowledge sources that would help each come in their own format. There are actions from other embodiments, captions, VQA and bboxes from the web, subtask labels attached by people, and human verbal instructions. Their output spaces differ, the robots' degrees of freedom differ, and the levels of abstraction they deal with differ. The paper itself names this heterogeneity as the biggest obstacle.
 
 **⛔ Wall 3 — The dilemma of action representation.** Write actions as discrete tokens and training is fast but inference is slow. Write them as continuous values and they suit real-time inference but training is slow. For a robot that must move at 50Hz, both are half an answer.
 
-Walls 1 and 2 are intuitive. What Wall 3 really is only becomes visible once you know how a VLA handles actions, so §2 builds that background.
+Walls 1 and 2 are intuitive. What Wall 3 really is only becomes visible once you know how a VLA handles actions, so Section 2 builds that background.
 
 ---
 
@@ -137,7 +137,7 @@ Then why not just pick one of the two? In fact π₀ picked flow and π₀-FAST 
 >
 > The paper does not directly analyze why training is faster, but it can be read as follows. With discrete tokens, actions become "just another language" to the VLM, so the pretrained output layer and representations are reused as they are. With flow, by contrast, a randomly initialized module has to learn a regression target in a new space from scratch.
 >
-> On a mobile manipulator that must control 18–19 dimensions at 50Hz, this crossover becomes the unavoidable **Wall 3**. How π₀.₅ solves it is seen in §3.3.
+> On a mobile manipulator that must control 18–19 dimensions at 50Hz, this crossover becomes the unavoidable **Wall 3**. How π₀.₅ solves it is seen in Section 3.3.
 
 ---
 
@@ -166,7 +166,7 @@ Then why not just pick one of the two? In fact π₀ picked flow and π₀-FAST 
 - **post-train** — attaches the action expert and specializes in mobile manipulation.
 - **inference** — first emits the subtask as text, then emits continuous actions conditioned on it.
 
-The data abbreviations (MM, ME, CE, HL, WD, VI) and the meaning of $\alpha$ are defined in turn in §3.3–3.5.
+The data abbreviations (MM, ME, CE, HL, WD, VI) and the meaning of $\alpha$ are defined in turn in Sections 3.3–3.5.
 
 ### 3.1 One model, two levels — hierarchical factorization
 
@@ -194,7 +194,7 @@ There is one design worth noticing here. In the factorization, the low-level dis
 >
 > **⓶ High level — pure text generation.** High-level inference is a problem of producing text from images, so the web's VQA, caption and bbox knowledge is used as is.
 >
-> **⓷ A place for a person to step in.** A person can put commands into the same interface. The verbal-instruction data collection of §3.5 and the human-oracle comparison of §5.5 both use this slot.
+> **⓷ A place for a person to step in.** A person can put commands into the same interface. The verbal-instruction data collection of Section 3.5 and the human-oracle comparison of Section 5.5 both use this slot.
 >
 > That is, the design that cuts off $\ell$ is **the structural solution to Wall 2 (heterogeneity)**. Every knowledge source need not teach everything; each only has to contribute at the level it fits. Seen from agentic AI, it is a structure that puts the planner and executor in one model and uses the subtask string like a tool call.
 
@@ -259,7 +259,7 @@ Looking at this mask, it is easy to feel reassured. VLM-side tokens never see th
 >
 > $$\frac{\partial\mathcal L_{\text{flow}}}{\partial\theta_{\text{VLM}}}\ \neq\ 0$$
 >
-> The π₀.₅ paper does not mention stop-gradient. Instead it says only that it **preserves** the backbone's text abilities by co-training next-token prediction and web data in post-training. How much the random expert's gradient actually harms pretrained knowledge is tackled head-on by follow-up work, which we see again in §6.
+> The π₀.₅ paper does not mention stop-gradient. Instead it says only that it **preserves** the backbone's text abilities by co-training next-token prediction and web data in post-training. How much the random expert's gradient actually harms pretrained knowledge is tackled head-on by follow-up work, which we see again in Section 6.
 
 ### 3.3 Discrete and continuous in one loss — the device that breaks Wall 3
 
@@ -283,7 +283,7 @@ As $\alpha$ changes by training stage, the model's character changes.
 | post-train (80k steps) | 10 | CE (including FAST) + flow | Attach the expert and train both action representations at once, blocked from each other by the mask |
 | inference | — | — | Only the subtask is decoded autoregressively; actions come from the expert's 10-step integration. FAST tokens are not used |
 
-This is the answer to Wall 3 previewed in §2. π₀.₅ does not pick one of the two. **Discrete when learning, continuous when moving.** The paper reports that this procedure leads to stable pretraining and excellent language following.
+This is the answer to Wall 3 previewed in Section 2. π₀.₅ does not pick one of the two. **Discrete when learning, continuous when moving.** The paper reports that this procedure leads to stable pretraining and excellent language following.
 
 Following π₀, the flow timestep is sampled from a non-uniform distribution. Specifically, $p(\tau)=\mathrm{Beta}\big(\tfrac{s-\tau}{s};\,1.5,\,1\big)$, where $s=0.999$ is the upper bound on sampled $\tau$. This distribution emphasizes low $\tau$.
 
@@ -300,7 +300,7 @@ But if you try to implement Eq. (1) and the appendix's flow notation as written,
 
 ### 3.4 Pretraining data — the material for getting over Walls 1 and 2
 
-Pretraining runs for 280k steps on a mixture of the following data. The post-train column anticipates §3.5.
+Pretraining runs for 280k steps on a mixture of the following data. The post-train column anticipates Section 3.5.
 
 | Abbrev. | Content | What it supplies | post-train |
 |---|---|---|---|
@@ -331,7 +331,7 @@ After pretraining, it trains for another 80k steps with $\alpha=10$. This stage 
 - **WD kept** — kept in the mix to preserve semantic and visual abilities.
 - **VI added** — an expert "teleoperates in language" the trained low-level policy in real time, choosing the appropriate subtask command step by step. What is collected this way becomes demonstrations of good high-level outputs for the trained policy.
 
-VI is the "place for a person to step in" from §3.1, used for data collection. But MM and ME data already have subtask labels (HL) attached by people. Why collect VI separately?
+VI is the "place for a person to step in" from Section 3.1, used for data collection. But MM and ME data already have subtask labels (HL) attached by people. Why collect VI separately?
 
 > ### 💡 VI is on-policy data for the high-level policy
 >
@@ -345,7 +345,7 @@ VI is the "place for a person to step in" from §3.1, used for data collection. 
 >
 > At deployment, what the high-level policy gives commands to is not an expert but **the trained low-level policy**. That policy slips differently and drifts differently from an expert. So the high-level policy has to choose, in the states that policy produces, commands that policy can actually carry out. This is a covariate-shift problem arising at the high level, and VI fills the gap by labeling the states the deployed system actually visits.
 >
-> The effect is large. VI is only about 11% of the high-level mobile-manipulation examples, but removing it drops performance significantly (§5.5, Fig. 13). Carried over to agentic AI, it is like training a planner not on idealized hypothetical traces but on **traces collected with the executor that will actually be deployed in the loop**.
+> The effect is large. VI is only about 11% of the high-level mobile-manipulation examples, but removing it drops performance significantly (Section 5.5, Fig. 13). Carried over to agentic AI, it is like training a planner not on idealized hypothetical traces but on **traces collected with the executor that will actually be deployed in the loop**.
 >
 > For reference, the examples in Fig. 4 show pairs like "Policy: put plate in sink / Relabeled: put plate on rack." It looks like cases where the command and the actual execution diverged were relabeled after the fact, but the paper does not describe this relabeling procedure.
 
@@ -381,15 +381,15 @@ $$\underbrace{2\times(6+1)}_{\text{two arms + grippers}}\ +\ \underbrace{3}_{\te
 
 ## 4. Why it works — taking stock of the three walls
 
-First, where each of the three walls named in §1.4 was overcome.
+First, where each of the three walls named in Section 1.3 was overcome.
 
 | Wall | π₀.₅'s solution | Section |
 |---|---|---|
-| ⛔ Wall 1 — coverage | Rather than growing target data, cover more homes with light static arms (ME), more tasks with the lab (CE), and object concepts with the web (WD) | §3.4 |
-| ⛔ Wall 2 — heterogeneity | Separate the levels with the subtask interface, and unify every knowledge source as a token sequence | §3.1, §3.4 |
-| ⛔ Wall 3 — representation | A two-stage switch: learn discrete, move continuous | §3.3 |
+| ⛔ Wall 1 — coverage | Rather than growing target data, cover more homes with light static arms (ME), more tasks with the lab (CE), and object concepts with the web (WD) | Section 3.4 |
+| ⛔ Wall 2 — heterogeneity | Separate the levels with the subtask interface, and unify every knowledge source as a token sequence | Sections 3.1, 3.4 |
+| ⛔ Wall 3 — representation | A two-stage switch: learn discrete, move continuous | Section 3.3 |
 
-Matched against the three levels of §1.1, the paper's claim that **each knowledge source feeds a different level** corresponds to the experiments.
+Matched against the three levels of Section 1.1, the paper's claim that **each knowledge source feeds a different level** corresponds to the experiments.
 
 | Level of generalization | Main source | Supporting experiment |
 |---|---|---|
@@ -401,13 +401,13 @@ One question remains here. Does the gain from high-level inference come from act
 
 > ### 💡 Even without saying the subtask, having learned to say it already helps
 >
-> In the high-level inference comparison of §5.5, second place goes to **implicit HL**. It is a variant that generates no subtask at all at inference and feeds the overall command straight to the low level, but whose training mixture does include subtask-prediction data (HL). This variant is significantly better than no HL, which removes the HL data itself.
+> In the high-level inference comparison of Section 5.5, second place goes to **implicit HL**. It is a variant that generates no subtask at all at inference and feeds the overall command straight to the low level, but whose training mixture does include subtask-prediction data (HL). This variant is significantly better than no HL, which removes the HL data itself.
 >
 > The paper interprets this as: explicit subtask inference has a benefit too, but much of that benefit is already obtained just by putting subtask **prediction** data into the training mixture. That is, subtask prediction, as an auxiliary task, shapes the representation itself to fit the task structure.
 >
 > It resembles the phenomenon in LLMs where training on CoT data improves performance even when answering directly without CoT. But the paper has no evidence that it is the same mechanism, so it should be read only as an analogy.
 
-Another axis is **language following**. In Appendix C's comparison (Fig. 15), π₀.₅ picks the instructed object at a rate slightly higher than π₀-FAST+Flow and much higher than π₀. The paper cites this as evidence that discrete-token training matters for language following. It is the property seen in the 💡 of §2, "discrete representations are good for learning," and the backpropagation interference issue seen in §3.2, viewed from another angle.
+Another axis is **language following**. In Appendix C's comparison (Fig. 15), π₀.₅ picks the instructed object at a rate slightly higher than π₀-FAST+Flow and much higher than π₀. The paper cites this as evidence that discrete-token training matters for language following. It is the property seen in the 💡 of Section 2, "discrete representations are good for learning," and the backpropagation interference issue seen in Section 3.2, viewed from another angle.
 
 Seen this way, what makes π₀.₅ different from earlier models becomes clear.
 
@@ -476,7 +476,7 @@ Split by task (Fig. 16), the differences are sharper.
 - **Dishes in Sink** — holds up without WD but drops without ME and CE. A task where general manipulation strategy is key.
 - **Laundry Basket, Make Bed** — drop when cross-embodiment data is removed, and are less sensitive to other changes.
 
-The correspondence in §4 — that the web data's benefit **concentrates at the semantic (ⓒ) level rather than the skill (ⓐ) level** — comes straight from this result.
+The correspondence in Section 4 — that the web data's benefit **concentrates at the semantic (ⓒ) level rather than the skill (ⓐ) level** — comes straight from this result.
 
 ### 5.4 How does it compare with π₀ (Fig. 12, 15)
 
@@ -495,7 +495,7 @@ The two comparisons isolate different effects.
 
 ### 5.5 How much does high-level inference matter (Fig. 13, 17)
 
-The low level is fixed to π₀.₅ throughout, and variants that change only the high-level policy are compared. Of these, human HL is the variant in which a person directly puts commands into the interface of §3.1, and implicit HL is the variant seen in §4.
+The low level is fixed to π₀.₅ throughout, and variants that change only the high-level policy are compared. Of these, human HL is the variant in which a person directly puts commands into the interface of Section 3.1, and implicit HL is the variant seen in Section 4.
 
 | Variant | Content | Result |
 |---|---|---|
@@ -507,7 +507,7 @@ The low level is fixed to π₀.₅ throughout, and variants that change only th
 | no WD | Web data excluded | Significant drop |
 | GPT-4 | Zero-shot prompted with the task description and a list of frequently used labels | **Last** |
 
-The drop for no VI supports the reading in §3.5 of VI as on-policy data. The drop for no WD shows that the web data's benefit leans heavily toward the high-level policy. But look at the ranking again and one thing is odd.
+The drop for no VI supports the reading in Section 3.5 of VI as on-policy data. The drop for no WD shows that the web data's benefit leans heavily toward the high-level policy. But look at the ranking again and one thing is odd.
 
 > ### ⚠️ Fact check — the human oracle that was supposed to be the upper bound is not the upper bound
 >
@@ -525,7 +525,7 @@ The paper's Related Work sets up four lineages.
 |---|---|---|---|
 | Generalist policies · VLAs | RT-2, OpenVLA, π₀, etc. | Evaluated only in environments close to the training distribution | Evaluated in entirely new homes |
 | Co-training on non-robot data | RT-2, PaLM-E, Magma | Limited to data for VLM training | Extended to other robots, subtasks, even verbal instructions |
-| Language-based hierarchical reasoning | SayCan, YAY Robot, Hi Robot, HAMSTER / the ECoT line | Split into two models, or reasoning runs every step | One model + low-frequency high-level inference |
+| Language-based hierarchical reasoning | SayCan, YAY Robot, [Hi Robot](/notes/hirobot-hierarchical-vla-en/), HAMSTER / the ECoT line | Split into two models, or reasoning runs every step | One model + low-frequency high-level inference |
 | Open-world robot systems | Roomba, AnyGrasp, RUM, "On Bringing Robots Home" | Narrow primitives, or simple tasks under a minute | Multi-stage long-horizon tasks |
 
 The closest cousin is the hierarchical-reasoning lineage. It splits into two branches by how the model is composed, and π₀.₅ takes a combination between them.
@@ -538,7 +538,7 @@ The closest cousin is the hierarchical-reasoning lineage. It splits into two bra
 
 The paper itself does not locate its contribution in "the idea of co-training." It admits that multitask learning and co-training themselves are not new, and locates its contribution in the fact that **a particular combination of data** made long-horizon behavior in new environments possible.
 
-§3.2 left a question while pointing out the backpropagation path. If the random expert's gradient shakes the backbone, how much of a problem was that interference in practice?
+Section 3.2 left a question while pointing out the backpropagation path. If the random expert's gradient shakes the backbone, how much of a problem was that interference in practice?
 
 > ### 🔗 Knowledge Insulation (Driess et al., 2025-05) — insulating the backbone from the flow gradient
 >
@@ -547,7 +547,7 @@ The paper itself does not locate its contribution in "the idea of co-training." 
 > $$\mathrm{attn}_a=\operatorname{softmax}\!\Big(\tfrac{1}{\sqrt{d_h}}\,Q_a\,\big[\operatorname{sg}(K_b);\ K_a\big]^{\top}\Big)\,\big[\operatorname{sg}(V_b);\ V_a\big]$$
 >
 > - $\operatorname{sg}(\cdot)$ — stop-gradient. Leaves forward values as they are and cuts only the backward pass
-> - The remaining symbols are as in the equation of §3.2
+> - The remaining symbols are as in the equation of Section 3.2
 >
 > | | π₀.₅ paper | Knowledge Insulation |
 > |---|---|---|
