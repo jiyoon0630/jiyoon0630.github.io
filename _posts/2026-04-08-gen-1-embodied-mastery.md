@@ -498,4 +498,4 @@ LLM과 agentic AI 배경에서 보면 이 발표는 익숙한 교훈들로 읽�
 | **embodied alignment** | 창발 행동을 사용자가 원하는 행동으로 steering하는 문제. 해야 할 일과 하지 말아야 할 일을 함께 다룬다 |
 | **평균 개입 간격** | 사람 개입 사이의 평균 운용 시간. 에피소드 성공률보다 현장 운영 비용에 직접 대응한다 |
 
-**원문** — [GEN-1: Scaling Embodied Foundation Models to Mastery](https://generalistai.com/blog/gen-1) · **선행작** — [GEN-0](https://generalistai.com/blog/gen-0) · **관련 글** — [Going Beyond World Models & VLAs](https://generalistai.com/blog/beyond-world-models) · [The Real Breakthrough Behind Our GTC Demo](https://generalistai.com/blog/the-real-breakthrough-behind-our-gtc-demo)
+**원문** — [GEN-1: Scaling Embodied Foundation Models to Mastery](https://generalistai.com/blog/gen-1) · **선행작** — [GEN-0](https://generalistai.com/blog/gen-0) ([이 사이트의 GEN-0 리뷰](/notes/gen-0-embodied-scaling/)) · **관련 글** — [Going Beyond World Models & VLAs](https://generalistai.com/blog/beyond-world-models) · [The Real Breakthrough Behind Our GTC Demo](https://generalistai.com/blog/the-real-breakthrough-behind-our-gtc-demo)
