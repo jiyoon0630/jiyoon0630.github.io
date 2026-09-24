@@ -3,7 +3,7 @@ layout: paper
 lang: en
 ref: pi07-steerable-vla
 kind: paper-review
-title: "π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities (π0.7)"
+title: "π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities"
 date: 2026-04-19 17:00:00 -0700
 paper_date: 2026-04-16
 venue: "arXiv preprint · arXiv:2604.15483"
