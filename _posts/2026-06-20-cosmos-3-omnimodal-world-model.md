@@ -182,7 +182,7 @@ $$S_{\text{AR}}\triangleq\big[\,l_1,\dots,l_n,\ \langle\text{EOS}\rangle,\ \lang
 | T2I | $[S_{\text{AR}},\ \tilde v_1]$ | 이미지 생성 |
 | T2V(+Audio) | $[S_{\text{AR}},\ \tilde v_{1:N},\ \tilde s]$ | 영상(+소리) 생성 |
 | I2V / V2V | $[S_{\text{AR}},\ v_{1:P},\ \tilde v_{P+1:N}]$ | 조건 프레임 뒤를 이어 생성 |
-| Transfer | $[S_{\text{AR}},\ v^{\text{ctrl}}\_{1:N},\ \tilde v\_{1:N}]$ | edge·depth 등 제어 영상에서 RGB 생성 |
+| Transfer | $[S_{\text{AR}},\ v^{\text{ctrl}}_{1:N},\ \tilde v_{1:N}]$ | edge·depth 등 제어 영상에서 RGB 생성 |
 | FD | 깨끗한 $a$, 노이즈 $\tilde v$ | 행동 조건 미래 예측 |
 | ID | 깨끗한 $v$, 노이즈 $\tilde a$ | 행동 역추정 |
 | Policy | 노이즈 $\tilde v$, 노이즈 $\tilde a$ | 행동과 결과 공동 생성 |
@@ -202,9 +202,9 @@ $$\mathbf{O}_{\text{AR}}=\text{Attn}_{\text{causal}}\big(\mathbf{Q}_{\text{AR}},
 
 $$\mathbf{O}_{\text{DM}}=\text{Attn}_{\text{full}}\big(\mathbf{Q}_{\text{DM}},\ [\mathbf{K}_{\text{AR}};\mathbf{K}_{\text{DM}}],\ [\mathbf{V}_{\text{AR}};\mathbf{V}_{\text{DM}}]\big)$$
 
-- $\mathbf{Q}\_{\ast},\mathbf{K}\_{\ast},\mathbf{V}\_{\ast}$ — 각 타워가 **자기 projection**으로 만든 query, key, value
+- $\mathbf{Q}_{\ast},\mathbf{K}_{\ast},\mathbf{V}_{\ast}$ — 각 타워가 **자기 projection**으로 만든 query, key, value
 - $[\cdot\,;\cdot]$ — 시퀀스 방향 연결
-- $\text{Attn}\_{\text{causal}}$ — 앞선 토큰만 보는 attention, $\text{Attn}\_{\text{full}}$ — 양방향 attention
+- $\text{Attn}_{\text{causal}}$ — 앞선 토큰만 보는 attention, $\text{Attn}_{\text{full}}$ — 양방향 attention
 
 ```
  token sequence

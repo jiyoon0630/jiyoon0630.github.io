@@ -60,6 +60,13 @@ code_url: "https://github.com/..."      # optional → 💻 Code link
 
 - **Math:** `$...$` inline, `$$...$$` display (MathJax on the live site; it will
   not render in a sandbox that cannot reach the CDN — verify structure instead).
+  Write TeX plainly: `_plugins/protect_inline_math.rb` rewrites inline `$x$` to
+  `$$x$$` before kramdown runs, so it passes through untouched (without it,
+  `\{` lost its backslash, `_..._` became `<em>`, `'` a curly quote, `\%` a
+  comment) and turns `<` into `\lt` (math is emitted raw, so `v_{<t}` opened
+  an HTML tag). No `\_` or `\lbrace` workarounds needed — `\_` now prints a
+  literal underscore. To check every formula, extract the `kdmath` spans from
+  `_site` and run them through `mathjax-full`'s `tex2mml`.
 - **Currency and MathJax.** A bare `$70M ... $600M` pairs up as inline math:
   the text between them renders in italic math type and, since math does not
   wrap, stretches its table cell until the table runs off the page.

@@ -531,7 +531,7 @@ What was needed after the Wright brothers' 12 seconds was not a longer flight bu
 
 | Term | Definition |
 |---|---|
-| **generalization gap** | In-domain success rate − out-of-domain success rate after the same post-training. $G(D) = \mathrm{SR}\_{\text{ID}} - \mathrm{SR}\_{\text{OOD}}$ |
+| **generalization gap** | In-domain success rate − out-of-domain success rate after the same post-training. $G(D) = \mathrm{SR}_{\text{ID}} - \mathrm{SR}_{\text{OOD}}$ |
 | **in-domain / out-of-domain** | The environments the post-training data came from / held-out environments, objects and configurations |
 | **uniform vs high-quality subsampling** | Drawing the same amount at random vs selecting by curation criteria |
 | **validation loss proxy** | A cheap signal for choosing the data mixture before physical evaluation. Valid only within the same curation series |

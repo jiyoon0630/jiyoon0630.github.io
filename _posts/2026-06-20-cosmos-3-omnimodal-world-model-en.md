@@ -182,7 +182,7 @@ Writing clean video, audio and action tokens as $v, s, a$ and noisy tokens as $\
 | T2I | $[S_{\text{AR}},\ \tilde v_1]$ | image generation |
 | T2V(+Audio) | $[S_{\text{AR}},\ \tilde v_{1:N},\ \tilde s]$ | video (+sound) generation |
 | I2V / V2V | $[S_{\text{AR}},\ v_{1:P},\ \tilde v_{P+1:N}]$ | continue generating after the conditioning frames |
-| Transfer | $[S_{\text{AR}},\ v^{\text{ctrl}}\_{1:N},\ \tilde v\_{1:N}]$ | generate RGB from a control video such as edge or depth |
+| Transfer | $[S_{\text{AR}},\ v^{\text{ctrl}}_{1:N},\ \tilde v_{1:N}]$ | generate RGB from a control video such as edge or depth |
 | FD | clean $a$, noisy $\tilde v$ | action-conditioned future prediction |
 | ID | clean $v$, noisy $\tilde a$ | action inference |
 | Policy | noisy $\tilde v$, noisy $\tilde a$ | joint generation of action and outcome |
@@ -202,9 +202,9 @@ $$\mathbf{O}_{\text{AR}}=\text{Attn}_{\text{causal}}\big(\mathbf{Q}_{\text{AR}},
 
 $$\mathbf{O}_{\text{DM}}=\text{Attn}_{\text{full}}\big(\mathbf{Q}_{\text{DM}},\ [\mathbf{K}_{\text{AR}};\mathbf{K}_{\text{DM}}],\ [\mathbf{V}_{\text{AR}};\mathbf{V}_{\text{DM}}]\big)$$
 
-- $\mathbf{Q}\_{\ast},\mathbf{K}\_{\ast},\mathbf{V}\_{\ast}$ — query, key and value that each tower produces with **its own projections**
+- $\mathbf{Q}_{\ast},\mathbf{K}_{\ast},\mathbf{V}_{\ast}$ — query, key and value that each tower produces with **its own projections**
 - $[\cdot\,;\cdot]$ — concatenation along the sequence
-- $\text{Attn}\_{\text{causal}}$ — attention that sees only preceding tokens, $\text{Attn}\_{\text{full}}$ — bidirectional attention
+- $\text{Attn}_{\text{causal}}$ — attention that sees only preceding tokens, $\text{Attn}_{\text{full}}$ — bidirectional attention
 
 ```
  token sequence

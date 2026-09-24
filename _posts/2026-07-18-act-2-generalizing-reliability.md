@@ -531,7 +531,7 @@ ACT-2의 기여는 새 알고리즘이 아니다. **"사내 hill-climbing이 곧
 
 | 용어 | 정의 |
 |---|---|
-| **generalization gap** | 같은 post-training 후 in-domain 성공률 − out-of-domain 성공률. $G(D) = \mathrm{SR}\_{\text{ID}} - \mathrm{SR}\_{\text{OOD}}$ |
+| **generalization gap** | 같은 post-training 후 in-domain 성공률 − out-of-domain 성공률. $G(D) = \mathrm{SR}_{\text{ID}} - \mathrm{SR}_{\text{OOD}}$ |
 | **in-domain / out-of-domain** | post-training 데이터가 온 환경 / held-out 환경·물체·구성 |
 | **uniform vs high-quality subsampling** | 같은 양을 무작위로 뽑기 vs curation 기준으로 선별하기 |
 | **validation loss proxy** | 물리 평가 전에 데이터 mixture를 고르는 싼 신호. 같은 curation 계열 안에서만 유효 |
