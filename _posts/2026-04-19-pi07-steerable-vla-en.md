@@ -56,7 +56,7 @@ Mixing these naively, however, runs into two walls.
 
 **⛔ Wall 2 — Language cannot write down all of "how."** To resolve the ambiguity, you can attach descriptions to the data. It is the same idea as image and video generation models enriching captions through prompt expansion to raise quality. But the paper says that in robotics, text captions alone are not enough, because the information that decides success is ⓐ subtle, like the overall quality of an episode, or ⓑ hard to put into words, like what a neatly folded T-shirt looks like or how to grasp a fridge handle.
 
-Wall 1 is dissected in §2.3 and broken through in §3.3. The device that breaks through Wall 2 is in §3.4.
+Wall 1 is dissected in Section 2.3 and broken through in Section 3.3. The device that breaks through Wall 2 is in Section 3.4.
 
 ### 1.3 So the question the paper asks
 
@@ -83,7 +83,7 @@ $$\max_\theta\ \mathbb{E}_{\mathcal{D}}\big[\log \pi_\theta(\mathbf{a}_{t:t+H}\m
 - The action expert is a small transformer that attends to the VLM backbone's activations and generates the action chunk with flow matching. Flow matching optimizes an approximate lower bound instead of a closed-form log-likelihood.
 - In earlier models (π0, π0.5, π0.6) the context was a single short task description, i.e. $\mathcal{C}_t=(\ell_t)$.
 
-The only thing π0.7 changes in this objective is **$\mathcal{C}_t$**. What goes into it is all of §3.
+The only thing π0.7 changes in this objective is **$\mathcal{C}_t$**. What goes into it is all of Section 3.
 
 ### 2.2 Knowledge Insulation — division of labor between backbone and action expert
 
@@ -114,7 +114,7 @@ Drawn as a picture, Wall 1 looks like this.
 ```
 
 - Three ways of performing the task are mixed under the same observation and instruction
-- `m` is the variable that names that way of performing (the episode metadata of §3.3)
+- `m` is the variable that names that way of performing (the episode metadata of Section 3.3)
 
 A reader who knows diffusion will have a question here. Flow matching is a generative model used precisely to represent multimodal distributions. It should not average modes the way MSE regression does, so why is "averaging" a problem?
 
@@ -134,7 +134,7 @@ A reader who knows diffusion will have a question here. Flow matching is a gener
 > - **⓶ The mode switches from chunk to chunk** — since it resamples every $\hat H$ steps, it can produce an inconsistent trajectory that starts with strategy A and switches to strategy B.
 > - **⓷ In practice, interpolation happens too** — with finite capacity and few denoising steps (5 in π0.7), awkward in-between actions do come out.
 >
-> The root cause is that $m$ is a **confounder** that cannot be inferred from the observation $\mathbf{o}$. Who operated the robot, or which evaluation run it was, is not visible in the camera images. The fix, then, is to turn $m$ into an observed variable, learn the right-hand side directly, and pick the desired $m$ at inference time. That is the episode metadata of §3.3.
+> The root cause is that $m$ is a **confounder** that cannot be inferred from the observation $\mathbf{o}$. Who operated the robot, or which evaluation run it was, is not visible in the camera images. The fix, then, is to turn $m$ into an observed variable, learn the right-hand side directly, and pick the desired $m$ at inference time. That is the episode metadata of Section 3.3.
 >
 > The paper only writes that the model "averages the modes." The decomposition above and the three paths are my interpretation.
 
@@ -156,7 +156,7 @@ $$\mathcal{C}_t=(\ell_t)\quad\longrightarrow\quad \mathcal{C}_t=\{\ell,\ \hat\el
 | $m$ | Episode metadata (speed, quality, mistake) | Measurements + human annotation | Fixed at the "best" values + CFG | Wall 1 |
 | $c$ | Control mode (`joint` / `ee`) | The data's control scheme | Chosen per task | Wall 1 (heterogeneity of control schemes) |
 
-The prompt is concatenated roughly in this order (the structure of the example in the paper's §V-E).
+The prompt is concatenated roughly in this order (the structure of the example in the paper's Section V-E).
 
 ```
 <multi-view obs><multi-view subgoals> Task: ... Subtask: ... Speed: ... Quality: ... Mistake: ... Control Mode: ... <proprio>
@@ -178,10 +178,10 @@ The training and inference flow on one page:
                          a ~ p(a | o, C*)   (+ CFG on m)
 ```
 
-- During training, each component of the context is randomly dropped out (§3.5)
-- At inference, `l^` comes from the high-level policy, `g*` from the world model, and `m*` is fixed at the "best" values (§3.7)
+- During training, each component of the context is randomly dropped out (Section 3.5)
+- At inference, `l^` comes from the high-level policy, `g*` from the world model, and `m*` is fixed at the "best" values (Section 3.7)
 
-**Training data mix** (paper §VI-A)
+**Training data mix** (paper Section VI-A)
 
 | Data | Notes |
 |---|---|
@@ -211,11 +211,11 @@ $$\hat\ell_{k+1}\ \sim\ \pi^{\text{HL}}_\phi\big(\cdot\mid \mathbf{o}_t,\ \ell,\
 - $\hat\ell_{1:k}$ — the history of subtask instructions given so far
 - $\hat\ell_{k+1}$ — the next subtask instruction
 
-The upshot is that a new task can be automated without action-level data such as teleop. The results are in §5.4.
+The upshot is that a new task can be automated without action-level data such as teleop. The results are in Section 5.4.
 
 ### 3.3 Episode metadata $m$ — the device that breaks through Wall 1
 
-As §2.3 showed, Wall 1 comes from the way of performing, $m$, being unobserved. π0.7 attaches it directly as a label.
+As Section 2.3 showed, Wall 1 comes from the way of performing, $m$, being unobserved. π0.7 attaches it directly as a label.
 
 | Field | Definition | Label source |
 |---|---|---|
@@ -291,7 +291,7 @@ The paper consistently calls this model a "lightweight world model." How light i
 
 > ### ⚠️ The 'lightweight' world model is 14B
 >
-> The BAGEL-based world model is a 14B model made of a 7B backbone for understanding and a 7B backbone for generation. Producing one set of subgoals with 25 denoising steps takes 1.25 seconds even with 4×H100 tensor parallelism, 8-bit quantization, and a modified SageAttention all brought to bear (Appendix D). That is far heavier than the π0.7 model itself, which runs in 38–127ms on a single H100. "Lightweight" seems better read as relative to video generation models (my interpretation), and real-time operation is secured by asynchronous execution (§3.7).
+> The BAGEL-based world model is a 14B model made of a 7B backbone for understanding and a 7B backbone for generation. Producing one set of subgoals with 25 denoising steps takes 1.25 seconds even with 4×H100 tensor parallelism, 8-bit quantization, and a modified SageAttention all brought to bear (Appendix D). That is far heavier than the π0.7 model itself, which runs in 38–127ms on a single H100. "Lightweight" seems better read as relative to video generation models (my interpretation), and real-time operation is secured by asynchronous execution (Section 3.7).
 
 **How subgoals are fed to π0.7**
 
@@ -302,7 +302,7 @@ The paper consistently calls this model a "lightweight world model." How light i
 | Generated images | Samples are added in which subgoals mass-generated by the world model replace the real frames. This is to reduce the train–test mismatch between real and generated images |
 | Subtask removal | $\hat\ell$ is erased in 30% of the samples that have a subgoal |
 
-How much the subgoals contribute is seen in §5.2 and §5.3 by comparing π0.7 with π0.7 (GC) (the setting prompted with world-model subgoals).
+How much the subgoals contribute is seen in Section 5.2 and Section 5.3 by comparing π0.7 with π0.7 (GC) (the setting prompted with world-model subgoals).
 
 But according to the paper, the model learns noticeably faster when given subgoals. Then why limit them to 25% instead of putting them in every sample?
 
@@ -316,7 +316,7 @@ But according to the paper, the model learns noticeably faster when given subgoa
 >
 > Easy problems get solved quickly, and that is exactly why it is risky. If subgoals are always there, the path that reads the language and metadata and infers on its own "how the world should look next" receives less learning signal. It is like a student who always gets the answer hint and stops reading the problem. 25% is a mix that keeps both paths alive. The paper only goes as far as "it learns quickly, so we include it in only 25%"; the shortcut interpretation is my inference.
 >
-> Erasing $\hat\ell$ in 30% of the samples with a subgoal is a design in the opposite direction. This time the model is forced to read the intent from the image alone. The use in §5.3's UR5e shirt folding, prompting with only subgoals and metadata and no language, relies on this design.
+> Erasing $\hat\ell$ in 30% of the samples with a subgoal is a design in the opposite direction. This time the model is forced to read the intent from the image alone. The use in Section 5.3's UR5e shirt folding, prompting with only subgoals and metadata and no language, relies on this design.
 
 ### 3.5 Control mode and the dropout design
 
@@ -339,7 +339,7 @@ The paper does not say why control mode is never dropped. Since it is informatio
 Dropout has two effects.
 
 - **⓵ Flexibility** — at inference you can prompt with any subset. It works with language alone and no subgoal, or with subgoals alone and no language.
-- **⓶ Learning conditional and unconditional together** — one model learns both $p(\mathbf{a}\mid\mathbf{o},\mathcal{C})$ and $p(\mathbf{a}\mid\mathbf{o},\mathcal{C}^{\text{uncond}})$ with some components removed. It is the same device as null-prompt dropout in text-to-image, and it is what makes §3.7's CFG possible.
+- **⓶ Learning conditional and unconditional together** — one model learns both $p(\mathbf{a}\mid\mathbf{o},\mathcal{C})$ and $p(\mathbf{a}\mid\mathbf{o},\mathcal{C}^{\text{uncond}})$ with some components removed. It is the same device as null-prompt dropout in text-to-image, and it is what makes Section 3.7's CFG possible.
 
 ### 3.6 Architecture — context added on top of π0.6-MEM
 
@@ -429,9 +429,9 @@ The paper's reasons come down to four.
 
 **⓸ An interface to web knowledge** — subgoal images are the channel that carries the semantic and physical knowledge of the web-pretrained world model into the policy.
 
-Compressed into one sentence, π0.7 **turns "how," which was a confounder, into an observed variable.** In the decomposition of §2.3, it now learns the right-hand side instead of the left. There is one side effect. Metadata is a task-agnostic vocabulary: "quality 5" points the same way for espresso as for shirt folding. So the "how" axis is shared across tasks, and the "what" axis is learned with the noise of performing style cleared away. It is a structure that favors composition (my interpretation).
+Compressed into one sentence, π0.7 **turns "how," which was a confounder, into an observed variable.** In the decomposition of Section 2.3, it now learns the right-hand side instead of the left. There is one side effect. Metadata is a task-agnostic vocabulary: "quality 5" points the same way for espresso as for shirt folding. So the "how" axis is shared across tasks, and the "what" axis is learned with the noise of performing style cleared away. It is a structure that favors composition (my interpretation).
 
-Then is it the context or the data diversity that produced compositional generalization? Putting side by side the two experiments examined in detail in §5.5 separates the roles.
+Then is it the context or the data diversity that produced compositional generalization? Putting side by side the two experiments examined in detail in Section 5.5 separates the roles.
 
 > ### 📌 Context is the necessary condition; the fuel for composition is task diversity
 >
@@ -444,7 +444,7 @@ Then is it the context or the data diversity that produced compositional general
 
 The paper's Discussion is on the same line. Its position is that generalization is ultimately a remix of behaviors already seen, and that this is the very essence of compositional generalization.
 
-Here is how the two walls named in §1.2 were resolved.
+Here is how the two walls named in Section 1.2 were resolved.
 
 | Wall | Prescription | Evidence |
 |---|---|---|
@@ -465,14 +465,14 @@ Evaluation took place on several robots: a mobile bimanual robot (two 6-DoF arms
 | Instruction following | 4 unseen kitchens + 2 bedrooms, 14 scenarios | π0.5, π0.6 | Large margin overall | Fig. 9 |
 | Referential instructions | "The thing you use when eating soup," "the fruit on the largest plate" | π0.5, π0.6 | Ahead on complex instructions, further gains with GC | Fig. 10 |
 | Going against data bias | Reverse Bussing, Reverse Fridge to Microwave | π0.5, π0.6 | Ahead; GC decisive for the latter | Fig. 11 |
-| Cross-embodiment | 6 tasks (§5.3) | π0.5, π0.6 | The larger the morphology gap, the larger π0.7's lead | Fig. 12 |
+| Cross-embodiment | 6 tasks (Section 5.3) | π0.5, π0.6 | The larger the morphology gap, the larger π0.7's lead | Fig. 12 |
 | Composition (short-horizon) | Pressing a French press, scooping rice into a rice cooker, wiping office supplies, turning articulated objects | π0.5, π0.6 | Done by prompting alone; similar to GC | Fig. 17 |
 | Composition (long-horizon) | Loading and emptying an air fryer, toasting a bagel | π0.5, π0.6 (coaching) | Earlier models cannot even follow the coaching instructions | Fig. 15 |
 | Coaching → autonomy | 5 tasks | Coaching episodes | Autonomous performance ≈ coached performance | Fig. 16 |
 
 ### 5.1 Specialist-level dexterity — how well does it do the tasks it trained on
 
-The first question is whether it performs dexterous tasks already in the training data as fast and as robustly as a specialist, without fine-tuning. It is the direct answer to symptom ⓶ of §1.1.
+The first question is whether it performs dexterous tasks already in the training data as fast and as robustly as a specialist, without fine-tuning. It is the direct answer to symptom ⓶ of Section 1.1.
 
 - **Against the RL specialist (Fig. 6 top)** — on laundry (T-shirts & shorts / button-up shirts, the hardest item), espresso, and box assembly, which were used to evaluate π\*0.6, the success rate is comparable. On button-up laundry and box assembly, successes per hour (throughput) are higher than the specialist's.
 - **Against SFT specialists (Fig. 6 bottom)** — on various dexterous tasks including the "Robot Olympics" tasks, it comes close to π0.6-based SFT specialists.
@@ -483,7 +483,7 @@ But can this be read as "the generalist beat the specialist"?
 
 > ### ⚠️ "Out-of-the-box" does not mean "no task data"
 >
-> The phrase means there is no per-task post-training stage. For the four tasks in Fig. 6 top, the rollouts π\*0.6 accumulated while learning with RL are in π0.7's training data, and the paper explicitly calls this "distillation." So this result is more accurately read not as "it beat the specialists" but as "it folded several specialists into one generalist without loss." By contrast, autonomous data from the generalization-evaluation tasks was excluded from training, so the results of §5.2–§5.4 do not have this issue.
+> The phrase means there is no per-task post-training stage. For the four tasks in Fig. 6 top, the rollouts π\*0.6 accumulated while learning with RL are in π0.7's training data, and the paper explicitly calls this "distillation." So this result is more accurately read not as "it beat the specialists" but as "it folded several specialists into one generalist without loss." By contrast, autonomous data from the generalization-evaluation tasks was excluded from training, so the results of Sections 5.2–5.4 do not have this issue.
 
 ### 5.2 Instruction following — does it actually read the language
 
@@ -491,7 +491,7 @@ But can this be read as "the generalist beat the specialist"?
 - **Referential instructions (Fig. 10)** — in an office-desk tidying task, every model succeeds at standard instructions ("pick up the spoon"). On complex referential instructions ("pick up the thing you use when eating soup," "pick up the fruit on the largest plate"), π0.7 leads, and it goes higher when given subgoals (GC).
 - **Going against data bias (Fig. 11)** — a model trained on data where a scene always came with the same behavior ignores language in that scene and follows habit. In "Reverse Bussing" (trash into the bus tub, dishes into the trash can) and "Reverse Fridge to Microwave" (the data only has the fridge-to-microwave direction), π0.7 goes against the bias and follows the instruction.
 
-In "Reverse Fridge to Microwave" in particular, GC was decisive. The paper explains that thanks to web-scale image-generation pretraining, the world model produces good subgoals from text instructions. When the world model draws a scene that runs against the data's habit, the policy only has to follow that picture. It is the scene where the subgoal contribution foreshadowed in §3.4 shows most clearly.
+In "Reverse Fridge to Microwave" in particular, GC was decisive. The paper explains that thanks to web-scale image-generation pretraining, the world model produces good subgoals from text instructions. When the world model draws a scene that runs against the data's habit, the policy only has to follow that picture. It is the scene where the subgoal contribution foreshadowed in Section 3.4 shows most clearly.
 
 ### 5.3 Cross-embodiment — moving a skill to a robot that has never done it
 
@@ -511,7 +511,7 @@ The UR5e is much longer and heavier than the source robot, differently shaped, a
 | Putting a shirt in a bag | Holds the bag open with one arm and puts it in with the other | Picks it up and puts it in in one go with the long arm |
 | Grasping a shirt | Tilts the end-effector to press the cloth against the table and grab it | Uses a vertical grasp suited to the arm placement |
 
-As foreshadowed in §3.4, UR5e shirt folding is prompted with only subgoals and metadata, no language. The paper explains that the world model builds a visual analogy between the source and target robots, presenting a grasp and cloth placement suited to the target robot as the subgoal.
+As foreshadowed in Section 3.4, UR5e shirt folding is prompted with only subgoals and metadata, no language. The paper explains that the world model builds a visual analogy between the source and target robots, presenting a grasp and cloth placement suited to the target robot as the subgoal.
 
 To gauge the result, it was also compared with humans. Ten skilled operators in the top 2% by manipulation experience (about 375 hours on average across all robots) each attempted UR5e shirt folding three times without practice. The humans recorded 90.9% task progress and an 80.6% success rate; π0.7 recorded 85.6% and 80%. Two conditions have to be stated whenever this result is cited.
 
@@ -527,7 +527,7 @@ This is the axis the paper calls the "grand challenge" of robot foundation model
 
 **Short-horizon tasks by prompting alone (Fig. 17)** — pressing a French press, scooping rice into a rice cooker, wiping office supplies such as headphones and rulers, and turning articulated objects such as a gear set or a desk fan, all without robot data for those tasks. π0.7 prompted with language only and π0.7 (GC) with subgoals are at a similar level.
 
-**Long-horizon tasks by coaching (Figs. 14, 15)** — roasting sweet potatoes in an air fryer, emptying an air fryer, and toasting a bagel in a toaster are tasks where several steps run for up to 5 minutes, so a one-line prompt is not enough. According to the PI blog, given only the zero-shot prompt "put the sweet potatoes in the air fryer," it fumbles a few times and ends up doing only part of it. This is where the coaching foreshadowed in §3.2 comes in. When a human calls out steps such as "pick up the sweet potato" and "open the air fryer," π0.7 follows them and completes the task. Earlier models cannot follow these instructions at all and stay at very low performance.
+**Long-horizon tasks by coaching (Figs. 14, 15)** — roasting sweet potatoes in an air fryer, emptying an air fryer, and toasting a bagel in a toaster are tasks where several steps run for up to 5 minutes, so a one-line prompt is not enough. According to the PI blog, given only the zero-shot prompt "put the sweet potatoes in the air fryer," it fumbles a few times and ends up doing only part of it. This is where the coaching foreshadowed in Section 3.2 comes in. When a human calls out steps such as "pick up the sweet potato" and "open the air fryer," π0.7 follows them and completes the task. Earlier models cannot follow these instructions at all and stay at very low performance.
 
 **From coaching to autonomy (Fig. 16)** — train a high-level policy on the coaching logs, and on five tasks it performs autonomously, with no human, close to the coached level. Nowhere in this process is there action-level data such as teleop.
 
@@ -535,11 +535,11 @@ Where did the knowledge of air fryers come from? The paper's main text only says
 
 ### 5.5 Does it actually learn from heterogeneous data
 
-The last is a controlled ablation (Fig. 18). The two experiments whose roles were separated in §4 come from here.
+The last is a controlled ablation (Fig. 18). The two experiments whose roles were separated in Section 4 come from here.
 
 **Left — what if you add more mixed-quality data?** Laundry (T-shirts & shorts) data was split by quality and speed into four buckets, top 30%, 50%, 80%, and all, and 8 models were trained from scratch combining these with and without metadata. The bigger the bucket, the more data but the lower the average quality. Models without metadata could actually get worse, but models with metadata kept improving as the data grew.
 
-**Right — what if you remove diversity?** A model with the 20% highest in task diversity removed and a model with the same amount removed at random were compared on the short-horizon unseen tasks of §5.4. Only the former dropped sharply.
+**Right — what if you remove diversity?** A model with the 20% highest in task diversity removed and a model with the same amount removed at random were compared on the short-horizon unseen tasks of Section 5.4. Only the former dropped sharply.
 
 But how far can the conclusion of the left experiment be generalized?
 

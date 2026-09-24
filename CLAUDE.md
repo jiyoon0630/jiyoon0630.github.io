@@ -86,6 +86,11 @@ code_url: "https://github.com/..."      # optional → 💻 Code link
     backslash followed by a live delimiter.
   - Korean particles are word characters, so a regex like `\$\d+M\b` misses
     `$165M을`. Use a negative lookahead `(?![A-Za-z0-9])` instead.
+- **Section references: no `§`.** She finds it unfamiliar. Korean writes
+  `2.3절` (and the particle follows 절: `2절은`, `4.5절이`, `3절로`,
+  `5.2–5.4절`); English writes `Section 2.3`, `Sections 5.2–5.4`. Same for
+  the paper's own sections (`논문 4.1절`, `paper Section 4.1`). Convert any `§`
+  in an uploaded note while posting it.
 - **Code fences** are highlighted (rouge); unlabeled fences (ASCII diagrams)
   render as plain monospace. **Markdown does not apply inside a fence**, so
   `**bold**` in an ASCII diagram prints its asterisks. Notion renders them, so

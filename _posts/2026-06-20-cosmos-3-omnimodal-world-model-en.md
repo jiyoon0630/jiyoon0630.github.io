@@ -63,13 +63,13 @@ Naively pushing heterogeneous things into one transformer runs into three walls.
 
 **⛔ Wall 3 — Disparate action spaces, and too little action data.** A car's steering, a robot arm's joints, a human's fingers and a camera's motion are all different control spaces. On top of that, action-labeled data is orders of magnitude scarcer than video.
 
-Wall 1 is crossed in §3.2, Wall 2 in §3.3, Wall 3 in §3.4. Once past the walls, one question remains — does training in this unified way actually yield a reusable world-action prior? The answer comes in §4.
+Wall 1 is crossed in Section 3.2, Wall 2 in Section 3.3, Wall 3 in Section 3.4. Once past the walls, one question remains — does training in this unified way actually yield a reusable world-action prior? The answer comes in Section 4.
 
 ---
 
 ## 2. Background
 
-Reading the walls and their fixes takes three concepts: the problems an action-conditioned world model solves (2.1), the generative objective (2.2), and position encoding (2.3). If they are familiar, skip ahead to §3.
+Reading the walls and their fixes takes three concepts: the problems an action-conditioned world model solves (2.1), the generative objective (2.2), and position encoding (2.3). If they are familiar, skip ahead to Section 3.
 
 ### 2.1 Three questions for a world model with action
 
@@ -103,7 +103,7 @@ So do the simulator, the labeler and the policy each have to be trained separate
 >
 > This setup is already familiar from language models. BERT, T5's span corruption and MaskGIT learn a joint distribution under many mask patterns so that one model can answer arbitrary conditionals. In diffusion, the mask becomes "the tokens given clean." Leave the given tokens clean, cover only the tokens being asked about with noise, and have the model denoise them.
 >
-> §3.1 implements exactly this idea.
+> Section 3.1 implements exactly this idea.
 
 ### 2.2 The rectified flow objective
 
@@ -143,7 +143,7 @@ $$\big\langle R(m)\,q,\ R(n)\,k\big\rangle=q^{\top}R(n-m)\,k$$
 - $R(\cdot)$ — block-diagonal rotation matrix that rotates by an angle proportional to position
 - $m, n$ — position indices of the query and the key
 
-MRoPE (the Qwen family) splits the head dimensions into three groups $(t, h, w)$ and rotates each group by the index of its own axis. A video token then carries its frame number and its spatial position at the same time. But in the original MRoPE the time coordinate $t$ is the **frame index**. Why that leads to Wall 2 is covered in §3.3.
+MRoPE (the Qwen family) splits the head dimensions into three groups $(t, h, w)$ and rotates each group by the index of its own axis. A video token then carries its frame number and its spatial position at the same time. But in the original MRoPE the time coordinate $t$ is the **frame index**. Why that leads to Wall 2 is covered in Section 3.3.
 
 ---
 
@@ -153,15 +153,15 @@ The walls map to the mechanisms that cross them as follows.
 
 | Wall | Mechanism | Section |
 |---|---|---|
-| ⛔ 1 Interference between understanding and generation | MoT dual tower + one-way joint attention + frozen reasoner | §3.2 |
-| ⛔ 2 A different clock per modality | Absolute-time-axis MRoPE | §3.3 |
-| ⛔ 3 Heterogeneous action spaces, scarce data | State-change pseudo-actions + per-domain projections + actions extracted from video | §3.4 |
+| ⛔ 1 Interference between understanding and generation | MoT dual tower + one-way joint attention + frozen reasoner | Section 3.2 |
+| ⛔ 2 A different clock per modality | Absolute-time-axis MRoPE | Section 3.3 |
+| ⛔ 3 Heterogeneous action spaces, scarce data | State-change pseudo-actions + per-domain projections + actions extracted from video | Section 3.4 |
 
 Before that, the foundation every mechanism rides on: how the sequence is built.
 
 ### 3.1 One sequence; the mode is set by "what is clean"
 
-The idea previewed in §2.1 is implemented here. The input sequence splits into two parts — an AR subsequence that handles understanding, followed by a diffusion (DM) subsequence. The same placement rules apply to every task.
+The idea previewed in Section 2.1 is implemented here. The input sequence splits into two parts — an AR subsequence that handles understanding, followed by a diffusion (DM) subsequence. The same placement rules apply to every task.
 
 - ⓵ AR tokens come before DM tokens
 - ⓶ Within DM, for each modality, clean conditioning tokens come before noisy tokens
@@ -243,18 +243,18 @@ So when generating video or action, is the reasoner looking at the scene? The pi
 
 > ### 💡 In generation mode the reasoner sees text — the split is by function, not by modality
 >
-> Video input splits into two encoders. The understanding ViT is trained together with the backbone; the generation VAE (Wan2.2-TI2V-5B) is used frozen. But in the generation-mode equations of §3.1 (Eq. 3–6), the AR prefix $S_{\text{AR}}$ holds only language tokens and special tokens. Visual conditions — input images, control videos, robot observations — all enter **on the DM side as clean VAE tokens**. Video goes through the ViT into AR only when the model is used as a VLM.
+> Video input splits into two encoders. The understanding ViT is trained together with the backbone; the generation VAE (Wan2.2-TI2V-5B) is used frozen. But in the generation-mode equations of Section 3.1 (Eq. 3–6), the AR prefix $S_{\text{AR}}$ holds only language tokens and special tokens. Visual conditions — input images, control videos, robot observations — all enter **on the DM side as clean VAE tokens**. Video goes through the ViT into AR only when the model is used as a VLM.
 >
 > Two things follow.
 >
 > - **The same vision goes to a different tower depending on its role.** For understanding it goes through the ViT to the reasoner; for generation it goes through the VAE to the generator. The split is not by modality, as in the original Mixture-of-Transformers, but by function: understanding versus generation.
 > - **In generation and policy modes, pixel-level perception is the generator's job.** The reasoner is closer to a very strong instruction encoder that has been through Physical AI SFT.
 >
-> The paper does not give the AR layout for policy mode as an equation, so this reading is inferred from Eq. 3–6. It is also the decisive difference from π0-family VLAs (§6).
+> The paper does not give the AR layout for policy mode as an equation, so this reading is inferred from Eq. 3–6. It is also the decisive difference from π0-family VLAs (Section 6).
 
 ### 3.3 Crossing Wall 2 — absolute-time-axis MRoPE
 
-Back to the problem previewed in §2.3. In the original MRoPE the time coordinate $t$ is the frame index. That is enough when handling video alone, but in Cosmos 3, which must generate video, audio and action simultaneously at different sampling rates, Wall 2 shows up directly: one step of index is a different amount of physical time for each modality.
+Back to the problem previewed in Section 2.3. In the original MRoPE the time coordinate $t$ is the frame index. That is enough when handling video alone, but in Cosmos 3, which must generate video, audio and action simultaneously at different sampling rates, Wall 2 shows up directly: one step of index is a different amount of physical time for each modality.
 
 Start with the coordinate assignment (Fig. 6).
 
@@ -342,7 +342,7 @@ But what a robot policy ultimately has to output is joint commands. Why go to th
 >
 > Robot teleop is less than 10% of the whole. Half of Wall 3's "not enough data" was crossed like this — **by changing the definition of action**. In LLM terms, it is the same idea as turning unlabeled text into training data through pseudo-labeling.
 
-The common action space is a lingua franca for mid-training. The actual deployment interface is attached fresh in post-training (§3.6).
+The common action space is a lingua franca for mid-training. The actual deployment interface is attached fresh in post-training (Section 3.6).
 
 ### 3.5 Training curriculum
 
@@ -411,7 +411,7 @@ One chunk is about 2.1 seconds. Within a chunk it is open-loop; between chunks i
 
 ## 4. Why it works
 
-Back to the question left open in §1.3 — does unified training actually yield a reusable world-action prior?
+Back to the question left open in Section 1.3 — does unified training actually yield a reusable world-action prior?
 
 The paper's key experimental design is a controlled comparison. It compares **PT-init**, which starts from a pretraining checkpoint that has never seen action data, with **MT-init**, which starts from a mid-trained checkpoint that has seen action across many domains and modes. Training recipe, model size, data and compute are all held fixed.
 
@@ -484,18 +484,18 @@ Among the individual action results, on camera FD MT-init reached RRE 0.142°, R
 
 ## 6. Positioning — among neighboring work
 
-The paper's own coordinate system is the three model classes of §1 — VLMs for perception and reasoning, video generation and FD models for simulation, VLAs and WAMs for action. Its experimental baselines also field a representative from each class: π0.5 as the VLA, DreamZero as the WAM, Ctrl-World as the FD model.
+The paper's own coordinate system is the three model classes of Section 1 — VLMs for perception and reasoning, video generation and FD models for simulation, VLAs and WAMs for action. Its experimental baselines also field a representative from each class: π0.5 as the VLA, DreamZero as the WAM, Ctrl-World as the FD model.
 
-Architecturally, the work the paper acknowledges as closest is BAGEL (Deng et al., 2025). The decoder-layer structure is similar, but the paper distinguishes itself on training strategy, position embedding and overall range of capabilities. The dual tower of §3.2 and the absolute-time MRoPE of §3.3 are the substance of that difference.
+Architecturally, the work the paper acknowledges as closest is BAGEL (Deng et al., 2025). The decoder-layer structure is similar, but the paper distinguishes itself on training strategy, position embedding and overall range of capabilities. The dual tower of Section 3.2 and the absolute-time MRoPE of Section 3.3 are the substance of that difference.
 
-The difference from the π0 family previewed in §3.2 becomes sharp when three designs on the same DROID are placed side by side.
+The difference from the π0 family previewed in Section 3.2 becomes sharp when three designs on the same DROID are placed side by side.
 
 > ### 🔗 Three designs on the same DROID — VLA, WAM, omnimodal world model
 >
 > | Axis | π0.5 (VLA) | DreamZero (WAM) | Cosmos 3 |
 > |---|---|---|---|
 > | Backbone origin | VLM | video diffusion model | two copies of a VLM (Qwen3-VL) |
-> | Where observation images are seen | VLM | video backbone | generator (VAE path, inferred in §3.2) |
+> | Where observation images are seen | VLM | video backbone | generator (VAE path, inferred in Section 3.2) |
 > | Future video prediction | none | yes | yes |
 > | Text understanding / output | VLM | none | reasoner |
 > | FD / ID modes | none | n/a | possible with the same weights |
@@ -513,7 +513,7 @@ From the diffusion side, the closest ancestor is SD3's MM-DiT. The skeleton of p
 
 - **Generation quality** — the model card states temporal inconsistency, inaccurate physical interactions, and action-state drift, especially in long and high-resolution outputs. With no explicit physics simulator, contact dynamics and physical laws are only approximated.
 - **Scope of policy validation** — the policy is a pilot on a single embodiment, DROID. No policy results are reported for Super ("–" in Tab. 1).
-- **Cross-domain transfer** — positive transfer is uneven across domains (§4).
+- **Cross-domain transfer** — positive transfer is uneven across domains (Section 4).
 
 **Further points to raise**
 

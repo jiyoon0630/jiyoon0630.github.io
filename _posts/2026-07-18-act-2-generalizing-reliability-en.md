@@ -122,7 +122,7 @@ For readers with an LLM or diffusion background, this is a familiar phenomenon.
 | Diffusion | denoising loss | FID, human evaluation | loss scales cannot be compared across models and schedules |
 | Robot BC | validation loss | closed-loop success rate | error accumulation, multimodality |
 
-Yet Sunday reports an $R^2$ of 0.98 between validation loss and success rate. How this is possible is the subject of §3.2.
+Yet Sunday reports an $R^2$ of 0.98 between validation loss and success rate. How this is possible is the subject of Section 3.2.
 
 ---
 
@@ -241,7 +241,7 @@ $$\mathrm{SR}_h = 420 - 4.9\,L_h\ \ (R^2=0.98),\qquad \mathrm{SR}_u = 500 - 6.2\
 - $\mathrm{SR}$ — success rate (%)
 - Lines fit to the two series **separately** (per-series linear fit)
 
-As §2.3 showed, loss in BC is not by nature a good proxy for success rate. So how does $R^2$ reach 0.98?
+As Section 2.3 showed, loss in BC is not by nature a good proxy for success rate. So how does $R^2$ reach 0.98?
 
 > ### 💡 Validation loss is a proxy for success rate only *within the same curation series*
 >
@@ -255,7 +255,7 @@ As §2.3 showed, loss in BC is not by nature a good proxy for success rate. So h
 >
 > In short, the loss proxy can be used for "how much more data to add under this curation policy," but telling "which curation policy is better" still needs physical evaluation. **Wall 2 is only half broken.** On top of that, the most important variable, the curation criteria themselves, is not disclosed.
 
-Put this table next to the one in §3.1 and one more thing catches. In §3.1, just 12% of pretraining gave an OOD success rate of 90%, but here 12.5% pretraining gives success rates of 75.6% and 43.8%.
+Put this table next to the one in Section 3.1 and one more thing catches. In Section 3.1, just 12% of pretraining gave an OOD success rate of 90%, but here 12.5% pretraining gives success rates of 75.6% and 43.8%.
 
 > ### ⚠️ The success rates in Figure 1 and Figure 2 are not on the same scale
 >
@@ -300,8 +300,8 @@ This loop is the last piece of the narrative. Its value hinges on the two earlie
 
 | Condition for the loop to hold | Basis |
 |---|---|
-| What is fixed in-house must also be fixed in the wild | §3.1 — gap reduction |
-| One failure must be fixable with little data | §3.3 — 1-shot SFT |
+| What is fixed in-house must also be fixed in the wild | Section 3.1 — gap reduction |
+| One failure must be fixable with little data | Section 3.3 — 1-shot SFT |
 
 If both conditions hold, "find a failure in-house → a little recovery data → post-training → transfer to unseen homes" works, and **Wall 1 closes.**
 
@@ -320,7 +320,7 @@ Tying the three observations into one mechanism reads like this (my interpretati
 | Weak ($D=0$) | Must teach **both** "what to do" and "how to see this environment" | Memorizes the environment → gap 82pp |
 | Strong ($D$ = 100%) | Handling of environments is already general, so only "what to do" needs specifying | Only behavior changes, environmental generality is kept → gap ≈ 0 |
 
-The reading is that the role of post-training changes from "teaching" to "selecting," and it is consistent with the 1-shot result of §3.3. The curation result of §3.2 is a question of **how cheaply** such a prior can be built.
+The reading is that the role of post-training changes from "teaching" to "selecting," and it is consistent with the 1-shot result of Section 3.3. The curation result of Section 3.2 is a question of **how cheaply** such a prior can be built.
 
 ---
 
@@ -343,7 +343,7 @@ $$\mathcal{P} = \mathbb{E}_{e\sim\mathcal{S}}\Big[\ \mathrm{success}\big(\pi_{\t
 - $e$ — one deployment (a combination of home, garments and starting state)
 - $\mathcal{S}$ — the declared scope distribution
 - $\Delta_{\mathcal{C}}(e)$ — the adaptation allowed per deployment $e$ (for ACT-2, $\Delta_{\mathcal{C}} = 0$)
-- Even at the same $\mathcal{P}$, a narrow $\mathcal{S}$ or a large $\Delta_{\mathcal{C}}$ makes it a different claim. This is exactly the difference in the table of §1.2
+- Even at the same $\mathcal{P}$, a narrow $\mathcal{S}$ or a large $\Delta_{\mathcal{C}}$ makes it a different claim. This is exactly the difference in the table of Section 1.2
 
 From an LLM background, this is less a new idea than **LLM evaluation hygiene transplanted into robotics**.
 
@@ -377,7 +377,7 @@ Then does this declaration fully satisfy Solve's own definition?
 >
 > Solve's definition includes **intervention** in adaptation cost. But ACT-2's declaration covers only data, demonstrations, post-training, checkpoint and system configuration; it does not report resets between trials, who arranged the garments, or whether there was remote intervention. The accurate phrasing is not "adaptation cost 0" but "0 on the declared learning-related dimensions." The pre-declaration, too, is the company's own statement, not an external registry.
 
-With this, half of Wall 3, **making a single claim interpretable**, is solved. That the other half, **comparison between claims**, still remains is confirmed in §7.
+With this, half of Wall 3, **making a single claim interpretable**, is solved. That the other half, **comparison between claims**, still remains is confirmed in Section 7.
 
 ---
 
@@ -504,10 +504,10 @@ Of these, GEN-1 even shares the same pretraining data strategy. Setting two resu
 
 **Further points to note**
 
-- **Not reproducible** — architecture, parameters, data scale and curation criteria are all undisclosed. In particular, the variable §3.2 showed to matter most, what counts as high-quality, is not disclosed.
+- **Not reproducible** — architecture, parameters, data scale and curation criteria are all undisclosed. In particular, the variable Section 3.2 showed to matter most, what counts as high-quality, is not disclosed.
 - **First-party evaluation** — both the pre-declaration and the grading are the company's own statements, with no external reproduction.
 - **Uneven statistical weight** — 99.1% (785 trials) is solid. Figure 1 (50 trials per point, ceiling effect), Figures 2–4 (trials per point undisclosed, 3+1 points per series) and the 1-shot experiment (no numbers) are much lighter. The three must not be read with equal weight.
-- **No comparison across scopes** — as §7 showed, Solve makes a single claim interpretable but defines no measure of scope breadth to rank two claims.
+- **No comparison across scopes** — as Section 7 showed, Solve makes a single claim interpretable but defines no measure of scope breadth to rank two claims.
 - **Excluded axes** — sock pairing (combinatorial matching, instance re-identification) and hanging (tool use) are a different kind of difficulty from folding. Socks in particular were a task ACT-1 showed as a dexterity demo, finding and balling pairs, yet they are left out of this Solve. A scope declaration should be read as two parts: "coverage within the declared axes" and "axes left out of the declaration."
 
 ---

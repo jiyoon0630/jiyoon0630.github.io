@@ -68,7 +68,7 @@ Side by side, the information flow of the two approaches looks like this.
 
 > If a policy directly inherits the physical-dynamics prior of web video, can it generalize to new motions and new environments **from heterogeneous data alone, without repeated demonstrations**?
 
-The idea of using a video model as a policy is not itself new (§6). The paper says that making it an actually working WAM means getting over three walls.
+The idea of using a video model as a policy is not itself new (Section 6). The paper says that making it an actually working WAM means getting over three walls.
 
 **⛔ Wall 1 — Video–action alignment.** Future video and motor commands must mesh tightly. Naively attaching a separate video head and action head lets the two drift apart.
 
@@ -76,7 +76,7 @@ The idea of using a video model as a policy is not itself new (§6). The paper s
 
 **⛔ Wall 3 — Real-time inference.** A 14B model doing iterative denoising in a high-dimensional latent is too slow for closed-loop control. Implemented naively, a single action chunk takes about 5.7 seconds.
 
-§2 builds the concepts needed to understand the three walls, and §3 is the process of getting over them one by one.
+Section 2 builds the concepts needed to understand the three walls, and Section 3 is the process of getting over them one by one.
 
 ---
 
@@ -110,7 +110,7 @@ DreamZero's key sentence is "shift action learning from dense state–action imi
 >
 > By analogy to diffusion, it is the difference between text-to-image (weak condition, broad distribution) and sketch-conditioned generation (strong condition, narrow distribution). In a WAM, the predicted future video plays the role of the sketch.
 >
-> This integral does not appear in the paper directly. It spells out the grounds for the claim "shift to inverse dynamics." And for this factorization to hold, the IDM must not need the language $c$. We meet this assumption again in Eq. (1) in §3.1.
+> This integral does not appear in the paper directly. It spells out the grounds for the claim "shift to inverse dynamics." And for this factorization to hold, the IDM must not need the language $c$. We meet this assumption again in Eq. (1) in Section 3.1.
 
 ### 2.2 AR video diffusion and teacher forcing — background for Wall 2
 
@@ -123,7 +123,7 @@ A video diffusion model makes video in one of two ways.
 | Training | Whole clip at the same noise level | Independent timestep per chunk, previous chunks clean (teacher forcing) |
 | Weakness | Fixed length, so a subsampling problem | Errors accumulate at inference as it re-consumes its own output |
 
-AR has the same structure as LLM training. At training time it conditions on the ground-truth prefix (clean previous chunks); at inference it conditions on what it generated itself. So it has the same weakness too: **exposure bias**, where training and inference conditions differ. This is why work the paper cites, like Self Forcing, deals separately with this train-test gap in AR video diffusion. How DreamZero avoids this weakness comes in §3.3.
+AR has the same structure as LLM training. At training time it conditions on the ground-truth prefix (clean previous chunks); at inference it conditions on what it generated itself. So it has the same weakness too: **exposure bias**, where training and inference conditions differ. This is why work the paper cites, like Self Forcing, deals separately with this train-test gap in AR video diffusion. How DreamZero avoids this weakness comes in Section 3.3.
 
 ### 2.3 Flow matching notation, and step count is latency — background for Wall 3
 
@@ -135,7 +135,7 @@ $$z_t = t\,z_1 + (1-t)\,z_0,\qquad z_0\sim\mathcal{N}(0,I),\qquad v = z_1 - z_0$
 - $t\in[0,1]$ — timestep. **$t=1$ is clean, $t=0$ is pure noise** (some literature uses the opposite convention, so watch out)
 - $v$ — the target velocity the network regresses
 
-Inference starts from noise at $t=0$ and integrates the velocity toward $t=1$. Each step runs one forward pass of the whole DiT, so latency is roughly **(number of denoising steps) × (DiT forward cost)**. With 16 steps on a 14B DiT, it is immediately clear why Wall 3 arises. What breaks when you try to cut the step count is covered in §3.4.
+Inference starts from noise at $t=0$ and integrates the velocity toward $t=1$. Each step runs one forward pass of the whole DiT, so latency is roughly **(number of denoising steps) × (DiT forward cost)**. With 16 steps on a 14B DiT, it is immediately clear why Wall 3 arises. What breaks when you try to cut the step count is covered in Section 3.4.
 
 ---
 
@@ -180,7 +180,7 @@ The concrete design is as follows.
 | Action representation | Relative joint position, idle actions removed | — |
 | Timestep | Video and action share the same $t$ within a chunk | Faster convergence early in training |
 
-The last row deserves attention. Recent WAMs (Kim et al., 2026; Li et al., 2025a, etc.) separate the timestep per modality, but DreamZero deliberately shares it. This choice is reversed again in §3.4.
+The last row deserves attention. Recent WAMs (Kim et al., 2026; Li et al., 2025a, etc.) separate the timestep per modality, but DreamZero deliberately shares it. This choice is reversed again in Section 3.4.
 
 But look at the right-hand side of Eq. (1) again and something is odd. **The language $c$ has vanished from the IDM term.** Applying the chain rule as is, it should remain.
 
@@ -190,7 +190,7 @@ But look at the right-hand side of Eq. (1) again and something is odd. **The lan
 >
 > $$\pi_\theta(a_{l:l+H}\mid o_{0:l+H},\,c,\,q_l)$$
 >
-> Eq. (1) dropped $c$ from it. That is, it contains the conditional independence assumption $a\perp c\mid(o_{0:l+H},q_l)$: "given the future video and the pose, language adds no information about the action." The integral in §2.1 stands on the same assumption.
+> Eq. (1) dropped $c$ from it. That is, it contains the conditional independence assumption $a\perp c\mid(o_{0:l+H},q_l)$: "given the future video and the pose, language adds no information about the action." The integral in Section 2.1 stands on the same assumption.
 >
 > | Case | Does the assumption hold |
 > |---|---|
@@ -273,7 +273,7 @@ Training is done over a whole trajectory at once, with an attention mask so that
 - **⓶ Execute** — take out only the clean actions, smooth them, and execute them asynchronously on the robot. **The predicted video latent is discarded**
 - **⓷ Feed back** — encode the real camera observation with the VAE, run it forward, and write its KV into the cache
 
-But recall AR's weakness from §2.2 and a question arises. In AR video generation the model re-consumes frames it drew itself as conditions, so small errors snowball. **DreamZero is AR too, so why does it say it doesn't suffer from this?**
+But recall AR's weakness from Section 2.2 and a question arises. In AR video generation the model re-consumes frames it drew itself as conditions, so small errors snowball. **DreamZero is AR too, so why does it say it doesn't suffer from this?**
 
 > ### 💡 In closed loop, the environment is the teacher even at inference
 >
@@ -285,7 +285,7 @@ But recall AR's weakness from §2.2 and a question arises. In AR video generatio
 >
 > In LLM terms, it is as if every time a chunk of text is generated, it gets swapped for the "ground-truth continuation" before the next step. Impossible in text, but natural for a robot, because the world renders the real next frame for free. So the predicted video becomes **a use-and-discard plan, not state**.
 >
-> Strictly speaking, rather than "replacing predicted frames with GT," the predicted frames **never enter the cache in the first place** and only GT is used. The paper calls this "an advantage unique to WAMs" and puts it forward as one of the three key designs in §3. There is, however, no ablation isolating this mechanism.
+> Strictly speaking, rather than "replacing predicted frames with GT," the predicted frames **never enter the cache in the first place** and only GT is used. The paper calls this "an advantage unique to WAMs" and puts it forward as one of the three key designs in Section 3. There is, however, no ablation isolating this mechanism.
 
 Thanks to this structure, DreamZero becomes a **stateful policy** that uses visual history as memory. But tasks that can only be solved with memory were not evaluated (footnote 2).
 
@@ -299,7 +299,7 @@ The naive implementation takes 5.7 seconds per chunk for three reasons.
 | Backbone size | 14B DiT |
 | Sequential execution | The robot stops while inference runs |
 
-A natural question arises here. Since the predicted video is discarded anyway, **wouldn't generating only actions be faster?** The paper denies this in footnote 3. At 14B scale the gain is negligible, because, as seen in §2.3, latency is dominated by the step count and the number of DiT blocks. Moreover, since the two modalities were trained together, naively cutting only the action steps degrades quality. In the end what has to shrink is the step count itself, and that is the motivation for DreamZero-Flash, which we will see below.
+A natural question arises here. Since the predicted video is discarded anyway, **wouldn't generating only actions be faster?** The paper denies this in footnote 3. At 14B scale the gain is negligible, because, as seen in Section 2.3, latency is dominated by the step count and the number of DiT blocks. Moreover, since the two modalities were trained together, naively cutting only the action steps degrades quality. In the end what has to shrink is the step count itself, and that is the motivation for DreamZero-Flash, which we will see below.
 
 **Asynchronous execution.** The first step is to decouple inference from execution. The motion controller keeps executing the most recent action chunk while inference runs concurrently on the latest observation. The constraint then relaxes from "inference must finish before the robot moves" to "inference must finish before the current chunk (1.6 s) runs out." The paper targets roughly 200ms or less for enough overlap.
 
@@ -317,12 +317,12 @@ A natural question arises here. Since the predicted video is discarded anyway, *
 
 The upshot is that 5.7 seconds becomes 150ms, enabling roughly 7Hz control. Apart from DiT caching and quantization, everything is mathematically equivalent to the baseline.
 
-**DreamZero-Flash — separate noise schedules per modality.** What breaks when you cut the step count? In few-step inference you get a situation where "the video is still noisy but the action must be clean." Yet during training the two modalities were always at the same noise level (the shared timestep of §3.1). Flash closes this train-test mismatch through the training distribution.
+**DreamZero-Flash — separate noise schedules per modality.** What breaks when you cut the step count? In few-step inference you get a situation where "the video is still noisy but the action must be clean." Yet during training the two modalities were always at the same noise level (the shared timestep of Section 3.1). Flash closes this train-test mismatch through the training distribution.
 
 $$t^{\text{video}}_k = 1-\eta,\quad \eta\sim\text{Beta}(\alpha,\beta),\ \alpha>\beta,\qquad t^{\text{action}}_k\sim\mathcal{U}(0,1)$$
 
 - $\eta$ — a sample from a Beta distribution. With $\alpha>\beta$ it concentrates near 1
-- The actual setting is $\text{Beta}(7,1)$. $\mathbb{E}[\eta]=0.875$, so $\mathbb{E}[t^{\text{video}}_k]=0.125$, which under the convention of §2.3 is **mostly high noise** (the mean is 0.5 in the shared setting)
+- The actual setting is $\text{Beta}(7,1)$. $\mathbb{E}[\eta]=0.875$, so $\mathbb{E}[t^{\text{video}}_k]=0.125$, which under the convention of Section 2.3 is **mostly high noise** (the mean is 0.5 in the shared setting)
 - The action timestep stays uniform
 
 This way training frequently encounters "predicting clean actions from a noisy visual context," matching the 1-step inference regime. Flash is applied as a final stage after main training is done.
@@ -333,7 +333,7 @@ This way training frequently encounters "predicting clean actions from a noisy v
 | DreamZero | 1 | 52% ± 10.2 | 150ms |
 | DreamZero-Flash | 1 | **74%** ± 10.1 | 150ms |
 
-The scope of what is new needs to be stated precisely. As seen in §3.1, separating timesteps per modality is what earlier WAMs already did, and the DreamZero main model actually reverted to sharing for convergence speed. So Flash's contribution is not the separation itself but **the distribution design that biases the video noise toward high noise to fit the 1-step inference regime**.
+The scope of what is new needs to be stated precisely. As seen in Section 3.1, separating timesteps per modality is what earlier WAMs already did, and the DreamZero main model actually reverted to sharing for convergence speed. So Flash's contribution is not the separation itself but **the distribution design that biases the video noise toward high noise to fit the 1-step inference regime**.
 
 But with 1 step, the current chunk's video tokens start from pure noise ($t=0$). **Then what "future" does the action look at to do IDM?**
 
@@ -355,7 +355,7 @@ The paper's own explanation comes down to four points.
 
 | Explanation | Content | Evidence |
 |---|---|---|
-| ⓵ Inheriting the prior | Video prediction is already optimized on web data, so only video prediction for the robot embodiment and action extraction need to be learned on top | §3.1 |
+| ⓵ Inheriting the prior | Video prediction is already optimized on web data, so only video prediction for the robot embodiment and action extraction need to be learned on top | Section 3.1 |
 | ⓶ Failures come from the video | Most failures stem not from action extraction but from video generation errors. The policy faithfully executes even a wrong video plan | Fig. 16 |
 | ⓷ Diversity makes the IDM | The video side is mostly inherited, so the bottleneck is the IDM. A robust IDM needs state–action correspondences from diverse contexts, which repetitive data lacks | Table 4 |
 | ⓸ Backbone size | Smaller models hallucinate visually more often, and that propagates into wrong actions | Table 4 |
@@ -364,12 +364,12 @@ The cases for ⓶ are concrete. For "pick up the marker and draw a line on the w
 
 Two things can be added.
 
-- **The integral in §2.1 explains "why non-repetitive data works only for WAMs."** A VLA needs samples covering the modes for each $(o,c)$. A WAM's IDM, by contrast, gets **every consecutive frame pair as supervision** regardless of task labels. That is why the repetition of task labels matters less.
+- **The integral in Section 2.1 explains "why non-repetitive data works only for WAMs."** A VLA needs samples covering the modes for each $(o,c)$. A WAM's IDM, by contrast, gets **every consecutive frame pair as supervision** regardless of task labels. That is why the repetition of task labels matters less.
 - **⓶ looks like a weakness report, but it is actually the strongest evidence for the Eq. (1) factorization.** If the action were not dependent on the video, video errors would not carry over to actions this faithfully. At the same time, it means the policy's ceiling is tied to the physical plausibility of the video model.
 
 > ### 📌 Robot capability = video generation capability + a thin action readout
 >
-> DreamZero's biggest differentiator is that it makes the robot-specific learned part thin: "an action readout synchronized to video." In this design, **scaling the video backbone is scaling the policy.** On the same data, DreamZero went from 21% → 50% at 5B → 14B, while VLAs scaled to the same sizes stayed at 0% at both 5B and 14B (§5.5). It is a signal that the scaling axis of robot foundation models may partly shift from "the amount of robot data" to "the quality of the video model."
+> DreamZero's biggest differentiator is that it makes the robot-specific learned part thin: "an action readout synchronized to video." In this design, **scaling the video backbone is scaling the policy.** On the same data, DreamZero went from 21% → 50% at 5B → 14B, while VLAs scaled to the same sizes stayed at 0% at both 5B and 14B (Section 5.5). It is a signal that the scaling axis of robot foundation models may partly shift from "the amount of robot data" to "the quality of the video model."
 
 ---
 
@@ -413,7 +413,7 @@ On DROID-Franka unseen tasks (20 verbs absent from DROID), task progress is 49 /
 
 ### 5.3 Cross-embodiment — learning from video without actions
 
-Video from other embodiments gets **only the video prediction objective**, with no action labels, mixed 1:1 with the pretraining data and co-trained for 10K steps. In terms of the §3.1 factorization, this data strengthens only the first term of Eq. (1) (video prediction).
+Video from other embodiments gets **only the video prediction objective**, with no action labels, mixed 1:1 with the pretraining data and co-trained for 10K steps. In terms of the Section 3.1 factorization, this data strengthens only the first term of Eq. (1) (video prediction).
 
 | Table 2 (9 unseen tasks) | task progress |
 |---|---|
@@ -434,7 +434,7 @@ Video from other embodiments gets **only the video prediction objective**, with 
 
 The checkpoint pretrained on AgiBot was post-trained on a new robot (YAM) with 55 trajectories, 11 tasks, about 30 minutes of play data. They report that language following held on pick-and-place variants featuring new objects (a pumpkin, a teddy bear, cup noodles, a paper bag, and so on).
 
-The paper gives two reasons for this efficiency: the visual similarity of the two embodiments, and more fundamentally, that **IDM learning may be inherently more sample-efficient than direct policy learning** (§2.1). Failures, again, came mainly from video prediction errors rather than action extraction.
+The paper gives two reasons for this efficiency: the visual similarity of the two embodiments, and more fundamentally, that **IDM learning may be inherently more sample-efficient than direct policy learning** (Section 2.1). Failures, again, came mainly from video prediction errors rather than action extraction.
 
 This result, however, is presented **only as qualitative results in Fig. 12, with no quantitative table**. "Maintained zero-shot generalization" is also an observation about object-level generalization, not new motions.
 
@@ -456,7 +456,7 @@ Owing to compute constraints, all ablations were trained for 50K steps at batch 
 > ### ⚠️ Fact check — cautions when reading the ablation
 >
 > - **HTML and PDF disagree.** Table 4 in the arXiv HTML version shows the VLA row as 50%, but the main text and PDF say 0%. It looks like an HTML conversion error.
-> - **The "scaling" evidence is two points.** 5B and 14B, and in the single PnP Easy category at that. The paper itself admits the absence of a scaling law in §6.
+> - **The "scaling" evidence is two points.** 5B and 14B, and in the single PnP Easy category at that. The paper itself admits the absence of a scaling law in Section 6.
 > - **The identity of the 5B backbone is unclear.** The paper writes "Wan2.1-I2V-5B-480P," but Wan2.1's official checkpoints are 1.3B and 14B; 5B exists as Wan2.2-TI2V-5B (which uses a VAE with a different compression rate). If it is the latter, a difference in model family is mixed into the size comparison.
 
 ---
@@ -515,9 +515,9 @@ The name "world model" is used for several branches besides WAMs. So how do WAMs
 **Further points to note**
 
 - **Evaluation design** — in-house real-robot evaluation, a partial-credit metric, 8 rollouts per task. The AgiBot data is not yet public, so reproduction is possible only via the DROID path.
-- **Key designs unverified** — neither single vs separated model (§3.1) nor the contribution of GT observation injection (§3.3) has an isolating ablation.
+- **Key designs unverified** — neither single vs separated model (Section 3.1) nor the contribution of GT observation injection (Section 3.3) has an isolating ablation.
 - **Width of the embodiment gap** — both robots in the few-shot adaptation are bimanual parallel grippers. Adaptation to robots of very different form is unverified.
-- **Reading the numbers** — see the fact check in §5.2 for the abstract's "2×," and §5.3 for the scope of the transfer experiment.
+- **Reading the numbers** — see the fact check in Section 5.2 for the abstract's "2×," and Section 5.3 for the scope of the transfer experiment.
 
 ---
 
