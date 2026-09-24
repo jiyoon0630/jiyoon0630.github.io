@@ -103,7 +103,7 @@ But there is something odd here. The decoder already receives $x_t$ as input. Th
 >
 > The structure points the same way. Since the vector being quantized is the **difference** of the two frame embeddings, $d_t = e_{t+H} - e_t$ (Section 3.1), the codes carry an inductive bias toward looking at change from the start.
 >
-> To be precise, though, what $z$ holds is **not "action" but "the most salient visual change."** In video where the camera moves, camera motion takes up the codes. This difference becomes a problem again in Sections 5.6 and 7.
+> To be precise, though, what $z$ holds is **not "action" but "the most salient visual change."** In video where the camera moves, camera motion takes up the codes. This difference becomes a problem again in Section 5.6 and Section 7.
 
 In a word, this model is **a tokenizer for actions**. The paper, too, likens it to BPE: it learns a vocabulary of "atomic motions" from data, without predefined action units such as EE position or joint angles. From the image-generation side, the difference is that a tokenizer like VQGAN compresses **a single image**, whereas this model compresses **the conditional change given the first frame**.
 
@@ -480,7 +480,7 @@ Here are both what the paper states itself and what is worth adding while readin
 
 **Further points to raise**
 
-- **"Action" ≠ "visual change"** — as seen in Sections 2.3 and 5.6, $z$ holds the most salient visual change. Camera ego-motion and the movement of other people and objects also take up codes, and this contamination will grow worse the more unedited the web video. It is a real obstacle to "web-scale expansion."
+- **"Action" ≠ "visual change"** — as seen in Section 2.3 and Section 5.6, $z$ holds the most salient visual change. Camera ego-motion and the movement of other people and objects also take up codes, and this contamination will grow worse the more unedited the web video. It is a real obstacle to "web-scale expansion."
 - **The bottleneck was moved, not removed** — latent pretraining needs "video + language instruction" pairs. Sthv2 has templated captions, but web video lacks not only action labels but also task-level instructions. The label bottleneck moved from action to language.
 - **Hand tuning per data source** — the window $H$ was set separately: 0.6 s for robots, 2.4 s for human video. With heterogeneous web video, this knob would have to be set per source.
 - **Confounds in the headline comparison** — as seen in Section 5.4, backbone and finetuning recipe are mixed in. The only case where latent pretraining beat GT pretraining on the same backbone is Bridge → Franka, and even that gap comes essentially from one task.
