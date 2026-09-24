@@ -107,6 +107,18 @@ a:hover { text-decoration: underline; }
   border-color: var(--accent);
   color: #fff;
 }
+/* Collapsed tag list (filter.js): extras hide unless open or selected. */
+.filters:not(.tags-open) .filter-btn.tag-extra:not(.active) { display: none; }
+.tag-toggle {
+  border: 1px dashed var(--border);
+  background: transparent;
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 5px 13px;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.tag-toggle:hover { border-color: var(--accent); }
 
 /* Language switch (home) */
 .lang-switch {

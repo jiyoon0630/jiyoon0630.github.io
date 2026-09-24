@@ -106,6 +106,38 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // Tag list: most-used first, collapsed to the top few behind a toggle.
+  // The selected tag stays visible even when the list is collapsed.
+  var TAGS_SHOWN = 10;
+  var tagBox = document.getElementById('tag-filters');
+  var tagList = Array.prototype.slice.call(tagButtons)
+    .filter(function (b) { return b.getAttribute('data-tag') !== 'all'; });
+  tagList.sort(function (a, b) {
+    return (+b.getAttribute('data-count') || 0) - (+a.getAttribute('data-count') || 0) ||
+           a.textContent.localeCompare(b.textContent);
+  });
+  tagList.forEach(function (b, i) {
+    tagBox.appendChild(b);
+    if (i >= TAGS_SHOWN) b.classList.add('tag-extra');
+  });
+  var hiddenCount = Math.max(0, tagList.length - TAGS_SHOWN);
+  if (hiddenCount) {
+    var toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'tag-toggle';
+    toggle.setAttribute('aria-expanded', 'false');
+    tagBox.appendChild(toggle);
+    var setToggle = function (open) {
+      tagBox.classList.toggle('tags-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.textContent = open ? 'Show fewer' : '+' + hiddenCount + ' more';
+    };
+    setToggle(false);
+    toggle.addEventListener('click', function () {
+      setToggle(!tagBox.classList.contains('tags-open'));
+    });
+  }
+
   wire(kindButtons, 'data-kind', function (v) { curKind = v; });
   wire(langButtons, 'data-lang', function (v) { curLang = v; });
   wire(tagButtons, 'data-tag', function (v) { curTag = v; });

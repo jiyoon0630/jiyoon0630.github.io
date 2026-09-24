@@ -28,7 +28,7 @@ English numbers render here and filter.js swaps in the selected language's.{% en
   <button class="filter-btn active" data-tag="all">All tags</button>
   {% assign sorted_tags = site.tags | sort %}
   {% for tag in sorted_tags %}
-  <button class="filter-btn" data-tag="{{ tag[0] | slugify }}">{{ tag[0] }}</button>
+  <button class="filter-btn" data-tag="{{ tag[0] | slugify }}" data-count="{{ tag[1].size }}">{{ tag[0] }}</button>
   {% endfor %}
 </section>
 
