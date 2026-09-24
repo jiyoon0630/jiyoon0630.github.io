@@ -318,7 +318,7 @@ grasp만은 차분이 아니라 시점 $t$의 상태를 그대로 담는다. 이
 
 $$\mathbf{z}=\mathbf{W}^{(k)}_{\text{in}}\,\mathbf{x}+\mathbf{b}^{(k)}_{\text{in}},\qquad \hat{\mathbf{x}}=\mathbf{W}^{(k)}_{\text{out}}\,\mathbf{z}+\mathbf{b}^{(k)}_{\text{out}}$$
 
-- $k\in\{1,\dots,K\}$ — embodiment 도메인 ID
+- $k\in\lbrace 1,\dots,K\rbrace$ — embodiment 도메인 ID
 - $\mathbf{x}\in\mathbb{R}^{d^{(k)}_{\text{in}}}$ — 정규화된 행동 벡터 (차원별로 대략 $[-1,1]$로 스케일)
 - $\mathbf{z}\in\mathbb{R}^{d_{\text{model}}}$ — 공유 공간의 행동 토큰
 - $\mathbf{W}^{(k)},\mathbf{b}^{(k)}$ — 도메인 전용 projection, 처음부터 학습

@@ -318,7 +318,7 @@ Vectors of different dimensions are lifted into and out of a shared latent space
 
 $$\mathbf{z}=\mathbf{W}^{(k)}_{\text{in}}\,\mathbf{x}+\mathbf{b}^{(k)}_{\text{in}},\qquad \hat{\mathbf{x}}=\mathbf{W}^{(k)}_{\text{out}}\,\mathbf{z}+\mathbf{b}^{(k)}_{\text{out}}$$
 
-- $k\in\{1,\dots,K\}$ — embodiment domain ID
+- $k\in\lbrace 1,\dots,K\rbrace$ — embodiment domain ID
 - $\mathbf{x}\in\mathbb{R}^{d^{(k)}_{\text{in}}}$ — normalized action vector (scaled to roughly $[-1,1]$ per dimension)
 - $\mathbf{z}\in\mathbb{R}^{d_{\text{model}}}$ — action token in the shared space
 - $\mathbf{W}^{(k)},\mathbf{b}^{(k)}$ — domain-specific projection, trained from scratch
