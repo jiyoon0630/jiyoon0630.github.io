@@ -18,7 +18,23 @@ document.addEventListener('DOMContentLoaded', function () {
     btn.classList.add('active');
   }
 
+  // Each kind tab counts notes in the selected language only.
+  function updateCounts() {
+    kindButtons.forEach(function (btn) {
+      var span = btn.querySelector('.kind-count');
+      if (!span) return;
+      var kind = btn.getAttribute('data-kind');
+      var n = 0;
+      items.forEach(function (item) {
+        if (item.getAttribute('data-lang') === curLang &&
+            item.getAttribute('data-kind') === kind) n++;
+      });
+      span.textContent = n;
+    });
+  }
+
   function apply() {
+    updateCounts();
     var visible = 0;
     items.forEach(function (item) {
       var lang = item.getAttribute('data-lang');
