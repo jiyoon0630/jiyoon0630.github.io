@@ -2,10 +2,11 @@
 layout: page
 title: Notes
 subtitle: Paper reviews and tech reviews — studied, written up, archived.
+title_ko: 노트
+subtitle_ko: 공부한 논문과 기술을 리뷰로 정리해 기록합니다.
 permalink: /notes/
 ---
 {% assign en_posts = site.posts | where: "lang", "en" %}
-{% assign ko_posts = site.posts | where: "lang", "ko" %}
 {% comment %}Kind counts are per language (a KO/EN pair is one note); the
 English numbers render here and filter.js swaps in the selected language's.{% endcomment %}
 {% assign tech_posts = en_posts | where: "kind", "tech-review" %}
@@ -13,26 +14,21 @@ English numbers render here and filter.js swaps in the selected language's.{% en
 
 <div class="notes-controls">
   <section class="kind-tabs" id="kind-tabs" aria-label="Filter by kind">
-    <button class="kind-btn active" data-kind="all">All</button>
-    <button class="kind-btn" data-kind="paper-review">Paper reviews (<span class="kind-count">{{ paper_count }}</span>)</button>
-    <button class="kind-btn" data-kind="tech-review">Tech reviews (<span class="kind-count">{{ tech_posts | size }}</span>)</button>
-  </section>
-
-  <section class="lang-switch" id="lang-switch" aria-label="Choose language">
-    <button class="lang-btn active" data-lang="en">English ({{ en_posts | size }})</button>
-    <button class="lang-btn" data-lang="ko">한국어 ({{ ko_posts | size }})</button>
+    <button class="kind-btn active" data-kind="all">{% include ui.html key="kind_all" %}</button>
+    <button class="kind-btn" data-kind="paper-review">{% include ui.html key="kind_paper" %} (<span class="kind-count">{{ paper_count }}</span>)</button>
+    <button class="kind-btn" data-kind="tech-review">{% include ui.html key="kind_tech" %} (<span class="kind-count">{{ tech_posts | size }}</span>)</button>
   </section>
 </div>
 
 <section class="filters" id="tag-filters" aria-label="Filter notes by tag">
-  <button class="filter-btn active" data-tag="all">All tags</button>
+  <button class="filter-btn active" data-tag="all">{% include ui.html key="all_tags" %}</button>
   {% assign sorted_tags = site.tags | sort %}
   {% for tag in sorted_tags %}
   <button class="filter-btn" data-tag="{{ tag[0] | slugify }}" data-count="{{ tag[1].size }}">{{ tag[0] }}</button>
   {% endfor %}
 </section>
 
-<p class="empty" id="empty-lang" hidden>No notes match these filters yet.</p>
+<p class="empty" id="empty-lang" hidden>{% include ui.html key="no_match" %}</p>
 
 <ul class="paper-list">
   {% for post in site.posts %}

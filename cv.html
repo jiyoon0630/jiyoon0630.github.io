@@ -1,47 +1,48 @@
 ---
 layout: page
 title: CV
+title_ko: CV
 permalink: /cv/
 ---
 {% assign cv = site.data.cv %}
 
 <p class="cv-meta">
-  {{ cv.headline }}{% if cv.location %} · {{ cv.location }}{% endif %}
-  {% if cv.pdf and cv.pdf != "" %}<br><a href="{{ cv.pdf }}" target="_blank" rel="noopener">📄 Download PDF</a>{% endif %}
+  {% include bi.html en=cv.headline ko=cv.headline_ko %}{% if cv.location %} · {{ cv.location }}{% endif %}
+  {% if cv.pdf and cv.pdf != "" %}<br><a href="{{ cv.pdf }}" target="_blank" rel="noopener">{% include ui.html key="download_pdf" %}</a>{% endif %}
 </p>
 
-{% if cv.experience %}{% include cv-entries.html heading="Experience" entries=cv.experience %}{% endif %}
-{% if cv.education %}{% include cv-entries.html heading="Education" entries=cv.education %}{% endif %}
+{% if cv.experience %}{% include cv-entries.html key="cv_experience" entries=cv.experience %}{% endif %}
+{% if cv.education %}{% include cv-entries.html key="cv_education" entries=cv.education %}{% endif %}
 
 {% assign pubs = site.data.publications | sort: "year" | reverse %}
 {% if pubs.size > 0 %}
 <section class="cv-section">
-  <h2>Publications</h2>
+  <h2>{% include ui.html key="cv_pubs" %}</h2>
   {% for pub in pubs %}
   <div class="cv-entry">
     <div class="cv-period">{{ pub.year }}</div>
     <div class="cv-body">
       <h3>{{ pub.title }}</h3>
       <p class="cv-org">{{ pub.authors | markdownify | remove: '<p>' | remove: '</p>' }}</p>
-      <p class="cv-detail">{{ pub.venue }}</p>
+      <p class="cv-detail">{% include bi.html en=pub.venue ko=pub.venue_ko %}</p>
     </div>
   </div>
   {% endfor %}
 </section>
 {% endif %}
 
-{% if cv.patents %}{% include cv-entries.html heading="Patents" entries=cv.patents %}{% endif %}
-{% if cv.presentations %}{% include cv-entries.html heading="Presentations" entries=cv.presentations %}{% endif %}
-{% if cv.awards %}{% include cv-entries.html heading="Awards & Honors" entries=cv.awards %}{% endif %}
-{% if cv.press %}{% include cv-entries.html heading="Press & Media" entries=cv.press %}{% endif %}
+{% if cv.patents %}{% include cv-entries.html key="cv_patents" entries=cv.patents %}{% endif %}
+{% if cv.presentations %}{% include cv-entries.html key="cv_presentations" entries=cv.presentations %}{% endif %}
+{% if cv.awards %}{% include cv-entries.html key="cv_awards" entries=cv.awards %}{% endif %}
+{% if cv.press %}{% include cv-entries.html key="cv_press" entries=cv.press %}{% endif %}
 
 {% if cv.skills %}
 <section class="cv-section">
-  <h2>Skills</h2>
+  <h2>{% include ui.html key="cv_skills" %}</h2>
   {% for s in cv.skills %}
   <div class="cv-entry">
-    <div class="cv-period">{{ s.group }}</div>
-    <div class="cv-body"><div class="tags">{% for i in s.items %}<span class="tag">{{ i }}</span>{% endfor %}</div></div>
+    <div class="cv-period">{% include bi.html en=s.group ko=s.group_ko %}</div>
+    <div class="cv-body"><div class="tags">{% for i in s.items %}{% assign i_ko = s.items_ko[forloop.index0] %}<span class="tag">{% include bi.html en=i ko=i_ko %}</span>{% endfor %}</div></div>
   </div>
   {% endfor %}
 </section>
@@ -49,11 +50,11 @@ permalink: /cv/
 
 {% if cv.languages %}
 <section class="cv-section">
-  <h2>Languages</h2>
+  <h2>{% include ui.html key="cv_languages" %}</h2>
   {% for s in cv.languages %}
   <div class="cv-entry">
-    <div class="cv-period">{{ s.group }}</div>
-    <div class="cv-body"><div class="tags">{% for i in s.items %}<span class="tag">{{ i }}</span>{% endfor %}</div></div>
+    <div class="cv-period">{% include bi.html en=s.group ko=s.group_ko %}</div>
+    <div class="cv-body"><div class="tags">{% for i in s.items %}{% assign i_ko = s.items_ko[forloop.index0] %}<span class="tag">{% include bi.html en=i ko=i_ko %}</span>{% endfor %}</div></div>
   </div>
   {% endfor %}
 </section>

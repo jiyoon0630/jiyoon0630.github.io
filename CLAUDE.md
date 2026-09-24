@@ -4,8 +4,9 @@ Jiyoon Kim's personal website, published with Jekyll on **GitHub Pages** at
 https://jiyoon0630.github.io/. It is both a research archive (paper and tech
 reviews) and a personal profile (publications, projects, CV).
 
-The site UI and all non-note pages are **English only**. Notes are
-**bilingual (Korean + English)**.
+The whole site is **bilingual (English + Korean)**, switched by one toggle at
+the top right of every page. Notes are separate KO and EN posts; every other
+page renders both languages and shows one (see "Site-wide language" below).
 
 ## Default job: post every uploaded Markdown note in BOTH languages
 
@@ -33,8 +34,8 @@ Korean, one English** — unless they say otherwise.
 5. Give each language its own `summary` in that language.
 6. Build locally to verify, then commit and push.
 
-A single-language note is fine — the toggle only appears when a translation
-with the same `ref` exists.
+A single-language note is fine — on it, the header toggle's other-language
+button is disabled, since there is no translation (same `ref`) to open.
 
 ## Front matter
 
@@ -261,6 +262,32 @@ Do **not** hand-edit the page HTML for content. Edit these instead:
 | `_data/cv.yml` | `/cv/` education, experience, skills, awards |
 
 `selected: true` on a publication or project also surfaces it on the home page.
+
+### Site-wide language
+
+- Every translatable data field has a Korean sibling with a `_ko` suffix
+  (`bio_ko`, `tagline_ko`, `title_ko`, `org_ko`, `period_ko`, `detail_ko`,
+  `venue_ko`, `abstract_ko`, `label_ko`, `text_ko`, `group_ko`). Lists take a
+  parallel list: `interests_ko`, `items_ko` (same order), and CV `bullets_ko`
+  (a whole second list). A missing `_ko` falls back to the English text, so
+  adding an English entry never breaks the Korean view — but add the Korean
+  one too.
+- Interface strings (nav, headings, buttons) live in `_data/ui.yml`, rendered
+  with `{% include ui.html key="..." %}`. Page titles take `title_ko` /
+  `subtitle_ko` in front matter.
+- Templates print both languages through `{% include bi.html en=... ko=... %}`;
+  CSS hides one based on `<html data-lang>`. That attribute is set by an inline
+  script in `<head>` before paint: a note uses its own `lang` (and saves it as
+  the reader's choice), other pages use the saved choice, else the browser
+  language. The toggle click lives in `assets/js/filter.js`; on a note it opens
+  the translation instead.
+- Paper titles, author lists, tag names and proper nouns stay in English in
+  both views.
+- Korean site text is in her voice (`.claude/voice-ko-checklist.md`): prose
+  (bio, news, project and abstract text, page subtitles) in 합쇼체; CV bullets in
+  개조식 (~구축, ~달성, ~이어짐), as in her own tables. Her name in the Korean
+  view is 김지윤 (`name_ko`). She asked that the Core Talent designation and
+  its allowance not appear in the CV.
 Values marked `TODO` are placeholders the owner still has to fill in — leave
 them until they supply real content, and never invent biographical facts,
 venues, authors, or dates.
@@ -276,7 +303,8 @@ JEKYLL_ENV=production bundle exec jekyll build
 ```
 
 Check `_site/notes/<ref>/` and `_site/notes/<ref>-en/` exist and that the
-language toggle plus the Notes filters are wired.
+header language toggle plus the Notes filters are wired, and switch the
+toggle on the home, CV and Notes pages to see both languages.
 
 Note: `assets/js/filter.js` only runs where the filter controls exist (it bails
 out unless `#tag-filters` is on the page), so note lists elsewhere stay visible.
@@ -365,8 +393,9 @@ take its design judgment and ignore its code. Constraints for every use:
 - **No placeholder media.** The skill suggests `picsum.photos` and
   `cdn.simpleicons.org`; both are wrong here. Real assets or nothing.
 - **Settled decisions — do not "improve" these:** dark mode via
-  `prefers-color-scheme`, the callout card treatment, the KO ⇄ EN toggle, the
-  notes filter controls, the data-driven page structure.
+  `prefers-color-scheme`, the callout card treatment, the site-wide language
+  toggle in the header, the notes filter controls, the data-driven page
+  structure.
 - Its "hard em-dash ban" applies to UI copy it writes. It does **not** override
   the voice profile or touch existing post text.
 
@@ -388,8 +417,9 @@ and re-running fixes it.
 
 - `index.html` home · `notes.html` → `/notes/` · `publications.html` ·
   `projects.html` · `cv.html`
-- `_layouts/default.html` shell + nav · `page.html` generic page ·
-  `paper.html` note page (authors, affiliations, KO ⇄ EN toggle)
-- `_includes/pub-item.html`, `_includes/project-card.html`
+- `_layouts/default.html` shell + nav + language toggle · `page.html` generic
+  page · `paper.html` note page (authors, affiliations)
+- `_includes/pub-item.html`, `_includes/project-card.html`, `cv-entries.html`,
+  `bi.html` (both languages), `ui.html` (a string from `_data/ui.yml`)
 - `assets/css/style.css` — callout cards, tags, hero, cards, CV, dark mode
 - `templates/paper-template.md` — copy-paste front matter

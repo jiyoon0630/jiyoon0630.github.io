@@ -1,6 +1,9 @@
 name: Jiyoon Kim
+name_ko: 김지윤
 role: "Applied Scientist — Generative Models · Research-to-Production"
 affiliation: "LG CNS, Silicon Valley Connect & Develop Center"
+affiliation_ko: "LG CNS 실리콘밸리 Connect & Develop 센터"
+role_ko: "Applied Scientist — 생성 모델 · 연구의 제품화"
 location: "Mountain View, CA"
 photo: /assets/img/profile.svg     # replace with a square photo, e.g. /assets/img/profile.jpg
 
@@ -12,12 +15,28 @@ bio: >-
   models, world models) through the sourcing, validation, and applied R&D of
   partner technology.
 
+# Korean fields (*_ko) show when the site is switched to Korean; a missing one
+# falls back to the English text.
+bio_ko: >-
+  6년간 컴퓨터 비전과 생성 모델을 다루며 새로운 기술을 실제 배포되는 시스템으로
+  만들어 온 Applied Scientist입니다. CVPR 2025 공동 제1저자 논문과 상용화한 생성형
+  AI SaaS 엔진의 바탕에는 깊이 있는 diffusion 연구가 있습니다. 지금은 파트너 기술의
+  발굴·검증·응용 R&D를 통해 이 전문성을 Physical AI(로봇 파운데이션 모델, 월드
+  모델)로 넓히고 있습니다.
+
 interests:
   - Robot foundation models / VLA
   - World models
   - Diffusion models & personalization
   - Agentic AI and tool use
   - Research-to-production
+
+interests_ko:          # same order as interests
+  - 로봇 파운데이션 모델 / VLA
+  - 월드 모델
+  - Diffusion 모델과 개인화
+  - Agentic AI와 도구 사용
+  - 연구의 제품화
 
 links:
   - label: Email

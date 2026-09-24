@@ -6,9 +6,13 @@ layout: default
 <section class="hero">
   {% if p.photo %}<img class="hero-photo" src="{{ p.photo | relative_url }}" alt="{{ p.name }}">{% endif %}
   <div class="hero-text">
-    <h1 class="hero-name">{{ p.name }}</h1>
-    <p class="hero-role">{{ p.role }}{% if p.affiliation %} · {{ p.affiliation }}{% endif %}</p>
-    <p class="hero-bio">{{ p.bio | markdownify | strip_html }}</p>
+    <h1 class="hero-name">{% include bi.html en=p.name ko=p.name_ko %}</h1>
+    {% capture role_en %}{{ p.role }}{% if p.affiliation %} · {{ p.affiliation }}{% endif %}{% endcapture %}
+    {% capture role_ko %}{% if p.role_ko %}{{ p.role_ko }}{% if p.affiliation_ko %} · {{ p.affiliation_ko }}{% endif %}{% endif %}{% endcapture %}
+    <p class="hero-role">{% include bi.html en=role_en ko=role_ko %}</p>
+    {% assign bio_en = p.bio | markdownify | strip_html | strip %}
+    {% assign bio_ko = p.bio_ko | markdownify | strip_html | strip %}
+    <p class="hero-bio">{% include bi.html en=bio_en ko=bio_ko %}</p>
     {% if p.links %}
     <p class="hero-links">
       {% for l in p.links %}<a href="{{ l.url }}"{% if l.url contains 'http' or l.url contains 'mailto' %} target="_blank" rel="noopener"{% endif %}>{{ l.label }}</a>{% unless forloop.last %}<span class="sep">·</span>{% endunless %}{% endfor %}
@@ -19,19 +23,21 @@ layout: default
 
 {% if p.interests %}
 <section class="home-section">
-  <h2>Research interests</h2>
+  <h2>{% include ui.html key="interests" %}</h2>
   <div class="tags">
-    {% for i in p.interests %}<span class="tag">{{ i }}</span>{% endfor %}
+    {% for i in p.interests %}{% assign i_ko = p.interests_ko[forloop.index0] %}<span class="tag">{% include bi.html en=i ko=i_ko %}</span>{% endfor %}
   </div>
 </section>
 {% endif %}
 
 {% if site.data.news and site.data.news.size > 0 %}
 <section class="home-section">
-  <h2>News</h2>
+  <h2>{% include ui.html key="news" %}</h2>
   <ul class="news-list">
     {% for n in site.data.news %}
-    <li><time>{{ n.date | date: "%Y-%m-%d" }}</time><span>{{ n.text | markdownify | remove: '<p>' | remove: '</p>' }}</span></li>
+    {% assign t_en = n.text | markdownify | remove: '<p>' | remove: '</p>' | strip %}
+    {% assign t_ko = n.text_ko | markdownify | remove: '<p>' | remove: '</p>' | strip %}
+    <li><time>{{ n.date | date: "%Y-%m-%d" }}</time><span>{% include bi.html en=t_en ko=t_ko %}</span></li>
     {% endfor %}
   </ul>
 </section>
@@ -40,7 +46,7 @@ layout: default
 {% assign sel_pubs = site.data.publications | where: "selected", true %}
 {% if sel_pubs.size > 0 %}
 <section class="home-section">
-  <h2>Selected publications <a class="more" href="{{ '/publications/' | relative_url }}">all →</a></h2>
+  <h2>{% include ui.html key="sel_pubs" %} <a class="more" href="{{ '/publications/' | relative_url }}">{% include ui.html key="all_link" %}</a></h2>
   {% for pub in sel_pubs %}
     {% include pub-item.html pub=pub %}
   {% endfor %}
@@ -50,7 +56,7 @@ layout: default
 {% assign sel_proj = site.data.projects | where: "selected", true %}
 {% if sel_proj.size > 0 %}
 <section class="home-section">
-  <h2>Selected projects <a class="more" href="{{ '/projects/' | relative_url }}">all →</a></h2>
+  <h2>{% include ui.html key="sel_projects" %} <a class="more" href="{{ '/projects/' | relative_url }}">{% include ui.html key="all_link" %}</a></h2>
   <div class="project-grid">
     {% for pr in sel_proj %}
       {% include project-card.html pr=pr %}
@@ -60,11 +66,15 @@ layout: default
 {% endif %}
 
 {% assign en_notes = site.posts | where: "lang", "en" %}
-{% if en_notes.size > 0 %}
+{% assign ko_notes = site.posts | where: "lang", "ko" %}
+{% if en_notes.size > 0 or ko_notes.size > 0 %}
 <section class="home-section">
-  <h2>Recent notes <a class="more" href="{{ '/notes/' | relative_url }}">all →</a></h2>
-  <ul class="paper-list compact">
-    {% for post in en_notes limit: 4 %}
+  <h2>{% include ui.html key="recent_notes" %} <a class="more" href="{{ '/notes/' | relative_url }}">{% include ui.html key="all_link" %}</a></h2>
+  {% assign lists = "en,ko" | split: "," %}
+  {% for l in lists %}
+  {% if l == "ko" %}{% assign notes = ko_notes %}{% else %}{% assign notes = en_notes %}{% endif %}
+  <ul class="paper-list compact l-{{ l }}">
+    {% for post in notes limit: 4 %}
     <li class="paper-item">
       <div class="paper-item-head">
         <time class="paper-date">{{ post.date | date: "%Y-%m-%d" }}</time>
@@ -74,5 +84,6 @@ layout: default
     </li>
     {% endfor %}
   </ul>
+  {% endfor %}
 </section>
 {% endif %}

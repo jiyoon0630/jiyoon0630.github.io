@@ -1,3 +1,20 @@
+// Site-wide language toggle (header). <head> already set <html data-lang>;
+// this saves a new choice and tells the page. On a note, it opens the
+// translation instead (data-href).
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('[data-set-lang]') : null;
+  if (!btn || btn.disabled) return;
+  var lang = btn.getAttribute('data-set-lang');
+  try { localStorage.setItem('site-lang', lang); } catch (err) {}
+  var href = btn.getAttribute('data-href');
+  if (href) { window.location.href = href; return; }
+  var d = document.documentElement;
+  if (d.getAttribute('data-lang') === lang) return;
+  d.setAttribute('data-lang', lang);
+  d.lang = lang;
+  document.dispatchEvent(new CustomEvent('site-lang', { detail: lang }));
+});
+
 // Note pages: mark tables whose content is wider than the text column, so the
 // CSS widens only those into the margins (see .paper-body table.wide).
 document.addEventListener('DOMContentLoaded', function () {
@@ -48,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function () {
 // Notes page: combined kind + language + tag filtering.
 document.addEventListener('DOMContentLoaded', function () {
   var kindButtons = document.querySelectorAll('.kind-btn');
-  var langButtons = document.querySelectorAll('.lang-btn');
   var tagButtons = document.querySelectorAll('.filter-btn');
   var items = document.querySelectorAll('.paper-item');
   var empty = document.getElementById('empty-lang');
@@ -57,7 +73,8 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!items.length || !document.getElementById('tag-filters')) return;
 
   var curKind = 'all';
-  var curLang = 'en'; // default: English-first
+  // Language is the site-wide choice on <html>, not a control on this page.
+  var curLang = document.documentElement.getAttribute('data-lang') || 'en';
   var curTag = 'all';
 
   function setActive(buttons, btn) {
@@ -139,7 +156,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   wire(kindButtons, 'data-kind', function (v) { curKind = v; });
-  wire(langButtons, 'data-lang', function (v) { curLang = v; });
+  document.addEventListener('site-lang', function (e) {
+    curLang = e.detail;
+    apply();
+  });
   wire(tagButtons, 'data-tag', function (v) { curTag = v; });
 
   apply();

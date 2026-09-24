@@ -1,0 +1,10 @@
+{%- comment -%}
+  Bilingual text. Renders both languages; CSS shows the one on <html data-lang>.
+  A missing Korean value falls back to the English text for both.
+  {% include bi.html en=... ko=... %}
+{%- endcomment -%}
+{%- if include.ko and include.ko != "" and include.ko != include.en -%}
+<span class="l-en">{{ include.en }}</span><span class="l-ko" lang="ko">{{ include.ko }}</span>
+{%- else -%}
+{{ include.en }}
+{%- endif -%}

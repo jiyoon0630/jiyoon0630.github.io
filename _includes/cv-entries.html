@@ -1,16 +1,26 @@
 <section class="cv-section">
-  <h2>{{ include.heading }}</h2>
+  <h2>{% include ui.html key=include.key %}</h2>
   {% for e in include.entries %}
   <div class="cv-entry">
-    <div class="cv-period">{{ e.period }}</div>
+    <div class="cv-period">{% include bi.html en=e.period ko=e.period_ko %}</div>
     <div class="cv-body">
-      <h3>{% if e.url %}<a href="{{ e.url }}" target="_blank" rel="noopener">{{ e.title }}</a>{% else %}{{ e.title }}{% endif %}</h3>
-      {% if e.org %}<p class="cv-org">{{ e.org }}</p>{% endif %}
-      {% if e.detail %}<p class="cv-detail">{{ e.detail | markdownify | remove: '<p>' | remove: '</p>' }}</p>{% endif %}
+      <h3>{% if e.url %}<a href="{{ e.url }}" target="_blank" rel="noopener">{% include bi.html en=e.title ko=e.title_ko %}</a>{% else %}{% include bi.html en=e.title ko=e.title_ko %}{% endif %}</h3>
+      {% if e.org %}<p class="cv-org">{% include bi.html en=e.org ko=e.org_ko %}</p>{% endif %}
+      {% if e.detail %}
+        {% assign d_en = e.detail | markdownify | remove: '<p>' | remove: '</p>' | strip %}
+        {% assign d_ko = e.detail_ko | markdownify | remove: '<p>' | remove: '</p>' | strip %}
+      <p class="cv-detail">{% include bi.html en=d_en ko=d_ko %}</p>
+      {% endif %}
+      {%- comment -%} Korean bullets are a whole second list, not per-line pairs. {%- endcomment -%}
       {% if e.bullets %}
-      <ul class="cv-bullets">
+      <ul class="cv-bullets{% if e.bullets_ko %} l-en{% endif %}">
         {% for b in e.bullets %}<li>{{ b | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
       </ul>
+      {% if e.bullets_ko %}
+      <ul class="cv-bullets l-ko" lang="ko">
+        {% for b in e.bullets_ko %}<li>{{ b | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
+      </ul>
+      {% endif %}
       {% endif %}
     </div>
   </div>

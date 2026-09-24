@@ -1,6 +1,7 @@
 - title: "APT: Adaptive Personalized Training for Diffusion Models with Limited Data"
   authors: "JungWoo Chae\\*, **Jiyoon Kim**\\*, Jaewoong Choi, Kyungyul Kim, Sangheum Hwang†"
   venue: "CVPR 2025 (main conference) · *equal contribution"
+  venue_ko: "CVPR 2025 (main conference) · *공동 제1저자"
   year: 2025
   selected: true
   links:
@@ -10,10 +11,15 @@
     Personalizing a diffusion model on limited data trades subject fidelity against
     text alignment. APT preserves the base model's prior through regularization while
     sharpening subject identity via augmentation and adaptive loss scheduling.
+  abstract_ko: >-
+    적은 데이터로 diffusion 모델을 개인화하면 피사체 충실도와 텍스트 정합성이 서로
+    맞바뀝니다. APT는 정규화로 기반 모델의 사전 지식을 보존하면서, 증강과 적응형 손실
+    스케줄링으로 피사체의 정체성을 또렷하게 만듭니다.
 
 - title: "Parallel Rescaling: Rebalancing Consistency Guidance for Personalized Diffusion Models"
   authors: "JungWoo Chae\\*, **Jiyoon Kim**\\*, Sangheum Hwang†"
   venue: "CVPR 2025 Workshop · *equal contribution"
+  venue_ko: "CVPR 2025 Workshop · *공동 제1저자"
   year: 2025
   selected: true
   links:
@@ -23,6 +29,10 @@
     An adaptive statistical normalization of consistency guidance, decomposed against
     classifier-free guidance — replacing heuristic per-step LoRA weight scheduling at
     inference time.
+  abstract_ko: >-
+    Consistency guidance를 classifier-free guidance에 대해 분해한 뒤 적응적으로 통계
+    정규화합니다. 추론 시 step마다 LoRA 가중치를 휴리스틱하게 스케줄링하던 방식을
+    대체합니다.
 
 - title: "FacialCueNet: Unmasking Deception — An Interpretable Model for Criminal Interrogation Using Facial Expressions"
   authors: "Borum Nam\\*, Joo Young Kim\\*, Beomjun Bark, Yeongmyeong Kim, **Jiyoon Kim**, Soon Won So, Hyung Youn Choi, In Young Kim†"
