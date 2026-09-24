@@ -76,7 +76,7 @@ $$\max_\theta\ \mathbb{E}_{\mathcal{D}}\big[\log \pi_\theta(\mathbf{a}_{t:t+H}\m
 |---|---|
 | $\theta$ | VLA parameters |
 | $\mathcal{D}$ | Dataset of training trajectories |
-| $\mathbf{a}_{t:t+H}$ | Action chunk: the actions for the next $H$ steps, with $H=50$ in π0.7. Only the first $\hat H\in\{15,25\}$ steps are actually executed |
+| $\mathbf{a}_{t:t+H}$ | Action chunk: the actions for the next $H$ steps, with $H=50$ in π0.7. Only the first $\hat H\in\lbrace 15,25\rbrace$ steps are actually executed |
 | $\mathbf{o}_{t-T:t}$ | Recent observation history. $\mathbf{o}_t=[\mathbf{I}^1_t,\dots,\mathbf{I}^n_t,\mathbf{q}_t]$ is $n$ camera images plus the joint state $\mathbf{q}_t$ |
 | $\mathcal{C}_t$ | Prompt (context): all the side information that conditions the actions |
 
@@ -320,7 +320,7 @@ But according to the paper, the model learns noticeably faster when given subgoa
 
 ### 3.5 Control mode and the dropout design
 
-The coordinate frame of the actions also goes into the context. Joint-control and end-effector-control data are trained together and distinguished by a text identifier $c\in\{\texttt{joint},\texttt{ee}\}$. At inference, it is chosen to fit the task. End-effector commands are converted into joint targets by numerical inverse kinematics (IK) and passed to a PD controller.
+The coordinate frame of the actions also goes into the context. Joint-control and end-effector-control data are trained together and distinguished by a text identifier $c\in\lbrace \texttt{joint},\texttt{ee}\rbrace$. At inference, it is chosen to fit the task. End-effector commands are converted into joint targets by numerical inverse kinematics (IK) and passed to a PD controller.
 
 Every component is randomly dropped during training. Control mode is the one exception.
 
@@ -396,14 +396,14 @@ $$\tilde\nabla_{\mathbf{a}}\ =\ \nabla_{\mathbf{a}}\log\pi_\theta(\mathbf{a}\mid
 | $\mathbf{a}$ | Shorthand for the action chunk $\mathbf{a}_{t:t+H}$ |
 | $\mathcal{C}_t$ | The full context, including metadata |
 | $\mathcal{C}^{\text{uncond}}_t$ | The "unconditional" context. In π0.7, the context without metadata |
-| $\beta$ | CFG weight. The paper uses $\beta\in\{1.3,\ 1.7,\ 2.2\}$ |
+| $\beta$ | CFG weight. The paper uses $\beta\in\lbrace 1.3,\ 1.7,\ 2.2\rbrace$ |
 | $\tilde\nabla_{\mathbf{a}}$ | The guided score actually used for denoising |
 
 But quality 5 and mistake false are already in as conditions. Why push once more with CFG?
 
 > ### 💡 Metadata CFG sharpens the distribution toward an implicit 'quality discriminator'
 >
-> Setting $\mathcal{C}_t=\mathcal{C}^{\text{uncond}}_t\cup\{m^\star\}$ and applying Bayes' rule, the difference in parentheses becomes $\nabla_{\mathbf{a}}\log p_\theta(m^\star\mid\mathbf{a},\mathbf{o},\mathcal{C}^{\text{uncond}})$. So the guidance above is equivalent to sampling from the following distribution.
+> Setting $\mathcal{C}_t=\mathcal{C}^{\text{uncond}}_t\cup\lbrace m^\star\rbrace$ and applying Bayes' rule, the difference in parentheses becomes $\nabla_{\mathbf{a}}\log p_\theta(m^\star\mid\mathbf{a},\mathbf{o},\mathcal{C}^{\text{uncond}})$. So the guidance above is equivalent to sampling from the following distribution.
 >
 > $$\tilde\pi(\mathbf{a}\mid\mathbf{o},\mathcal{C})\ \propto\ \pi_\theta(\mathbf{a}\mid\mathbf{o},\mathcal{C}^{\text{uncond}})\cdot p_\theta(m^\star\mid\mathbf{a},\mathbf{o},\mathcal{C}^{\text{uncond}})^{\,1+\beta}$$
 >
@@ -625,7 +625,7 @@ The biggest implication is in the last item. The unit of teaching a new task has
 
 | Term | Definition |
 |---|---|
-| **context $\mathcal{C}_t$** | All the side information that conditions the actions. In π0.7, $\{\ell,\hat\ell,\mathbf{g},m,c\}$ |
+| **context $\mathcal{C}_t$** | All the side information that conditions the actions. In π0.7, $\lbrace \ell,\hat\ell,\mathbf{g},m,c\rbrace$ |
 | **episode metadata** | Labels for episode length (speed), quality score (quality), and per-segment mistakes (mistake) |
 | **subgoal image** | A multi-view goal image showing how the scene should look in the near future |
 | **world model** | The BAGEL-based 14B model that generates subgoal images from subtask instructions |

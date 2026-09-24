@@ -76,7 +76,7 @@ $$\max_\theta\ \mathbb{E}_{\mathcal{D}}\big[\log \pi_\theta(\mathbf{a}_{t:t+H}\m
 |---|---|
 | $\theta$ | VLA 파라미터 |
 | $\mathcal{D}$ | 학습 궤적 데이터셋 |
-| $\mathbf{a}_{t:t+H}$ | action chunk. 앞으로 $H$ 스텝의 행동이며 π0.7은 $H=50$. 실제로는 앞의 $\hat H\in\{15,25\}$ 스텝만 실행한다 |
+| $\mathbf{a}_{t:t+H}$ | action chunk. 앞으로 $H$ 스텝의 행동이며 π0.7은 $H=50$. 실제로는 앞의 $\hat H\in\lbrace 15,25\rbrace$ 스텝만 실행한다 |
 | $\mathbf{o}_{t-T:t}$ | 최근 관측 이력. $\mathbf{o}_t=[\mathbf{I}^1_t,\dots,\mathbf{I}^n_t,\mathbf{q}_t]$는 카메라 이미지 $n$장과 관절 상태 $\mathbf{q}_t$ |
 | $\mathcal{C}_t$ | prompt(context). 행동을 조건화하는 부가 정보 전체 |
 
@@ -320,7 +320,7 @@ subgoal이 얼마나 기여하는지는 π0.7과 π0.7 (GC)(world model subgoal�
 
 ### 3.5 Control mode와 dropout 설계
 
-행동의 좌표계도 context에 넣는다. 관절 제어와 말단(end-effector) 제어 데이터를 함께 학습하고, 텍스트 식별자 $c\in\{\texttt{joint},\texttt{ee}\}$로 구분한다. 추론 때는 task에 맞게 고른다. end-effector 명령은 수치 역기구학(IK)으로 관절 목표로 바꿔 PD 제어기에 넘긴다.
+행동의 좌표계도 context에 넣는다. 관절 제어와 말단(end-effector) 제어 데이터를 함께 학습하고, 텍스트 식별자 $c\in\lbrace \texttt{joint},\texttt{ee}\rbrace$로 구분한다. 추론 때는 task에 맞게 고른다. end-effector 명령은 수치 역기구학(IK)으로 관절 목표로 바꿔 PD 제어기에 넘긴다.
 
 모든 성분은 학습 때 무작위로 떨어뜨린다. control mode만은 예외다.
 
@@ -396,14 +396,14 @@ $$\tilde\nabla_{\mathbf{a}}\ =\ \nabla_{\mathbf{a}}\log\pi_\theta(\mathbf{a}\mid
 | $\mathbf{a}$ | action chunk $\mathbf{a}_{t:t+H}$의 약식 표기 |
 | $\mathcal{C}_t$ | metadata를 포함한 전체 context |
 | $\mathcal{C}^{\text{uncond}}_t$ | "무조건부" context. π0.7에서는 metadata를 뺀 context |
-| $\beta$ | CFG 가중치. 논문은 $\beta\in\{1.3,\ 1.7,\ 2.2\}$를 쓴다 |
+| $\beta$ | CFG 가중치. 논문은 $\beta\in\lbrace 1.3,\ 1.7,\ 2.2\rbrace$를 쓴다 |
 | $\tilde\nabla_{\mathbf{a}}$ | denoising에 실제로 쓰는 가이드된 score |
 
 그런데 quality 5와 mistake false는 이미 조건으로 들어가 있다. 왜 CFG로 한 번 더 밀어야 하는가?
 
 > ### 💡 metadata CFG는 암묵적 '품질 판별기' 쪽으로 분포를 날카롭게 만든다
 >
-> $\mathcal{C}_t=\mathcal{C}^{\text{uncond}}_t\cup\{m^\star\}$로 두고 Bayes 규칙을 쓰면, 괄호 안의 차이는 $\nabla_{\mathbf{a}}\log p_\theta(m^\star\mid\mathbf{a},\mathbf{o},\mathcal{C}^{\text{uncond}})$가 된다. 따라서 위의 가이드는 다음 분포에서 샘플하는 것과 같다.
+> $\mathcal{C}_t=\mathcal{C}^{\text{uncond}}_t\cup\lbrace m^\star\rbrace$로 두고 Bayes 규칙을 쓰면, 괄호 안의 차이는 $\nabla_{\mathbf{a}}\log p_\theta(m^\star\mid\mathbf{a},\mathbf{o},\mathcal{C}^{\text{uncond}})$가 된다. 따라서 위의 가이드는 다음 분포에서 샘플하는 것과 같다.
 >
 > $$\tilde\pi(\mathbf{a}\mid\mathbf{o},\mathcal{C})\ \propto\ \pi_\theta(\mathbf{a}\mid\mathbf{o},\mathcal{C}^{\text{uncond}})\cdot p_\theta(m^\star\mid\mathbf{a},\mathbf{o},\mathcal{C}^{\text{uncond}})^{\,1+\beta}$$
 >
@@ -625,7 +625,7 @@ UR5e 셔츠 개기는 §3.4에서 예고한 대로 언어 없이 subgoal과 meta
 
 | 용어 | 정의 |
 |---|---|
-| **context $\mathcal{C}_t$** | 행동을 조건화하는 부가 정보 전체. π0.7에서는 $\{\ell,\hat\ell,\mathbf{g},m,c\}$ |
+| **context $\mathcal{C}_t$** | 행동을 조건화하는 부가 정보 전체. π0.7에서는 $\lbrace \ell,\hat\ell,\mathbf{g},m,c\rbrace$ |
 | **episode metadata** | 에피소드 길이(speed), 품질 점수(quality), 세그먼트별 실수 여부(mistake) 라벨 |
 | **subgoal 이미지** | 가까운 미래에 장면이 어떻게 보여야 하는지를 보여주는 multi-view 목표 이미지 |
 | **world model** | subtask 지시로부터 subgoal 이미지를 생성하는 BAGEL 기반 14B 모델 |
