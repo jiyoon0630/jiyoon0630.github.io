@@ -283,6 +283,11 @@ Do **not** hand-edit the page HTML for content. Edit these instead:
   the translation instead.
 - Paper titles, author lists, tag names and proper nouns stay in English in
   both views.
+- Korean site text is in her voice (`.claude/voice-ko-checklist.md`): prose
+  (bio, news, project and abstract text, page subtitles) in 합쇼체; CV bullets in
+  개조식 (~구축, ~달성, ~이어짐), as in her own tables. Her name in the Korean
+  view is 김지윤 (`name_ko`). She asked that the Core Talent designation and
+  its allowance not appear in the CV.
 Values marked `TODO` are placeholders the owner still has to fill in — leave
 them until they supply real content, and never invent biographical facts,
 venues, authors, or dates.

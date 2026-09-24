@@ -6,7 +6,7 @@ layout: default
 <section class="hero">
   {% if p.photo %}<img class="hero-photo" src="{{ p.photo | relative_url }}" alt="{{ p.name }}">{% endif %}
   <div class="hero-text">
-    <h1 class="hero-name">{{ p.name }}</h1>
+    <h1 class="hero-name">{% include bi.html en=p.name ko=p.name_ko %}</h1>
     {% capture role_en %}{{ p.role }}{% if p.affiliation %} · {{ p.affiliation }}{% endif %}{% endcapture %}
     {% capture role_ko %}{% if p.role_ko %}{{ p.role_ko }}{% if p.affiliation_ko %} · {{ p.affiliation_ko }}{% endif %}{% endif %}{% endcapture %}
     <p class="hero-role">{% include bi.html en=role_en ko=role_ko %}</p>

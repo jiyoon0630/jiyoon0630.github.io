@@ -16,10 +16,10 @@ experience:
     title_ko: "Physical AI — 로봇 파운데이션 모델 기술 파트너십 및 응용 R&D"
     org_ko: "LG CNS · 실리콘밸리 Connect & Develop 센터, Santa Clara, CA · Senior Manager (Applied AI R&D)"
     bullets_ko:
-      - "**발굴** — 로봇 하드웨어·학습·데이터·딜리버리 전반의 스타트업 네트워크를 파트너십 파이프라인으로 구축했다. 연구자 출신 창업자의 스텔스 단계 팀을 공개 전에 찾아내는 AI 에이전트 스카우팅 파이프라인 **PhySeek**(발굴 → 분석 → 컨택)를 프로토타이핑했다."
-      - "**기술 심층 분석** — RFM·월드 모델의 핵심 기술과 그 기반 연구를 해부해 실리콘밸리 로봇 학습 트렌드와 핵심 플레이어를 정리하고, 인사이트 리포트 2편으로 작성했다."
-      - "**현장 검증** — Config의 VLA 모델을 Dexmate의 휴머노이드 하드웨어에 올리는 3자 proof-of-value를 주도해 약 6주 만에 첫 실환경 구동을 달성했다. 파트너십 MOU와 LG Tech Ventures와의 후속 지분 투자로 이어졌다."
-      - "**공동 개발** — 현장 배포에서 드러난 공백으로부터 연구 문제를 정의하고, 파트너 연구팀과 도메인 특화 RFM을 만들고 있다. 산업(제조·물류) 도메인에 맞춘 pre/mid-training 적응으로 downstream post-training 비용을 줄이는 것이 목표다."
+      - "**발굴** — 로봇 하드웨어·학습·데이터·딜리버리 전반의 스타트업 네트워크를 파트너십 파이프라인으로 구축. 연구자 출신 창업자의 스텔스 단계 팀을 공개 전에 찾아내는 AI 에이전트 스카우팅 파이프라인 **PhySeek**(발굴 → 분석 → 컨택) 프로토타이핑"
+      - "**기술 심층 분석** — RFM·월드 모델의 핵심 기술과 그 기반 연구를 해부해 실리콘밸리 로봇 학습 트렌드와 핵심 플레이어를 정리하고, 인사이트 리포트 2편으로 작성"
+      - "**현장 검증** — Config의 VLA 모델을 Dexmate의 휴머노이드 하드웨어에 올리는 3자 proof-of-value를 주도해 약 6주 만에 첫 실환경 구동 달성. 파트너십 MOU와 LG Tech Ventures와의 후속 지분 투자로 이어짐"
+      - "**공동 개발** — 현장 배포에서 드러난 공백으로부터 연구 문제를 정의하고, 파트너 연구팀과 도메인 특화 RFM 개발 중. 산업(제조·물류) 도메인에 맞춘 pre/mid-training 적응으로 downstream post-training 비용 절감이 목표"
     bullets:
       - "**Sourcing** — built a startup network across robot hardware, learning, data, and delivery into a partnership pipeline; prototyped **PhySeek**, an AI-agent scouting pipeline (discovery → analysis → outreach) that finds researcher-founded stealth-stage teams ahead of public visibility."
       - "**Technology deep-dives** — dissected core RFM / world-model technologies and their foundational research to map Silicon Valley robot-learning trends and identify key players, distilled into two authored insight reports."
@@ -33,8 +33,8 @@ experience:
     title_ko: "Agentic AI — LG 경영관리 에이전트의 도구 사용 신뢰성 확보 (with Cohere)"
     org_ko: "LG CNS · AI연구소 Agentic AI Lab, 서울 · Applied Scientist"
     bullets_ko:
-      - "**도구 사용 fine-tuning** — LLM이 올바른 도구를 고르고 여러 턴에 걸쳐 출력을 이어 쓰도록 fine-tuning했다. 도구 호출 trajectory에 대한 SFT와 DPO용 chosen/rejected 쌍 파이프라인을 구축하고 GRPO를 실험해, 사업 수주에 기여한 PoC를 제공했다."
-      - "**평가와 실패 분석** — 검색과 SQL이 필요한 경영·재무 질의 약 60개로 이루어진 agentic 평가셋 구축에 참여해 한국어 지시 이행과 도구 사용을 평가했다. *Think in English, Answer in Korean*(arXiv:2606.31648)의 감사의 글에 이름이 올랐다."
+      - "**도구 사용 fine-tuning** — LLM이 올바른 도구를 고르고 여러 턴에 걸쳐 출력을 이어 쓰도록 fine-tuning. 도구 호출 trajectory에 대한 SFT와 DPO용 chosen/rejected 쌍 파이프라인을 구축하고 GRPO를 실험해, 사업 수주에 기여한 PoC 제공"
+      - "**평가와 실패 분석** — 검색과 SQL이 필요한 경영·재무 질의 약 60개로 이루어진 agentic 평가셋 구축에 참여해 한국어 지시 이행과 도구 사용 평가. *Think in English, Answer in Korean*(arXiv:2606.31648) 감사의 글에 등재"
     bullets:
       - "**Tool-use fine-tuning** — fine-tuned an LLM to select the right tools and chain their outputs across turns: SFT on tool-call trajectories plus a chosen/rejected pair pipeline for DPO, with GRPO experimentation — delivering a PoC that contributed to a business win."
       - "**Evaluation & failure analysis** — contributed to an agentic evaluation set (~60 business/finance queries requiring retrieval and SQL) assessing Korean instruction-following and tool use; acknowledged in *Think in English, Answer in Korean* (arXiv:2606.31648)."
@@ -46,11 +46,11 @@ experience:
     title_ko: "생성형 이미지 AI — 핵심 연구부터 제품까지 (DRAG 이미지 생성 엔진)"
     org_ko: "LG CNS · AI연구소 멀티모달 AI Lab, 서울 · Applied Scientist · 2024년 8월부터 Project Manager"
     bullets_ko:
-      - "**개인화 연구** — 실제 PoC에서 피사체 충실도와 텍스트 정합성 사이의 trade-off를 발견하고 학습과 추론 양쪽에서 풀었다: **APT**(CVPR 2025, 공동 제1저자)와 **Parallel Rescaling**(CVPR 2025 Workshop)."
-      - "**선호 정렬 파이프라인** — 현대자동차그룹의 컨셉카 디자인 PoC를 위해 사람 선호 학습 파이프라인을 구축했다. VLM으로 선호 라벨링을 자동화하고 DPO 기반 diffusion 모델을 학습해, 큰 모델을 배포 가능한 작은 모델로 증류했다."
-      - "**배경 생성** — BrushNet으로 inpainting 기반 배경 교체에서 제품 주변의 의미적 불일치를 해결하고, 그에 따른 품질 저하를 perturbed-attention guidance로 회복했다."
-      - "**다중 레퍼런스 스타일 전이** — CLIP 특징 공간에서의 차감으로 레퍼런스별로 콘텐츠와 분리된 스타일 임베딩을 추출하고, 스타일과 레이아웃을 담당하는 attention block 부분집합에 주입했다."
-      - "**제품화** — DRAG를 SaaS로 상용화하고(기능 패키징, 서비스 사이트, 특허 출원) 엔진을 SD 1.5 → SDXL → FLUX.1로 옮겼다. 제품 이미지가 LGE.COM에 게재되었다."
+      - "**개인화 연구** — 실제 PoC에서 피사체 충실도와 텍스트 정합성 사이의 trade-off를 발견하고 학습과 추론 양쪽에서 해결: **APT**(CVPR 2025, 공동 제1저자), **Parallel Rescaling**(CVPR 2025 Workshop)"
+      - "**선호 정렬 파이프라인** — 현대자동차그룹의 컨셉카 디자인 PoC를 위한 사람 선호 학습 파이프라인 구축. VLM으로 선호 라벨링을 자동화하고 DPO 기반 diffusion 모델을 학습해 큰 모델을 배포 가능한 작은 모델로 증류"
+      - "**배경 생성** — BrushNet으로 inpainting 기반 배경 교체에서 제품 주변의 의미적 불일치를 해결하고, 그에 따른 품질 저하를 perturbed-attention guidance로 회복"
+      - "**다중 레퍼런스 스타일 전이** — CLIP 특징 공간에서의 차감으로 레퍼런스별로 콘텐츠와 분리된 스타일 임베딩을 추출하고, 스타일과 레이아웃을 담당하는 attention block 부분집합에 주입"
+      - "**제품화** — DRAG를 SaaS로 상용화(기능 패키징, 서비스 사이트, 특허 출원)하고 엔진을 SD 1.5 → SDXL → FLUX.1로 이전. 제품 이미지가 LGE.COM에 게재됨"
     bullets:
       - "**Personalization research** — identified a subject-fidelity vs. text-alignment trade-off in production PoCs and attacked it at both training and inference: **APT** (CVPR 2025, co-first author) and **Parallel Rescaling** (CVPR 2025 Workshop)."
       - "**Preference-alignment pipeline** — built a human-preference training pipeline for Hyundai Motor Group's concept-car design PoC, automating preference labeling with a VLM and training a DPO-based diffusion model to distill a larger model into a compact deployable one."
@@ -65,9 +65,9 @@ experience:
     title_ko: "컴퓨터 비전 — 상품 인식과 비전 검사"
     org_ko: "LG CNS · AI연구소 비전 AI Lab, 서울 · Machine Learning Engineer"
     bullets_ko:
-      - "**객체 탐지·분류** — 재학습 없이 새 SKU를 추가할 수 있는 metric learning 기반 상품 인식을 구축했다. GS리테일에서 SKU를 약 10배(약 1만 개)로 늘리면서 정확도 98.0%와 40% 빠른 추론을 달성했고, LX판토스에서 검수 정확도 95.9%를 기록했다."
-      - "**전이 학습** — 제조 비전 검사용 공통 사전학습 backbone을 개발해 task 전반의 downstream 학습 시간을 28% 줄였다."
-      - "**MLOps** — 센터의 모델 개발 프로세스(데이터·코드 버전 관리, 실험·모델 추적, HPO 자동화)를 표준화했고, 프로토타입이 사내 Best Practice로 선정되었다."
+      - "**객체 탐지·분류** — 재학습 없이 새 SKU를 추가할 수 있는 metric learning 기반 상품 인식 구축. GS리테일에서 SKU를 약 10배(약 1만 개)로 늘리면서 정확도 98.0%와 40% 빠른 추론 달성, LX판토스에서 검수 정확도 95.9% 기록"
+      - "**전이 학습** — 제조 비전 검사용 공통 사전학습 backbone을 개발해 task 전반의 downstream 학습 시간 28% 단축"
+      - "**MLOps** — 센터의 모델 개발 프로세스(데이터·코드 버전 관리, 실험·모델 추적, HPO 자동화) 표준화. 프로토타입이 사내 Best Practice로 선정됨"
     bullets:
       - "**Object detection & classification** — built metric-learning product recognition so new SKUs could be added without retraining: ~10× SKU expansion (to ~10K) at 98.0% accuracy with 40% faster inference at GS Retail, and 95.9% inspection accuracy at LX Pantos."
       - "**Transfer learning** — developed a shared pretrained backbone for manufacturing visual inspection, cutting downstream training time 28% across tasks."
@@ -80,7 +80,7 @@ experience:
     title_ko: "연구원 — AI 기반 멀티모달 법과학 (서울지방경찰청)"
     org_ko: "한양대학교 · Smart Ubiquitous Healthcare Lab, 서울"
     bullets_ko:
-      - "가시광 특징이 없는 열화상 영상에서 CNN 기반 얼굴 검출 알고리즘을 개발하고, 신문 중 시계열 온도를 자동 분석해 거짓말 탐지를 가능하게 했다."
+      - "가시광 특징이 없는 열화상 영상에서 CNN 기반 얼굴 검출 알고리즘을 개발하고, 신문 중 시계열 온도 자동 분석으로 거짓말 탐지 구현"
     bullets:
       - "Developed a CNN-based face-detection algorithm for thermal imagery, overcoming the absence of visible-light features, and enabled deception detection via automated time-series temperature analysis during interrogations."
 
@@ -143,12 +143,6 @@ presentations:
     org_ko: "포스터 발표 및 데모 부스, LG Tech Conference(사내), 서울"
 
 awards:
-  - period: "2023 — present"
-    title: "Core Talent designation"
-    period_ko: "2023 — 현재"
-    title_ko: "핵심인재 선정"
-    org: "LG CNS — company-wide selection with ongoing allowance"
-    org_ko: "LG CNS — 전사 선발, 수당 지급 중"
   - period: "2022"
     title: "Best Practice Award"
     title_ko: "Best Practice 상"

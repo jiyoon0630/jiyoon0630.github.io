@@ -49,7 +49,7 @@
 <body>
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <a class="site-title" href="{{ '/' | relative_url }}">{% include bi.html en=site.title ko=site.data.profile.name_ko %}</a>
       <div class="header-right">
         <nav class="site-nav">
           {% assign u = page.url %}
@@ -92,7 +92,7 @@
 
   <footer class="site-footer">
     <div class="wrap">
-      <p>© {{ site.time | date: '%Y' }} {{ site.author }} ·
+      <p>© {{ site.time | date: '%Y' }} {% include bi.html en=site.author ko=site.data.profile.name_ko %} ·
          <a href="{{ '/feed.xml' | relative_url }}">RSS</a> ·
          <a href="https://github.com/jiyoon0630">GitHub</a></p>
     </div>

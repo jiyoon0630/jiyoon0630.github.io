@@ -13,8 +13,8 @@
     sharpening subject identity via augmentation and adaptive loss scheduling.
   abstract_ko: >-
     적은 데이터로 diffusion 모델을 개인화하면 피사체 충실도와 텍스트 정합성이 서로
-    맞바뀐다. APT는 정규화로 기반 모델의 사전 지식을 보존하면서, 증강과 적응형 손실
-    스케줄링으로 피사체의 정체성을 또렷하게 만든다.
+    맞바뀝니다. APT는 정규화로 기반 모델의 사전 지식을 보존하면서, 증강과 적응형 손실
+    스케줄링으로 피사체의 정체성을 또렷하게 만듭니다.
 
 - title: "Parallel Rescaling: Rebalancing Consistency Guidance for Personalized Diffusion Models"
   authors: "JungWoo Chae\\*, **Jiyoon Kim**\\*, Sangheum Hwang†"
@@ -31,8 +31,8 @@
     inference time.
   abstract_ko: >-
     Consistency guidance를 classifier-free guidance에 대해 분해한 뒤 적응적으로 통계
-    정규화한다. 추론 시 step마다 LoRA 가중치를 휴리스틱하게 스케줄링하던 방식을
-    대체한다.
+    정규화합니다. 추론 시 step마다 LoRA 가중치를 휴리스틱하게 스케줄링하던 방식을
+    대체합니다.
 
 - title: "FacialCueNet: Unmasking Deception — An Interpretable Model for Criminal Interrogation Using Facial Expressions"
   authors: "Borum Nam\\*, Joo Young Kim\\*, Beomjun Bark, Yeongmyeong Kim, **Jiyoon Kim**, Soon Won So, Hyung Youn Choi, In Young Kim†"

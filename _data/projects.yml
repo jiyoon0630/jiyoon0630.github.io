@@ -10,8 +10,8 @@
   tagline_ko: "연구자 출신 창업자의 로보틱스 스타트업을 공개되기 전에 찾아내는 AI 에이전트 파이프라인."
   description_ko: >-
     스텔스 단계 로봇 학습 팀의 발굴 → 분석 → 컨택을 자동화해, 로봇
-    하드웨어·학습·데이터·딜리버리 전반의 기술 파트너십 파이프라인에 공급한다. LG CNS 실리콘밸리
-    Connect & Develop 센터를 위해 만들었다.
+    하드웨어·학습·데이터·딜리버리 전반의 기술 파트너십 파이프라인에 공급합니다. LG CNS 실리콘밸리
+    Connect & Develop 센터를 위해 만들었습니다.
   tags: [Physical AI, Agent, Research Automation, Python]
   selected: true
   links: []
@@ -25,11 +25,11 @@
     hardware. Led to a partnership MOU and a follow-on equity investment with
     LG Tech Ventures.
   name_ko: "휴머노이드 하드웨어 위의 VLA — 현장 검증"
-  tagline_ko: "파트너사의 VLA 모델을 휴머노이드 하드웨어에서 처음으로 실환경 구동. 약 6주 만에."
+  tagline_ko: "약 6주 만에 파트너사의 VLA 모델을 휴머노이드 하드웨어에서 처음 실환경 구동."
   description_ko: >-
     Config의 vision-language-action 모델(처음 보는 task와 환경에 맞춰 post-training)을
-    Dexmate의 휴머노이드 하드웨어에 올리는 3자 proof-of-value를 주도했다. 파트너십
-    MOU와 LG Tech Ventures와의 후속 지분 투자로 이어졌다.
+    Dexmate의 휴머노이드 하드웨어에 올리는 3자 proof-of-value를 주도했습니다. 이 검증은
+    파트너십 MOU와 LG Tech Ventures와의 후속 지분 투자로 이어졌습니다.
   tags: [VLA, Robotics, Partnerships]
   selected: true
   links:
@@ -49,10 +49,10 @@
   name_ko: "기업용 LLM 에이전트의 도구 사용 신뢰성"
   tagline_ko: "LLM이 올바른 도구를 고르고 여러 턴에 걸쳐 출력을 이어 쓰도록 fine-tuning."
   description_ko: >-
-    LG 경영관리 에이전트를 위해 Cohere와 함께 만들었다. 도구 호출 trajectory에 대한
+    LG 경영관리 에이전트를 위해 Cohere와 함께 만들었습니다. 도구 호출 trajectory에 대한
     SFT와 DPO용 chosen/rejected 쌍 파이프라인을 구축하고 GRPO를 실험해, 사업 수주에
-    기여한 PoC를 제공했다. 검색과 SQL이 필요한 경영·재무 질의 약 60개로 이루어진
-    한국어 지시 이행·도구 사용 agentic 평가셋 구축에도 참여했다.
+    기여한 PoC를 제공했습니다. 검색과 SQL이 필요한 경영·재무 질의 약 60개로 이루어진
+    agentic 평가셋 구축에도 참여해 한국어 지시 이행과 도구 사용을 평가했습니다.
   tags: [Agentic AI, Tool Use, LLM Fine-tuning, DPO]
   selected: false
   links:
@@ -74,12 +74,12 @@
   name_ko: "DRAG — 생성형 이미지 AI 엔진"
   tagline_ko: "연구에서 제품까지: SaaS로 출시한 개인화 이미지 생성 엔진."
   description_ko: >-
-    Diffusion 개인화 기술을 연구에서 상용 SaaS까지 가져갔다. 기능 패키징, 서비스
+    Diffusion 개인화 기술을 연구에서 상용 SaaS까지 가져갔습니다. 기능 패키징, 서비스
     사이트, 특허 출원을 진행했고, 엔진을 세 세대의 모델(SD 1.5 → SDXL → FLUX.1)로
-    옮기면서 디지털 마케팅과 UI/UX 분야의 고객 PoC를 수행했다. 함께 현대자동차그룹의
-    컨셉카 디자인 PoC를 위한 사람 선호 학습 파이프라인을 구축했다. VLM으로 선호
-    라벨링을 자동화하고, DPO로 학습한 diffusion 모델로 큰 모델을 배포 가능한 작은
-    모델로 증류했다.
+    옮기면서 디지털 마케팅과 UI/UX 분야의 고객 PoC를 수행했습니다. 함께
+    현대자동차그룹의 컨셉카 디자인 PoC를 위한 사람 선호 학습 파이프라인을
+    구축했습니다. VLM으로 선호 라벨링을 자동화하고, DPO로 학습한 diffusion 모델로 큰
+    모델을 배포 가능한 작은 모델로 증류했습니다.
   tags: [Diffusion, Preference Optimization, Productization, SaaS]
   selected: false
   links:
@@ -103,9 +103,9 @@
   tagline_ko: "재학습 없이 새 SKU를 추가하는 metric learning 기반 상품 인식."
   description_ko: >-
     GS리테일의 상품 인식을 약 10배(약 1만 SKU)로 확장하면서 정확도 98.0%와 40% 빠른
-    추론을 달성했고, LX판토스에서 검수 정확도 95.9%를 기록했다. 함께 센터의 모델 개발
-    프로세스(데이터·코드 버전 관리, 실험·모델 추적, HPO 자동화)를 표준화했고,
-    프로토타입이 사내 Best Practice로 선정되었다.
+    추론을 달성했고, LX판토스에서 검수 정확도 95.9%를 기록했습니다. 함께 센터의 모델
+    개발 프로세스(데이터·코드 버전 관리, 실험·모델 추적, HPO 자동화)를 표준화했으며,
+    프로토타입이 사내 Best Practice로 선정되었습니다.
   tags: [Computer Vision, Metric Learning, MLOps]
   selected: false
   links: []
