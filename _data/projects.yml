@@ -22,14 +22,12 @@
   description: >-
     Orchestrated a three-party proof-of-value putting Config's vision-language-action
     model — post-trained for unseen tasks and environments — onto Dexmate's humanoid
-    hardware. Led to a partnership MOU and a follow-on equity investment with
-    LG Tech Ventures.
+    hardware.
   name_ko: "휴머노이드 하드웨어 위의 VLA — 현장 검증"
   tagline_ko: "약 6주 만에 파트너사의 VLA 모델을 휴머노이드 하드웨어에서 처음 실환경 구동."
   description_ko: >-
     Config의 vision-language-action 모델(처음 보는 task와 환경에 맞춰 post-training)을
-    Dexmate의 휴머노이드 하드웨어에 올리는 3자 proof-of-value를 주도했습니다. 이 검증은
-    파트너십 MOU와 LG Tech Ventures와의 후속 지분 투자로 이어졌습니다.
+    Dexmate의 휴머노이드 하드웨어에 올리는 3자 proof-of-value를 주도했습니다.
   tags: [VLA, Robotics, Partnerships]
   selected: true
   links:

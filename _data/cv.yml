@@ -18,12 +18,12 @@ experience:
     bullets_ko:
       - "**발굴** — 로봇 하드웨어·학습·데이터·딜리버리 전반의 스타트업 네트워크를 파트너십 파이프라인으로 구축. 연구자 출신 창업자의 스텔스 단계 팀을 공개 전에 찾아내는 AI 에이전트 스카우팅 파이프라인 **PhySeek**(발굴 → 분석 → 컨택) 프로토타이핑"
       - "**기술 심층 분석** — RFM·월드 모델의 핵심 기술과 그 기반 연구를 해부해 실리콘밸리 로봇 학습 트렌드와 핵심 플레이어를 정리하고, 인사이트 리포트 2편으로 작성"
-      - "**현장 검증** — Config의 VLA 모델을 Dexmate의 휴머노이드 하드웨어에 올리는 3자 proof-of-value를 주도해 약 6주 만에 첫 실환경 구동 달성. 파트너십 MOU와 LG Tech Ventures와의 후속 지분 투자로 이어짐"
+      - "**현장 검증** — Config의 VLA 모델을 Dexmate의 휴머노이드 하드웨어에 올리는 3자 proof-of-value를 주도해 약 6주 만에 첫 실환경 구동 달성"
       - "**공동 개발** — 현장 배포에서 드러난 공백으로부터 연구 문제를 정의하고, 파트너 연구팀과 도메인 특화 RFM 개발 중. 산업(제조·물류) 도메인에 맞춘 pre/mid-training 적응으로 downstream post-training 비용 절감이 목표"
     bullets:
       - "**Sourcing** — built a startup network across robot hardware, learning, data, and delivery into a partnership pipeline; prototyped **PhySeek**, an AI-agent scouting pipeline (discovery → analysis → outreach) that finds researcher-founded stealth-stage teams ahead of public visibility."
       - "**Technology deep-dives** — dissected core RFM / world-model technologies and their foundational research to map Silicon Valley robot-learning trends and identify key players, distilled into two authored insight reports."
-      - "**Field validation** — orchestrated a three-party proof-of-value putting Config's VLA model onto Dexmate's humanoid hardware, achieving its first real-world operation in ~6 weeks; led to a partnership MOU and a follow-on equity investment with LG Tech Ventures."
+      - "**Field validation** — orchestrated a three-party proof-of-value putting Config's VLA model onto Dexmate's humanoid hardware, achieving its first real-world operation in ~6 weeks."
       - "**Co-development** — framed research problems from field-deployment gaps, and now build domain-specialized RFMs with partner research teams — pre/mid-training adaptation to industrial (manufacturing / logistics) domains to cut downstream post-training cost."
 
   - period: "Mar 2025 — Sep 2025"
