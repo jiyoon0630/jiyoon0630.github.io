@@ -1,7 +1,24 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: 'en' }}">
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
 <head>
   <meta charset="utf-8">
+  <!-- Pick the language before anything paints, so the page never flashes the
+       other one. A note is always shown in its own language (and makes that the
+       reader's choice); other pages follow the saved choice, else the browser. -->
+  <script>
+    (function () {
+      var d = document.documentElement, page = {{ page.lang | default: "" | jsonify }}, l = page;
+      try {
+        if (page) localStorage.setItem('site-lang', page);
+        else l = localStorage.getItem('site-lang');
+      } catch (e) {}
+      if (l !== 'ko' && l !== 'en') {
+        l = (navigator.language || '').toLowerCase().indexOf('ko') === 0 ? 'ko' : 'en';
+      }
+      d.setAttribute('data-lang', l);
+      d.lang = l;
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
   {% seo %}
@@ -33,13 +50,39 @@
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-      <nav class="site-nav">
-        {% assign u = page.url %}
-        <a href="{{ '/notes/' | relative_url }}" {% if u contains '/notes' %}class="current"{% endif %}>Notes</a>
-        <a href="{{ '/publications/' | relative_url }}" {% if u contains '/publications' %}class="current"{% endif %}>Publications</a>
-        <a href="{{ '/projects/' | relative_url }}" {% if u contains '/projects' %}class="current"{% endif %}>Projects</a>
-        <a href="{{ '/cv/' | relative_url }}" {% if u contains '/cv' %}class="current"{% endif %}>CV</a>
-      </nav>
+      <div class="header-right">
+        <nav class="site-nav">
+          {% assign u = page.url %}
+          <a href="{{ '/notes/' | relative_url }}" {% if u contains '/notes' %}class="current"{% endif %}>{% include ui.html key="nav_notes" %}</a>
+          <a href="{{ '/publications/' | relative_url }}" {% if u contains '/publications' %}class="current"{% endif %}>{% include ui.html key="nav_pubs" %}</a>
+          <a href="{{ '/projects/' | relative_url }}" {% if u contains '/projects' %}class="current"{% endif %}>{% include ui.html key="nav_projects" %}</a>
+          <a href="{{ '/cv/' | relative_url }}" {% if u contains '/cv' %}class="current"{% endif %}>{% include ui.html key="nav_cv" %}</a>
+        </nav>
+        {%- comment -%}
+          On a note, the other language means its translation (matched by `ref`);
+          without one, that button is disabled. Elsewhere it switches in place.
+        {%- endcomment -%}
+        {% assign alt_url = nil %}
+        {% if page.lang and page.ref %}
+          {% assign sibs = site.posts | where: "ref", page.ref %}
+          {% for s in sibs %}{% if s.lang != page.lang %}{% assign alt_url = s.url | relative_url %}{% endif %}{% endfor %}
+        {% endif %}
+        <div class="site-lang" role="group" aria-label="Language">
+          {% assign langs = "en,ko" | split: "," %}
+          {% for l in langs %}
+            {% if l == "ko" %}{% assign label = "한국어" %}{% else %}{% assign label = "EN" %}{% endif %}
+            {% if page.lang and page.lang != l %}
+              {% if alt_url %}
+          <button type="button" data-set-lang="{{ l }}" data-href="{{ alt_url }}">{{ label }}</button>
+              {% else %}
+          <button type="button" data-set-lang="{{ l }}" disabled title="{% if page.lang == 'en' %}No Korean version of this note{% else %}이 노트는 영어판이 없습니다{% endif %}">{{ label }}</button>
+              {% endif %}
+            {% else %}
+          <button type="button" data-set-lang="{{ l }}">{{ label }}</button>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
     </div>
   </header>
 

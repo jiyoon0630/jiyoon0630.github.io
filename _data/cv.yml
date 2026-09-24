@@ -4,11 +4,22 @@
 pdf: ""            # e.g. /assets/cv.pdf once you upload one
 location: "Mountain View, CA"
 headline: "Applied Scientist — Generative Models · Research-to-Production"
+headline_ko: "Applied Scientist — 생성 모델 · 연구의 제품화"
+# Korean fields (*_ko) show when the site is in Korean; bullets_ko is a whole
+# second list. A missing Korean field falls back to the English one.
 
 experience:
   - period: "Oct 2025 — present"
+    period_ko: "2025.10 — 현재"
     title: "Physical AI — Technology Partnerships & Applied R&D on Robot Foundation Models"
     org: "LG CNS · Silicon Valley Connect & Develop Center, Santa Clara, CA · Senior Manager (Applied AI R&D)"
+    title_ko: "Physical AI — 로봇 파운데이션 모델 기술 파트너십 및 응용 R&D"
+    org_ko: "LG CNS · 실리콘밸리 Connect & Develop 센터, Santa Clara, CA · Senior Manager (Applied AI R&D)"
+    bullets_ko:
+      - "**발굴** — 로봇 하드웨어·학습·데이터·딜리버리 전반의 스타트업 네트워크를 파트너십 파이프라인으로 구축했다. 연구자 출신 창업자의 스텔스 단계 팀을 공개 전에 찾아내는 AI 에이전트 스카우팅 파이프라인 **PhySeek**(발굴 → 분석 → 컨택)를 프로토타이핑했다."
+      - "**기술 심층 분석** — RFM·월드 모델의 핵심 기술과 그 기반 연구를 해부해 실리콘밸리 로봇 학습 트렌드와 핵심 플레이어를 정리하고, 인사이트 리포트 2편으로 작성했다."
+      - "**현장 검증** — Config의 VLA 모델을 Dexmate의 휴머노이드 하드웨어에 올리는 3자 proof-of-value를 주도해 약 6주 만에 첫 실환경 구동을 달성했다. 파트너십 MOU와 LG Tech Ventures와의 후속 지분 투자로 이어졌다."
+      - "**공동 개발** — 현장 배포에서 드러난 공백으로부터 연구 문제를 정의하고, 파트너 연구팀과 도메인 특화 RFM을 만들고 있다. 산업(제조·물류) 도메인에 맞춘 pre/mid-training 적응으로 downstream post-training 비용을 줄이는 것이 목표다."
     bullets:
       - "**Sourcing** — built a startup network across robot hardware, learning, data, and delivery into a partnership pipeline; prototyped **PhySeek**, an AI-agent scouting pipeline (discovery → analysis → outreach) that finds researcher-founded stealth-stage teams ahead of public visibility."
       - "**Technology deep-dives** — dissected core RFM / world-model technologies and their foundational research to map Silicon Valley robot-learning trends and identify key players, distilled into two authored insight reports."
@@ -16,15 +27,30 @@ experience:
       - "**Co-development** — framed research problems from field-deployment gaps, and now build domain-specialized RFMs with partner research teams — pre/mid-training adaptation to industrial (manufacturing / logistics) domains to cut downstream post-training cost."
 
   - period: "Mar 2025 — Sep 2025"
+    period_ko: "2025.03 — 2025.09"
     title: "Agentic AI — Tool-Use Reliability for an LG Corporate-Management Agent, with Cohere"
     org: "LG CNS · AI Research Institute, Agentic AI Lab, Seoul · Applied Scientist"
+    title_ko: "Agentic AI — LG 경영관리 에이전트의 도구 사용 신뢰성 확보 (with Cohere)"
+    org_ko: "LG CNS · AI연구소 Agentic AI Lab, 서울 · Applied Scientist"
+    bullets_ko:
+      - "**도구 사용 fine-tuning** — LLM이 올바른 도구를 고르고 여러 턴에 걸쳐 출력을 이어 쓰도록 fine-tuning했다. 도구 호출 trajectory에 대한 SFT와 DPO용 chosen/rejected 쌍 파이프라인을 구축하고 GRPO를 실험해, 사업 수주에 기여한 PoC를 제공했다."
+      - "**평가와 실패 분석** — 검색과 SQL이 필요한 경영·재무 질의 약 60개로 이루어진 agentic 평가셋 구축에 참여해 한국어 지시 이행과 도구 사용을 평가했다. *Think in English, Answer in Korean*(arXiv:2606.31648)의 감사의 글에 이름이 올랐다."
     bullets:
       - "**Tool-use fine-tuning** — fine-tuned an LLM to select the right tools and chain their outputs across turns: SFT on tool-call trajectories plus a chosen/rejected pair pipeline for DPO, with GRPO experimentation — delivering a PoC that contributed to a business win."
       - "**Evaluation & failure analysis** — contributed to an agentic evaluation set (~60 business/finance queries requiring retrieval and SQL) assessing Korean instruction-following and tool use; acknowledged in *Think in English, Answer in Korean* (arXiv:2606.31648)."
 
   - period: "Jan 2023 — Feb 2025"
+    period_ko: "2023.01 — 2025.02"
     title: "Generative Image AI — Core Research to Product (DRAG image-generation engine)"
     org: "LG CNS · AI Research Institute, Multimodal AI Lab, Seoul · Applied Scientist · Project Manager from Aug 2024"
+    title_ko: "생성형 이미지 AI — 핵심 연구부터 제품까지 (DRAG 이미지 생성 엔진)"
+    org_ko: "LG CNS · AI연구소 멀티모달 AI Lab, 서울 · Applied Scientist · 2024년 8월부터 Project Manager"
+    bullets_ko:
+      - "**개인화 연구** — 실제 PoC에서 피사체 충실도와 텍스트 정합성 사이의 trade-off를 발견하고 학습과 추론 양쪽에서 풀었다: **APT**(CVPR 2025, 공동 제1저자)와 **Parallel Rescaling**(CVPR 2025 Workshop)."
+      - "**선호 정렬 파이프라인** — 현대자동차그룹의 컨셉카 디자인 PoC를 위해 사람 선호 학습 파이프라인을 구축했다. VLM으로 선호 라벨링을 자동화하고 DPO 기반 diffusion 모델을 학습해, 큰 모델을 배포 가능한 작은 모델로 증류했다."
+      - "**배경 생성** — BrushNet으로 inpainting 기반 배경 교체에서 제품 주변의 의미적 불일치를 해결하고, 그에 따른 품질 저하를 perturbed-attention guidance로 회복했다."
+      - "**다중 레퍼런스 스타일 전이** — CLIP 특징 공간에서의 차감으로 레퍼런스별로 콘텐츠와 분리된 스타일 임베딩을 추출하고, 스타일과 레이아웃을 담당하는 attention block 부분집합에 주입했다."
+      - "**제품화** — DRAG를 SaaS로 상용화하고(기능 패키징, 서비스 사이트, 특허 출원) 엔진을 SD 1.5 → SDXL → FLUX.1로 옮겼다. 제품 이미지가 LGE.COM에 게재되었다."
     bullets:
       - "**Personalization research** — identified a subject-fidelity vs. text-alignment trade-off in production PoCs and attacked it at both training and inference: **APT** (CVPR 2025, co-first author) and **Parallel Rescaling** (CVPR 2025 Workshop)."
       - "**Preference-alignment pipeline** — built a human-preference training pipeline for Hyundai Motor Group's concept-car design PoC, automating preference labeling with a VLM and training a DPO-based diffusion model to distill a larger model into a compact deployable one."
@@ -33,90 +59,148 @@ experience:
       - "**Productization** — commercialized DRAG as SaaS (feature packaging, service site, patent filing) while migrating the engine across SD 1.5 → SDXL → FLUX.1; product imagery published on LGE.COM."
 
   - period: "Apr 2020 — Dec 2022"
+    period_ko: "2020.04 — 2022.12"
     title: "Computer Vision — Product Recognition & Visual Inspection"
     org: "LG CNS · AI Research Institute, Vision AI Lab, Seoul · Machine Learning Engineer"
+    title_ko: "컴퓨터 비전 — 상품 인식과 비전 검사"
+    org_ko: "LG CNS · AI연구소 비전 AI Lab, 서울 · Machine Learning Engineer"
+    bullets_ko:
+      - "**객체 탐지·분류** — 재학습 없이 새 SKU를 추가할 수 있는 metric learning 기반 상품 인식을 구축했다. GS리테일에서 SKU를 약 10배(약 1만 개)로 늘리면서 정확도 98.0%와 40% 빠른 추론을 달성했고, LX판토스에서 검수 정확도 95.9%를 기록했다."
+      - "**전이 학습** — 제조 비전 검사용 공통 사전학습 backbone을 개발해 task 전반의 downstream 학습 시간을 28% 줄였다."
+      - "**MLOps** — 센터의 모델 개발 프로세스(데이터·코드 버전 관리, 실험·모델 추적, HPO 자동화)를 표준화했고, 프로토타입이 사내 Best Practice로 선정되었다."
     bullets:
       - "**Object detection & classification** — built metric-learning product recognition so new SKUs could be added without retraining: ~10× SKU expansion (to ~10K) at 98.0% accuracy with 40% faster inference at GS Retail, and 95.9% inspection accuracy at LX Pantos."
       - "**Transfer learning** — developed a shared pretrained backbone for manufacturing visual inspection, cutting downstream training time 28% across tasks."
       - "**MLOps** — standardized the center's model-development process (data/code versioning, experiment and model tracking, HPO automation); prototype selected as internal Best Practice."
 
   - period: "Oct 2017 — Dec 2019"
+    period_ko: "2017.10 — 2019.12"
     title: "Research Assistant — AI-based multimodal forensic science (Seoul Metropolitan Police)"
     org: "Hanyang University · Smart Ubiquitous Healthcare Lab, Seoul"
+    title_ko: "연구원 — AI 기반 멀티모달 법과학 (서울지방경찰청)"
+    org_ko: "한양대학교 · Smart Ubiquitous Healthcare Lab, 서울"
+    bullets_ko:
+      - "가시광 특징이 없는 열화상 영상에서 CNN 기반 얼굴 검출 알고리즘을 개발하고, 신문 중 시계열 온도를 자동 분석해 거짓말 탐지를 가능하게 했다."
     bullets:
       - "Developed a CNN-based face-detection algorithm for thermal imagery, overcoming the absence of visible-light features, and enabled deception detection via automated time-series temperature analysis during interrogations."
 
 education:
   - period: "Feb 2020"
+    period_ko: "2020.02"
     title: "M.S., Biomedical Engineering"
+    title_ko: "생체공학 석사"
+    org_ko: "한양대학교, 서울"
+    detail_ko: "GPA 4.35 / 4.5 · Smart Ubiquitous Healthcare Lab (지도교수: 김인영 교수)"
+    bullets_ko:
+      - "학위논문: *Analysis of Skin Temperature Variation Induced by Deception Using CNN-Based Thermal Infrared Face Detection*"
     org: "Hanyang University, Seoul"
     detail: "GPA 4.35 / 4.5 · Smart Ubiquitous Healthcare Lab (advisor: Prof. In Young Kim)"
     bullets:
       - "Thesis: *Analysis of Skin Temperature Variation Induced by Deception Using CNN-Based Thermal Infrared Face Detection*"
   - period: "Feb 2018"
+    period_ko: "2018.02"
     title: "B.S., Biomedical Engineering"
+    title_ko: "생체공학 학사"
+    org_ko: "한양대학교, 서울"
     org: "Hanyang University, Seoul"
     detail: "GPA 3.75 / 4.5"
 
 patents:
   - period: "2024 —"
     title: "Method and Device for Obtaining Images Using an Image Generation Model"
+    title_ko: "이미지 생성 모델을 이용한 이미지 획득 방법 및 장치"
+    detail_ko: "공개 — PCT (WO/2026/106395) · EP (EP4771592 A1) · KR (10-2024-0163278). 출원 — US (19/587,169)."
     org: "LG CNS"
     detail: "Published — PCT (WO/2026/106395) · EP (EP4771592 A1) · KR (10-2024-0163278). Filed — US (19/587,169)."
   - period: "granted"
     title: "Deception Detection Method Using Thermal Video"
+    period_ko: "등록"
+    title_ko: "열화상 영상을 이용한 거짓말 탐지 방법"
+    org_ko: "한양대학교 · KR 10-2409611"
     org: "Hanyang University · KR 10-2409611"
   - period: "granted"
     title: "Data Process Method for Prediction of Involuntary Emotion"
+    period_ko: "등록"
+    title_ko: "비자발적 감정 예측을 위한 데이터 처리 방법"
+    org_ko: "한양대학교 · KR 10-2338684"
     org: "Hanyang University · KR 10-2338684"
   - period: "granted"
     title: "Deception Detection Method Using Biometric Information"
+    period_ko: "등록"
+    title_ko: "생체 정보를 이용한 거짓말 탐지 방법"
+    org_ko: "한양대학교 · KR 10-2350068"
     org: "Hanyang University · KR 10-2350068"
 
 presentations:
   - period: "Jun 2025"
     title: "APT: Adaptive Personalized Training for Diffusion Models with Limited Data"
     org: "Poster presentation, CVPR 2025, Nashville, TN"
+    period_ko: "2025.06"
+    org_ko: "포스터 발표, CVPR 2025, Nashville, TN"
   - period: "2024"
     title: "DRAG (Drawing with Generative AI) for Enterprise Digital Marketing"
     org: "Poster presentation and demo booth, LG Tech Conference (internal), Seoul"
+    org_ko: "포스터 발표 및 데모 부스, LG Tech Conference(사내), 서울"
 
 awards:
   - period: "2023 — present"
     title: "Core Talent designation"
+    period_ko: "2023 — 현재"
+    title_ko: "핵심인재 선정"
     org: "LG CNS — company-wide selection with ongoing allowance"
+    org_ko: "LG CNS — 전사 선발, 수당 지급 중"
   - period: "2022"
     title: "Best Practice Award"
+    title_ko: "Best Practice 상"
     org: "LG CNS internal process-improvement contest — MLOps pipeline prototype"
+    org_ko: "LG CNS 사내 프로세스 개선 공모전 — MLOps 파이프라인 프로토타입"
 
 press:
   - period: "2026"
     title: "\"Getting to Know: LG CNS Silicon Valley AI & Robotics R&D Center\""
     org: "Interview feature on Physical AI sourcing and partnerships, LG CNS"
+    org_ko: "Physical AI 발굴과 파트너십에 관한 인터뷰, LG CNS"
     url: "https://www.linkedin.com/pulse/%EC%A2%80-%EC%95%84%EB%8A%94-%EC%82%AC%EB%9E%8C-%EC%8B%A4%EB%A6%AC%EC%BD%98%EB%B0%B8%EB%A6%AC-ai%EB%A1%9C%EB%B3%B4%ED%8B%B1%EC%8A%A4-rd%EC%84%BC%ED%84%B0%ED%8E%B8-lgcns-w2w6c"
   - period: "2026"
     title: "\"LG CNS Expands into Silicon Valley, Focusing on Physical AI\""
     org: "Coverage of the three-party field validation (Config × Dexmate), Maeil Business Newspaper"
+    org_ko: "3자 현장 검증(Config × Dexmate) 보도, 매일경제"
     url: "https://www.mk.co.kr/en/it/12005323"
   - period: "2025"
     title: "DRAG commercial launch"
+    title_ko: "DRAG 상용 출시"
     org: "Coverage of DRAG productization, News2day"
+    org_ko: "DRAG 제품화 보도, 뉴스투데이"
     url: "https://www.news2day.co.kr/article/20250507500109"
 
 skills:
   - group: "Generative models"
+    group_ko: "생성 모델"
+    items_ko: ["Diffusion (개인화, inpainting, guidance 기반 샘플링, 스타일 전이)", "선호 최적화 (DPO, RLHF)"]
     items: ["Diffusion (personalization, inpainting, guidance-based sampling, style transfer)", "Preference optimization (DPO, RLHF)"]
   - group: "LLM & agentic AI"
+    group_ko: "LLM · Agentic AI"
+    items_ko: ["Supervised fine-tuning", "선호 최적화", "GRPO", "Tool calling", "에이전트 평가"]
     items: ["Supervised fine-tuning", "Preference optimization", "GRPO", "Tool calling", "Agent evaluation"]
   - group: "Computer vision"
+    group_ko: "컴퓨터 비전"
+    items_ko: ["객체 탐지", "분류", "Metric learning", "전이 학습"]
     items: ["Object detection", "Classification", "Metric learning", "Transfer learning"]
   - group: "Engineering"
+    group_ko: "엔지니어링"
+    items_ko: ["Python", "MLOps (버전 관리, 실험 추적, HPO 자동화)"]
     items: ["Python", "MLOps (versioning, experiment tracking, HPO automation)"]
   - group: "In progress"
+    group_ko: "진행 중"
+    items_ko: ["로봇 파운데이션 모델 / VLA", "월드 모델"]
     items: ["Robot foundation models / VLA", "World models"]
 
 languages:
   - group: "Korean"
+    group_ko: "한국어"
+    items_ko: ["모국어"]
     items: ["Native"]
   - group: "English"
+    group_ko: "영어"
+    items_ko: ["TOEIC 910 (2019.08)", "OPIc Intermediate High (2019.08)"]
     items: ["TOEIC 910 (Aug 2019)", "OPIc Intermediate High (Aug 2019)"]

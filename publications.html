@@ -2,11 +2,13 @@
 layout: page
 title: Publications
 subtitle: Papers I have authored.
+title_ko: 논문
+subtitle_ko: 직접 쓴 논문.
 permalink: /publications/
 ---
 {% assign pubs = site.data.publications | sort: "year" | reverse %}
 {% if pubs.size == 0 %}
-<p class="empty">No publications listed yet.</p>
+<p class="empty">{% include ui.html key="no_pubs" %}</p>
 {% else %}
 {% for pub in pubs %}
   {% include pub-item.html pub=pub %}

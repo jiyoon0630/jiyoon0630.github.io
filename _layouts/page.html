@@ -2,8 +2,8 @@
 layout: default
 ---
 <section class="page-head">
-  <h1>{{ page.title }}</h1>
-  {% if page.subtitle %}<p class="page-sub">{{ page.subtitle }}</p>{% endif %}
+  <h1>{% include bi.html en=page.title ko=page.title_ko %}</h1>
+  {% if page.subtitle %}<p class="page-sub">{% include bi.html en=page.subtitle ko=page.subtitle_ko %}</p>{% endif %}
 </section>
 
 <div class="page-body">

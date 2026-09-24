@@ -2,10 +2,12 @@
 layout: page
 title: Projects
 subtitle: Things I have built — bots, tools, and reproductions.
+title_ko: 프로젝트
+subtitle_ko: 직접 만든 것들 — 봇, 도구, 재현 구현.
 permalink: /projects/
 ---
 {% if site.data.projects.size == 0 %}
-<p class="empty">No projects listed yet.</p>
+<p class="empty">{% include ui.html key="no_projects" %}</p>
 {% else %}
 <div class="project-grid">
 {% for pr in site.data.projects %}

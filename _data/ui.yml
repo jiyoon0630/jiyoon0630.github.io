@@ -1,0 +1,31 @@
+# Interface strings, English and Korean. {% include ui.html key="..." %}
+nav_notes:        { en: "Notes",               ko: "노트" }
+nav_pubs:         { en: "Publications",        ko: "논문" }
+nav_projects:     { en: "Projects",            ko: "프로젝트" }
+nav_cv:           { en: "CV",                  ko: "CV" }
+all_link:         { en: "all →",               ko: "전체 →" }
+interests:        { en: "Research interests",  ko: "연구 관심사" }
+news:             { en: "News",                ko: "소식" }
+sel_pubs:         { en: "Selected publications", ko: "주요 논문" }
+sel_projects:     { en: "Selected projects",   ko: "주요 프로젝트" }
+recent_notes:     { en: "Recent notes",        ko: "최근 노트" }
+kind_all:         { en: "All",                 ko: "전체" }
+kind_paper:       { en: "Paper reviews",       ko: "논문 리뷰" }
+kind_tech:        { en: "Tech reviews",        ko: "테크 리뷰" }
+all_tags:         { en: "All tags",            ko: "전체 태그" }
+no_match:         { en: "No notes match these filters yet.", ko: "조건에 맞는 노트가 아직 없습니다." }
+no_projects:      { en: "No projects listed yet.",     ko: "아직 등록된 프로젝트가 없습니다." }
+no_pubs:          { en: "No publications listed yet.", ko: "아직 등록된 논문이 없습니다." }
+back_notes:       { en: "← All notes",         ko: "← 전체 노트" }
+posted:           { en: "Posted",              ko: "게시" }
+paper_date:       { en: "Paper",               ko: "논문" }
+download_pdf:     { en: "📄 Download PDF",     ko: "📄 PDF 다운로드" }
+cv_experience:    { en: "Experience",          ko: "경력" }
+cv_education:     { en: "Education",           ko: "학력" }
+cv_pubs:          { en: "Publications",        ko: "논문" }
+cv_patents:       { en: "Patents",             ko: "특허" }
+cv_presentations: { en: "Presentations",       ko: "발표" }
+cv_awards:        { en: "Awards & Honors",     ko: "수상" }
+cv_press:         { en: "Press & Media",       ko: "언론 보도" }
+cv_skills:        { en: "Skills",              ko: "기술" }
+cv_languages:     { en: "Languages",           ko: "어학" }
