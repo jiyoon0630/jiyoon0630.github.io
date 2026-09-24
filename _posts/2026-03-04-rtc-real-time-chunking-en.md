@@ -455,8 +455,6 @@ Finally, back to the cost question of Section 3.2. All of RTC's overhead comes f
 > | Inference overhead | a VJP per step | none |
 > | Retraining | not needed | needed |
 > | Reported results (per the abstract) | — | beats RTC at high latency in simulation; on par in performance and speed on a π0.6 real robot |
->
-> What comes next is the interesting part. A follow-up study in 2026 (Soft RTC, arXiv:2605.25537) points out as a limitation that training-time RTC uses a binary mask that leaves everything outside the prefix completely free, and reintroduces a soft window over the overlap. The soft masking of this paper's Section 3.3 turned out to be needed again in the training-time version. It is evidence that RTC's observation — that the intermediate span must be treated as "a region neither fixed nor free" — survives even when the method changes.
 
 ---
 

@@ -71,8 +71,8 @@ _Last updated: 2026-09-24_
 
 ## Recently done
 
-- RTC paper review published (ko/en), dated 2026-03-04 at her request. It
-  cites Soft RTC (arXiv:2605.25537), which postdates that date — kept as uploaded.
+- RTC paper review published (ko/en), dated 2026-03-04 at her request. Soft RTC
+  (arXiv:2605.25537, postdates it) was cut at her request.
 - LAPA paper review published (ko/en), dated 2026-02-03 at her request.
   A `|` inside inline math (`$|C|$`) is read by kramdown as a table pipe
   once the math plugin runs; write `\lvert C\rvert` instead.
