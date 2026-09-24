@@ -41,7 +41,7 @@ permalink: /cv/
   <h2>{% include ui.html key="cv_skills" %}</h2>
   {% for s in cv.skills %}
   <div class="cv-entry">
-    <div class="cv-period">{% include bi.html en=s.group ko=s.group_ko %}</div>
+    <div class="cv-period">{{ s.group }}</div>
     <div class="cv-body"><div class="tags">{% for i in s.items %}<span class="tag">{{ i }}</span>{% endfor %}</div></div>
   </div>
   {% endfor %}
