@@ -29,8 +29,8 @@ _Last updated: 2026-09-24_
 
 - Site: https://jiyoon0630.github.io/ — Jekyll, deployed from `main` by
   `.github/workflows/pages.yml` on every push.
-- 32 notes, all ko/en. **Paper reviews** (arXiv papers): DreamZero, PLD,
-  Hi Robot, Cosmos 3, π0.7, SAIL, LAPA. **Tech reviews**: RFM / VLA development (dated
+- 34 notes, all ko/en. **Paper reviews** (arXiv papers): DreamZero, PLD,
+  Hi Robot, Cosmos 3, π0, RTC.7, SAIL, LAPA. **Tech reviews**: RFM / VLA development (dated
   2026-04-10), Actuate 2026, World Model, plus the company-blog/report reviews
   GEN-0, GEN-1, GENE-26.5, ACT-2, Dyna-2, DYNA-1. World Model's intro links to RFM.
 - Her rule for `kind`: a review whose source is not an arXiv paper is a
@@ -39,7 +39,7 @@ _Last updated: 2026-09-24_
   the timezone). A tech review is dated by its source's publication date. A
   paper's own date lives in `paper_date` and shows only on the note page.
 - Some notes carry dates she chose rather than the day they were posted
-  (π0.7: 2026-04-19, DreamZero: 2026-02-21, GEN-0: 2026-01-28, GEN-1: 2026-04-08, ACT-2: 2026-07-18, GENE-26.5: 2026-05-14, DYNA-1: 2025-12-18, SAIL: 2026-04-20, LAPA: 2026-02-03). The 2026-07-10 "Launched this
+  (π0.7: 2026-04-19, DreamZero: 2026-02-21, GEN-0: 2026-01-28, GEN-1: 2026-04-08, ACT-2: 2026-07-18, GENE-26.5: 2026-05-14, DYNA-1: 2025-12-18, SAIL: 2026-04-20, LAPA: 2026-02-03, RTC: 2026-03-04). The 2026-07-10 "Launched this
   site" news item was removed at her request.
 - Pages: home, notes, publications, projects, CV — all data-driven from `_data/`.
 - The old `jiyoon0630/paper-reivew` repo is deleted; `404.html` carries the
@@ -71,6 +71,8 @@ _Last updated: 2026-09-24_
 
 ## Recently done
 
+- RTC paper review published (ko/en), dated 2026-03-04 at her request. It
+  cites Soft RTC (arXiv:2605.25537), which postdates that date — kept as uploaded.
 - LAPA paper review published (ko/en), dated 2026-02-03 at her request.
   A `|` inside inline math (`$|C|$`) is read by kramdown as a table pipe
   once the math plugin runs; write `\lvert C\rvert` instead.
