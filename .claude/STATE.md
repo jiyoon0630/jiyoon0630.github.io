@@ -49,14 +49,15 @@ _Last updated: 2026-09-24_
 
 ## Waiting on the owner
 
-- **Korean voice conversion of 16 posts — in progress.** Target
-  profile built from her 4 sources (22,349 words) into the gitignored
-  `.claude/target-ko.json`; it needs `sources/` to rebuild. The 4 tech reviews
-  made from her documents already match her (100% 합쇼체, em dash 1.8–3.3/1k).
-  The other 16 Korean posts are Tier B: ~1% 합쇼체, em dash 10–26/1k, ~을/를
-  통해 0, verdict hedges 0, sentence mean ~12 vs her 16–21, paired contrast
-  0.02/1k vs 0.85. She chose: convert all 16 at once, paper reviews included,
-  no pilot. Conversion in progress (2026-09-24).
+- **Korean voice conversion — done (2026-09-24).** All 16 Claude-written
+  Korean posts plus the Model Hardware Standard review are in her voice
+  (합쇼체 1% → 100%, em dash 18.9 → 12.3/1k; the rest are heading and label
+  dashes, left because headings are link anchors). Every post passed
+  `scripts/voice-check.py`. Flagged to her, not changed: LAPA 5.4 ⓶ names
+  언어 조건화 as the largest gap but Table 2 shows unseen 조합 larger;
+  DreamZero says "42% 이상" where Human2Robot is +41.8%. Open: rhetorical
+  questions in some posts end ~ㄹ까요? (해요체); her documents have no
+  example of a 합쇼체 question to follow.
 - **More tech-review sources** — sanitize, walk her through the report, post the
   KO/EN pair only after she confirms. CLAUDE.md lists her standing decisions.
 - **English voice** — she will decide after the Korean conversion. Korean is
