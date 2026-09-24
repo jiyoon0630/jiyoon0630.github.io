@@ -3,7 +3,7 @@ layout: paper
 lang: ko
 ref: act-2-generalizing-reliability
 kind: paper-review
-title: "ACT-2 Preview: Generalizing Reliability (ACT-2)"
+title: "ACT-2 Preview: Generalizing Reliability"
 date: 2026-07-18 12:00:00 -0700
 paper_date: 2026-07-17
 venue: "Sunday Robotics Blog (technical preview) · arXiv 미공개"
