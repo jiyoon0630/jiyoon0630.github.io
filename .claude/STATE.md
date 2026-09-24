@@ -62,13 +62,14 @@ World Model post, whose intro says it follows "앞서 정리했던 RFM의 발전
 
 - Site: https://jiyoon0630.github.io/ — Jekyll, deployed from `main` by
   `.github/workflows/pages.yml` on every push.
-- 14 notes: DreamZero, PLD, Hi Robot, Dyna-2, Cosmos 3 (all ko/en) as paper
-  reviews, plus
+- 16 notes: DreamZero, PLD, Hi Robot, Dyna-2, Cosmos 3, π0.7 (all ko/en) as
+  paper reviews, plus
   Actuate 2026 (ko/en) and World Model (ko/en) as **tech reviews**.
 - Note dates are **posting dates**, in America/Los_Angeles (`_config.yml` sets
   the timezone). A tech review is dated by its source's publication date. A
   paper's own date lives in `paper_date` and shows only on the note page.
-- The archive started **2026-07-10**.
+- The archive started **2026-07-10**. Exception: π0.7 is dated 2026-04-19 at
+  her request (actually posted 2026-09-24).
 - Pages: home, notes, publications, projects, CV — all data-driven from `_data/`.
 - The old `jiyoon0630/paper-reivew` repo is deleted; `404.html` carries the
   redirect for old `/paper-reivew/papers/<slug>/` links.
