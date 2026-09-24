@@ -94,16 +94,11 @@
   description: >-
     Scaled GS Retail's product recognition ~10× to ~10K SKUs at 98.0% accuracy with
     40% faster inference, and reached 95.9% inspection accuracy at LX Pantos.
-    Alongside it, standardized the center's model-development process (data/code
-    versioning, experiment and model tracking, HPO automation); the prototype was
-    selected as an internal Best Practice.
   name_ko: "대규모 리테일 상품 인식"
   tagline_ko: "재학습 없이 새 SKU를 추가하는 metric learning 기반 상품 인식."
   description_ko: >-
     GS리테일의 상품 인식을 약 10배(약 1만 SKU)로 확장하면서 정확도 98.0%와 40% 빠른
-    추론을 달성했고, LX판토스에서 검수 정확도 95.9%를 기록했습니다. 함께 센터의 모델
-    개발 프로세스(데이터·코드 버전 관리, 실험·모델 추적, HPO 자동화)를 표준화했으며,
-    프로토타입이 사내 Best Practice로 선정되었습니다.
-  tags: [Computer Vision, Metric Learning, MLOps]
+    추론을 달성했고, LX판토스에서 검수 정확도 95.9%를 기록했습니다.
+  tags: [Computer Vision, Metric Learning]
   selected: false
   links: []
