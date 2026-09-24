@@ -29,17 +29,17 @@ _Last updated: 2026-09-24_
 
 - Site: https://jiyoon0630.github.io/ — Jekyll, deployed from `main` by
   `.github/workflows/pages.yml` on every push.
-- 26 notes, all ko/en. **Paper reviews** (arXiv papers): DreamZero, PLD,
+- 28 notes, all ko/en. **Paper reviews** (arXiv papers): DreamZero, PLD,
   Hi Robot, Cosmos 3, π0.7. **Tech reviews**: RFM / VLA development (dated
   2026-04-10), Actuate 2026, World Model, plus the company-blog/report reviews
-  GEN-0, GEN-1, GENE-26.5, ACT-2, Dyna-2. World Model's intro links to RFM.
+  GEN-0, GEN-1, GENE-26.5, ACT-2, Dyna-2, DYNA-1. World Model's intro links to RFM.
 - Her rule for `kind`: a review whose source is not an arXiv paper is a
   `tech-review` (tag `Tech-Review`), even when it analyzes a model.
 - Note dates are **posting dates**, in America/Los_Angeles (`_config.yml` sets
   the timezone). A tech review is dated by its source's publication date. A
   paper's own date lives in `paper_date` and shows only on the note page.
 - Some notes carry dates she chose rather than the day they were posted
-  (π0.7: 2026-04-19, DreamZero: 2026-02-21, GEN-0: 2026-01-28, GEN-1: 2026-04-08, ACT-2: 2026-07-18, GENE-26.5: 2026-05-14). The 2026-07-10 "Launched this
+  (π0.7: 2026-04-19, DreamZero: 2026-02-21, GEN-0: 2026-01-28, GEN-1: 2026-04-08, ACT-2: 2026-07-18, GENE-26.5: 2026-05-14, DYNA-1: 2025-12-18). The 2026-07-10 "Launched this
   site" news item was removed at her request.
 - Pages: home, notes, publications, projects, CV — all data-driven from `_data/`.
 - The old `jiyoon0630/paper-reivew` repo is deleted; `404.html` carries the
