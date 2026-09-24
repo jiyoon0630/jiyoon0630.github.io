@@ -52,7 +52,7 @@ Organizing the paper's related work by Wall 1 gives the following.
 
 > Can a VLA be pretrained on video alone, without robot action labels? Can that pretraining catch up with GT-action pretraining, or surpass it when the embodiment changes? Does it work with human video alone?
 
-Wall 1 is broken through in §2–§3, and Wall 2 is gathered back in §4. That process is this paper's narrative.
+Wall 1 is broken through in Sections 2–3, and Wall 2 is gathered back in Section 4. That process is this paper's narrative.
 
 ---
 
@@ -72,7 +72,7 @@ Wall 1 is broken through in §2–§3, and Wall 2 is gathered back in §4. That 
 
 ### 2.2 VPT's chicken and egg
 
-The most direct way to use video is the VPT way. Use an IDM to attach action labels to every frame of the video, then train a policy with BC on those labels. But training the IDM ultimately requires $(x_t,\ x_{t+1},\ a_t)$ labels. The tool built to get rid of labels demands labels. On top of that, the IDM is trained on the few domains that have labels, so applied to differently shaped video it attaches wrong labels. This problem is actually confirmed in the experiments of §5.2.
+The most direct way to use video is the VPT way. Use an IDM to attach action labels to every frame of the video, then train a policy with BC on those labels. But training the IDM ultimately requires $(x_t,\ x_{t+1},\ a_t)$ labels. The tool built to get rid of labels demands labels. On top of that, the IDM is trained on the few domains that have labels, so applied to differently shaped video it attaches wrong labels. This problem is actually confirmed in the experiments of Section 5.2.
 
 ### 2.3 LAPA's way out — action as a latent variable
 
@@ -101,9 +101,9 @@ But there is something odd here. The decoder already receives $x_t$ as input. Th
 >
 > The information needed to reconstruct one image is incomparably larger than 12 bits. So the encoder cannot pass along all of $x_{t+H}$, and instead picks **only the 12 bits that reduce reconstruction loss the most**. It need not carry the static scene, which the decoder can already know from $x_t$. What remains is the largest change between the two frames, and in robot manipulation video that change is mostly the motion of the arm and hand.
 >
-> The structure points the same way. Since the vector being quantized is the **difference** of the two frame embeddings, $d_t = e_{t+H} - e_t$ (§3.1), the codes carry an inductive bias toward looking at change from the start.
+> The structure points the same way. Since the vector being quantized is the **difference** of the two frame embeddings, $d_t = e_{t+H} - e_t$ (Section 3.1), the codes carry an inductive bias toward looking at change from the start.
 >
-> To be precise, though, what $z$ holds is **not "action" but "the most salient visual change."** In video where the camera moves, camera motion takes up the codes. This difference becomes a problem again in §5.6 and §7.
+> To be precise, though, what $z$ holds is **not "action" but "the most salient visual change."** In video where the camera moves, camera motion takes up the codes. This difference becomes a problem again in Sections 5.6 and 7.
 
 In a word, this model is **a tokenizer for actions**. The paper, too, likens it to BPE: it learns a vocabulary of "atomic motions" from data, without predefined action units such as EE position or joint angles. From the image-generation side, the difference is that a tokenizer like VQGAN compresses **a single image**, whereas this model compresses **the conditional change given the first frame**.
 
@@ -189,7 +189,7 @@ $$\hat x_{t+H}\ =\ D\Big(\mathrm{CrossAttn}\big(\mathrm{sg}[p_t];\ \hat d_t\big)
 | Only two frames as input (Genie uses several past frames) | computational cost. Adding past observations is left for future work |
 | Window $H$ — 0.6 s for robots, 2.4 s for human video | human video has many static frames. $H=3$ on Bridge (5Hz) |
 
-Once training is done, **the encoder becomes a latent IDM and the decoder a latent world model**. The encoder is used as the labeler in Stage 2, and the decoder for the neural rollouts of §5.6.
+Once training is done, **the encoder becomes a latent IDM and the decoder a latent world model**. The encoder is used as the labeler in Stage 2, and the decoder for the neural rollouts of Section 5.6.
 
 ### 3.2 Latent Pretraining
 
@@ -207,7 +207,7 @@ It is the same structure as LLM pretraining. The only difference is that the nex
 
 > ### ⚠️ Fact check — inconsistent notation between $x_{t+1}$ and $x_{t+H}$
 >
-> §3.1 defines the encoder input as $(x_t,\ x_{t+H})$, but §3.2 writes that "$x_t$ is labeled given $x_{t+1}$." Since Appendix F states $H=3$ as the default on Bridge, the $x_{t+1}$ of §3.2 should be read as loose notation for "the next window frame."
+> Section 3.1 defines the encoder input as $(x_t,\ x_{t+H})$, but Section 3.2 writes that "$x_t$ is labeled given $x_{t+1}$." Since Appendix F states $H=3$ as the default on Bridge, the $x_{t+1}$ of Section 3.2 should be read as loose notation for "the next window frame."
 
 ### 3.3 Action Finetuning
 
@@ -238,7 +238,7 @@ A question follows. If the latent head learned so carefully in pretraining is th
 >
 > In LLM terms, it is the same structure as removing the LM head after next-token pretraining and fine-tuning with a new head attached. The output space of the pretraining objective is discarded, and only the representation remains.
 >
-> This interpretation makes one testable prediction. Abilities that come from pretraining should be strong in coarse intent such as **which object, in which direction**, while fine motor skill such as **exactly when to grasp** should depend on the amount of finetuning labels. The real-world results of §5.4 show exactly this pattern.
+> This interpretation makes one testable prediction. Abilities that come from pretraining should be strong in coarse intent such as **which object, in which direction**, while fine motor skill such as **exactly when to grasp** should depend on the amount of finetuning labels. The real-world results of Section 5.4 show exactly this pattern.
 
 ---
 
@@ -252,11 +252,11 @@ The paper offers three explanations.
 
 **⓷ Small output space → fast learning** — The pretraining output space is $8^4$, while OpenVLA's action space is $256^7$. The paper reports that every LAPA model reached its best performance within one epoch.
 
-The three explanations are not separate. Tie them together with the division of labor seen in §3.3 — "coarse intent from pretraining, fine motor skill from finetuning" — and what LAPA is can be summed up in one sentence.
+The three explanations are not separate. Tie them together with the division of labor seen in Section 3.3 — "coarse intent from pretraining, fine motor skill from finetuning" — and what LAPA is can be summed up in one sentence.
 
 > ### 📌 The core of LAPA — learn "what to do" and "how to do it with this body" from different data
 >
-> | Knowledge | Where it is learned | Labels | Experimental evidence (§5.4) |
+> | Knowledge | Where it is learned | Labels | Experimental evidence (Section 5.4) |
 > |---|---|---|---|
 > | What to do — target selection, language conditioning, rough trajectory | pretraining (any video) | not needed | unseen instruction 48.5 vs OpenVLA 43.4, reaching 83.3% vs 66.7% |
 > | How to do it with this body — grasp timing, contact | finetuning (robot labels) | needed | early-grasp failures, pick&place 45.8 vs 54.2 |
@@ -318,7 +318,7 @@ In-domain, LAPA uses only 0.5% (1k/181k) of the labels yet far exceeds Scratch a
 > - **cross-task** — pretraining and finetuning are in the same sim environment, and there are plenty of labels (7k). VPT's IDM can produce accurate labels in the GT space, so VPT has the advantage. The paper, too, explains it as the IDM having become accurate thanks to many labels.
 > - **cross-env** — an IDM trained on sim 1k is applied to 440K real trajectories, and the labels break. The paper considers the IDM not robust to environment shift.
 >
-> VPT aligns domains at labeling time, so when the domains are misaligned, the entire pretraining dataset is contaminated. LAPA defers the alignment to finetuning, so it carries no such risk. This is the VPT weakness previewed in §2.2, and also the cleanest evidence that the design of §4, "defer Wall 2 to finetuning," works.
+> VPT aligns domains at labeling time, so when the domains are misaligned, the entire pretraining dataset is contaminated. LAPA defers the alignment to finetuning, so it carries no such risk. This is the VPT weakness previewed in Section 2.2, and also the cleanest evidence that the design of Section 4, "defer Wall 2 to finetuning," works.
 
 Still, ActionVLA on the same backbone is higher than LAPA in every setting, and the gap is large in cross-env (64.8 vs 33.6). If the embodiment is the same, GT labels are still better.
 
@@ -357,14 +357,14 @@ Fig. 3 · Tables 13–16, success rate (%).
 
 **⓶ Open-X pretraining** — Growing the data from Bridge to Open-X improves both models, and LAPA beats OpenVLA on average (50.1 vs 43.9). By generalization type it leads in all three (Table 2: unseen combinations 57.8 vs 46.2, unseen objects 43.9 vs 42.1, unseen instructions 48.5 vs 43.4). The biggest difference comes on the language-conditioning side, while the difference on unseen objects is only 1.8%p.
 
-But it loses on pick&place (45.8 vs 54.2). The paper reports that most failures are grasps that come too early, and that on reaching LAPA is actually higher (83.33% vs 66.67%). The prediction made in §3.3 holds exactly. Pretraining tells the model which object to go to, but a grasp, which happens only once or twice per trajectory, is too little to learn from 150 labels.
+But it loses on pick&place (45.8 vs 54.2). The paper reports that most failures are grasps that come too early, and that on reaching LAPA is actually higher (83.33% vs 66.67%). The prediction made in Section 3.3 holds exactly. Pretraining tells the model which object to go to, but a grasp, which happens only once or twice per trajectory, is too little to learn from 150 labels.
 
 > ### ⚠️ Fact check — how to read "+6.22% over the SOTA VLA"
 >
 > The +6.22 in the contributions list is 50.09 − 43.87 from Table 16. The number is correct, but four things must be considered with it.
 >
 > - **⓵ Units** — it is not a relative % but **%p** on partial-credit scores. By strict success rate it is 35.19 vs 27.78.
-> - **⓶ Backbone confound** — LAPA uses LWM-Chat-1M, OpenVLA the Prismatic backbone. There is no ActionVLA GT-pretrained on Open-X with the same backbone. The paper, too, attributes part of the efficiency to the LWM backbone (§5.6).
+> - **⓶ Backbone confound** — LAPA uses LWM-Chat-1M, OpenVLA the Prismatic backbone. There is no ActionVLA GT-pretrained on Open-X with the same backbone. The paper, too, attributes part of the efficiency to the LWM backbone (Section 5.6).
 > - **⓷ Differences in finetuning recipe** — OpenVLA was trained with LoRA, batch 32, up to 95% train action accuracy; LAPA unfroze the entire LM and used batch 128 with image augmentation (Appendix C). The paper states that LoRA and full FT were similar for OpenVLA, but the augmentation difference remains.
 > - **⓸ Sample size** — 6 rollouts per cell. In the paired comparison (Appendix D), LAPA wins 31.5%, OpenVLA wins 16.7%, and 51.9% are ties.
 >
@@ -407,7 +407,7 @@ Bridge has practically no knocking, and Sthv2 has a lot. So even though the embo
 
 **Scaling (Fig. 5)** — Four axes are scaled up: LAQ model size, data fraction, latent token length and vocab. Note that "model scaling" here refers not to the 7B VLA but to **the size of LAQ** (30M → 300M). Every axis improves as it grows, but the optimal latent space depends on the action complexity of the data. On the visually simple Language Table (2-DoF), increasing the vocab was far more effective than increasing the token length (Fig. 16). The window $H$ gives stable results unless it is extremely large, which the paper attributes to the 300M-scale LAQ being unable to model very large visual changes. Even with less finetuning data, LAPA consistently leads Scratch (Fig. 15b).
 
-**What the latent actually holds (paper §5.2, Appendix E)** — The difference between "action" and "visual change" previewed in the callout of §2.3 shows up here.
+**What the latent actually holds (paper Section 5.2, Appendix E)** — The difference between "action" and "visual change" previewed in the callout of Section 2.3 shows up here.
 
 | Data | Observation |
 |---|---|
@@ -417,7 +417,7 @@ Bridge has practically no knocking, and Sthv2 has a lot. So even though the embo
 
 The third row is direct evidence for the information-bottleneck interpretation. $z$ holds not action but the most salient visual change, and in egocentric video the camera movement that comes from the head moving is part of that change. The paper presents this as an advantage that could extend to navigation and the like, but from a manipulation policy's standpoint it also means part of the code capacity goes to signals unrelated to action.
 
-**Neural rollouts (Fig. 7)** — LAPA with pretraining only emits latent actions, and the LAQ decoder generates the next frame, closing the loop. Given the instruction "take the broccoli out of the pot," it generates a video of the arm approaching the broccoli and lifting it. The dual role of §3.1, "encoder = IDM, decoder = world model," combines with the policy to become **a purely neural simulator**. The paper even looks ahead to scaling test-time compute by generating several plans and picking the best one, but the evidence presented is a single qualitative example.
+**Neural rollouts (Fig. 7)** — LAPA with pretraining only emits latent actions, and the LAQ decoder generates the next frame, closing the loop. Given the instruction "take the broccoli out of the pot," it generates a video of the arm approaching the broccoli and lifting it. The dual role of Section 3.1, "encoder = IDM, decoder = world model," combines with the policy to become **a purely neural simulator**. The paper even looks ahead to scaling test-time compute by generating several plans and picking the best one, but the evidence presented is a single qualitative example.
 
 ---
 
@@ -480,10 +480,10 @@ Here are both what the paper states itself and what is worth adding while readin
 
 **Further points to raise**
 
-- **"Action" ≠ "visual change"** — as seen in §2.3 and §5.6, $z$ holds the most salient visual change. Camera ego-motion and the movement of other people and objects also take up codes, and this contamination will grow worse the more unedited the web video. It is a real obstacle to "web-scale expansion."
+- **"Action" ≠ "visual change"** — as seen in Sections 2.3 and 5.6, $z$ holds the most salient visual change. Camera ego-motion and the movement of other people and objects also take up codes, and this contamination will grow worse the more unedited the web video. It is a real obstacle to "web-scale expansion."
 - **The bottleneck was moved, not removed** — latent pretraining needs "video + language instruction" pairs. Sthv2 has templated captions, but web video lacks not only action labels but also task-level instructions. The label bottleneck moved from action to language.
 - **Hand tuning per data source** — the window $H$ was set separately: 0.6 s for robots, 2.4 s for human video. With heterogeneous web video, this knob would have to be set per source.
-- **Confounds in the headline comparison** — as seen in §5.4, backbone and finetuning recipe are mixed in. The only case where latent pretraining beat GT pretraining on the same backbone is Bridge → Franka, and even that gap comes essentially from one task.
+- **Confounds in the headline comparison** — as seen in Section 5.4, backbone and finetuning recipe are mixed in. The only case where latent pretraining beat GT pretraining on the same backbone is Bridge → Franka, and even that gap comes essentially from one task.
 - **Little input information** — LAQ sees only two frames, and the policy sees only one image and the instruction. There is no validation on situations that need temporal context, such as occlusion or velocity.
 
 ---
@@ -499,7 +499,7 @@ And this paper reads unusually well for someone with an LLM and generative-model
 - **Action finetuning = SFT with the head swapped** — the same even down to discarding the pretraining output space and keeping only the representation.
 - **Encoder = IDM, decoder = world model** — the policy and the world model come out of one round of unsupervised learning together. From the world-model side, it is also a way to obtain an action-conditioned video generator without action labels.
 
-Above all, the question Table 4 of §5.5 raises is a big one. If downstream performance follows **the skill distribution of the pretraining video** more than embodiment match, the data strategy for robot foundation models shifts from "how much robot data to collect" to **"how much video containing which skills to collect."** This is especially so in domains where unlabeled but skill-dense video has piled up, such as footage of on-site work.
+Above all, the question Table 4 of Section 5.5 raises is a big one. If downstream performance follows **the skill distribution of the pretraining video** more than embodiment match, the data strategy for robot foundation models shifts from "how much robot data to collect" to **"how much video containing which skills to collect."** This is especially so in domains where unlabeled but skill-dense video has piled up, such as footage of on-site work.
 
 ---
 
